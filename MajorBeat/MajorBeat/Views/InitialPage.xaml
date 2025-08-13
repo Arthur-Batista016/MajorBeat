@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.InitialPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundImageSource="initial.png">
+    <VerticalStackLayout>
+        <Image Source="logo.png" HeightRequest="500" WidthRequest="600" Margin="0,-30,0,0"></Image>
+        <Label HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#EEE8F1" 
+               Margin="0,-120,0,0" FontSize="20" FontFamily="InterBold" >
+            Unindo pequenas notas a
+        </Label>
+        
+        <Label HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#EEE8F1" FontSize="20"
+               FontFamily="InterBold">grandes melodias</Label>
+        
+        <Button Text="Login" FontAttributes="Bold" TextColor="#4F1271" BackgroundColor="#E7E7E7" WidthRequest="300" HeightRequest="70" 
+                CornerRadius="10" FontFamily="InterBold" FontSize="18" Margin="0,120,0,0"></Button>
+        
+        <Button x:Name="register" Text="Cadastre-se"  FontAttributes="Bold"
+                TextColor="#4F1271" BackgroundColor="#E7E7E7"  WidthRequest="300" HeightRequest="70" CornerRadius="10" FontFamily="InterBold" FontSize="18" Margin="0,65,0,0"></Button>
+    </VerticalStackLayout>
+</ContentPage>
