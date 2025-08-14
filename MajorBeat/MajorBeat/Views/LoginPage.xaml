@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.LoginPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#4F1271">
+    <VerticalStackLayout>
+        <Grid>
+            <Button  x:Name="voltar" HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7"></Button>
+            <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,47,250,0" HorizontalOptions="Center"></Label>
+            <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
+        </Grid>
+
+        <Label Text="Bem-vindo de volta" TextColor="#EEE8F1" HorizontalOptions="Center" FontSize="40" FontFamily="InterBold" FontAttributes="Bold"/>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+
+                <Border StrokeShape="RoundRectangle 10 0 10 0" BackgroundColor="#BFACC8" Margin="20,30,20,0" WidthRequest="70" HorizontalOptions="Start" HeightRequest="70">
+                    <Image Source="User_icon" HorizontalOptions="Center" HeightRequest="45" />
+                </Border>
+                <Border StrokeShape="RoundRectangle 0 10 0 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="300" HorizontalOptions="End" HeightRequest="70">
+                    <Entry Grid.Row="1" Placeholder="E-mail" PlaceholderColor="#854F1271" Margin="10,0,0,0" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Nome}"></Entry>
+                </Border>
+             
+                
+                
+            </Grid>
+            
+            <Grid Grid.Row="1">
+                <Border StrokeShape="RoundRectangle 10 0 10 0" BackgroundColor="#BFACC8" Margin="20,30,20,0" WidthRequest="70" HorizontalOptions="Start" HeightRequest="70">
+                    <Image Source="password_icon" HorizontalOptions="Center" HeightRequest="45" />
+                </Border>
+                <Border StrokeShape="RoundRectangle 0 10 0 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="300" HorizontalOptions="End" HeightRequest="70">
+                    <Entry Grid.Row="1" Placeholder="Senha" PlaceholderColor="#854F1271" Margin="10,0,0,0" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Nome}"></Entry>
+                </Border>
+            </Grid>
+            
+                <Button Grid.Row="3" Text="Esqueceu sua senha?" BackgroundColor="Transparent" HorizontalOptions="End"/>
+        </Grid>
+
+
+        <Grid Margin="0,-20,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+         <Button Grid.Row="0" Text="Entrar" Margin="0,70,0,0" BackgroundColor="#e7e7e7" TextColor="#4F1271" HeightRequest="60" WidthRequest="270" FontSize="17" FontAttributes="Bold" FontFamily="InterBold" Command="{Binding RegistrarCommand}"></Button>
+            <Label Text="Não possui conta?" Grid.Row="1" HorizontalOptions="Center" Margin="0,15,70,0" FontSize="17" TextColor="#EEE8F1"/>
+        <Button Text="CRIAR CONTA" Grid.Row="1" BackgroundColor="Transparent" WidthRequest="120" HorizontalOptions="End" FontAttributes="Bold" Margin="0,5,55,0"/>
+        </Grid>
+        
+        <Grid>
+            
+
+            <Grid Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                
+                <Label Text="ou" Grid.Row="0" TextColor="white" HorizontalOptions="Center" FontSize="20"/>
+             
+                <Border Grid.Row="1" StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="20,30,20,0" WidthRequest="150" HorizontalOptions="Start" HeightRequest="55">
+                    <Button Text="GOOGLE" Grid.Row="1" TextColor="#4F1271" BackgroundColor="#e7e7e7" FontFamily="InterBold" FontSize="16" FontAttributes="Bold" HorizontalOptions="End" Margin="0,0,10,0"/>
+                </Border>
+                <Image Grid.Row="1" Source="google" HorizontalOptions="Start" HeightRequest="45" Margin="30,25,0,0"/>
+
+                <Border Grid.Row="2" StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="20,30,20,0" WidthRequest="150" HorizontalOptions="Start" HeightRequest="55">
+                    <Button Text="LINKEDIN" Grid.Row="1" TextColor="#4F1271" BackgroundColor="#e7e7e7" FontFamily="InterBold" FontAttributes="Bold" FontSize="16" HorizontalOptions="End" Margin="0,0,0,0"/>
+                </Border>
+                <Image Grid.Row="2" Source="linkedin" HorizontalOptions="Start" HeightRequest="45" Margin="30,27,0,0"/>
+
+                <Border  Grid.Row="1" StrokeShape="RoundRectangle 15 15 15 15" BackgroundColor="#e7e7e7" Margin="20,30,20,0" WidthRequest="150" HorizontalOptions="End" HeightRequest="55">
+                    <Button Text="FACEBOOK" Grid.Row="2" TextColor="#4F1271" BackgroundColor="#e7e7e7" FontFamily="InterBold" FontAttributes="Bold" FontSize="16" HorizontalOptions="End" Margin="0,0,5,0"/>
+                </Border>
+                <Image Grid.Row="1" Source="facebook" HorizontalOptions="Center" HeightRequest="40" Margin="120,27,0,0"/>
+
+                <Border Grid.Row="2" StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="20,30,20,0" WidthRequest="150" HorizontalOptions="End" HeightRequest="55">
+                    <Button Text="INSTAGRAM" Grid.Row="2" TextColor="#4F1271" BackgroundColor="#e7e7e7" FontFamily="InterBold" FontSize="15" FontAttributes="Bold" HorizontalOptions="End" Margin="0,0,-5,0"/>
+                </Border>
+                <Image Grid.Row="2" Source="instagram" HorizontalOptions="Center" HeightRequest="40" Margin="120,28,0,0"/>
+            </Grid>
+
+           
+        </Grid>
+
+        <Button Text="Termos de Uso e Política de Privacidade" Margin="0,30,0,0" BackgroundColor="Transparent" HorizontalOptions="Center"/>
+    </VerticalStackLayout>
+</ContentPage>

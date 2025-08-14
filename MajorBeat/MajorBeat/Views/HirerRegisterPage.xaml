@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.HirerRegisterPage"
+             Title="HirerRegisterPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#4F1271">
+    <ScrollView>
+        <VerticalStackLayout>
+        <Grid>
+            <Button  x:Name="voltar" HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7" Clicked="voltar_Clicked_1"   ></Button>
+            <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,47,250,0" HorizontalOptions="Center"></Label>
+            <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
+        </Grid>
+
+        <Label Text="Criar sua conta" HorizontalTextAlignment="Center" FontSize="25" TextColor="#e7e7e7" FontAttributes="Bold" FontFamily="InterBold"></Label>
+
+            
+        
+        <!--RADIO BUTTONS - MUSICO - CONTRATANTE - Banda -->
+        <Grid Margin="0,20,0,0">
+                <RadioButton Content="Músico"
+             GroupName="perfil"
+             TextColor="#e7e7e7"
+             IsChecked="False"
+             HorizontalOptions="Center"
+             FontSize="15"
+             Margin="0,0,190,0"
+             BorderColor="#e7e7e7">
+
+                    <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CheckedStatus">
+                            <VisualState Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderColor" Value="White"/>
+                                    <Setter Property="BackgroundColor" Value="#CFA8FF"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Unchecked">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderColor" Value="White"/>
+                                    <Setter Property="BackgroundColor" Value="#0000"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </RadioButton>
+
+
+
+
+                <RadioButton Content="Contratante" GroupName="Contratante" TextColor="#e7e7e7" IsChecked="True" IsEnabled="True"  HorizontalOptions="Center" FontSize="15" Margin="120,0,0,0" BorderColor="#e7e7e7"  />
+        </Grid>
+
+
+        <!--NOME COMPLETO-->
+
+        <Grid Margin="0,25,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Text="Nome Completo" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+            <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
+                <Entry Grid.Row="1" Placeholder="Ex: Anderson Francisco Costa" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Nome}"></Entry>
+            </Border>
+        </Grid>
+
+
+
+
+        <!--E-MAIL-->
+
+        <Grid Margin="0,20,0,0">
+            <Label Text="E-mail" HorizontalOptions="Start" Margin="38,0,0,0" FontSize="16"  FontAttributes="Bold" FontFamily="InterBold" TextColor="#e7e7e7"></Label>
+            <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
+                <Entry Placeholder="Ex:anderson.francisco@gmail.com" PlaceholderColor="#604F1271" HeightRequest="55" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Email}"></Entry>
+            </Border>
+        </Grid>
+
+        <!--TELEFONE-->
+
+        <Label Grid.Row="0" Text="Telefone" TextColor="#e7e7e7" Margin="35,20,0,0" FontSize="16"  FontFamily="InterBold" FontAttributes="Bold"></Label>
+
+        <Border  Grid.Row="0" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="366" Margin="20,10,30,0" HorizontalOptions="Start" HeightRequest="55">
+
+            <Grid Margin="20,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+
+
+                <Picker
+                    Grid.Row="0"
+                    WidthRequest="60"
+                    HorizontalOptions="Start"
+                    Margin="0,5,0,0"
+                    ZIndex="1"
+                    
+                    >
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>+55</x:String>
+                            <x:String>+351</x:String>
+                            <x:String>+81</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Label Margin="65,0,0,0" FontSize="30" TextColor="#7F5297">|</Label>
+
+                <Entry Placeholder="Ex:(11) 95802-7781" HorizontalOptions="Center" Margin="300,0,149,0" WidthRequest="330" HeightRequest="55" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271" Text="{Binding Telefone}"></Entry>
+
+            </Grid>
+        </Border>
+
+
+
+
+
+
+        <!--ENDERECO-->
+
+
+        <Grid Margin="0,35,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+            <Label Grid.Row="0" Text="Endereço" TextColor="#e7e7e7" Margin="25,-5,0,0" FontSize="18"  FontFamily="InterBold" FontAttributes="Bold" ></Label>
+
+            <Grid Margin="0,45,0,0">
+
+                <Label Grid.Row="1" Text="Logradouro:" TextColor="#e7e7e7"  FontFamily="InterBold" FontAttributes="Bold" Margin="25,0,0,0" HorizontalTextAlignment="Start"></Label>
+                <Border   Grid.Row="2" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="220" Margin="15,-175,0,0" HorizontalOptions="Start" HeightRequest="55">
+                    <Entry Grid.Row="2" Placeholder="Ex: R.Alcântara" HorizontalOptions="Start" Margin="0,0,0,0" WidthRequest="190" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271" Text="{Binding Logradouro}"></Entry>
+                </Border>
+
+                <Label Grid.Row="1" Text="Número:" TextColor="#e7e7e7" HorizontalTextAlignment="Center" Margin="200,0,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
+                <Border   Grid.Row="2" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="120" Margin="260,-175,0,0" HorizontalOptions="Start" HeightRequest="55">
+                    <Entry Grid.Row="2" Placeholder="Ex: 1234" PlaceholderColor="#707F5297" HorizontalOptions="End" Margin="0,0,0,0" WidthRequest="110" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Numero}"></Entry>
+                </Border>
+            </Grid>
+
+
+            <Grid Margin="0,150,0,0">
+
+                <Label Grid.Row="3" Text="CEP:" TextColor="#e7e7e7" Margin="25,-10,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
+                <Border   Grid.Row="4" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="130" Margin="15,-90,0,0" HorizontalOptions="Start" HeightRequest="55">
+                    <Entry Grid.Row="4" Placeholder="Ex:23987501" Margin="0,0,0,0" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271" Text="{Binding Cep}"></Entry>
+                </Border>
+
+                <Label  Grid.Row="3" Text="Bairro:" HorizontalTextAlignment="Center" TextColor="#e7e7e7" Margin="0,-10,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
+                <Border  Grid.Row="4" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="220" Margin="0,-90,30,0" HorizontalOptions="End" HeightRequest="55">
+                    <Entry   Grid.Row="4" Placeholder="Ex: Vila Maria Alta" PlaceholderColor="#707F5297" Margin="0,0,0,0" HorizontalOptions="Center" WidthRequest="200" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Bairro}"></Entry>
+                </Border>
+            </Grid>
+
+            <Grid Margin="0,300,0,0">
+                <Label  Grid.Row="5" Text="Cidade:" TextColor="#e7e7e7" Margin="22,-50,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
+                <Border  Grid.Row="6" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="175" Margin="10,-30,0,0" HorizontalOptions="Start" HeightRequest="55">
+                    <Entry  Grid.Row="6" Placeholder="Ex: Campinas" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271" Text="{Binding Cidade}"></Entry>
+                </Border>
+
+                <Label  Grid.Row="5" Text="UF:" Margin="0,-50,150,0" TextColor="#e7e7e7" HorizontalOptions="End" FontAttributes="Bold"  FontFamily="InterBold"></Label>
+                <Border  Grid.Row="6" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="180" Margin="0,-30,30,0" HorizontalOptions="End" HeightRequest="55" >
+                    <Entry  Grid.Row="6" Placeholder="Ex: São Paulo" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271"  BackgroundColor="Transparent" Text="{Binding Uf}"></Entry>
+                </Border>
+            </Grid>
+
+
+        </Grid>
+
+        <Grid Margin="0,50,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Text="Senha" TextColor="#e7e7e7" Margin="32,0,0,0" FontAttributes="Bold" FontSize="16"  FontFamily="InterBold"></Label>
+            <Border   Grid.Row="1" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="360" Margin="15,0,0,0" HorizontalOptions="Start" HeightRequest="50">
+                <Entry Grid.Row="1" Placeholder="Obr: Mínimo 8 caracteres" WidthRequest="325" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Senha}"></Entry>
+            </Border>
+
+            <Label Grid.Row="2" Text="Confirmar Senha" Margin="30,30,0,0" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold"  FontFamily="InterBold"></Label>
+            <Border Grid.Row="3" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="360" Margin="15,0,0,0" HorizontalOptions="Start" HeightRequest="50">
+                <Entry Grid.Row="3" Placeholder="Confirme sua senha" WidthRequest="325" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Senha}"></Entry>
+            </Border>
+        </Grid>
+
+
+        <Grid Margin="0,-20,0,50">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+            <Button x:Name="criar" Grid.Row="0" Text="Criar Conta" Margin="0,70,0,0" BackgroundColor="#e7e7e7" TextColor="#4F1271" HeightRequest="60" WidthRequest="200" FontSize="17" FontAttributes="Bold" FontFamily="InterBold" Command="{Binding RegistrarCommand}"></Button>
+            <Label  Grid.Row="1" Text="Termos de Uso e Política de Privacidade" HorizontalOptions="Center" TextColor="#e7e7e7" Margin="0,30,0,0"></Label>
+        </Grid>
+
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -14,10 +14,10 @@
         <Label HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#EEE8F1" FontSize="20"
                FontFamily="InterBold">grandes melodias</Label>
         
-        <Button Text="Login" FontAttributes="Bold" TextColor="#4F1271" BackgroundColor="#E7E7E7" WidthRequest="300" HeightRequest="70" 
-                CornerRadius="10" FontFamily="InterBold" FontSize="18" Margin="0,120,0,0"></Button>
+        <Button  x:Name="login" Text="Login" FontAttributes="Bold" TextColor="#4F1271" BackgroundColor="#E7E7E7" WidthRequest="300" HeightRequest="70" 
+                CornerRadius="10" Clicked="login_Clicked" FontFamily="InterBold" FontSize="18" Margin="0,120,0,0"></Button>
         
-        <Button x:Name="register" Text="Cadastre-se"  FontAttributes="Bold"
+        <Button x:Name="register" Text="Cadastre-se"  FontAttributes="Bold" Clicked="register_Clicked"
                 TextColor="#4F1271" BackgroundColor="#E7E7E7"  WidthRequest="300" HeightRequest="70" CornerRadius="10" FontFamily="InterBold" FontSize="18" Margin="0,65,0,0"></Button>
     </VerticalStackLayout>
 </ContentPage>
