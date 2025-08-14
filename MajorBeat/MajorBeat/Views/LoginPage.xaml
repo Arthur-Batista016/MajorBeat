@@ -61,40 +61,34 @@
         <Grid>
             
 
-            <Grid Margin="0,10,0,0">
+            <Grid Margin="0,20,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
+                <Image Source="line" Grid.Row="0" HorizontalOptions="Start" WidthRequest="180"/>
+                <Label Text="ou" Grid.Row="0" TextColor="white" HorizontalOptions="Center" FontSize="23"/>
+                <Image Source="line" Grid.Row="0" HorizontalOptions="End" WidthRequest="180" />
                 
-                <Label Text="ou" Grid.Row="0" TextColor="white" HorizontalOptions="Center" FontSize="20"/>
-             
                 <Border Grid.Row="1" StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="20,30,20,0" WidthRequest="150" HorizontalOptions="Start" HeightRequest="55">
                     <Button Text="GOOGLE" Grid.Row="1" TextColor="#4F1271" BackgroundColor="#e7e7e7" FontFamily="InterBold" FontSize="16" FontAttributes="Bold" HorizontalOptions="End" Margin="0,0,10,0"/>
                 </Border>
                 <Image Grid.Row="1" Source="google" HorizontalOptions="Start" HeightRequest="45" Margin="30,25,0,0"/>
 
-                <Border Grid.Row="2" StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="20,30,20,0" WidthRequest="150" HorizontalOptions="Start" HeightRequest="55">
+                <Border Grid.Row="1" StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="20,30,20,0" WidthRequest="150" HorizontalOptions="End" HeightRequest="55">
                     <Button Text="LINKEDIN" Grid.Row="1" TextColor="#4F1271" BackgroundColor="#e7e7e7" FontFamily="InterBold" FontAttributes="Bold" FontSize="16" HorizontalOptions="End" Margin="0,0,0,0"/>
                 </Border>
-                <Image Grid.Row="2" Source="linkedin" HorizontalOptions="Start" HeightRequest="45" Margin="30,27,0,0"/>
+                <Image Grid.Row="1" Source="linkedin" HorizontalOptions="Center" HeightRequest="45" Margin="130,27,0,0"/>
 
-                <Border  Grid.Row="1" StrokeShape="RoundRectangle 15 15 15 15" BackgroundColor="#e7e7e7" Margin="20,30,20,0" WidthRequest="150" HorizontalOptions="End" HeightRequest="55">
-                    <Button Text="FACEBOOK" Grid.Row="2" TextColor="#4F1271" BackgroundColor="#e7e7e7" FontFamily="InterBold" FontAttributes="Bold" FontSize="16" HorizontalOptions="End" Margin="0,0,5,0"/>
-                </Border>
-                <Image Grid.Row="1" Source="facebook" HorizontalOptions="Center" HeightRequest="40" Margin="120,27,0,0"/>
+               
 
-                <Border Grid.Row="2" StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="20,30,20,0" WidthRequest="150" HorizontalOptions="End" HeightRequest="55">
-                    <Button Text="INSTAGRAM" Grid.Row="2" TextColor="#4F1271" BackgroundColor="#e7e7e7" FontFamily="InterBold" FontSize="15" FontAttributes="Bold" HorizontalOptions="End" Margin="0,0,-5,0"/>
-                </Border>
-                <Image Grid.Row="2" Source="instagram" HorizontalOptions="Center" HeightRequest="40" Margin="120,28,0,0"/>
             </Grid>
 
            
         </Grid>
 
-        <Button Text="Termos de Uso e Política de Privacidade" Margin="0,30,0,0" BackgroundColor="Transparent" HorizontalOptions="Center"/>
+        <Button Text="Termos de Uso e Política de Privacidade" Margin="0,50,0,0" FontSize="14" BackgroundColor="Transparent" HorizontalOptions="Center"/>
     </VerticalStackLayout>
 </ContentPage>

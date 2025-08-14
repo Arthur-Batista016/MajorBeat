@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.BandHomePage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#4F1271">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid>
+                <Button  x:Name="voltar" HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7"></Button>
+                <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,47,250,0" HorizontalOptions="Center"></Label>
+                <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
+            </Grid>
+            
+            <Label Text="Banda" TextColor="#e7e7e7" HorizontalOptions="Center" FontSize="27"/>
+            <Border StrokeShape="RoundRectangle 100" BackgroundColor="#e7e7e7" Margin="20,30,20,0" WidthRequest="200" HorizontalOptions="Center" HeightRequest="200">
+                <ImageButton Source="profile" HeightRequest="120"/>
+            </Border>
+            <ImageButton/>
+
+
+            <Grid>
+                
+                <Label Text="Biografia" TextColor="#e7e7e7" HorizontalOptions="Start" Margin="30,0,0,0" FontAttributes="Bold"/>
+                <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="370" HorizontalOptions="End" HeightRequest="110">
+                    <Editor Placeholder="Descrevam-se..." PlaceholderColor="#807F5297" Margin="0,0,0,65"/>
+                </Border>
+            </Grid>
+
+            <Grid Margin="0,30,0,0">
+
+                <Label Text="Destaques"  HorizontalOptions="Start" Margin="25,0,0,0" TextColor="#e7e7e7" FontAttributes="Bold"/>
+                <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="370" HorizontalOptions="End" HeightRequest="230">
+                    <VerticalStackLayout Margin="0,110,0,0">
+                        <Label Text="Adicione fotos e videos favoritos aqui
+                        mostrando seu talento" WidthRequest="250" HorizontalTextAlignment="Center" TextColor="#907F5297" FontAttributes="Bold"/>
+                        <Button Text="Adicionar" CornerRadius="10" BackgroundColor="#783F8E"  WidthRequest="170" Margin="0,20,0,0"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+
+            <Grid Margin="0,20,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Text="Contatos" HorizontalOptions="Start" Margin="25,0,0,0" TextColor="#e7e7e7" FontAttributes="Bold"/>
+                <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="370" HorizontalOptions="End" HeightRequest="230">
+                    <VerticalStackLayout>
+
+                        
+                        <Picker Grid.Row="1" Title="Adicionar links" TitleColor="#4F1271"></Picker>
+                        <Grid Margin="20,30,0,0" HorizontalOptions="Start">
+                            <Button Text="Adicionar +" Grid.Row="2" BackgroundColor="Transparent" TextColor="#907F5297" Margin="40,0,0,0"/>
+                            <Image Grid.Row="2" Source="facebook" HorizontalOptions="Start" HeightRequest="45" Margin="0,0,0,0"/>
+                        </Grid>
+                        
+                        <Grid Margin="20,30,0,0" HorizontalOptions="Start">
+                            <Button Text="Adicionar +" Grid.Row="3" BackgroundColor="Transparent" TextColor="#907F5297" Margin="40,0,0,0"/>
+                            <Image Grid.Row="3" Source="instagram" HorizontalOptions="Start" HeightRequest="45" Margin="0,0,0,0"/>
+                        </Grid>
+                        
+                        <Grid Margin="0,-115,0,0" HorizontalOptions="End">
+                            <Button Text="Adicionar +" Grid.Row="2" BackgroundColor="Transparent" TextColor="#907F5297" Margin="40,0,0,0"/>
+                            <Image Grid.Row="2" Source="linkedin" HorizontalOptions="Start" HeightRequest="45" Margin="0,0,0,0"/>
+                        </Grid>
+                     
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Grid Margin="0,20,0,0">
+                <Label Text="Instrumentos" HorizontalOptions="Start" Margin="25,0,0,0" TextColor="#e7e7e7" FontAttributes="Bold"/>
+                <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="370" HorizontalOptions="End" HeightRequest="170">
+                    <VerticalStackLayout>
+                        <SearchBar Placeholder="Digite aqui o instrumento"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Grid Margin="0,20,0,0">
+                <Label Text="Estilos Musicais" HorizontalOptions="Start" Margin="25,0,0,0" TextColor="#e7e7e7" FontAttributes="Bold"/>
+                <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="370" HorizontalOptions="End" HeightRequest="170">
+                    <VerticalStackLayout>
+                        <SearchBar Placeholder="Digite aqui o instrumento"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Button Grid.Row="0" Text="Criar Perfil" Margin="0,70,0,0" BackgroundColor="#e7e7e7" TextColor="#4F1271" HeightRequest="60" WidthRequest="250" FontSize="17" FontAttributes="Bold" FontFamily="InterBold"></Button>
+
+            <Button Text="Termos de Uso e Política de Privacidade" Margin="0,50,0,25" FontSize="14" BackgroundColor="Transparent" HorizontalOptions="Center"/>
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
