@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.MusicianHomePage"
+             >
+    <VerticalStackLayout>
+        <Grid>
+            <Image/>
+            <SearchBar/>
+        </Grid>
+
+        <Button/>
+
+        <Label Text="Eventos próximos a você"/>
+        <Grid Margin="0,20,0,0">
+            <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="370" HorizontalOptions="End" HeightRequest="170">
+                <VerticalStackLayout>
+                    <Image/>
+                    <Label Text="Panelão do Norte"/>
+                    <Label Text="Restaurante"></Label>
+                    <Border>
+                        <Label Text="Sertanejo"/>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+        <Grid>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+        </Grid>
+
+
+    </VerticalStackLayout>
+</ContentPage>

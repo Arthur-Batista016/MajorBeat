@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MajorBeat.Views.BandHomePage"
+             x:Class="MajorBeat.Views.BandCreateProfile"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#4F1271">
     <ScrollView>
@@ -13,17 +13,23 @@
             </Grid>
             
             <Label Text="Banda" TextColor="#e7e7e7" HorizontalOptions="Center" FontSize="27"/>
-            <Border StrokeShape="RoundRectangle 100" BackgroundColor="#e7e7e7" Margin="20,30,20,0" WidthRequest="200" HorizontalOptions="Center" HeightRequest="200">
+            <Border StrokeShape="RoundRectangle 100" BackgroundColor="#D9D9D9" Margin="20,30,20,0" WidthRequest="200" HorizontalOptions="Center" HeightRequest="200">
                 <ImageButton Source="profile" HeightRequest="120"/>
             </Border>
-            <ImageButton/>
+
+            <Grid HorizontalOptions="End" Margin="0,-80,70,0">
+                <Border StrokeShape="RoundRectangle 100" BackgroundColor="#D9D9D9" Margin="20,30,20,0" WidthRequest="60" HorizontalOptions="Center" HeightRequest="60">
+                    <ImageButton Source="camera" HeightRequest="30"/>
+                </Border>
+            </Grid>
 
 
-            <Grid>
+            <Grid Margin="0,50,0,0">
+                
                 
                 <Label Text="Biografia" TextColor="#e7e7e7" HorizontalOptions="Start" Margin="30,0,0,0" FontAttributes="Bold"/>
-                <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="370" HorizontalOptions="End" HeightRequest="110">
-                    <Editor Placeholder="Descrevam-se..." PlaceholderColor="#807F5297" Margin="0,0,0,65"/>
+                <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="370" HorizontalOptions="End">
+                    <Editor Placeholder="Descrevam-se..." PlaceholderColor="#807F5297" Margin="0,0,0,65" VerticalOptions="Start" AutoSize="TextChanges" MaxLength="250"/>
                 </Border>
             </Grid>
 
@@ -52,40 +58,57 @@
                     <VerticalStackLayout>
 
                         
-                        <Picker Grid.Row="1" Title="Adicionar links" TitleColor="#4F1271"></Picker>
-                        <Grid Margin="20,30,0,0" HorizontalOptions="Start">
-                            <Button Text="Adicionar +" Grid.Row="2" BackgroundColor="Transparent" TextColor="#907F5297" Margin="40,0,0,0"/>
-                            <Image Grid.Row="2" Source="facebook" HorizontalOptions="Start" HeightRequest="45" Margin="0,0,0,0"/>
-                        </Grid>
-                        
+                        <Picker Grid.Row="1" Title="Adicionar links" TitleColor="#4F1271" Margin="0,0,0,0" WidthRequest="340"></Picker>
+                        <Image Source="plus" HeightRequest="20" Margin="0,-35,20,0" HorizontalOptions="End"/>
+
                         <Grid Margin="20,30,0,0" HorizontalOptions="Start">
                             <Button Text="Adicionar +" Grid.Row="3" BackgroundColor="Transparent" TextColor="#907F5297" Margin="40,0,0,0"/>
-                            <Image Grid.Row="3" Source="instagram" HorizontalOptions="Start" HeightRequest="45" Margin="0,0,0,0"/>
+                            <Image Grid.Row="2" Source="instagram" HorizontalOptions="Start" HeightRequest="45" Margin="0,0,0,0"/>
                         </Grid>
                         
-                        <Grid Margin="0,-115,0,0" HorizontalOptions="End">
+                        <Grid Margin="0,-45,0,0" HorizontalOptions="End">
                             <Button Text="Adicionar +" Grid.Row="2" BackgroundColor="Transparent" TextColor="#907F5297" Margin="40,0,0,0"/>
                             <Image Grid.Row="2" Source="linkedin" HorizontalOptions="Start" HeightRequest="45" Margin="0,0,0,0"/>
                         </Grid>
-                     
+
+                        <Grid Margin="0,30,0,0" HorizontalOptions="Center">
+                            <Button Text="Adicionar +" Grid.Row="2" BackgroundColor="Transparent" TextColor="#907F5297" Margin="40,0,0,0"/>
+                            <Image Grid.Row="2" Source="twitter" HorizontalOptions="Start" HeightRequest="45" Margin="0,0,0,0"/>
+                        </Grid>
+
                     </VerticalStackLayout>
                 </Border>
             </Grid>
 
             <Grid Margin="0,20,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
                 <Label Text="Instrumentos" HorizontalOptions="Start" Margin="25,0,0,0" TextColor="#e7e7e7" FontAttributes="Bold"/>
                 <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="370" HorizontalOptions="End" HeightRequest="170">
                     <VerticalStackLayout>
-                        <SearchBar Placeholder="Digite aqui o instrumento"/>
+                        <Entry Grid.Row="1" Placeholder="Digite aqui o instrumento" WidthRequest="300" HorizontalOptions="Start" Margin="15,5,0,0" PlaceholderColor="#707F5297" FontAttributes="Bold"/>
+                        <Image Grid.Row="1" Source="lupa1" HeightRequest="25" HorizontalOptions="End"  Margin="0,-35,10,0"/>
                     </VerticalStackLayout>
                 </Border>
-            </Grid>
+                </Grid>
 
-            <Grid Margin="0,20,0,0">
+
+                <Grid Margin="0,20,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
                 <Label Text="Estilos Musicais" HorizontalOptions="Start" Margin="25,0,0,0" TextColor="#e7e7e7" FontAttributes="Bold"/>
                 <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="370" HorizontalOptions="End" HeightRequest="170">
                     <VerticalStackLayout>
-                        <SearchBar Placeholder="Digite aqui o instrumento"/>
+                        <Entry Grid.Row="1" Placeholder="Digite aqui o estilo musical" WidthRequest="300" HorizontalOptions="Start" Margin="15,5,0,0" PlaceholderColor="#707F5297" FontAttributes="Bold"/>
+                        <Image Grid.Row="1" Source="lupa1" HeightRequest="25" HorizontalOptions="End"  Margin="0,-35,10,0"/>
                     </VerticalStackLayout>
                 </Border>
             </Grid>
