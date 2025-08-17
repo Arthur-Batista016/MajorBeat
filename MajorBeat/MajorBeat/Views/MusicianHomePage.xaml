@@ -5,32 +5,46 @@
              >
     <VerticalStackLayout>
         <Grid>
-            <Image/>
-            <SearchBar/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#4F1271"  Margin="0,0,0,0" WidthRequest="408" HorizontalOptions="Start" HeightRequest="90">
+                <VerticalStackLayout Margin="0,-20,0,0">
+                    <Image Grid.Row="0" Source="logoicone" HeightRequest="70" HorizontalOptions="Start" Margin="0,30,0,0"/>
+                    <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#7F5297" Margin="50,-57,0,0" WidthRequest="300" HorizontalOptions="Center" HeightRequest="45">
+                        <VerticalStackLayout>
+                            <Entry  Grid.Row="0" Placeholder="Pesquisar..." WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center"/>
+                            <Image Grid.Row="0" Source="lupainverted" HorizontalOptions="End" Margin="0,-35,20,0" HeightRequest="23"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
         </Grid>
 
-        <Button/>
+        <ImageButton Source="filter" HorizontalOptions="End"/>
 
-        <Label Text="Eventos próximos a você"/>
-        <Grid Margin="0,20,0,0">
-            <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="370" HorizontalOptions="End" HeightRequest="170">
+        <Label Text="Eventos próximos a você" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,0,0,0"/>
+        
+        <Grid Margin="0,0,0,0">
+            <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#7F5297" Margin="0,30,20,0" WidthRequest="370" HorizontalOptions="End" HeightRequest="300">
                 <VerticalStackLayout>
-                    <Image/>
-                    <Label Text="Panelão do Norte"/>
-                    <Label Text="Restaurante"></Label>
+                    <Image x:Name="imagem_evento " Source="panelao" HorizontalOptions="Center" HeightRequest="200"/>
+                    <Label x:Name="nome_evento" Text="Panelão do Norte"/>
+                    <Label x:Name="tipo" Text="Restaurante"></Label>
                     <Border>
-                        <Label Text="Sertanejo"/>
+                        <Label x:Name="genero" Text="Sertanejo"/>
                     </Border>
                 </VerticalStackLayout>
             </Border>
         </Grid>
 
         <Grid>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
+            <ImageButton/>
+            <ImageButton/>
+            <ImageButton/>
+            <ImageButton/>
+            <ImageButton/>
         </Grid>
 
 
