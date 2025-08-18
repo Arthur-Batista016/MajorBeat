@@ -14,7 +14,7 @@
                     <Image Grid.Row="0" Source="logoicone" HeightRequest="70" HorizontalOptions="Start" Margin="0,30,0,0"/>
                     <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#7F5297" Margin="50,-57,0,0" WidthRequest="300" HorizontalOptions="Center" HeightRequest="45">
                         <VerticalStackLayout>
-                            <Entry  Grid.Row="0" Placeholder="Pesquisar..." WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center"/>
+                            <Entry  Grid.Row="0" Placeholder="Pesquisar..." PlaceholderColor="#ffffff" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center"/>
                             <Image Grid.Row="0" Source="lupainverted" HorizontalOptions="End" Margin="0,-35,20,0" HeightRequest="23"/>
                         </VerticalStackLayout>
                     </Border>
@@ -27,14 +27,22 @@
         <Label Text="Eventos próximos a você" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,0,0,0"/>
         
         <Grid Margin="0,0,0,0">
-            <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#7F5297" Margin="0,30,20,0" WidthRequest="370" HorizontalOptions="End" HeightRequest="300">
-                <VerticalStackLayout>
-                    <Image x:Name="imagem_evento " Source="panelao" HorizontalOptions="Center" HeightRequest="200"/>
-                    <Label x:Name="nome_evento" Text="Panelão do Norte"/>
-                    <Label x:Name="tipo" Text="Restaurante"></Label>
-                    <Border>
-                        <Label x:Name="genero" Text="Sertanejo"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#7F5297" Margin="0,30,20,0" WidthRequest="370" HorizontalOptions="End" HeightRequest="390">
+                <VerticalStackLayout Margin="0,30,0,0">
+                    <Image Grid.Row="0" x:Name="imagem_evento " Source="panelao" HorizontalOptions="Center" HeightRequest="230" />
+                    <Label Grid.Row="1" x:Name="nome_evento" Text="Panelão do Norte" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,0,0,0"/>
+                    <Label Grid.Row="2" x:Name="tipo" Text="Restaurante" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0" ></Label>
+                    <Border Grid.Row="3" StrokeShape="RoundRectangle 8" BackgroundColor="#FFFFFF" Margin="20,20,0,0" WidthRequest="100" HorizontalOptions="Start" HeightRequest="30">
+                        <Label x:Name="genero" Text="Sertanejo" TextColor="#4F1271" HorizontalOptions="Center" FontSize="15" FontAttributes="Bold" Margin="0,2,0,0"/>
                     </Border>
+                    <Label Grid.Row="2" x:Name="nota" Text="4.2" TextColor="#ffffff" FontAttributes="Bold" HorizontalOptions="End" Margin="-20,-40,0,0"/>
+                    <Label Grid.Row="3" x:Name="data" Text="25 mar." HorizontalOptions="End" TextColor="#FFFFFF"/>
                 </VerticalStackLayout>
             </Border>
         </Grid>
