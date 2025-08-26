@@ -10,6 +10,27 @@
 
     <ShellContent
     ContentTemplate="{DataTemplate local:MusicianHomePage}"
-    Route="MusicianHomePage" />
+    Route="MusicianHomePage"/>
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+
+    <ShellContent Icon="home.png"
+                 ContentTemplate="{DataTemplate local:MusicianHomePage}" Route="MainPage"/>
+
+    <ShellContent Icon="searchhome.png"
+                 ContentTemplate="{DataTemplate local:SearchPage}" />
+
+    <ShellContent  Icon="chathome.png"
+               ContentTemplate="{DataTemplate local:ChatPage}"/>
+
+    <ShellContent Icon="calendar.png"
+               ContentTemplate="{DataTemplate local:CalendarPage}"/>
+    
+    <ShellContent Icon="profilehome.png"
+            ContentTemplate="{DataTemplate local:ProfilePage}"/>
+
+
+    </FlyoutItem>
+
 
 </Shell>
