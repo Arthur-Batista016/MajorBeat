@@ -22,33 +22,91 @@
             </Border>
         </Grid>
 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/> 
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+            <Label Text="TIPOS DE EVENTO"/>
+
+            <Grid x:Name="event1">
+                <Image/>
+                <Label Text="Aniversário" TextColor="#4F1271"/>
+
+            </Grid>
+
+            <Grid x:Name="event2">
+                <Image/>
+                <Label Text="Bar" TextColor="#4F1271"/>
+            </Grid>
+
+            <Grid x:Name="event3">
+                <Image/>
+                <Label Text="Casamento" TextColor="#4F1271"/>
+            </Grid>
+
+            <Grid x:Name="event4">
+                <Image/>
+                <Label Text="Corporativo" TextColor="#4F1271"/>
+            </Grid>
+
+            <Grid x:Name="event5">
+                <Image/>
+                <Label Text="Festival" TextColor="#4F1271"/>
+            </Grid>
+
+            <Grid x:Name="event6">
+                <Image/>
+                <Label Text="Formatura" TextColor="#4F1271"/>
+            </Grid>
+
+            <Grid x:Name="event7">
+                <Image/>
+                <Label Text="Funeral" TextColor="#4F1271"/>
+            </Grid>
+
+            <Grid x:Name="event8">
+                <Image/>
+                <Label Text="Salão de Festa" TextColor="#4F1271"/>
+            </Grid>
+
+
+
+
+
+        </Grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,170,0,0">
             <Grid.ColumnDefinitions>
