@@ -68,40 +68,37 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\BandCreateProfile.xaml.cs">
+	  <Compile Update="Views\Bands\BandCreateProfile.xaml.cs">
 	    <DependentUpon>BandCreateProfile.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\BandCreateProfile.xaml">
+	  <MauiXaml Update="Views\Bands\BandCreateProfile.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\BandRegisterPage.xaml">
+	  <MauiXaml Update="Views\Hirers\CalendarPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CalendarPage.xaml">
+	  <MauiXaml Update="Views\Users\ChatPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ChatPage.xaml">
+	  <MauiXaml Update="Views\Hirers\HirerRegisterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\HirerRegisterPage.xaml">
+	  <MauiXaml Update="Views\Users\InitialPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\InitialPage.xaml">
+	  <MauiXaml Update="Views\Users\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\LoginPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\MusicianHomePage.xaml">
+	  <MauiXaml Update="Views\Musicians\MusicianHomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ProfilePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\SearchPage.xaml">
+	  <MauiXaml Update="Views\Hirers\SearchPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

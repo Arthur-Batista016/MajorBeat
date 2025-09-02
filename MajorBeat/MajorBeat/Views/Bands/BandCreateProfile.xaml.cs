@@ -1,4 +1,4 @@
-namespace MajorBeat.Views;
+namespace MajorBeat.Views.Bands;
 
 public partial class BandCreateProfile : ContentPage
 {

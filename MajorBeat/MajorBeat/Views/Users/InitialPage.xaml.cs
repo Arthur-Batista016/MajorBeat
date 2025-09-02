@@ -1,4 +1,4 @@
-namespace MajorBeat.Views;
+namespace MajorBeat.Views.Users;
 
 public partial class InitialPage : ContentPage
 {
@@ -9,7 +9,7 @@ public partial class InitialPage : ContentPage
 
     private async void register_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new HirerRegisterPage());
+        await Navigation.PushAsync(new Hirers.HirerRegisterPage());
     }
 
     private  async void login_Clicked(object sender, EventArgs e)

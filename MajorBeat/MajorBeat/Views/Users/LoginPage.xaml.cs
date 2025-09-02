@@ -1,4 +1,4 @@
-namespace MajorBeat.Views;
+namespace MajorBeat.Views.Users;
 
 public partial class LoginPage : ContentPage
 {

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MajorBeat.Views.LoginPage"
+             x:Class="MajorBeat.Views.Users.LoginPage"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#4F1271">
     <VerticalStackLayout>
+        
+       
+        
         <Grid>
             <Button  x:Name="voltar" HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7"></Button>
             <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,47,250,0" HorizontalOptions="Center"></Label>

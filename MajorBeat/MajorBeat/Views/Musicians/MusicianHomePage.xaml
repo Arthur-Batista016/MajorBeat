@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.Musicians.MusicianHomePage"
+             >
+    <VerticalStackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#4F1271"  Margin="0,0,0,0" WidthRequest="408" HorizontalOptions="Start" HeightRequest="90">
+                <VerticalStackLayout Margin="0,0,0,0">
+                    <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#AE92BD" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
+                        <VerticalStackLayout>
+                            <Entry  Grid.Row="0" Placeholder="Pesquisar..." PlaceholderColor="White" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center"/>
+                            <Image Grid.Row="0" Source="lupainverted" HorizontalOptions="End" Margin="0,-35,20,0" HeightRequest="23"/>
+                        </VerticalStackLayout>
+                    </Border>
+                    <Image Grid.Row="0" Source="logoicone" HeightRequest="70" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-55,10,0"/>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+        <Border StrokeShape="RoundRectangle 10" BackgroundColor="#4F1271" WidthRequest="60" HorizontalOptions="End" HeightRequest="40" Margin="0,40,30,0">
+            <ImageButton Source="filter" HorizontalOptions="End" HeightRequest="20" BackgroundColor="Transparent"/>
+        </Border>
+        
+        <Label Text="Eventos próximos a você:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,0,0,0"/>
+        
+        <Grid Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Image Grid.Row="0" x:Name="imagem_evento" Source="panelao" HorizontalOptions="Center" Margin="0,0,0,100" HeightRequest="300"/>
+                <Border StrokeShape="RoundRectangle 10" Background="#4F1271" WidthRequest="50" HorizontalOptions="End" VerticalOptions="Start" Margin="0,40,20,0" >
+                    <Label Grid.Row="0" Text="1/6"   HorizontalTextAlignment="Center" TextColor="White" />
+                </Border>
+            </Grid>
+            <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#7F5297" Margin="0,250,0,0" WidthRequest="410" HorizontalOptions="End"  VerticalOptions="End" HeightRequest="160">
+                <VerticalStackLayout VerticalOptions="Center" HeightRequest="200">
+                    <Label Grid.Row="1" x:Name="nome_evento" Text="Panelão do Norte" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
+                    <Label Grid.Row="2" x:Name="tipo" Text="Restaurante" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0" ></Label>
+                    <Border Grid.Row="3" StrokeShape="RoundRectangle 8" BackgroundColor="#FFFFFF" Margin="20,20,0,0" WidthRequest="100" HorizontalOptions="Start" HeightRequest="30">
+                        <Label x:Name="genero" Text="Sertanejo" TextColor="#4F1271" HorizontalOptions="Center" FontSize="15" FontAttributes="Bold" Margin="0,2,0,0"/>
+                    </Border>
+                    <Label Grid.Row="1" x:Name="nota" Text="4.2" TextColor="#ffffff" FontSize="Large" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="-50,-100,30,0"/>
+                    <Label Grid.Row="2" x:Name="data" Text="25 mar." HorizontalOptions="End" FontSize="Large" Margin="0,0,20,0" TextColor="#FFFFFF"/>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Botão 1 -->
+            <Frame Grid.Column="0"
+                   WidthRequest="50" HeightRequest="50"
+                   CornerRadius="25"
+                   BackgroundColor="#783F8E"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HasShadow="True">
+                <Image Source="home.png" WidthRequest="24" HeightRequest="24"/>
+            </Frame>
+
+            <!-- Botão 2 -->
+            <Frame Grid.Column="1"
+                   WidthRequest="50" HeightRequest="50"
+                   CornerRadius="25"
+                   BackgroundColor="#AE92BD"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HasShadow="True">
+                <Image Source="searchhome.png" WidthRequest="24" HeightRequest="24"/>
+            </Frame>
+
+            <!-- Botão 3 -->
+            <Frame Grid.Column="2"
+                   WidthRequest="50" HeightRequest="50"
+                   CornerRadius="25"
+                   BackgroundColor="#AE92BD"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HasShadow="True">
+                <Image Source="chathome.png" WidthRequest="24" HeightRequest="24"/>
+            </Frame>
+
+            <Frame Grid.Column="3"
+            WidthRequest="50" HeightRequest="50"
+            CornerRadius="25"
+            BackgroundColor="#AE92BD"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            HasShadow="True">
+                <Image Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
+            </Frame>
+
+            <Frame Grid.Column="4"
+                WidthRequest="50" HeightRequest="50"
+                CornerRadius="25"
+                BackgroundColor="#AE92BD"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                HasShadow="True">
+                <Image Source="profilehome.png" WidthRequest="24" HeightRequest="24"/>
+            </Frame>
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>

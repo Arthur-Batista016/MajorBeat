@@ -1,4 +1,4 @@
-namespace MajorBeat.Views;
+namespace MajorBeat.Views.Hirers;
 
 public partial class SearchPage : ContentPage
 {

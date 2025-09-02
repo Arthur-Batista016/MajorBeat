@@ -1,4 +1,4 @@
-namespace MajorBeat.Views;
+namespace MajorBeat.Views.Musicians;
 
 public partial class MusicianHomePage : ContentPage
 {
