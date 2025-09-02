@@ -17,7 +17,7 @@
                             <Image Grid.Row="0" Source="lupainverted" HorizontalOptions="End" Margin="0,-35,20,0" HeightRequest="23"/>
                         </VerticalStackLayout>
                     </Border>
-                    <Image Grid.Row="0" Source="logoicone" HeightRequest="70" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-55,10,0"/>
+                    <ImageButton Grid.Row="0" Source="logoicone" HeightRequest="70" HorizontalOptions="End" VerticalOptions="Start" Margin="320,-55,0,0"/>
                 </VerticalStackLayout>
             </Border>
         </Grid>
@@ -46,16 +46,67 @@
                 <VerticalStackLayout VerticalOptions="Center" HeightRequest="200">
                     <Label Grid.Row="1" x:Name="nome_evento" Text="Panelão do Norte" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
                     <Label Grid.Row="2" x:Name="tipo" Text="Restaurante" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0" ></Label>
-                    <Border Grid.Row="3" StrokeShape="RoundRectangle 8" BackgroundColor="#FFFFFF" Margin="20,20,0,0" WidthRequest="100" HorizontalOptions="Start" HeightRequest="30">
-                        <Label x:Name="genero" Text="Sertanejo" TextColor="#4F1271" HorizontalOptions="Center" FontSize="15" FontAttributes="Bold" Margin="0,2,0,0"/>
+                    <Border Grid.Row="3" StrokeShape="RoundRectangle 8" BackgroundColor="#FFFFFF" Margin="20,30,0,0" WidthRequest="100" HorizontalOptions="Start" HeightRequest="35">
+                        <Label x:Name="genero" Text="Sertanejo" TextColor="#4F1271" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Margin="0,4,0,0"/>
                     </Border>
-                    <Label Grid.Row="1" x:Name="nota" Text="4.2" TextColor="#ffffff" FontSize="Large" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="-50,-100,30,0"/>
-                    <Label Grid.Row="2" x:Name="data" Text="25 mar." HorizontalOptions="End" FontSize="Large" Margin="0,0,20,0" TextColor="#FFFFFF"/>
+                    <Grid Grid.Row="1">
+                        <Label Grid.Row="1" x:Name="nota" Text="4.2" TextColor="#ffffff" FontSize="Large" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,60,0"/>
+                        <Image Grid.Row="1" Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,20,0"/>
+                        <Label Grid.Row="2" x:Name="data" Text="25 mar." HorizontalOptions="End" FontSize="Medium" Margin="0,-80,20,0" TextColor="#FFFFFF"/>
+                    </Grid>
                 </VerticalStackLayout>
             </Border>
         </Grid>
 
-        <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10">
+        <Grid>
+            <Grid x:Name="event1">
+                <Image/>
+                <Label Text="Aniversário" TextColor="#4F1271"/>
+                
+            </Grid>
+
+            <Grid x:Name="event2">
+                <Image/>
+                <Label Text="Aniversário" TextColor="#4F1271"/>
+            </Grid>
+
+            <Grid x:Name="event3">
+                <Image/>
+                <Label Text="Aniversário" TextColor="#4F1271"/>
+            </Grid>
+
+            <Grid x:Name="event4">
+                <Image/>
+                <Label Text="Aniversário" TextColor="#4F1271"/>
+            </Grid>
+
+            <Grid x:Name="event5">
+                <Image/>
+                <Label Text="Aniversário" TextColor="#4F1271"/>
+            </Grid>
+
+            <Grid x:Name="event6">
+                <Image/>
+                <Label Text="Aniversário" TextColor="#4F1271"/>
+            </Grid>
+
+            <Grid x:Name="event7">
+                <Image/>
+                <Label Text="Aniversário" TextColor="#4F1271"/>
+            </Grid>
+
+            <Grid x:Name="event8">
+                <Image/>
+                <Label Text="Aniversário" TextColor="#4F1271"/>
+            </Grid>
+
+
+
+
+
+        </Grid>
+
+        <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,170,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -72,7 +123,7 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    HasShadow="True">
-                <Image Source="home.png" WidthRequest="24" HeightRequest="24"/>
+                <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" Clicked="home_page_btn_Clicked"/>
             </Frame>
 
             <!-- Botão 2 -->
@@ -83,7 +134,7 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    HasShadow="True">
-                <Image Source="searchhome.png" WidthRequest="24" HeightRequest="24"/>
+                <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" Clicked="search_page_btn_Clicked"/>
             </Frame>
 
             <!-- Botão 3 -->

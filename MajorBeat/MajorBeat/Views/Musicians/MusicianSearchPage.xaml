@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.Musicians.MusicianSearchPage"
+             Shell.NavBarIsVisible="False">
+    <VerticalStackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#4F1271"  Margin="0,0,0,0" WidthRequest="408" HorizontalOptions="Start" HeightRequest="90">
+                <VerticalStackLayout Margin="0,0,0,0">
+                    <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#AE92BD" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
+                        <VerticalStackLayout>
+                            <Entry  Grid.Row="0" Placeholder="Pesquisar..." PlaceholderColor="White" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center"/>
+                            <Image Grid.Row="0" Source="lupainverted" HorizontalOptions="End" Margin="0,-35,20,0" HeightRequest="23"/>
+                        </VerticalStackLayout>
+                    </Border>
+                    <ImageButton Grid.Row="0" Source="logoicone" HeightRequest="70" HorizontalOptions="End" VerticalOptions="Start" Margin="320,-55,0,0"/>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,170,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Botão 1 -->
+            <Frame Grid.Column="0"
+            WidthRequest="50" HeightRequest="50"
+            CornerRadius="25"
+            BackgroundColor="#AE92BD"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            HasShadow="True">
+                <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" />
+            </Frame>
+
+            <!-- Botão 2 -->
+            <Frame Grid.Column="1"
+            WidthRequest="50" HeightRequest="50"
+            CornerRadius="25"
+            BackgroundColor="#783F8E"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            HasShadow="True">
+                <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" />
+            </Frame>
+
+            <!-- Botão 3 -->
+            <Frame Grid.Column="2"
+            WidthRequest="50" HeightRequest="50"
+            CornerRadius="25"
+            BackgroundColor="#AE92BD"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            HasShadow="True">
+                <Image Source="chathome.png" WidthRequest="24" HeightRequest="24"/>
+            </Frame>
+
+            <Frame Grid.Column="3"
+     WidthRequest="50" HeightRequest="50"
+     CornerRadius="25"
+     BackgroundColor="#AE92BD"
+     HorizontalOptions="Center"
+     VerticalOptions="Center"
+     HasShadow="True">
+                <Image Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
+            </Frame>
+
+            <Frame Grid.Column="4"
+         WidthRequest="50" HeightRequest="50"
+         CornerRadius="25"
+         BackgroundColor="#AE92BD"
+         HorizontalOptions="Center"
+         VerticalOptions="Center"
+         HasShadow="True">
+                <Image Source="profilehome.png" WidthRequest="24" HeightRequest="24"/>
+            </Frame>
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -6,4 +6,14 @@ public partial class MusicianHomePage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private async void search_page_btn_Clicked(object sender, EventArgs e)
+    {
+		await Navigation.PushAsync(new MusicianSearchPage());
+    }
+
+    private void home_page_btn_Clicked(object sender, EventArgs e)
+    {
+
+    }
 }

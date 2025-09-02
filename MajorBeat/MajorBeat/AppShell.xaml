@@ -16,7 +16,7 @@
 
 
 
-    <TabBar>
+    
 
         <ShellContent Icon="homebuttoncircle.png"
                  ContentTemplate="{DataTemplate viewMusicians:MusicianHomePage}" Route="MainPage"/>
@@ -34,7 +34,6 @@
             ContentTemplate="{DataTemplate local:ProfilePage}"/>
 
 
-    </TabBar>
 
 
 </Shell>
