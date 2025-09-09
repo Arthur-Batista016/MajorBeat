@@ -22,7 +22,13 @@
             </Border>
         </Grid>
 
-        <Grid>
+        
+        
+        <ScrollView Orientation="Vertical">
+            <StackLayout>
+                <Label Grid.Row="0" Text="TIPOS DE EVENTO" HorizontalOptions="Start" TextColor="#4F1271" FontSize="Large"/>
+
+        <Grid HorizontalOptions="Center" Margin="0,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -31,54 +37,69 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Text="TIPOS DE EVENTO"/>
 
-            <Grid Grid.Row="1" x:Name="event1">
-                <Image/>
-                <Label Text="Aniversário" TextColor="#4F1271"/>
+         
 
+                <Grid Grid.Row="1" x:Name="event1" Margin="0,0,200,0">
+                <Image  Source="birthday.png" HeightRequest="140"/>
+                <Label Text="Aniversário" TextColor="#4F1271" FontAttributes="Bold" Margin="10,20,0,0"/>
             </Grid>
 
-            <Grid Grid.Row="1" x:Name="event2">
-                <Image Source="bar" HeightRequest="100" HorizontalOptions="End" Margin="0,0,0,0"/>
-                <Label Text="Bar" TextColor="#4F1271"/>
+            <Grid Grid.Row="1" Margin="100,0,0,0" x:Name="event2" HorizontalOptions="End">
+                <Image Source="bar" HeightRequest="140"/>
+                <Label Text="Bar" TextColor="#4F1271" Margin="10,10,0,0"/>
             </Grid>
 
-            <Grid Grid.Row="2" x:Name="event3">
-                <Image Source="casamento" HeightRequest="100"/>
-                <Label Text="Casamento" TextColor="#4F1271"/>
+           
+
+            
+
+
+                <Grid Grid.Row="2" x:Name="event3" Margin="0,10,200,0">
+                <Image Source="casamento" HeightRequest="140"/>
+                <Label Text="Casamento" TextColor="#4F1271" Margin="10,10,0,0"/>
             </Grid>
 
-            <Grid Grid.Row="2" x:Name="event4">
-                <Image Source="corporative" HeightRequest="100"/>
-                <Label Text="Corporativo" TextColor="#4F1271"/>
-            </Grid>
-
-            <Grid Grid.Row="3" x:Name="event5">
-                <Image Source="festival" HeightRequest="100"/>
-                <Label Text="Festival" TextColor="#4F1271"/>
-            </Grid>
-
-            <Grid  Grid.Row="3" x:Name="event6">
-                <Image Source="formatura" HeightRequest="100"/>
-                <Label Text="Formatura" TextColor="#4F1271"/>
-            </Grid>
-
-            <Grid Grid.Row="4" x:Name="event7">
-                <Image Source="funeral" HeightRequest="100"/>
-                <Label Text="Funeral" TextColor="#4F1271"/>
-            </Grid>
-
-            <Grid Grid.Row="4" x:Name="event8">
-                <Image Source="salaodefesta" HeightRequest="100"/>
-                <Label Text="Salão de Festa" TextColor="#4F1271"/>
+            <Grid Grid.Row="2" x:Name="event4" Margin="100,10,0,0" HorizontalOptions="End">
+                <Image Source="corporative" HeightRequest="140"/>
+                        <Label Text="Corporativo" TextColor="#4F1271" Margin="10,10,0,0"/>
             </Grid>
 
 
 
 
 
-        </Grid>
+         
+
+            <Grid Grid.Row="3" x:Name="event5" Margin="0,30,200,0">
+                <Image Source="festival" HeightRequest="140"/>
+                <Label Text="Festival" TextColor="#4F1271" Margin="10,10,0,0"/>
+            </Grid>
+
+            <Grid  Grid.Row="3" x:Name="event6" Margin="100,30,0,0" HorizontalOptions="End">
+                <Image Source="formatura" HeightRequest="140"/>
+                <Label Text="Formatura" TextColor="#4F1271" Margin="10,10,0,0"/>
+            </Grid>
+
+
+
+          
+                <Grid Grid.Row="4" x:Name="event7" Margin="0,30,200,0">
+                <Image Source="funeral" HeightRequest="140"/>
+                <Label Text="Funeral" TextColor="#4F1271" Margin="10,10,0,0"/>
+            </Grid>
+
+            <Grid Grid.Row="4" x:Name="event8" Margin="100,30,0,0" HorizontalOptions="End">
+                <Image Source="salaodefesta" HeightRequest="140"/>
+                <Label Text="Salão de Festa" TextColor="#4F1271" Margin="10,10,0,0"/>
+            </Grid>
+
+
+
+
+                </Grid>
+        </StackLayout>
+        </ScrollView>
 
 
 
@@ -108,7 +129,7 @@
 
 
 
-        <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,270,0,0">
+        <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,70,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
