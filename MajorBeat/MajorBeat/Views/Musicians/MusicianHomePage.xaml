@@ -13,7 +13,7 @@
                 <VerticalStackLayout Margin="0,0,0,0">
                     <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#AE92BD" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
                         <VerticalStackLayout>
-                            <Entry  Grid.Row="0" Placeholder="Pesquisar..." PlaceholderColor="White" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center"/>
+                            <Entry  Grid.Row="0" Placeholder="Pesquisar..." BackgroundColor="#AE92BD" PlaceholderColor="#FFFFFF" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center" TextColor="White" />
                             <Image Grid.Row="0" Source="lupainverted" HorizontalOptions="End" Margin="0,-35,20,0" HeightRequest="23"/>
                         </VerticalStackLayout>
                     </Border>
@@ -42,7 +42,7 @@
                     <Label Grid.Row="0" Text="1/6"   HorizontalTextAlignment="Center" TextColor="White" />
                 </Border>
             </Grid>
-            <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#7F5297" Margin="0,250,0,0" WidthRequest="410" HorizontalOptions="End"  VerticalOptions="End" HeightRequest="160">
+            <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" Margin="0,250,0,0" WidthRequest="410" HorizontalOptions="End"  VerticalOptions="End" HeightRequest="160">
                 <VerticalStackLayout VerticalOptions="Center" HeightRequest="200">
                     <Label Grid.Row="1" x:Name="nome_evento" Text="Panelão do Norte" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
                     <Label Grid.Row="2" x:Name="tipo" Text="Restaurante" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0" ></Label>
@@ -58,55 +58,13 @@
             </Border>
         </Grid>
 
-        <Grid>
-            <Grid x:Name="event1">
-                <Image/>
-                <Label Text="Aniversário" TextColor="#4F1271"/>
-                
-            </Grid>
-
-            <Grid x:Name="event2">
-                <Image/>
-                <Label Text="Aniversário" TextColor="#4F1271"/>
-            </Grid>
-
-            <Grid x:Name="event3">
-                <Image/>
-                <Label Text="Aniversário" TextColor="#4F1271"/>
-            </Grid>
-
-            <Grid x:Name="event4">
-                <Image/>
-                <Label Text="Aniversário" TextColor="#4F1271"/>
-            </Grid>
-
-            <Grid x:Name="event5">
-                <Image/>
-                <Label Text="Aniversário" TextColor="#4F1271"/>
-            </Grid>
-
-            <Grid x:Name="event6">
-                <Image/>
-                <Label Text="Aniversário" TextColor="#4F1271"/>
-            </Grid>
-
-            <Grid x:Name="event7">
-                <Image/>
-                <Label Text="Aniversário" TextColor="#4F1271"/>
-            </Grid>
-
-            <Grid x:Name="event8">
-                <Image/>
-                <Label Text="Aniversário" TextColor="#4F1271"/>
-            </Grid>
+ 
 
 
 
 
 
-        </Grid>
-
-        <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,150,0,0">
+        <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,170,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
