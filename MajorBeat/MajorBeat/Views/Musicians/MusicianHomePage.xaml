@@ -37,11 +37,30 @@
             </Grid.RowDefinitions>
 
             <Grid>
-                <Image Grid.Row="0" x:Name="imagem_evento" Source="panelao" HorizontalOptions="Center" Margin="0,0,0,100" HeightRequest="300"/>
+                
+                
+                <!--IMAGEM DO EVENTO-->
+                <CarouselView ItemsSource="{Binding EventPhoto}">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding .}"/>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                
+                
+                
+                <!---->
+                
                 <Border StrokeShape="RoundRectangle 10" Background="#4F1271" WidthRequest="50" HorizontalOptions="End" VerticalOptions="Start" Margin="0,40,20,0" >
                     <Label Grid.Row="0" Text="1/6"   HorizontalTextAlignment="Center" TextColor="White" />
                 </Border>
             </Grid>
+            
+            
+            
+            
+            
             <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" Margin="0,250,0,0" WidthRequest="410" HorizontalOptions="End"  VerticalOptions="End" HeightRequest="160">
                 <VerticalStackLayout VerticalOptions="Center" HeightRequest="200">
                     <Label Grid.Row="1" x:Name="nome_evento" Text="Panelão do Norte" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
