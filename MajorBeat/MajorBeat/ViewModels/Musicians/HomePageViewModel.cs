@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace MajorBeat.ViewModels.Musicians
 {
-    public class HomePageViewModel:BaseViewModel
+    public class HomePageViewModel : BaseViewModel
     {
         public ObservableCollection<string> eventPhoto;
+        public int actualPosition;
 
         public ObservableCollection<string> EventPhoto
         {
@@ -19,44 +15,49 @@ namespace MajorBeat.ViewModels.Musicians
             {
                 eventPhoto = value;
                 OnPropertyChanged(nameof(EventPhoto));
+                OnPropertyChanged(nameof(TotalPhotos));
+                OnPropertyChanged(nameof(PhotoCounter));
             }
         }
 
-
-
-
-        public ICommand changeImageCommand;
-
-        public HomePageViewModel()
+        public int ActualPosition
         {
-            changeEventPhoto();
-            
+            get => actualPosition;
+            set
+            {
+                if (actualPosition != value)
+                {
+                    actualPosition = value;
+                    OnPropertyChanged(nameof(ActualPosition));
+                    OnPropertyChanged(nameof(PhotoCounter));
+                }
+            }
         }
 
-       
+        public int TotalPhotos => EventPhoto?.Count ?? 0;
 
-        public async Task changeEventPhoto()
+        public string PhotoCounter => $"{ActualPosition + 1}/{TotalPhotos}";
+
+      
+        public HomePageViewModel()
         {
-            string actualPhoto = "1/6";
-            int next = 1;
+            ChangeEventPhoto();
+            ActualPosition = 0;
+        }
 
+        public async Task ChangeEventPhoto()
+        {
             EventPhoto = new ObservableCollection<string>()
             {
                 "panelao.png",
                 "birthday.png",
                 "bar.png"
             };
-
-
-            
-
-
-
         }
 
-        public async Task filters()
+        public async Task Filters()
         {
-
+            
         }
     }
 }

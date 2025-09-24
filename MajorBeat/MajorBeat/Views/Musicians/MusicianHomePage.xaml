@@ -40,10 +40,10 @@
                 
                 
                 <!--IMAGEM DO EVENTO-->
-                <CarouselView ItemsSource="{Binding EventPhoto}">
+                <CarouselView ItemsSource="{Binding EventPhoto}" Position="{Binding ActualPosition,Mode=TwoWay}">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding .}"/>
+                            <Image Source="{Binding .}" HeightRequest="500"/>
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
                 </CarouselView>
@@ -53,7 +53,7 @@
                 <!---->
                 
                 <Border StrokeShape="RoundRectangle 10" Background="#4F1271" WidthRequest="50" HorizontalOptions="End" VerticalOptions="Start" Margin="0,40,20,0" >
-                    <Label Grid.Row="0" Text="1/6"   HorizontalTextAlignment="Center" TextColor="White" />
+                    <Label Grid.Row="0" Text="{Binding PhotoCounter}"   HorizontalTextAlignment="Center" TextColor="White" />
                 </Border>
             </Grid>
             
