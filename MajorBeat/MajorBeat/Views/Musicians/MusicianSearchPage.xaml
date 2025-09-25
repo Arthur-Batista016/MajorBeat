@@ -171,8 +171,8 @@
 
                 <!-- Botão 2 -->
                 <Frame Grid.Column="1"
-            WidthRequest="50" HeightRequest="50"
-            CornerRadius="25"
+            WidthRequest="60" HeightRequest="60"
+            CornerRadius="30"
             BackgroundColor="#783F8E"
             HorizontalOptions="Center"
             VerticalOptions="Center"
