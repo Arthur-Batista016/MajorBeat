@@ -9,6 +9,8 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+
+
             <Border StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#4F1271"  Margin="0,0,0,0" WidthRequest="408" HorizontalOptions="Start" HeightRequest="90">
                 <VerticalStackLayout Margin="0,0,0,0">
                     <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#AE92BD" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
@@ -38,9 +40,20 @@
             </Grid.RowDefinitions>
 
 
-         
+                    <Grid>
+                        <!-- Contorno branco -->
+                        <Label Text="Olá Mundo" FontSize="32" TextColor="Black"
+    HorizontalOptions="Center" VerticalOptions="Center"
+    Margin="1,1,0,0"/>
+                        <!-- Texto roxo -->
+                        <Label Text="Olá Mundo" FontSize="30" TextColor="Purple"
+    HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Grid>
 
-                <Grid Grid.Row="1" x:Name="event1" Margin="0,0,200,0">
+
+
+
+                    <Grid Grid.Row="1" x:Name="event1" Margin="0,0,200,0">
                 <Image  Source="birthday.png" HeightRequest="140"/>
                 <Label Text="Aniversário" TextColor="#FFFFFF"  FontAttributes="Bold" Margin="10,10,0,0"/>
             </Grid>

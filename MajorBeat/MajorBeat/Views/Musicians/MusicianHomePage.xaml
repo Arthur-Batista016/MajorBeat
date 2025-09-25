@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="MajorBeat.Views.Musicians.MusicianHomePage"
              >
-    <VerticalStackLayout>
-        <Grid>
+
+    <!--Grid da pagina inteira, separando os conteudos com scroll e conteudos fixos-->
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <VerticalStackLayout Grid.Row="0">
+            <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -21,8 +32,16 @@
                 </VerticalStackLayout>
             </Border>
         </Grid>
+        </VerticalStackLayout>
 
-        <Border StrokeShape="RoundRectangle 10" BackgroundColor="#4F1271" WidthRequest="60" HorizontalOptions="End" HeightRequest="40" Margin="0,40,30,0">
+
+       
+
+
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout>
+                <Border StrokeShape="RoundRectangle 10" BackgroundColor="#4F1271" WidthRequest="60" HorizontalOptions="End" HeightRequest="40" Margin="0,40,30,0">
             <ImageButton Source="filter" HorizontalOptions="End" HeightRequest="20" BackgroundColor="Transparent"/>
         </Border>
         
@@ -61,7 +80,7 @@
             
             
             
-            <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" Margin="0,250,0,0" WidthRequest="410" HorizontalOptions="End"  VerticalOptions="End" HeightRequest="160">
+            <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End"  VerticalOptions="End" HeightRequest="160">
                 <VerticalStackLayout VerticalOptions="Center" HeightRequest="200">
                     <Label Grid.Row="1" x:Name="nome_evento" Text="Panelão do Norte" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
                     <Label Grid.Row="2" x:Name="tipo" Text="Restaurante" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0" ></Label>
@@ -75,15 +94,74 @@
                     </Grid>
                 </VerticalStackLayout>
             </Border>
-        </Grid>
 
- 
-
-
+                  
+                </Grid>
 
 
 
-        <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,170,0,0">
+                <Grid Margin="0,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+
+
+                        <!--IMAGEM DO EVENTO-->
+                        <CarouselView ItemsSource="{Binding EventPhoto}" Position="{Binding ActualPosition,Mode=TwoWay}">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding .}" HeightRequest="500"/>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+
+
+
+                        <!---->
+
+                        <Border StrokeShape="RoundRectangle 10" Background="#4F1271" WidthRequest="50" HorizontalOptions="End" VerticalOptions="Start" Margin="0,40,20,0" >
+                            <Label Grid.Row="0" Text="{Binding PhotoCounter}"   HorizontalTextAlignment="Center" TextColor="White" />
+                        </Border>
+                    </Grid>
+
+
+
+
+
+                    <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End"  VerticalOptions="End" HeightRequest="160">
+                        <VerticalStackLayout VerticalOptions="Center" HeightRequest="200">
+                            <Label Grid.Row="1" Text="Panelão do Norte" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
+                            <Label Grid.Row="2" Text="Restaurante" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0" ></Label>
+                            <Border Grid.Row="3" StrokeShape="RoundRectangle 8" BackgroundColor="#FFFFFF" Margin="20,30,0,0" WidthRequest="100" HorizontalOptions="Start" HeightRequest="35">
+                                <Label Text="Sertanejo" TextColor="#4F1271" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Margin="0,4,0,0"/>
+                            </Border>
+                            <Grid Grid.Row="1">
+                                <Label Grid.Row="1" Text="4.2" TextColor="#ffffff" FontSize="Large" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,60,0"/>
+                                <Image Grid.Row="1" Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,20,0"/>
+                                <Label Grid.Row="2"  Text="25 mar." HorizontalOptions="End" FontSize="Medium" Margin="0,-80,20,0" TextColor="#FFFFFF"/>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+
+
+                </Grid>
+
+
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+
+
+
+
+        <VerticalStackLayout Grid.Row="2">
+            <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -145,6 +223,9 @@
                 <Image Source="profilehome.png" WidthRequest="24" HeightRequest="24"/>
             </Frame>
         </Grid>
+        </VerticalStackLayout>
 
-    </VerticalStackLayout>
+    </Grid>
+    <!--fim do grid da pagina inteira-->
+
 </ContentPage>
