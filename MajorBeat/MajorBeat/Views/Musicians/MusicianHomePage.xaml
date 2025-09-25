@@ -81,7 +81,7 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    HasShadow="True">
-                <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" Clicked="home_page_btn_Clicked"/>
+                <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" />
             </Frame>
 
             <!-- Botão 2 -->
@@ -123,7 +123,7 @@
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 HasShadow="True">
-                <Image Source="profilehome.png" WidthRequest="24" HeightRequest="24"/>
+                <ImageButton x:Name="profile_page_btn" Source="profilehome.png" WidthRequest="24" HeightRequest="24" Clicked="profile_page_btn_Clicked"/>
             </Frame>
         </Grid>
 

@@ -7,17 +7,10 @@
     xmlns:viewsUsers="clr-namespace:MajorBeat.Views.Users"
     xmlns:viewMusicians="clr-namespace:MajorBeat.Views.Musicians"
     xmlns:viewHirers="clr-namespace:MajorBeat.Views.Hirers"
-    xmlns:viewsBands="clr-namespace:MajorBeat.Views.Bands"
+    xmlns:viewsBands="clr-namespace:MajorBeat.Views.Bands"    
     Shell.FlyoutBehavior="Disabled"
-    FlyoutIcon="homebuttoncircle.png"
-   
+    FlyoutIcon="homebuttoncircle.png">
     
- >
-
-
-
-    
-
         <ShellContent Icon="homebuttoncircle.png"
                  ContentTemplate="{DataTemplate viewMusicians:MusicianHomePage}" Route="MainPage"/>
 
@@ -31,9 +24,6 @@
                ContentTemplate="{DataTemplate viewHirers:CalendarPage}"/>
 
         <ShellContent Icon="profilehome.png"
-            ContentTemplate="{DataTemplate local:ProfilePage}"/>
-
-
-
+            ContentTemplate="{DataTemplate viewMusicians:MusicianProfilePage}"/>
 
 </Shell>
