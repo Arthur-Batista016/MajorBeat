@@ -20,18 +20,28 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Border StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#4F1271"  Margin="0,0,0,0" WidthRequest="408" HorizontalOptions="Start" HeightRequest="90">
-                <VerticalStackLayout Margin="0,0,0,0">
-                    <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#AE92BD" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
-                        <VerticalStackLayout>
-                            <Entry  Grid.Row="0" Placeholder="Pesquisar..." BackgroundColor="#AE92BD" PlaceholderColor="#FFFFFF" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center" TextColor="White" />
-                            <Image Grid.Row="0" Source="lupainverted" HorizontalOptions="End" Margin="0,-35,20,0" HeightRequest="23"/>
-                        </VerticalStackLayout>
-                    </Border>
-                    <ImageButton Grid.Row="0" Source="logoicone" HeightRequest="70" HorizontalOptions="End" VerticalOptions="Start" Margin="320,-55,0,0"/>
-                </VerticalStackLayout>
-            </Border>
-        </Grid>
+                <Border StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#4F1271"  Margin="0,0,0,0" WidthRequest="408" HorizontalOptions="Start" HeightRequest="90">
+                    <VerticalStackLayout Margin="0,0,0,0">
+                        <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#AE92BD" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
+                            <VerticalStackLayout>
+                                <Entry  Grid.Row="0" Placeholder="Pesquisar..." BackgroundColor="#AE92BD" PlaceholderColor="#FFFFFF" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center" TextColor="White" />
+                                <Image Grid.Row="0" Source="lupainverted" HorizontalOptions="End" Margin="0,-35,20,0" HeightRequest="23"/>
+                            </VerticalStackLayout>
+                        </Border>
+                        <ImageButton Grid.Row="0" Source="logoicone" HeightRequest="70" HorizontalOptions="End" VerticalOptions="Start" Margin="320,-55,0,0"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <CollectionView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BackgroundColor="Black" WidthRequest="200">
+                            <Label Text="Panelão do norte"/>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
 
 
@@ -45,7 +55,7 @@
             <ImageButton Source="filter" HorizontalOptions="End" HeightRequest="20" BackgroundColor="Transparent"/>
         </Border>
         
-        <Label Text="Eventos próximos a você:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,0,0,0"/>
+        <Label Text="Eventos próximos a você:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" FontFamily="" HorizontalOptions="Start" Margin="20,0,0,0"/>
         
         <Grid Margin="0,0,0,0">
             <Grid.RowDefinitions>
@@ -62,7 +72,7 @@
                 <CarouselView ItemsSource="{Binding EventPhoto}" Position="{Binding ActualPosition,Mode=TwoWay}">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding .}" HeightRequest="500"/>
+                            <Image Source="{Binding .}" HeightRequest="600" Margin="0,0,0,0"/>
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
                 </CarouselView>
@@ -71,8 +81,8 @@
                 
                 <!---->
                 
-                <Border StrokeShape="RoundRectangle 10" Background="#4F1271" WidthRequest="50" HorizontalOptions="End" VerticalOptions="Start" Margin="0,40,20,0" >
-                    <Label Grid.Row="0" Text="{Binding PhotoCounter}"   HorizontalTextAlignment="Center" TextColor="White" />
+                <Border StrokeShape="RoundRectangle 10 10 0 0" Background="#4F1271" HeightRequest="25" WidthRequest="45" HorizontalOptions="End" VerticalOptions="Start" Margin="0,130,20,0">
+                    <Label Grid.Row="0" Text="{Binding PhotoCounter}"   HorizontalTextAlignment="Center" TextColor="White" FontSize="15"/>
                 </Border>
             </Grid>
             
@@ -124,8 +134,8 @@
 
                         <!---->
 
-                        <Border StrokeShape="RoundRectangle 10" Background="#4F1271" WidthRequest="50" HorizontalOptions="End" VerticalOptions="Start" Margin="0,40,20,0" >
-                            <Label Grid.Row="0" Text="{Binding PhotoCounter}"   HorizontalTextAlignment="Center" TextColor="White" />
+                        <Border StrokeShape="RoundRectangle 10 10 0 0" Background="#4F1271" HeightRequest="25" WidthRequest="45" HorizontalOptions="End" VerticalOptions="Start" Margin="0,130,20,0">
+                            <Label Grid.Row="0" Text="{Binding PhotoCounter}"   HorizontalTextAlignment="Center" TextColor="White" FontSize="15"/>
                         </Border>
                     </Grid>
 
@@ -135,10 +145,10 @@
 
                     <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End"  VerticalOptions="End" HeightRequest="160">
                         <VerticalStackLayout VerticalOptions="Center" HeightRequest="200">
-                            <Label Grid.Row="1" Text="Panelão do Norte" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
-                            <Label Grid.Row="2" Text="Restaurante" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0" ></Label>
+                            <Label Grid.Row="1" Text="Boa Vista" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
+                            <Label Grid.Row="2" Text="Casamento" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0" ></Label>
                             <Border Grid.Row="3" StrokeShape="RoundRectangle 8" BackgroundColor="#FFFFFF" Margin="20,30,0,0" WidthRequest="100" HorizontalOptions="Start" HeightRequest="35">
-                                <Label Text="Sertanejo" TextColor="#4F1271" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Margin="0,4,0,0"/>
+                                <Label Text="Gospel" TextColor="#4F1271" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Margin="0,4,0,0"/>
                             </Border>
                             <Grid Grid.Row="1">
                                 <Label Grid.Row="1" Text="4.2" TextColor="#ffffff" FontSize="Large" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,60,0"/>

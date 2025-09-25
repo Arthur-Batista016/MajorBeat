@@ -3,32 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MajorBeat.Views.Musicians.MusicianSearchPage"
              Shell.NavBarIsVisible="False">
-    <VerticalStackLayout>
-        <Grid>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+
+        <VerticalStackLayout Grid.Row="0">
+            <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+                <Border StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#4F1271"  Margin="0,0,0,0" WidthRequest="408" HorizontalOptions="Start" HeightRequest="90">
+                    <VerticalStackLayout Margin="0,0,0,0">
+                        <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#AE92BD" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
+                            <VerticalStackLayout>
+                                <Entry  Grid.Row="0" Placeholder="Pesquisar..." BackgroundColor="#AE92BD" PlaceholderColor="#FFFFFF" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center" TextColor="White" />
+                                <Image Grid.Row="0" Source="lupainverted" HorizontalOptions="End" Margin="0,-35,20,0" HeightRequest="23"/>
+                            </VerticalStackLayout>
+                        </Border>
+                        <ImageButton Grid.Row="0" Source="logoicone" HeightRequest="70" HorizontalOptions="End" VerticalOptions="Start" Margin="320,-55,0,0"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <CollectionView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BackgroundColor="Black" WidthRequest="200">
+                            <Label Text="Panelão do norte"/>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
 
 
-            <Border StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#4F1271"  Margin="0,0,0,0" WidthRequest="408" HorizontalOptions="Start" HeightRequest="90">
-                <VerticalStackLayout Margin="0,0,0,0">
-                    <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#AE92BD" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
-                        <VerticalStackLayout>
-                            <Entry  Grid.Row="0" Placeholder="Pesquisar..." PlaceholderColor="White" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center"/>
-                            <Image Grid.Row="0" Source="lupainverted" HorizontalOptions="End" Margin="0,-35,20,0" HeightRequest="23"/>
-                        </VerticalStackLayout>
-                    </Border>
-                    <ImageButton Grid.Row="0" Source="logoicone" HeightRequest="70" HorizontalOptions="End" VerticalOptions="Start" Margin="320,-55,0,0"/>
-                </VerticalStackLayout>
-            </Border>
-        </Grid>
-
-        
-        
-        <ScrollView Orientation="Vertical">
-            <StackLayout>
-                <Label Grid.Row="0" Text="TIPOS DE EVENTO" HorizontalOptions="Start" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" Margin="20,20,0,20"/>
+        <ScrollView Grid.Row="1" Margin="0,0,0,20">
+            <VerticalStackLayout>
+             
+                <Label Grid.Row="0" Text="TIPOS DE EVENTO" HorizontalOptions="Start" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" Margin="20,50,0,20"/>
 
         <Grid HorizontalOptions="Center" Margin="0,0,0,0">
             <Grid.RowDefinitions>
@@ -40,16 +59,7 @@
             </Grid.RowDefinitions>
 
 
-                    <Grid>
-                        <!-- Contorno branco -->
-                        <Label Text="Olá Mundo" FontSize="32" TextColor="Black"
-    HorizontalOptions="Center" VerticalOptions="Center"
-    Margin="1,1,0,0"/>
-                        <!-- Texto roxo -->
-                        <Label Text="Olá Mundo" FontSize="30" TextColor="Purple"
-    HorizontalOptions="Center" VerticalOptions="Center"/>
-                    </Grid>
-
+                   
 
 
 
@@ -64,12 +74,12 @@
             </Grid>
 
           
-                <Grid Grid.Row="2" x:Name="event3" Margin="0,10,200,0">
+                <Grid Grid.Row="2" x:Name="event3" Margin="0,30,200,0">
                 <Image Source="casamento" HeightRequest="140"/>
                 <Label Text="Casamento" TextColor="#FFFFFF" Margin="10,10,0,0"/>
             </Grid>
 
-            <Grid Grid.Row="2" x:Name="event4" Margin="100,10,0,0" HorizontalOptions="End">
+            <Grid Grid.Row="2" x:Name="event4" Margin="100,30,0,0" HorizontalOptions="End">
                 <Image Source="corporative" HeightRequest="140"/>
                         <Label Text="Corporativo" TextColor="#FFFFFF" Margin="10,10,0,0"/>
             </Grid>
@@ -107,7 +117,7 @@
 
 
                 </Grid>
-        </StackLayout>
+        </VerticalStackLayout>
         </ScrollView>
 
 
@@ -138,68 +148,70 @@
 
 
 
-        <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,70,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <VerticalStackLayout Grid.Row="2">
+            <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <!-- Botão 1 -->
-            <Frame Grid.Column="0"
+                <!-- Botão 1 -->
+                <Frame Grid.Column="0"
             WidthRequest="50" HeightRequest="50"
             CornerRadius="25"
             BackgroundColor="#AE92BD"
             HorizontalOptions="Center"
             VerticalOptions="Center"
             HasShadow="True">
-                <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" />
-            </Frame>
+                    <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" Clicked="home_page_btn_Clicked"/>
+                </Frame>
 
-            <!-- Botão 2 -->
-            <Frame Grid.Column="1"
+                <!-- Botão 2 -->
+                <Frame Grid.Column="1"
             WidthRequest="50" HeightRequest="50"
             CornerRadius="25"
             BackgroundColor="#783F8E"
             HorizontalOptions="Center"
             VerticalOptions="Center"
             HasShadow="True">
-                <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" />
-            </Frame>
+                    <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" Clicked="search_page_btn_Clicked"/>
+                </Frame>
 
-            <!-- Botão 3 -->
-            <Frame Grid.Column="2"
+                <!-- Botão 3 -->
+                <Frame Grid.Column="2"
             WidthRequest="50" HeightRequest="50"
             CornerRadius="25"
             BackgroundColor="#AE92BD"
             HorizontalOptions="Center"
             VerticalOptions="Center"
             HasShadow="True">
-                <Image Source="chathome.png" WidthRequest="24" HeightRequest="24"/>
-            </Frame>
+                    <Image Source="chathome.png" WidthRequest="24" HeightRequest="24"/>
+                </Frame>
 
-            <Frame Grid.Column="3"
-     WidthRequest="50" HeightRequest="50"
-     CornerRadius="25"
-     BackgroundColor="#AE92BD"
-     HorizontalOptions="Center"
-     VerticalOptions="Center"
-     HasShadow="True">
-                <Image Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
-            </Frame>
+                <Frame Grid.Column="3"
+                 WidthRequest="50" HeightRequest="50"
+                 CornerRadius="25"
+                 BackgroundColor="#AE92BD"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center"
+                 HasShadow="True">
+                            <Image Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
+                </Frame>
 
-            <Frame Grid.Column="4"
-         WidthRequest="50" HeightRequest="50"
-         CornerRadius="25"
-         BackgroundColor="#AE92BD"
-         HorizontalOptions="Center"
-         VerticalOptions="Center"
-         HasShadow="True">
-                <Image Source="profilehome.png" WidthRequest="24" HeightRequest="24"/>
-            </Frame>
-        </Grid>
+                <Frame Grid.Column="4"
+                 WidthRequest="50" HeightRequest="50"
+                 CornerRadius="25"
+                 BackgroundColor="#AE92BD"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center"
+                 HasShadow="True">
+                    <Image Source="profilehome.png" WidthRequest="24" HeightRequest="24"/>
+                </Frame>
+            </Grid>
+        </VerticalStackLayout>
 
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>
