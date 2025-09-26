@@ -2,6 +2,7 @@
 using Microsoft.Maui;
 using Microsoft.Maui.Controls.Hosting;
 using Microsoft.Maui.Hosting;
+using Microsoft.Maui.Handlers;
 
 
 #if ANDROID
@@ -17,6 +18,13 @@ namespace MajorBeat
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+
+#if ANDROID
+        EntryHandler.Mapper.AppendToMapping("NoBorder", (handler, view) =>
+        {
+            handler.PlatformView.Background = null; // remove fundo padrão
+        });
+#endif
 
             // Remove o ícone de lupa no SearchBar
             Microsoft.Maui.Handlers.SearchBarHandler.Mapper.AppendToMapping("NoIcon", (handler, view) =>

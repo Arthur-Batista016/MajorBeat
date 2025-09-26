@@ -21,9 +21,9 @@
             </Grid.RowDefinitions>
                 <Border StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#4F1271"  Margin="0,0,0,0" WidthRequest="408" HorizontalOptions="Start" HeightRequest="90">
                     <VerticalStackLayout Margin="0,0,0,0">
-                        <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#AE92BD" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
+                        <Border StrokeShape="{Binding BarFormat}" BackgroundColor="{Binding BarBackground}" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
                             <VerticalStackLayout>
-                                <Entry  Grid.Row="0" Placeholder="Pesquisar..." BackgroundColor="#AE92BD" PlaceholderColor="#FFFFFF" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center" TextColor="White" />
+                                <Entry  Grid.Row="0" x:Name="searchBar" Placeholder="Pesquisar..." BackgroundColor="#AE92BD" PlaceholderColor="#FFFFFF" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center" TextColor="White" Focused="searchBar_Focused" Unfocused="searchBar_Unfocused" />
                                 <Image Grid.Row="0" Source="lupainverted" HorizontalOptions="End" Margin="0,-35,20,0" HeightRequest="23"/>
                             </VerticalStackLayout>
                         </Border>
@@ -32,12 +32,24 @@
                 </Border>
             </Grid>
 
-            <CollectionView>
+            <CollectionView Margin="1,-50,0,0"  IsVisible="{Binding BarVisibility}">
+                <CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String></x:String>
+                    </x:Array>
+                </CollectionView.ItemsSource>
+
+
+
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border BackgroundColor="Black" WidthRequest="200">
-                            <Label Text="Panelão do norte"/>
-                        </Border>
+                        <Border  StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#E7E7E7" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300"  HorizontalOptions="Start" HeightRequest="100">
+                            <VerticalStackLayout>
+                                <Label Text="Pesquisas Recentes ---------"/>
+                                <Label Text="Panelão do norte" TextColor="#4F1271" Margin="0,20,0,0"/>
+                            </VerticalStackLayout>
+                            </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
@@ -166,7 +178,7 @@
             HorizontalOptions="Center"
             VerticalOptions="Center"
             HasShadow="True">
-                    <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" Clicked="home_page_btn_Clicked"/>
+                    <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" />
                 </Frame>
 
                 <!-- Botão 2 -->
@@ -177,7 +189,7 @@
             HorizontalOptions="Center"
             VerticalOptions="Center"
             HasShadow="True">
-                    <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" Clicked="search_page_btn_Clicked"/>
+                    <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" />
                 </Frame>
 
                 <!-- Botão 3 -->
