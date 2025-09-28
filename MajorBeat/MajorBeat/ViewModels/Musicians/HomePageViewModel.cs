@@ -6,6 +6,8 @@ namespace MajorBeat.ViewModels.Musicians
     public class HomePageViewModel : BaseViewModel
     {
         public ObservableCollection<string> eventPhoto;
+
+
         public int actualPosition;
 
         public ObservableCollection<string> EventPhoto
@@ -53,6 +55,8 @@ namespace MajorBeat.ViewModels.Musicians
                 "birthday.png",
                 "bar.png"
             };
+
+            
         }
 
         public async Task Filters()

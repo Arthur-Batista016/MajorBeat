@@ -19,4 +19,9 @@ public partial class MusicianSearchPage : ContentPage
     {
         Vm.onUnfocus();
     }
+
+    private async void home_page_btn_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new MusicianHomePage());
+    }
 }

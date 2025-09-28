@@ -19,6 +19,10 @@ namespace MajorBeat.ViewModels.Users
         [ObservableProperty]
         public string barBackground = "#AE92BD";
 
+        [ObservableProperty]
+        public Color placeholderColor = Color.FromArgb("#FFFFFF");
+
+
 
         public SearchBarViewModel()
         {
@@ -30,6 +34,7 @@ namespace MajorBeat.ViewModels.Users
             BarBackground = "#E7E7E7";
             BarFormat = new RoundRectangle { CornerRadius = new CornerRadius(10, 10, 0, 0) };
             BarVisibility = true;
+            PlaceholderColor = Color.FromArgb("#4F1271");
 
         }
 
@@ -38,6 +43,8 @@ namespace MajorBeat.ViewModels.Users
             BarBackground = "#AE92BD";
             BarFormat = new RoundRectangle { CornerRadius = new CornerRadius(10, 10, 10, 10) };
             BarVisibility = false;
+            PlaceholderColor = Color.FromArgb("#FFFFFF");
+
         }
 
     }

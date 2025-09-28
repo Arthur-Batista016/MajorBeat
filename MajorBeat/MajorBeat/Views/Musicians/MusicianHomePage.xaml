@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="MajorBeat.Views.Musicians.MusicianHomePage"
-             >
+             Shell.NavBarIsVisible="False">
 
     <!--Grid da pagina inteira, separando os conteudos com scroll e conteudos fixos-->
     <Grid RowSpacing="0">
@@ -24,7 +24,22 @@
                     <VerticalStackLayout Margin="0,0,0,0">
                         <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#AE92BD" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
                             <VerticalStackLayout>
-                                <Entry  Grid.Row="0" Placeholder="Pesquisar..." BackgroundColor="#AE92BD" PlaceholderColor="#FFFFFF" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center" TextColor="White" />
+                                <Entry  Grid.Row="0" Placeholder="Pesquisar..." BackgroundColor="#AE92BD" PlaceholderColor="#FFFFFF" FontAttributes="Bold" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center" TextColor="White">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="PlaceholderColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState Name="Focused">
+                                                <VisualState.Setters>
+                                                    <Setter Property="PlaceholderColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Entry>
                                 <Image Grid.Row="0" Source="lupainverted" HorizontalOptions="End" Margin="0,-35,20,0" HeightRequest="23"/>
                             </VerticalStackLayout>
                         </Border>
@@ -57,7 +72,7 @@
         
         <Label Text="Eventos próximos a você:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" FontFamily="" HorizontalOptions="Start" Margin="20,0,0,0"/>
         
-        <Grid Margin="0,0,0,0">
+        <Grid Margin="0,-100,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -81,7 +96,7 @@
                 
                 <!---->
                 
-                <Border StrokeShape="RoundRectangle 10 10 0 0" Background="#4F1271" HeightRequest="25" WidthRequest="45" HorizontalOptions="End" VerticalOptions="Start" Margin="0,130,20,0">
+                <Border StrokeShape="RoundRectangle 10 10 0 0" Background="#4F1271" HeightRequest="25" WidthRequest="45" HorizontalOptions="End" VerticalOptions="Start" Margin="0,160,20,0">
                     <Label Grid.Row="0" Text="{Binding PhotoCounter}"   HorizontalTextAlignment="Center" TextColor="White" FontSize="15"/>
                 </Border>
             </Grid>
@@ -134,7 +149,7 @@
 
                         <!---->
 
-                        <Border StrokeShape="RoundRectangle 10 10 0 0" Background="#4F1271" HeightRequest="25" WidthRequest="45" HorizontalOptions="End" VerticalOptions="Start" Margin="0,130,20,0">
+                        <Border StrokeShape="RoundRectangle 10 10 0 0" Background="#4F1271" HeightRequest="25" WidthRequest="45" HorizontalOptions="End" VerticalOptions="Start" Margin="0,110,20,0">
                             <Label Grid.Row="0" Text="{Binding PhotoCounter}"   HorizontalTextAlignment="Center" TextColor="White" FontSize="15"/>
                         </Border>
                     </Grid>

@@ -23,7 +23,7 @@
                     <VerticalStackLayout Margin="0,0,0,0">
                         <Border StrokeShape="{Binding BarFormat}" BackgroundColor="{Binding BarBackground}" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
                             <VerticalStackLayout>
-                                <Entry  Grid.Row="0" x:Name="searchBar" Placeholder="Pesquisar..." BackgroundColor="#AE92BD" PlaceholderColor="#FFFFFF" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center" TextColor="White" Focused="searchBar_Focused" Unfocused="searchBar_Unfocused" />
+                                <Entry  Grid.Row="0" x:Name="searchBar" Placeholder="Pesquisar..." BackgroundColor="#AE92BD" PlaceholderColor="{Binding PlaceholderColor}" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center" TextColor="White" Focused="searchBar_Focused" Unfocused="searchBar_Unfocused" />
                                 <Image Grid.Row="0" Source="lupainverted" HorizontalOptions="End" Margin="0,-35,20,0" HeightRequest="23"/>
                             </VerticalStackLayout>
                         </Border>
@@ -44,10 +44,16 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border  StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#E7E7E7" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300"  HorizontalOptions="Start" HeightRequest="100">
+                        <Border  StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#E7E7E7" VerticalOptions="End" Margin="20,25,0,0" WidthRequest="300"  HorizontalOptions="Start" HeightRequest="300">
                             <VerticalStackLayout>
-                                <Label Text="Pesquisas Recentes ---------"/>
+                                <Label Text="Pesquisas Recentes" TextColor="#4F1271" HorizontalOptions="Start" Margin="0,0,0,0"/>
+                                <Image Source="searchline.png" HeightRequest="100" WidthRequest="150" Margin="120,-58,0,-40"/>
                                 <Label Text="Panelão do norte" TextColor="#4F1271" Margin="0,20,0,0"/>
+                                <Label Text="Evento B" TextColor="#4F1271" Margin="0,20,0,0"/>
+                                <Label Text="Evento C" TextColor="#4F1271" Margin="0,20,0,0"/>
+                                <Label Text="Evento D" TextColor="#4F1271" Margin="0,20,0,0"/>
+                                <Label Text="Evento E" TextColor="#4F1271" Margin="0,20,0,0"/>
+                                <Label Text="Evento F" TextColor="#4F1271" Margin="0,20,0,0"/>
                             </VerticalStackLayout>
                             </Border>
                     </DataTemplate>
@@ -82,18 +88,18 @@
 
             <Grid Grid.Row="1" Margin="100,0,0,0" x:Name="event2" HorizontalOptions="End">
                 <Image Source="bar" HeightRequest="140"/>
-                <Label Text="Bar" TextColor="#FFFFFF" Margin="10,10,0,0"/>
+                <Label Text="Bar" TextColor="#FFFFFF" FontAttributes="Bold" Margin="10,10,0,0"/>
             </Grid>
 
           
                 <Grid Grid.Row="2" x:Name="event3" Margin="0,30,200,0">
                 <Image Source="casamento" HeightRequest="140"/>
-                <Label Text="Casamento" TextColor="#FFFFFF" Margin="10,10,0,0"/>
+                <Label Text="Casamento" TextColor="#FFFFFF"  FontAttributes="Bold" Margin="10,10,0,0"/>
             </Grid>
 
             <Grid Grid.Row="2" x:Name="event4" Margin="100,30,0,0" HorizontalOptions="End">
                 <Image Source="corporative" HeightRequest="140"/>
-                        <Label Text="Corporativo" TextColor="#FFFFFF" Margin="10,10,0,0"/>
+                <Label Text="Corporativo" TextColor="#FFFFFF"  FontAttributes="Bold" Margin="10,10,0,0"/>
             </Grid>
 
 
@@ -104,12 +110,12 @@
 
             <Grid Grid.Row="3" x:Name="event5" Margin="0,30,200,0">
                 <Image Source="festival" HeightRequest="140"/>
-                <Label Text="Festival" TextColor="#FFFFFF" Margin="10,10,0,0"/>
+                <Label Text="Festival" TextColor="#FFFFFF" FontAttributes="Bold" Margin="10,10,0,0"/>
             </Grid>
 
             <Grid  Grid.Row="3" x:Name="event6" Margin="100,30,0,0" HorizontalOptions="End">
                 <Image Source="formatura" HeightRequest="140"/>
-                <Label Text="Formatura" TextColor="#FFFFFF" Margin="10,10,0,0"/>
+                <Label Text="Formatura" TextColor="#FFFFFF"  FontAttributes="Bold" Margin="10,10,0,0"/>
             </Grid>
 
 
@@ -117,12 +123,12 @@
           
                 <Grid Grid.Row="4" x:Name="event7" Margin="0,30,200,0">
                 <Image Source="funeral" HeightRequest="140"/>
-                <Label Text="Funeral" TextColor="#FFFFFF" Margin="10,10,0,0"/>
+                <Label Text="Funeral" TextColor="#FFFFFF"  FontAttributes="Bold" Margin="10,10,0,0"/>
             </Grid>
 
             <Grid Grid.Row="4" x:Name="event8" Margin="100,30,0,0" HorizontalOptions="End">
                 <Image Source="salaodefesta" HeightRequest="140"/>
-                <Label Text="Salão de Festa" TextColor="#FFFFFF" Margin="10,10,0,0"/>
+                <Label Text="Salão de Festa" TextColor="#FFFFFF"  FontAttributes="Bold" Margin="10,10,0,0"/>
             </Grid>
 
 
@@ -178,7 +184,7 @@
             HorizontalOptions="Center"
             VerticalOptions="Center"
             HasShadow="True">
-                    <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" />
+                    <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" Clicked="home_page_btn_Clicked" />
                 </Frame>
 
                 <!-- Botão 2 -->
