@@ -22,6 +22,10 @@ namespace MajorBeat.ViewModels.Users
         [ObservableProperty]
         public Color placeholderColor = Color.FromArgb("#FFFFFF");
 
+        [ObservableProperty]
+        public string widthNewItem = "50";
+
+
 
 
         public SearchBarViewModel()

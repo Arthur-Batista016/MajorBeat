@@ -44,16 +44,11 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border  StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#E7E7E7" VerticalOptions="End" Margin="20,25,0,0" WidthRequest="300"  HorizontalOptions="Start" HeightRequest="300">
+                        <Border  StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#E7E7E7" VerticalOptions="End" Margin="20,25,0,0" WidthRequest="300"  HorizontalOptions="Start" HeightRequest="90">
                             <VerticalStackLayout>
-                                <Label Text="Pesquisas Recentes" TextColor="#4F1271" HorizontalOptions="Start" Margin="0,0,0,0"/>
-                                <Image Source="searchline.png" HeightRequest="100" WidthRequest="150" Margin="120,-58,0,-40"/>
-                                <Label Text="Panelão do norte" TextColor="#4F1271" Margin="0,20,0,0"/>
-                                <Label Text="Evento B" TextColor="#4F1271" Margin="0,20,0,0"/>
-                                <Label Text="Evento C" TextColor="#4F1271" Margin="0,20,0,0"/>
-                                <Label Text="Evento D" TextColor="#4F1271" Margin="0,20,0,0"/>
-                                <Label Text="Evento E" TextColor="#4F1271" Margin="0,20,0,0"/>
-                                <Label Text="Evento F" TextColor="#4F1271" Margin="0,20,0,0"/>
+                                <Label Text="Pesquisas Recentes" TextColor="#4F1271" HorizontalOptions="Start" Margin="5,10,0,0"/>
+                                <Image Source="searchline.png" HeightRequest="100" WidthRequest="150" Margin="135,-58,0,-40"/>
+                                <Button BackgroundColor="#e7e7e7" Text="Evento A" HorizontalOptions="Start" WidthRequest="300" TextColor="#4f1271"/>
                             </VerticalStackLayout>
                             </Border>
                     </DataTemplate>
