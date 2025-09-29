@@ -107,13 +107,13 @@
             </Frame>
 
             <Frame Grid.Column="3"
-            WidthRequest="50" HeightRequest="50"
-            CornerRadius="25"
-            BackgroundColor="#AE92BD"
-            HorizontalOptions="Center"
-            VerticalOptions="Center"
-            HasShadow="True">
-                <Image Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
+                   WidthRequest="50" HeightRequest="50"
+                   CornerRadius="25"
+                   BackgroundColor="#AE92BD"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HasShadow="True">
+                <ImageButton x:Name="calendar_page_btn" Source="facebook.png" WidthRequest="24" HeightRequest="24" Clicked="calendar_page_btn_Clicked"/>
             </Frame>
 
             <Frame Grid.Column="4"
@@ -123,7 +123,7 @@
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 HasShadow="True">
-                <Image Source="profilehome.png" WidthRequest="24" HeightRequest="24"/>
+                <ImageButton Source="profilehome.png" WidthRequest="24" HeightRequest="24"/>
             </Frame>
         </Grid>
 

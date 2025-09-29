@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MajorBeat.Views.Musicians.CreateEventPage"
-             Title="CreateEventPage"
-             Shell.NavBarIsVisible="False"
-            BackgroundColor="#4F1271">
+             x:Class="MajorBeat.Views.Hirers.CreateEventPage"
+             Title="CreateEventPage">
     <VerticalStackLayout>
         <Label 
             Text="Welcome to .NET MAUI!"

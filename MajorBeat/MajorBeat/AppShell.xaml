@@ -28,7 +28,7 @@
                ContentTemplate="{DataTemplate viewsBands:BandCreateProfile}"/>
 
         <ShellContent Icon="calendar.png"
-               ContentTemplate="{DataTemplate viewHirers:CalendarPage}"/>
+               ContentTemplate="{DataTemplate viewHirers:CreateEventPage}"/>
 
         <ShellContent Icon="profilehome.png"
             ContentTemplate="{DataTemplate local:ProfilePage}"/>

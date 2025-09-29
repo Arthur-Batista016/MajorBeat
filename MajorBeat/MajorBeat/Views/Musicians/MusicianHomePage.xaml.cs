@@ -1,3 +1,6 @@
+using System.Threading.Tasks;
+using MajorBeat.Views.Hirers;
+
 namespace MajorBeat.Views.Musicians;
 
 public partial class MusicianHomePage : ContentPage
@@ -15,5 +18,10 @@ public partial class MusicianHomePage : ContentPage
     private void home_page_btn_Clicked(object sender, EventArgs e)
     {
 
+    }
+
+    private async void calendar_page_btn_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new CreateEventPage());
     }
 }

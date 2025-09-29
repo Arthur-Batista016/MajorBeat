@@ -1,4 +1,6 @@
-﻿namespace MajorBeat
+﻿using MajorBeat.Views.Musicians;
+
+namespace MajorBeat
 {
     public partial class App : Application
     {

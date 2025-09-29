@@ -71,9 +71,6 @@
 	  <Compile Update="Views\Bands\BandCreateProfile.xaml.cs">
 	    <DependentUpon>BandCreateProfile.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Musicians\CreateEventPage.xaml.cs">
-	    <DependentUpon>CreateEventPage.xaml</DependentUpon>
-	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -83,7 +80,7 @@
 	  <MauiXaml Update="Views\Hirers\CalendarPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Musicians\CreateEventPage.xaml">
+	  <MauiXaml Update="Views\Hirers\CreateEventPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Musicians\MusicianSearchPage.xaml">

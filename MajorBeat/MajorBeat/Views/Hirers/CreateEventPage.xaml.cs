@@ -1,4 +1,4 @@
-namespace MajorBeat.Views.Musicians;
+namespace MajorBeat.Views.Hirers;
 
 public partial class CreateEventPage : ContentPage
 {
