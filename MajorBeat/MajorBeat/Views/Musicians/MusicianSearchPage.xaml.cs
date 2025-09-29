@@ -24,4 +24,12 @@ public partial class MusicianSearchPage : ContentPage
     {
         await Navigation.PushAsync(new MusicianHomePage());
     }
+
+    private void searchBar_Completed(object sender, EventArgs e)
+    {
+        var entry = (Entry)sender;
+        string textoDigitado = entry.Text;
+
+        Console.WriteLine("Usuário digitou: " + textoDigitado);
+    }
 }
