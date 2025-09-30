@@ -196,7 +196,7 @@
             HorizontalOptions="Center"
             VerticalOptions="Center"
             HasShadow="True">
-                    <Image Source="chathome.png" WidthRequest="24" HeightRequest="24"/>
+                    <ImageButton x:Name="chat" Clicked="chat_Clicked"  Source="chathome.png" WidthRequest="24" HeightRequest="24" />
                 </Frame>
 
                 <Frame Grid.Column="3"

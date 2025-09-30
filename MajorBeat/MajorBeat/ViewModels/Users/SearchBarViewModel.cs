@@ -82,7 +82,7 @@ namespace MajorBeat.ViewModels.Users
 
         public async Task recentSearchs()
         {
-            if(Searchs.Count() != 0 && UserEntry != "") {
+            if(Searchs.Count() != 0) {
                 for (int i = 0; i < Searchs.Count(); i++) {
                     heightNewItem += 50;
                     heightNewItem.ToString();
@@ -94,10 +94,9 @@ namespace MajorBeat.ViewModels.Users
 
         public async Task search()
         {
-            if (UserEntry != "")
-            {
+         
                 Searchs.Add(userEntry);
-            }
+            
         }
 
     }

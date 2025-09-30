@@ -1,6 +1,9 @@
 namespace MajorBeat.Views.Musicians;
 
+using System.Threading.Tasks;
 using MajorBeat.ViewModels.Users;
+using MajorBeat.Views.Users;
+
 public partial class MusicianSearchPage : ContentPage
 {
     private SearchBarViewModel Vm => BindingContext as SearchBarViewModel;
@@ -31,5 +34,15 @@ public partial class MusicianSearchPage : ContentPage
         string textoDigitado = entry.Text;
 
         Console.WriteLine("Usuário digitou: " + textoDigitado);
+    }
+
+    private async void chat_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ChatPage());
+    }
+
+    private void chat_Clicked_1(object sender, EventArgs e)
+    {
+
     }
 }
