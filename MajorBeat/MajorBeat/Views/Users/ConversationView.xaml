@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.Users.ConversationView"
+             Shell.NavBarIsVisible="False">
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <VerticalStackLayout Grid.Row="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                     <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Border StrokeShape="RoundRectangle 0 0 0 0" BackgroundColor="#4F1271"  Margin="0,0,0,0" WidthRequest="408" HorizontalOptions="Start" HeightRequest="90">
+                    <VerticalStackLayout Margin="0,0,0,0">
+                        <Image Source="backchat.png" HeightRequest="50" HorizontalOptions="Start" Margin="20,20,0,0"/>
+                        <Label Text="Nome do Contato" TextColor="White" FontAttributes="Bold" FontSize="17" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,-35,0,0"/>
+                        <ImageButton Source="profilechaticon.png" HorizontalOptions="End" Margin="0,-36,-60,0" HeightRequest="50"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <CollectionView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BackgroundColor="Black" WidthRequest="200">
+                            <Label Text="Panelão do norte"/>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Text="16, Agosto" FontAttributes="Bold" Margin="0,10,0,0" TextColor="#4F1271" FontSize="18" HorizontalTextAlignment="Center"/>
+
+            <Grid Grid.Row="1" Margin="0,50,0,0">
+                <Label Text="14:41" HorizontalOptions="End" FontSize="15" Margin="0,-25,15,0" FontAttributes="Bold" TextColor="#4F1271"/>
+                <Border StrokeShape="RoundRectangle 10,10,10,10" BackgroundColor="#4A4063" HeightRequest="100" WidthRequest="200" HorizontalOptions="End" Margin="0,0,5,0" >
+                    <Label Text="Ola pessoas ckskdksdksdkdw egdgmfgpdkfp" TextColor="White" Margin="0,0,20,0" HorizontalOptions="Start" WidthRequest="200" />
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="2" Margin="10,20,0,0">
+                <Label Text="14:41" HorizontalOptions="Start" FontSize="15" Margin="0,-25,15,0" FontAttributes="Bold" TextColor="#4F1271"/>
+                <Border StrokeShape="RoundRectangle 10,10,10,10" BackgroundColor="#AE92BD" HeightRequest="100" WidthRequest="200" HorizontalOptions="Start" Margin="0,0,5,0" >
+                    <Label Text="Ola pessoas ckskdksdksdkdw egdgmfgpdkfp" TextColor="Black" FontAttributes="Bold" Margin="0,0,20,0" HorizontalOptions="Start" WidthRequest="200" />
+                </Border>
+            </Grid>
+
+
+        </Grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <VerticalStackLayout Grid.Row="2">
+            <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Botão 1 -->
+                <Frame Grid.Column="0"
+             WidthRequest="50" HeightRequest="50"
+             CornerRadius="25"
+             BackgroundColor="#AE92BD"
+             HorizontalOptions="Center"
+             VerticalOptions="Center"
+             HasShadow="True">
+                    <ImageButton Source="home.png" WidthRequest="24" HeightRequest="24"/>
+                </Frame>
+
+                <!-- Botão 2 -->
+                <Frame Grid.Column="1"
+             WidthRequest="50" HeightRequest="50"
+             CornerRadius="25"
+             BackgroundColor="#AE92BD"
+             HorizontalOptions="Center"
+             VerticalOptions="Center"
+             HasShadow="True">
+                    <ImageButton Source="searchhome.png" WidthRequest="24" HeightRequest="24"/>
+                </Frame>
+
+                <!-- Botão 3 -->
+                <Frame Grid.Column="2"
+             WidthRequest="60" HeightRequest="60"
+             CornerRadius="30"
+             BackgroundColor="#783F8E"
+             HorizontalOptions="Center"
+             VerticalOptions="Center"
+             HasShadow="True">
+                    <Image Source="chathome.png" WidthRequest="24" HeightRequest="24"/>
+                </Frame>
+
+                <Frame Grid.Column="3"
+      WidthRequest="50" HeightRequest="50"
+      CornerRadius="25"
+      BackgroundColor="#AE92BD"
+      HorizontalOptions="Center"
+      VerticalOptions="Center"
+      HasShadow="True">
+                    <Image Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
+                </Frame>
+
+                <Frame Grid.Column="4"
+          WidthRequest="50" HeightRequest="50"
+          CornerRadius="25"
+          BackgroundColor="#AE92BD"
+          HorizontalOptions="Center"
+          VerticalOptions="Center"
+          HasShadow="True">
+                    <Image Source="profilehome.png" WidthRequest="24" HeightRequest="24"/>
+                </Frame>
+            </Grid>
+        </VerticalStackLayout>
+
+    </Grid>
+    <!--fim do grid da pagina inteira-->
+
+</ContentPage>
