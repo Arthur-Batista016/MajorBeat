@@ -136,9 +136,56 @@
                 </StackLayout>
 
                 <!-- Tab Sobre -->
-                <StackLayout x:Name="sobreStack" IsVisible="False">
-                    <Label Text="aijdeiuahjwiufh"/>
-                    <Label Text="Receba"/>
+                <StackLayout x:Name="sobreStack" Orientation="Vertical" IsVisible="False" Margin="25,20,25,90">
+                    <Label Text="Oi, eu sou o Marquinhos. Minha música é um pedaço de mim, uma mistura das minhas raízes e das minhas descobertas pelo caminho. Minha música é essa mistura de influências, uma mistura que vem do coração, mas também de uma busca constante por novas formas de me expressar."
+                           TextColor="#4F1271"
+                           FontAttributes="Bold"/>
+                    <StackLayout Orientation="Horizontal" Margin="25,15,0,0">
+                        <Label Text="Instrumentos:" TextColor="#4F1271" FontAttributes="Bold" FontSize="20" Margin="0,0,60,0"/>
+                        <Label Text="Gêneros:" TextColor="#4F1271" FontAttributes="Bold" FontSize="20"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Border BackgroundColor="#E7E7E7" StrokeShape="RoundRectangle 5" WidthRequest="135" HeightRequest="70" Margin="20,10,0,0">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Guitarra" TextColor="#4F1271" FontAttributes="Bold" FontSize="18" Margin="30,5,0,0" />
+                                <Line X1="0" Y1="5" X2="200" Y2="5" Stroke="#4F1271" StrokeThickness="2" />
+                                <Label Text="Violão" TextColor="#4F1271" FontAttributes="Bold" FontSize="18" Margin="40,5,0,0" />
+                        </StackLayout>
+                        </Border>
+                        <Border BackgroundColor="#E7E7E7" StrokeShape="RoundRectangle 5" WidthRequest="135" HeightRequest="70" Margin="40,10,0,0">
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="Jazz" TextColor="#4F1271" FontAttributes="Bold" FontSize="18" Margin="50,5,0,0" />
+                                <Line X1="0" Y1="5" X2="200" Y2="5" Stroke="#4F1271" StrokeThickness="2" />
+                                <Label Text="Blues" TextColor="#4F1271" FontAttributes="Bold" FontSize="18" Margin="40,5,0,0" />
+                            </StackLayout>
+                        </Border>
+                    </StackLayout>
+                    <Line HorizontalOptions="Start" X1="0" Y1="20" X2="410" Y2="20" Stroke="#4F1271" StrokeThickness="3" Margin="-30,0,0,0" />
+                    <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                        <Image Source="emailicon.png" WidthRequest="40" />
+                        <Label Text="marcos.jose123@gmail.com" VerticalOptions="Center" TextColor="#4F1271" Margin="15,0,0,0"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                        <Image Source="pinicon.png" WidthRequest="30" />
+                        <Label Text="R. Alcântara, 113 - Vila Guilherme,&#x000A;São Paulo - SP, 02110-010" VerticalOptions="Center" TextColor="#4F1271" Margin="24,0,0,0"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                        <Image Source="phoneicon.png" WidthRequest="35" />
+                        <Label Text="(11) 99999-9999" VerticalOptions="Center" TextColor="#4F1271" Margin="19,0,0,0"/>
+                    </StackLayout>
+                    <Line HorizontalOptions="Start" X1="0" Y1="20" X2="410" Y2="20" Stroke="#4F1271" StrokeThickness="3" Margin="-30,0,0,0" />
+                    <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                        <Image Source="facebook.png" WidthRequest="45" Margin="0,0,10,0"/>
+                        <Label Text="marcos.jose" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center" Margin="0,0,40,0"/>
+                        <Image Source="linkedin.png" WidthRequest="45" Margin="0,0,10,0"/>
+                        <Label Text="marcos.jose" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                        <Image Source="instagram.png" WidthRequest="45" Margin="0,0,10,0"/>
+                        <Label Text="marcos.jose" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center" Margin="0,0,40,0"/>
+                        <Image Source="twitter.png" WidthRequest="45" Margin="0,0,10,0"/>
+                        <Label Text="marcos.jose" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center"/>
+                    </StackLayout>
                 </StackLayout>
 
                 <!-- Tab Avaliações -->
