@@ -8,6 +8,7 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Graphics.Text;
+using Microsoft.Maui.Platform;
 
 namespace MajorBeat.ViewModels.Users
 {
@@ -17,7 +18,7 @@ namespace MajorBeat.ViewModels.Users
         public bool barVisibility = false;
 
         [ObservableProperty]
-        public RoundRectangle barFormat = new RoundRectangle { CornerRadius = new CornerRadius(10, 10, 10, 10) };
+        public RoundRectangle barFormat = new RoundRectangle {CornerRadius = new CornerRadius(10, 10, 10, 10) };
 
         [ObservableProperty]
         public string barBackground = "#AE92BD";
@@ -25,8 +26,7 @@ namespace MajorBeat.ViewModels.Users
         [ObservableProperty]
         public Color placeholderColor = Color.FromArgb("#FFFFFF");
 
-        [ObservableProperty]
-        public int heightNewItem = 50;
+        public int RecentSearchHeight => 50 + (Searchs?.Count ?? 0) * 50;
 
         [ObservableProperty]
         public Color textColor = Color.FromArgb("#FFFFFF");
@@ -36,6 +36,9 @@ namespace MajorBeat.ViewModels.Users
 
         [ObservableProperty]
         public string userEntry;
+
+        [ObservableProperty]
+        public bool recentSearch = false;
 
         [ObservableProperty]
         public ObservableCollection<String> searchs;
@@ -60,13 +63,24 @@ namespace MajorBeat.ViewModels.Users
 
         public async Task onFocus()
         {
+            if (Searchs.Count() == 0)
+            {
+               BarFormat = new RoundRectangle { CornerRadius = new CornerRadius(10, 10, 10, 10) };
+            }
+            else if(Searchs.Count() >0 )
+            {
+                
+                BarFormat = new RoundRectangle { CornerRadius = new CornerRadius(10, 10, 0, 0) };
+                RecentSearch = true;
+            }
+            
             BarBackground = "#E7E7E7";
-            BarFormat = new RoundRectangle { CornerRadius = new CornerRadius(10, 10, 0, 0) };
             BarVisibility = true;
             PlaceholderColor = Color.FromArgb("#4F1271");
             TextColor = Color.FromArgb("#4F1271");
             Lupa = "lupafocus.png";
-
+            
+           
         }
 
         public async Task onUnfocus()
@@ -77,17 +91,14 @@ namespace MajorBeat.ViewModels.Users
             PlaceholderColor = Color.FromArgb("#FFFFFF");
             TextColor = Color.FromArgb("#FFFFFF");
             Lupa = "lupainverted.png";
+            RecentSearch = false;
 
         }
 
         public async Task recentSearchs()
         {
             if(Searchs.Count() != 0) {
-                for (int i = 0; i < Searchs.Count(); i++) {
-                    heightNewItem += 50;
-                    heightNewItem.ToString();
-
-                    }
+                RecentSearch = true;
             }
             
         }
@@ -96,6 +107,9 @@ namespace MajorBeat.ViewModels.Users
         {
          
                 Searchs.Add(userEntry);
+                RecentSearch = true;
+                OnPropertyChanged(nameof(RecentSearchHeight));
+                await onFocus();
             
         }
 

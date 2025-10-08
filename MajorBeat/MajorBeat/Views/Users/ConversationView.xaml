@@ -8,6 +8,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
 
@@ -69,6 +71,20 @@
 
 
 
+        <Grid Grid.Row="2" Margin="0,0,0,-30">
+            <Button CornerRadius="100" Text="Enviar proposta" FontSize="18" WidthRequest="200" BackgroundColor="#4F1271" FontAttributes="Bold" HeightRequest="50"  HorizontalOptions="Center" Margin="0,0,0,40"/>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Border BackgroundColor="#AE92BD" HeightRequest="80">
+                <VerticalStackLayout>
+                    <Border BackgroundColor="#7F5297" StrokeShape="RoundRectangle 10,10,10,10" WidthRequest="310" HorizontalOptions="Start" Margin="10,15,0,0">
+                        <Entry Placeholder="Escreva..." PlaceholderColor="White" HorizontalOptions="Start" />
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+            <ImageButton Source="micicon.png" HeightRequest="60" Margin="0,-5,-65,0" HorizontalOptions="End" />
+        </Grid>
 
 
 
@@ -91,9 +107,7 @@
 
 
 
-
-
-        <VerticalStackLayout Grid.Row="2">
+        <VerticalStackLayout Grid.Row="4">
             <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,0,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
