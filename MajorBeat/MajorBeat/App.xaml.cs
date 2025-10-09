@@ -1,4 +1,5 @@
-﻿using MajorBeat.Views.Musicians;
+﻿using MajorBeat.Views.Hirers;
+using MajorBeat.Views.Musicians;
 using MajorBeat.Views.Users;
 
 namespace MajorBeat
@@ -9,7 +10,7 @@ namespace MajorBeat
         {
             InitializeComponent();
 
-            MainPage = new MusicianSearchPage();
+            MainPage = new HirerSearchPage();
         }
     }
 }

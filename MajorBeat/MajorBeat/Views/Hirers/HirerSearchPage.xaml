@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.Hirers.HirerSearchPage"
+             Title="HirerSearchPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+
+        <VerticalStackLayout Grid.Row="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Border StrokeShape="RoundRectangle 0 0 0 0" BackgroundColor="#4F1271"  Margin="0,0,0,0" WidthRequest="408" HorizontalOptions="Start" HeightRequest="90">
+                    <VerticalStackLayout Margin="0,0,0,0">
+                        <Border StrokeShape="{Binding BarFormat}" BackgroundColor="{Binding BarBackground}" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
+                            <VerticalStackLayout>
+                                <Entry  Grid.Row="0" x:Name="searchBar" Completed="searchBar_Completed" Text="{Binding UserEntry}" Placeholder="Pesquisar..." BackgroundColor="#AE92BD" PlaceholderColor="{Binding PlaceholderColor}" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center" TextColor="{Binding TextColor}" Focused="searchBar_Focused" Unfocused="searchBar_Unfocused" />
+                                <ImageButton Grid.Row="0" Source="{Binding Lupa}" HorizontalOptions="End" Margin="0,-35,-20,0" HeightRequest="23" Command="{Binding SearchCommand}"/>
+                            </VerticalStackLayout>
+                        </Border>
+                        <ImageButton Grid.Row="0" Source="logoicone" HeightRequest="70" HorizontalOptions="End" VerticalOptions="Start" Margin="320,-55,0,0"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Grid>
+                <Border IsVisible="{Binding RecentSearch}" StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#E7E7E7" VerticalOptions="End" Margin="21,-25,0,0" WidthRequest="300"  HeightRequest="{Binding RecentSearchHeight}" HorizontalOptions="Start" >
+                    <VerticalStackLayout>
+                        <Label Text="Pesquisas Recentes" TextColor="#4F1271" HorizontalOptions="Start" Margin="5,10,0,0"/>
+                        <Image Source="searchline.png" HeightRequest="100" WidthRequest="150" Margin="135,-58,0,-40"/>
+
+                        <CollectionView Margin="0,0,0,0"  IsVisible="{Binding BarVisibility}" ItemsSource="{Binding Searchs}" >
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <VerticalStackLayout>
+                                        <Button BackgroundColor="Transparent"  Text="{Binding .}" HorizontalOptions="Start" WidthRequest="150" Margin="0,2,0,2" TextColor="#4f1271" />
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Border>
+
+            </Grid>
+
+
+
+        </VerticalStackLayout>
+
+
+        <ScrollView Grid.Row="1" Margin="0,0,0,20">
+            <VerticalStackLayout>
+
+                
+
+                <Grid HorizontalOptions="Center" Margin="0,30,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+
+
+
+
+
+                    <Grid Grid.Row="1" x:Name="event1" Margin="0,0,200,0">
+                        <Image  Source="axe.png" HeightRequest="140"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="100,0,0,0" x:Name="event2" HorizontalOptions="End">
+                        <Image Source="blues.png" HeightRequest="140"/>
+                    </Grid>
+
+
+                    <Grid Grid.Row="2" x:Name="event3" Margin="0,20,200,0">
+                        <Image Source="classico.png" HeightRequest="140"/>
+                    </Grid>
+
+                    <Grid Grid.Row="2" x:Name="event4" Margin="100,20,0,0" HorizontalOptions="End">
+                        <Image Source="disco.png" HeightRequest="140"/>
+                    </Grid>
+
+
+                    <Grid Grid.Row="3" x:Name="event5" Margin="0,20,200,0">
+                        <Image Source="eletronico.png" HeightRequest="140"/>
+                    </Grid>
+
+                    <Grid  Grid.Row="3" x:Name="event6" Margin="100,20,0,0" HorizontalOptions="End">
+                        <Image Source="forro.png" HeightRequest="140"/>
+                    </Grid>
+
+                    
+                    <Grid Grid.Row="4" x:Name="event7" Margin="0,20,200,0">
+                        <Image Source="funk.png" HeightRequest="140"/>
+                    </Grid>
+
+                    <Grid Grid.Row="4" x:Name="event8" Margin="100,20,0,0" HorizontalOptions="End">
+                        <Image Source="gospel.png" HeightRequest="140"/>
+                    </Grid>
+
+                    <Grid Grid.Row="5" x:Name="event9" Margin="0,20,200,0">
+                        <Image Source="hiphop.png" HeightRequest="140"/>
+                    </Grid>
+
+                    <Grid Grid.Row="5" x:Name="event10" Margin="100,20,0,0" HorizontalOptions="End">
+                        <Image Source="infantil.png" HeightRequest="140"/>
+                    </Grid>
+
+                    <Grid Grid.Row="6" x:Name="event11" Margin="0,20,200,0">
+                        <Image Source="jazz.png" HeightRequest="140"/>
+                    </Grid>
+
+                    <Grid Grid.Row="6" x:Name="event12" Margin="100,20,0,0" HorizontalOptions="End">
+                        <Image Source="metal.png" HeightRequest="140"/>
+                    </Grid>
+
+                    <Grid Grid.Row="7" x:Name="event13" Margin="0,20,200,0">
+                        <Image Source="pop.png" HeightRequest="140"/>
+                    </Grid>
+
+                    <Grid Grid.Row="7" x:Name="event14" Margin="100,20,0,0" HorizontalOptions="End">
+                        <Image Source="rock.png" HeightRequest="140"/>
+                    </Grid>
+
+                    <Grid Grid.Row="8" x:Name="event15" Margin="0,20,200,0">
+                        <Image Source="samba.png" HeightRequest="140"/>
+                    </Grid>
+
+                    <Grid Grid.Row="8" x:Name="event16" Margin="100,20,0,0" HorizontalOptions="End">
+                        <Image Source="sertanejo.png" HeightRequest="140"/>
+                    </Grid>
+
+                    <Grid Grid.Row="9" x:Name="event17" Margin="0,20,200,0">
+                        <Image Source="outro.png" HeightRequest="140"/>
+                    </Grid>
+
+                   
+
+                   
+
+
+
+
+
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <VerticalStackLayout Grid.Row="2">
+            <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Botão 1 -->
+                <Frame Grid.Column="0"
+        WidthRequest="50" HeightRequest="50"
+        CornerRadius="25"
+        BackgroundColor="#AE92BD"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        HasShadow="True">
+                    <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" Clicked="home_page_btn_Clicked" />
+                </Frame>
+
+                <!-- Botão 2 -->
+                <Frame Grid.Column="1"
+        WidthRequest="60" HeightRequest="60"
+        CornerRadius="30"
+        BackgroundColor="#783F8E"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        HasShadow="True">
+                    <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" />
+                </Frame>
+
+                <!-- Botão 3 -->
+                <Frame Grid.Column="2"
+        WidthRequest="50" HeightRequest="50"
+        CornerRadius="25"
+        BackgroundColor="#AE92BD"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        HasShadow="True">
+                    <ImageButton x:Name="chat" Clicked="chat_Clicked"  Source="chathome.png" WidthRequest="24" HeightRequest="24" />
+                </Frame>
+
+                <Frame Grid.Column="3"
+             WidthRequest="50" HeightRequest="50"
+             CornerRadius="25"
+             BackgroundColor="#AE92BD"
+             HorizontalOptions="Center"
+             VerticalOptions="Center"
+             HasShadow="True">
+                    <Image Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
+                </Frame>
+
+                <Frame Grid.Column="4"
+             WidthRequest="50" HeightRequest="50"
+             CornerRadius="25"
+             BackgroundColor="#AE92BD"
+             HorizontalOptions="Center"
+             VerticalOptions="Center"
+             HasShadow="True">
+                    <Image Source="profilehome.png" WidthRequest="24" HeightRequest="24"/>
+                </Frame>
+            </Grid>
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>
