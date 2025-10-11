@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace MajorBeat.Enums
 {
-    internal class TipoMusico
+    public enum TipoMusico
     {
+        SOLO,
+        BANDA
     }
 }

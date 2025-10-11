@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace MajorBeat.Enums
 {
-    internal class TipoContratante
+    public enum TipoContratante
     {
+        ESTABELECIMENTO,
+        PESSOA_FISICA
     }
 }

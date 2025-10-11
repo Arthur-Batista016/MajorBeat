@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace MajorBeat.Enums
 {
-    internal class TipoEvento
+    public enum TipoEvento
     {
+        ANIVERSARIO,
+        BAR,
+        CASAMENTO,
+        EVENTO_CORPORATIVO,
+        FESTIVAL,
+        FEIRA,
+        FORMATURA,
+        FUNERAL,
+        RESTAURANTE,
+        FESTA
     }
 }

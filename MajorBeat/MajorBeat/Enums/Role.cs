@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace MajorBeat.Enums
 {
-    internal class Role
+    public enum Role
     {
+        ROLE_MUSICO,
+        ROLE_CONTRATANTE,
+        ROLE_ADMIN
     }
 }

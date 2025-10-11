@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace MajorBeat.Enums
 {
-    internal class StatusEvento
+    public enum StatusEvento
     {
+        NAO_PREENCHIDO,
+        PREENCHIDO
     }
 }
