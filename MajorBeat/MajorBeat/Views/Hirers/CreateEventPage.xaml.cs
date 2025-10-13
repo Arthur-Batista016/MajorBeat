@@ -1,3 +1,5 @@
+using System.Collections.ObjectModel;
+
 namespace MajorBeat.Views.Hirers
 {
     public partial class CreateEventPage : ContentPage
@@ -6,6 +8,7 @@ namespace MajorBeat.Views.Hirers
         {
             InitializeComponent();
             EventDatePicker.MinimumDate = DateTime.Today;
+
         }
 
         private async void OnCategoryChosen(object sender, EventArgs e)
@@ -18,5 +21,17 @@ namespace MajorBeat.Views.Hirers
 
             await DisplayAlert("Categoria", $"Você escolheu: {selected}", "OK");
         }
+
+            private List<string> allInstruments = new List<string>
+    {
+        "Violão", "Guitarra", "Piano", "Bateria", "Flauta", "Violino", "Baixo", "Saxofone"
+    };
+
+        private ObservableCollection<string> filteredInstruments = new();
+        private ObservableCollection<string> selectedInstruments = new();
+
+
+
+
     }
 }
