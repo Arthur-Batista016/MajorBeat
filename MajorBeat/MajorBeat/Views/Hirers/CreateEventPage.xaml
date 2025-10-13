@@ -1,12 +1,141 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:System="clr-namespace:System;assembly=System.Runtime"
              x:Class="MajorBeat.Views.Hirers.CreateEventPage"
-             Title="CreateEventPage">
-    <VerticalStackLayout>
+             BackgroundColor="#4F1271"
+             Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+        <Grid>
+           
+            <ImageButton Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
+        </Grid>
+
+        <!--BOTÃO TITULO-->
+        <Grid Margin="0,25,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Text="Título" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+            <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="355">
+                <Entry Grid.Row="1" Placeholder="Título do evento" PlaceholderColor="#9E7FAF" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Nome}" Margin="10,0,0,0"></Entry>
+            </Border>
+        </Grid>
+
+       
+        <!--BOTÃO DATA-->
+        <Grid Margin="0,25,0,0">
+            
+
+            <Label Text="Data" FontSize="16" TextColor="#e7e7e7" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0"/>
+
+            <DatePicker
+            x:Name="EventDatePicker"
+            Format="dd/MM/yyyy"
+            MinimumDate="{x:Static System:DateTime.Today}"
+            MaximumDate="2100-12-31"
+            BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="355" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" TextColor="#9E7FAF"/>
+           
+        </Grid>
+
+        <Grid Margin="0,25,0,0">
+            <Label Text="Das" FontSize="16" TextColor="#e7e7e7" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0"/>
+            <Label Text="Às" FontSize="16" TextColor="#e7e7e7" FontAttributes="Bold" FontFamily="InterBold" Margin="230,0,0,0"/>
+
+            <Grid>
+                <TimePicker x:Name="EventStartPicker"
+                        Format="HH:mm"
+                        Time="00:00"
+                        BackgroundColor="#e7e7e7" Margin="-200,30,0,0" WidthRequest="160" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" TextColor="#9E7FAF"/>
+
+                <TimePicker x:Name="EventFinishPicker"
+                         Format="HH:mm"
+                         Time="00:00"
+                         BackgroundColor="#e7e7e7" Margin="180,30,0,0" WidthRequest="160" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" TextColor="#9E7FAF"/>
+            </Grid>
+        </Grid>
+
+            <!--BOTÃO CATEGORIAS-->
+            <Grid Margin="0, 25, 0, 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Text="Qual o evento?" FontSize="16" TextColor="#e7e7e7" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0"/>
+
+                <Picker x:Name="EventCategoryPicker"
+     Title="Categorias"
+     SelectedIndexChanged="OnCategoryChosen"
+     BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="355" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" HorizontalTextAlignment="Start">
+                    <Picker.Items>
+                        <x:String>Aniversário</x:String>
+                        <x:String>Bar</x:String>
+                        <x:String>Casamento</x:String>
+                        <x:String>Evento Corporativo</x:String>
+                        <x:String>Festival/Feira</x:String>
+                        <x:String>Formatura</x:String>
+                        <x:String>Funeral</x:String>
+                        <x:String>Restaurante</x:String>
+                        <x:String>Salão de festa</x:String>
+                        <x:String>Outro</x:String>
+                    </Picker.Items>
+                </Picker>
+
+            </Grid>
+
+            <!--BOTÃO INFORMAÇÕES-->
+
+            <Grid Margin="0,25,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Text="Informações:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="355">
+                    <Entry Grid.Row="1" Placeholder="Descreva..." PlaceholderColor="#9E7FAF" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Nome}"  Margin="10,0,0,0"></Entry>
+                </Border>
+            </Grid>
+
+            <Grid Margin="0,25,0,0">
+            <Label Text="Você procura:" FontSize="16" TextColor="#e7e7e7" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0"/>
+        
+            <RadioButton Content="Músico solo"
+                         GroupName="RequestedMusicianType"
+                         Value="Solo"
+                         IsChecked="True"
+                         TextColor="#e7e7e7"
+                         FontSize="14" FontAttributes="Bold" FontFamily="InterBold"
+                         Margin="80,30,0,0"
+                         Scale="1.4"/>
+        </Grid>
+        <Grid>
+            <RadioButton Content="Banda"
+                         GroupName="RequestedMusicianType"
+                         Value="Banda"
+                         IsChecked="True"
+                         TextColor="#e7e7e7"
+                         FontSize="14" FontAttributes="Bold" FontFamily="InterBold"
+                         Margin="80,10,0,0"
+                         Scale="1.4"/>
+        </Grid>
+
+
+
+        <Grid>
+            <Button x:Name="criar" Grid.Row="0" Text="Criar Conta" Margin="0,20,0,0" BackgroundColor="#e7e7e7" TextColor="#4F1271"
+                    HeightRequest="50" WidthRequest="200" FontSize="17" FontAttributes="Bold" FontFamily="InterBold"></Button>
+        </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -64,7 +64,7 @@
 
 
 
-        <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,170,0,0">
+        <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,112,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -113,7 +113,7 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    HasShadow="True">
-                <ImageButton x:Name="calendar_page_btn" Source="facebook.png" WidthRequest="24" HeightRequest="24" Clicked="calendar_page_btn_Clicked"/>
+                <ImageButton x:Name="calendar_page_btn" Source="calendar.png" WidthRequest="24" HeightRequest="24" Clicked="calendar_page_btn_Clicked"/>
             </Frame>
 
             <Frame Grid.Column="4"
