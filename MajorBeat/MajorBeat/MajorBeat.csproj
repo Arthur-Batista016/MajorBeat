@@ -64,10 +64,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Models\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Compile Update="Views\Bands\BandCreateProfile.xaml.cs">
 	    <DependentUpon>BandCreateProfile.xaml</DependentUpon>
 	  </Compile>

@@ -1,14 +1,28 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
+using MajorBeat.Enums;
+using MajorBeat.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MajorBeat.ViewModels.Musicians
 {
     public class HomePageViewModel : BaseViewModel
     {
-        public ObservableCollection<string> eventPhoto;
+        private ObservableCollection<string> eventPhoto;
+        private int actualPosition;
+        private Evento evento;
 
-
-        public int actualPosition;
+        public Evento Evento
+        {
+            get => evento;
+            set
+            {
+                evento = value;
+                OnPropertyChanged(nameof(Evento));
+            }
+        }
 
         public ObservableCollection<string> EventPhoto
         {
@@ -40,28 +54,33 @@ namespace MajorBeat.ViewModels.Musicians
 
         public string PhotoCounter => $"{ActualPosition + 1}/{TotalPhotos}";
 
-      
         public HomePageViewModel()
         {
+            // Inicializa o Evento com valores exemplo
+          
+            
             ChangeEventPhoto();
             ActualPosition = 0;
         }
 
+        public async Task EventoPadrao()
+        {
+           
+        }
+
         public async Task ChangeEventPhoto()
         {
-            EventPhoto = new ObservableCollection<string>()
+            EventPhoto = new ObservableCollection<string>
             {
                 "panelao.png",
                 "birthday.png",
                 "bar.png"
             };
-
-            
         }
 
         public async Task Filters()
         {
-            
+         
         }
     }
 }

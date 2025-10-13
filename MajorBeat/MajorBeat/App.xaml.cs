@@ -10,7 +10,7 @@ namespace MajorBeat
         {
             InitializeComponent();
 
-            MainPage = new HirerSearchPage();
+            MainPage = new AppShell();
         }
     }
 }
