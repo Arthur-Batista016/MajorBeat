@@ -1,20 +1,39 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MajorBeat.Enums;
-using MajorBeat.Models;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using MajorBeat.Enums;
+using MajorBeat.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace MajorBeat.ViewModels.Musicians
 {
-    public class HomePageViewModel : BaseViewModel
+    public partial class HomePageViewModel : ObservableObject
     {
         private ObservableCollection<string> eventPhoto;
         private int actualPosition;
        
         private ObservableCollection<Evento> eventos;
+
+        [ObservableProperty]
+        public bool hasEvent;
+        private string namevent;
+        private string title;
+        private DateTime data;
+        public string NameEvent
+        {
+            get => namevent;
+            set
+            {
+                if (namevent != value)
+                {
+                    namevent = value;
+                    OnPropertyChanged(nameof(NameEvent));
+                }
+            }
+        }
 
         public ObservableCollection<Evento> Eventos
         {
@@ -22,7 +41,7 @@ namespace MajorBeat.ViewModels.Musicians
             set
             {
                 eventos = value;
-                OnPropertyChanged(nameof(Evento));
+                OnPropertyChanged(nameof(Eventos));
             }
         }
 
@@ -64,17 +83,27 @@ namespace MajorBeat.ViewModels.Musicians
             EventoPadrao();
             ChangeEventPhoto();
             ActualPosition = 0;
-            CriarCommand = new Command(async () => await EventoPadrao());
+            CriarCommand = new Command(async () => { await EventoPadrao(); await EventsIsEmpyty(); });
         }
 
         public ICommand CriarCommand { get; set; }
+        public ICommand EnviarCommand { get; set; }
 
+
+        public async Task EventsIsEmpyty()
+        {
+            if (Eventos.Count == 0)
+                HasEvent = true;
+            else
+                HasEvent = false;
+        }
+        
         public async Task EventoPadrao()
         {
+
             var evento = new Evento()
             {
-                IdEvento = 1,
-                Nome = "Panelão do Norte",
+                Nome = namevent,
                 TipoEvento = Enums.TipoEvento.BAR,
                 Data = new DateTime(2025, 12, 15),
                 NomeGenero = new ObservableCollection<NomeGenero> { Enums.NomeGenero.SERTANEJO },
@@ -83,7 +112,13 @@ namespace MajorBeat.ViewModels.Musicians
               new Avaliacao { nota = 4.2 }
             }
             };
+
+            Eventos.Add(evento);
+          
         }
+
+
+        
 
         public async Task ChangeEventPhoto()
         {

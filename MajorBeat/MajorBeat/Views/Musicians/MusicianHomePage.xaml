@@ -65,10 +65,12 @@
                 </Border>
 
                 <Label Text="Eventos próximos a você:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,0,0,0"/>
-                <Button Text="CRIAR EVENTOOOOOOOOOOOOO" Command="{Binding CriarCommand}"/>
+                <Button Text="CRIAR EVENTO" Command="{Binding CriarCommand}"/>
+                <Entry Placeholder="sdgkslogpsmpiigfsr" Text="{Binding NameEvent,Mode=TwoWay}" />
+               
 
                 <!-- Eventos -->
-                <CollectionView ItemsSource="{Binding Eventos}">
+                <CollectionView ItemsSource="{Binding Eventos}"  Margin="0,40,0,0" IsVisible="{Binding HasEvent}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="0,-100,0,0">
@@ -94,17 +96,17 @@
                                 </Border>
 
                                 <!-- Informações do evento -->
-                                <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End" VerticalOptions="End" HeightRequest="160">
-                                    <VerticalStackLayout VerticalOptions="Center" HeightRequest="200">
-                                        <Label Text="{Binding Evento.Nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
-                                        <Label Text="Restaurante" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0"/>
+                                <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End" VerticalOptions="End" HeightRequest="300">
+                                    <VerticalStackLayout VerticalOptions="Center" HeightRequest="100">
+                                        <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
+                                        <Label Text="{Binding TipoEvento}" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0"/>
                                         <Border StrokeShape="RoundRectangle 8" BackgroundColor="#FFFFFF" Margin="20,30,0,0" WidthRequest="100" HorizontalOptions="Start" HeightRequest="35">
-                                            <Label Text="Sertanejo" TextColor="#4F1271" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Margin="0,4,0,0"/>
+                                            <Label Text="{Binding NomeGenero[0]}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Margin="0,4,0,0"/>
                                         </Border>
                                         <Grid>
-                                            <Label Text="4.2" TextColor="#ffffff" FontSize="Large" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,60,0"/>
+                                            <Label Text="{Binding Avaliacoes[0].nota}" TextColor="#ffffff" FontSize="Large" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,60,0"/>
                                             <Image Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,20,0"/>
-                                            <Label Text="25 mar." HorizontalOptions="End" FontSize="Medium" Margin="0,-80,20,0" TextColor="#FFFFFF"/>
+                                            <Label Text="{Binding Data,StringFormat='{0:dd MMM}'}" HorizontalOptions="End" FontSize="Medium" Margin="0,-80,20,0" TextColor="#FFFFFF"/>
                                         </Grid>
                                     </VerticalStackLayout>
                                 </Border>
