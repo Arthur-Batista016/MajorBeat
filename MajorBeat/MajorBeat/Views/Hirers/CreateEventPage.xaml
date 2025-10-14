@@ -14,7 +14,7 @@
 
         <Grid>
            
-            <ImageButton Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
+            <ImageButton Source="back.png" HeightRequest="20" Margin="-330,0,0,0" ZIndex="1"/>
         </Grid>
 
         <!--BOTÃO TITULO-->
