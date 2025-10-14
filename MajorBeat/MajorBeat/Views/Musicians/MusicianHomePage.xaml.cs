@@ -19,4 +19,19 @@ public partial class MusicianHomePage : ContentPage
     {
 
     }
+
+    private void searchBar_Completed(object sender, EventArgs e)
+    {
+
+    }
+
+    private void searchBar_Focused(object sender, FocusEventArgs e)
+    {
+
+    }
+
+    private void searchBar_Unfocused(object sender, FocusEventArgs e)
+    {
+
+    }
 }

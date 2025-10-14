@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MajorBeat.Enums;
 using MajorBeat.Models;
+using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MajorBeat.ViewModels.Musicians
@@ -12,14 +13,15 @@ namespace MajorBeat.ViewModels.Musicians
     {
         private ObservableCollection<string> eventPhoto;
         private int actualPosition;
-        private Evento evento;
+       
+        private ObservableCollection<Evento> eventos;
 
-        public Evento Evento
+        public ObservableCollection<Evento> Eventos
         {
-            get => evento;
+            get => eventos;
             set
             {
-                evento = value;
+                eventos = value;
                 OnPropertyChanged(nameof(Evento));
             }
         }
@@ -57,15 +59,30 @@ namespace MajorBeat.ViewModels.Musicians
         public HomePageViewModel()
         {
             // Inicializa o Evento com valores exemplo
-          
-            
+
+            Eventos = new ObservableCollection<Evento>();
+            EventoPadrao();
             ChangeEventPhoto();
             ActualPosition = 0;
+            CriarCommand = new Command(async () => await EventoPadrao());
         }
+
+        public ICommand CriarCommand { get; set; }
 
         public async Task EventoPadrao()
         {
-           
+            var evento = new Evento()
+            {
+                IdEvento = 1,
+                Nome = "Panelão do Norte",
+                TipoEvento = Enums.TipoEvento.BAR,
+                Data = new DateTime(2025, 12, 15),
+                NomeGenero = new ObservableCollection<NomeGenero> { Enums.NomeGenero.SERTANEJO },
+                Avaliacoes = new ObservableCollection<Avaliacao>
+            {
+              new Avaliacao { nota = 4.2 }
+            }
+            };
         }
 
         public async Task ChangeEventPhoto()

@@ -5,7 +5,7 @@
              x:Class="MajorBeat.Views.Musicians.MusicianHomePage"
              Shell.NavBarIsVisible="False">
 
-    <!--Grid da pagina inteira, separando os conteudos com scroll e conteudos fixos-->
+    <!-- Grid da página inteira -->
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,34 +13,19 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-
+        <!-- Top bar e pesquisa -->
         <VerticalStackLayout Grid.Row="0">
             <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-                <Border StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#4F1271"  Margin="0,0,0,0" WidthRequest="408" HorizontalOptions="Start" HeightRequest="90">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Border StrokeShape="RoundRectangle 0 0 0 0" BackgroundColor="#4F1271"  Margin="0,0,0,0" WidthRequest="408" HorizontalOptions="Start" HeightRequest="90">
                     <VerticalStackLayout Margin="0,0,0,0">
-                        <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#AE92BD" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
+                        <Border StrokeShape="{Binding BarFormat}" BackgroundColor="#AE92BD" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
                             <VerticalStackLayout>
-                                <Entry  Grid.Row="0" Placeholder="Pesquisar..." BackgroundColor="#AE92BD" PlaceholderColor="#FFFFFF" FontAttributes="Bold" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center" TextColor="White">
-                                    <VisualStateManager.VisualStateGroups>
-                                        <VisualStateGroup Name="CommonStates">
-                                            <VisualState Name="Normal">
-                                                <VisualState.Setters>
-                                                    <Setter Property="PlaceholderColor" Value="White" />
-                                                </VisualState.Setters>
-                                            </VisualState>
-                                            <VisualState Name="Focused">
-                                                <VisualState.Setters>
-                                                    <Setter Property="PlaceholderColor" Value="White" />
-                                                </VisualState.Setters>
-                                            </VisualState>
-                                        </VisualStateGroup>
-                                    </VisualStateManager.VisualStateGroups>
-                                </Entry>
-                                <Image Grid.Row="0" Source="lupainverted" HorizontalOptions="End" Margin="0,-35,20,0" HeightRequest="23"/>
+                                <Entry  Grid.Row="0" x:Name="searchBar"   Text="{Binding UserEntry}" Placeholder="Pesquisar..." BackgroundColor="#AE92BD" PlaceholderColor="{Binding PlaceholderColor}" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center" TextColor="{Binding TextColor}" />
+                                <ImageButton Grid.Row="0" Source="{Binding Lupa}" HorizontalOptions="End" Margin="0,-35,-20,0" HeightRequest="23" Command="{Binding SearchCommand}"/>
                             </VerticalStackLayout>
                         </Border>
                         <ImageButton Grid.Row="0" Source="logoicone" HeightRequest="70" HorizontalOptions="End" VerticalOptions="Start" Margin="320,-55,0,0"/>
@@ -48,209 +33,122 @@
                 </Border>
             </Grid>
 
-            <CollectionView>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border BackgroundColor="Black" WidthRequest="200">
-                            <Label Text="Panelão do norte"/>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <Grid>
+                <Border IsVisible="{Binding RecentSearch}" StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#E7E7E7" VerticalOptions="End" Margin="21,-25,0,0" WidthRequest="300"  HeightRequest="{Binding RecentSearchHeight}" HorizontalOptions="Start" >
+                    <VerticalStackLayout>
+                        <Label Text="Pesquisas Recentes" TextColor="#4F1271" HorizontalOptions="Start" Margin="5,10,0,0"/>
+                        <Image Source="searchline.png" HeightRequest="100" WidthRequest="150" Margin="135,-58,0,-40"/>
+
+                        <CollectionView Margin="0,0,0,0"  IsVisible="{Binding BarVisibility}" ItemsSource="{Binding Searchs}" >
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <VerticalStackLayout>
+                                        <Button BackgroundColor="Transparent"  Text="{Binding .}" HorizontalOptions="Start" WidthRequest="150" Margin="0,2,0,2" TextColor="#4f1271" />
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Border>
+
+            </Grid>
+
+
+
         </VerticalStackLayout>
 
-
-       
-
-
-
+        <!-- Conteúdo principal -->
         <ScrollView Grid.Row="1">
             <VerticalStackLayout>
                 <Border StrokeShape="RoundRectangle 10" BackgroundColor="#4F1271" WidthRequest="60" HorizontalOptions="End" HeightRequest="40" Margin="0,40,30,0">
-            <ImageButton Source="filter" HorizontalOptions="End" HeightRequest="20" BackgroundColor="Transparent"/>
-        </Border>
-        
-        <Label Text="Eventos próximos a você:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" FontFamily="" HorizontalOptions="Start" Margin="20,0,0,0"/>
-        
-        <Grid Margin="0,-100,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <Grid>
-                
-                
-                <!--IMAGEM DO EVENTO-->
-                <CarouselView ItemsSource="{Binding EventPhoto}" Position="{Binding ActualPosition,Mode=TwoWay}">
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding .}" HeightRequest="600" Margin="0,0,0,0"/>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
-                
-                
-                
-                <!---->
-                
-                <Border StrokeShape="RoundRectangle 10 10 0 0" Background="#4F1271" HeightRequest="25" WidthRequest="45" HorizontalOptions="End" VerticalOptions="Start" Margin="0,160,20,0">
-                    <Label Grid.Row="0" Text="{Binding PhotoCounter}"   HorizontalTextAlignment="Center" TextColor="White" FontSize="15"/>
+                    <ImageButton Source="filter" HorizontalOptions="End" HeightRequest="20" BackgroundColor="Transparent"/>
                 </Border>
-            </Grid>
-            
-            
-            
-            
-            
-            <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End"  VerticalOptions="End" HeightRequest="160">
-                <VerticalStackLayout VerticalOptions="Center" HeightRequest="200">
-                    <Label Grid.Row="1" x:Name="nome_evento" Text="Panelão do Norte" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
-                    <Label Grid.Row="2" x:Name="tipo" Text="Restaurante" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0" ></Label>
-                    <Border Grid.Row="3" StrokeShape="RoundRectangle 8" BackgroundColor="#FFFFFF" Margin="20,30,0,0" WidthRequest="100" HorizontalOptions="Start" HeightRequest="35">
-                        <Label x:Name="genero" Text="Sertanejo" TextColor="#4F1271" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Margin="0,4,0,0"/>
-                    </Border>
-                    <Grid Grid.Row="1">
-                        <Label Grid.Row="1" x:Name="nota" Text="4.2" TextColor="#ffffff" FontSize="Large" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,60,0"/>
-                        <Image Grid.Row="1" Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,20,0"/>
-                        <Label Grid.Row="2" x:Name="data" Text="25 mar." HorizontalOptions="End" FontSize="Medium" Margin="0,-80,20,0" TextColor="#FFFFFF"/>
-                    </Grid>
-                </VerticalStackLayout>
-            </Border>
 
-                  
-                </Grid>
+                <Label Text="Eventos próximos a você:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,0,0,0"/>
+                <Button Text="CRIAR EVENTOOOOOOOOOOOOO" Command="{Binding CriarCommand}"/>
 
+                <!-- Eventos -->
+                <CollectionView ItemsSource="{Binding Eventos}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,-100,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
+                                <!-- Carousel de imagens -->
+                                <CarouselView ItemsSource="{Binding EventPhoto}" Position="{Binding ActualPosition, Mode=TwoWay}">
+                                    <CarouselView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding .}" HeightRequest="600" Margin="0,0,0,0"/>
+                                        </DataTemplate>
+                                    </CarouselView.ItemTemplate>
+                                </CarouselView>
 
-                <Grid Margin="0,0,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+                                <!-- Contador de imagens -->
+                                <Border StrokeShape="RoundRectangle 10 10 0 0" Background="#4F1271" HeightRequest="25" WidthRequest="45" HorizontalOptions="End" VerticalOptions="Start" Margin="0,160,20,0">
+                                    <Label Text="{Binding PhotoCounter}" HorizontalTextAlignment="Center" TextColor="White" FontSize="15"/>
+                                </Border>
 
-                    <Grid>
-
-
-                        <!--IMAGEM DO EVENTO-->
-                        <CarouselView ItemsSource="{Binding EventPhoto}" Position="{Binding ActualPosition,Mode=TwoWay}">
-                            <CarouselView.ItemTemplate>
-                                <DataTemplate>
-                                    <Image Source="{Binding .}" HeightRequest="500"/>
-                                </DataTemplate>
-                            </CarouselView.ItemTemplate>
-                        </CarouselView>
-
-
-
-                        <!---->
-
-                        <Border StrokeShape="RoundRectangle 10 10 0 0" Background="#4F1271" HeightRequest="25" WidthRequest="45" HorizontalOptions="End" VerticalOptions="Start" Margin="0,110,20,0">
-                            <Label Grid.Row="0" Text="{Binding PhotoCounter}"   HorizontalTextAlignment="Center" TextColor="White" FontSize="15"/>
-                        </Border>
-                    </Grid>
-
-
-
-
-
-                    <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End"  VerticalOptions="End" HeightRequest="160">
-                        <VerticalStackLayout VerticalOptions="Center" HeightRequest="200">
-                            <Label Grid.Row="1" Text="Boa Vista" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
-                            <Label Grid.Row="2" Text="Casamento" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0" ></Label>
-                            <Border Grid.Row="3" StrokeShape="RoundRectangle 8" BackgroundColor="#FFFFFF" Margin="20,30,0,0" WidthRequest="100" HorizontalOptions="Start" HeightRequest="35">
-                                <Label Text="Gospel" TextColor="#4F1271" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Margin="0,4,0,0"/>
-                            </Border>
-                            <Grid Grid.Row="1">
-                                <Label Grid.Row="1" Text="4.2" TextColor="#ffffff" FontSize="Large" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,60,0"/>
-                                <Image Grid.Row="1" Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,20,0"/>
-                                <Label Grid.Row="2"  Text="25 mar." HorizontalOptions="End" FontSize="Medium" Margin="0,-80,20,0" TextColor="#FFFFFF"/>
+                                <!-- Informações do evento -->
+                                <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End" VerticalOptions="End" HeightRequest="160">
+                                    <VerticalStackLayout VerticalOptions="Center" HeightRequest="200">
+                                        <Label Text="{Binding Evento.Nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
+                                        <Label Text="Restaurante" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0"/>
+                                        <Border StrokeShape="RoundRectangle 8" BackgroundColor="#FFFFFF" Margin="20,30,0,0" WidthRequest="100" HorizontalOptions="Start" HeightRequest="35">
+                                            <Label Text="Sertanejo" TextColor="#4F1271" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Margin="0,4,0,0"/>
+                                        </Border>
+                                        <Grid>
+                                            <Label Text="4.2" TextColor="#ffffff" FontSize="Large" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,60,0"/>
+                                            <Image Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,20,0"/>
+                                            <Label Text="25 mar." HorizontalOptions="End" FontSize="Medium" Margin="0,-80,20,0" TextColor="#FFFFFF"/>
+                                        </Grid>
+                                    </VerticalStackLayout>
+                                </Border>
                             </Grid>
-                        </VerticalStackLayout>
-                    </Border>
-
-
-                </Grid>
-
-
-
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </VerticalStackLayout>
         </ScrollView>
 
-
-
-
-
+        <!-- Barra inferior -->
         <VerticalStackLayout Grid.Row="2">
-            <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,0,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+            <Grid BackgroundColor="#4F1271" Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <!-- Botão 1 -->
-            <Frame Grid.Column="0"
-                   WidthRequest="60" HeightRequest="60"
-                   CornerRadius="30"
-                   BackgroundColor="#783F8E"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   HasShadow="True">
-                <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" Clicked="home_page_btn_Clicked"/>
-            </Frame>
+                <!-- Botões -->
+                <Frame Grid.Column="0" WidthRequest="60" HeightRequest="60" CornerRadius="30" BackgroundColor="#783F8E" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                    <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" Clicked="home_page_btn_Clicked"/>
+                </Frame>
 
-            <!-- Botão 2 -->
-            <Frame Grid.Column="1"
-                   WidthRequest="50" HeightRequest="50"
-                   CornerRadius="25"
-                   BackgroundColor="#AE92BD"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   HasShadow="True">
-                <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" Clicked="search_page_btn_Clicked"/>
-            </Frame>
+                <Frame Grid.Column="1" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                    <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" Clicked="search_page_btn_Clicked"/>
+                </Frame>
 
-            <!-- Botão 3 -->
-            <Frame Grid.Column="2"
-                   WidthRequest="50" HeightRequest="50"
-                   CornerRadius="25"
-                   BackgroundColor="#AE92BD"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   HasShadow="True">
-                <Image Source="chathome.png" WidthRequest="24" HeightRequest="24"/>
-            </Frame>
+                <Frame Grid.Column="2" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                    <Image Source="chathome.png" WidthRequest="24" HeightRequest="24"/>
+                </Frame>
 
-            <Frame Grid.Column="3"
-            WidthRequest="50" HeightRequest="50"
-            CornerRadius="25"
-            BackgroundColor="#AE92BD"
-            HorizontalOptions="Center"
-            VerticalOptions="Center"
-            HasShadow="True">
-                <Image Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
-            </Frame>
+                <Frame Grid.Column="3" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                    <Image Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
+                </Frame>
 
-            <Frame Grid.Column="4"
-                WidthRequest="50" HeightRequest="50"
-                CornerRadius="25"
-                BackgroundColor="#AE92BD"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                HasShadow="True">
-                <Image Source="profilehome.png" WidthRequest="24" HeightRequest="24"/>
-            </Frame>
-        </Grid>
+                <Frame Grid.Column="4" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                    <Image Source="profilehome.png" WidthRequest="24" HeightRequest="24"/>
+                </Frame>
+            </Grid>
         </VerticalStackLayout>
 
     </Grid>
-    <!--fim do grid da pagina inteira-->
 
 </ContentPage>
