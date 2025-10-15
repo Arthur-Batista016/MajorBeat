@@ -2,10 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Name="HomePage"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="MajorBeat.Views.Musicians.MusicianHomePage"
-             Shell.NavBarIsVisible="False">
-
+             x:Class="MajorBeat.Views.Hirers.HirerHomePage"
+             Title="HirerHomePage">
     <!-- Grid da página inteira -->
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
@@ -65,13 +63,13 @@
                     <ImageButton Source="filter" HorizontalOptions="End" HeightRequest="20" BackgroundColor="Transparent"/>
                 </Border>
 
-                <Label Text="Eventos próximos a você:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,0,0,0"/>
+                <Label Text="Musicos na sua região:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,0,0,0"/>
                 <Button Text="CRIAR EVENTO" Command="{Binding CriarCommand}"/>
                 <Entry Placeholder="sdgkslogpsmpiigfsr" Text="{Binding NameEvent,Mode=TwoWay}" />
-               
+
 
                 <!-- Eventos -->
-                <CollectionView ItemsSource="{Binding Eventos}"  Margin="0,40,0,40" IsVisible="{Binding HasEvent}">
+                <CollectionView ItemsSource="{Binding Musicos}"  Margin="0,40,0,40" IsVisible="{Binding HasEvent}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="0,-100,0,0">
@@ -101,7 +99,7 @@
                                     <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,0,0,0">
                                         <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
                                         <Label Text="{Binding TipoEvento}" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0"/>
-                                        
+
                                         <!--Generos Musicais-->
                                         <CollectionView ItemsSource="{Binding NomeGenero}" ItemsLayout="HorizontalList">
                                             <CollectionView.ItemTemplate>
@@ -112,12 +110,12 @@
                                                 </DataTemplate>
                                             </CollectionView.ItemTemplate>
                                         </CollectionView>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
+
+
+
+
+
+
                                         <Grid>
                                             <Label Text="{Binding Avaliacoes[0].nota}" TextColor="#ffffff" FontSize="Large" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,60,0"/>
                                             <Image Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,20,0"/>
@@ -145,11 +143,11 @@
 
                 <!-- Botões -->
                 <Frame Grid.Column="0" WidthRequest="60" HeightRequest="60" CornerRadius="30" BackgroundColor="#783F8E" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
-                    <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" Clicked="home_page_btn_Clicked"/>
+                    <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" />
                 </Frame>
 
                 <Frame Grid.Column="1" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
-                    <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" Clicked="search_page_btn_Clicked"/>
+                    <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" />
                 </Frame>
 
                 <Frame Grid.Column="2" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">

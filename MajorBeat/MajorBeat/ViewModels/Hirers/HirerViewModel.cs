@@ -1,50 +1,33 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
 using MajorBeat.Enums;
 using MajorBeat.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
-
-namespace MajorBeat.ViewModels.Musicians
+namespace MajorBeat.ViewModels.Hirers
 {
-    public partial class HomePageViewModel : ObservableObject
+    public partial class HirerViewModel:ObservableObject
     {
         private ObservableCollection<string> eventPhoto;
         private int actualPosition;
-       
-        private ObservableCollection<Evento> eventos;
+
+        [ObservableProperty]
+        private ObservableCollection<Musico> musicos;
 
         [ObservableProperty]
         public bool hasEvent;
-        private string namevent;
+
+        [ObservableProperty]
+        private string musicianName;
         private string title;
         private DateTime data;
-        public string NameEvent
-        {
-            get => namevent;
-            set
-            {
-                if (namevent != value)
-                {
-                    namevent = value;
-                    OnPropertyChanged(nameof(NameEvent));
-                }
-            }
-        }
-
-        public ObservableCollection<Evento> Eventos
-        {
-            get => eventos;
-            set
-            {
-                eventos = value;
-                OnPropertyChanged(nameof(Eventos));
-            }
-        }
-
+     
         public ObservableCollection<string> EventPhoto
         {
             get => eventPhoto;
@@ -75,11 +58,11 @@ namespace MajorBeat.ViewModels.Musicians
 
         public string PhotoCounter => $"{ActualPosition + 1}/{TotalPhotos}";
 
-        public HomePageViewModel()
+        public HirerViewModel()
         {
             // Inicializa o Evento com valores exemplo
 
-            Eventos = new ObservableCollection<Evento>();
+            Musicos = new ObservableCollection<Musico>();
             ChangeEventPhoto();
             ActualPosition = 0;
             CriarCommand = new Command(async () => { await EventoPadrao(); await EventsIsEmpyty(); });
@@ -91,30 +74,27 @@ namespace MajorBeat.ViewModels.Musicians
 
         public async Task EventsIsEmpyty()
         {
-            HasEvent = Eventos.Count > 0;
+            HasEvent = musicos.Count > 0;
         }
-        
+
         public async Task EventoPadrao()
         {
             ChangeEventPhoto();
-            var evento = new Evento()
+            var musico = new Musico()
             {
-                Nome = namevent,
-                TipoEvento = Enums.TipoEvento.BAR,
-                Data = new DateTime(2025, 12, 15),
-                NomeGenero = new ObservableCollection<NomeGenero> { Enums.NomeGenero.SERTANEJO, Enums.NomeGenero.RAP },
-                Avaliacoes = new ObservableCollection<Avaliacao>
-            {
+                nome = MusicianName,
+                avaliacoes = new ObservableCollection<Avaliacao> {
               new Avaliacao { nota = 4.2 }
-            }
+            },
+                nomeGenero = new ObservableCollection<NomeGenero> { Enums.NomeGenero.SERTANEJO, Enums.NomeGenero.AXE }
             };
 
-            Eventos.Add(evento);
-          
+           Musicos.Add(musico);
+
         }
 
 
-        
+
 
         public async Task ChangeEventPhoto()
         {
@@ -128,7 +108,7 @@ namespace MajorBeat.ViewModels.Musicians
 
         public async Task Filters()
         {
-         
+
         }
     }
 }
