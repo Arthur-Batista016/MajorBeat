@@ -4,7 +4,13 @@
              xmlns:System="clr-namespace:System;assembly=System.Runtime"
              x:Class="MajorBeat.Views.Hirers.CreateEventPage"
              BackgroundColor="#4F1271"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             xmlns:viewmodels="clr-namespace:MajorBeat.ViewModels"
+             x:DataType="viewmodels:CreateEventPageViewModel">
+    
+    <ContentPage.BindingContext>
+        <viewmodels:CreateEventPageViewModel />
+    </ContentPage.BindingContext>
 
     <ScrollView>
         <VerticalStackLayout>
@@ -26,7 +32,7 @@
 
             <Label Grid.Row="0" Text="Título" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
             <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="355">
-                <Entry Grid.Row="1" Placeholder="Título do evento" PlaceholderColor="#9E7FAF" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Nome}" Margin="10,0,0,0"></Entry>
+                <Entry Grid.Row="1" Placeholder="Título do evento" PlaceholderColor="#9E7FAF" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding NomeEvento}" Margin="10,0,0,0"></Entry>
             </Border>
         </Grid>
 
@@ -39,7 +45,7 @@
 
                 <Label Grid.Row="0" Text="Localização" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
                 <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="355">
-                    <Entry Grid.Row="1" Placeholder="Digite seu endereço..." PlaceholderColor="#9E7FAF" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Nome}" Margin="10,0,0,0"></Entry>
+                    <Entry Grid.Row="1" Placeholder="Digite seu endereço..." PlaceholderColor="#9E7FAF" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding NomeEvento}" Margin="10,0,0,0"></Entry>
                 </Border>
             </Grid>
 
@@ -65,20 +71,24 @@
             <Label Text="Às" FontSize="16" TextColor="#e7e7e7" FontAttributes="Bold" FontFamily="InterBold" Margin="230,0,0,0"/>
 
             <Grid>
-                <TimePicker x:Name="EventStartPicker"
+                    
+                        <Grid>
+                            <TimePicker x:Name="EventStartPicker"
                         Format="HH:mm"
                         Time="00:00"
                         BackgroundColor="#e7e7e7" Margin="-200,30,0,0" WidthRequest="160" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" TextColor="#9E7FAF"/>
-
-                <TimePicker x:Name="EventFinishPicker"
+                            <TimePicker x:Name="EventFinishPicker"
                          Format="HH:mm"
                          Time="00:00"
                          BackgroundColor="#e7e7e7" Margin="180,30,0,0" WidthRequest="160" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" TextColor="#9E7FAF"/>
-            </Grid>
+                        </Grid>
+                    
+                </Grid>
         </Grid>
 
             <!--BOTÃO CATEGORIAS-->
             <Grid Margin="0, 25, 0, 0">
+    
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -106,11 +116,26 @@
 
             </Grid>
 
-            <VerticalStackLayout Margin="0,0,0,0">
-                <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#E7E7E7" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="355" HorizontalOptions="Start" HeightRequest="45">
+            <!--LISTA DE ESTILOS MUSICAIS-->
+            
+            
+            <VerticalStackLayout Margin="0,25,0,0">
+                <Label Grid.Row="0" Text="Estilos Musicais:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+
+                <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#E7E7E7" VerticalOptions="End" Margin="30,0,0,0" WidthRequest="355" HorizontalOptions="Start" HeightRequest="45">
                     <VerticalStackLayout>
-                        <Entry  Grid.Row="0" Placeholder="Digite um estilo musical" BackgroundColor="#E7E7E7" PlaceholderColor="#9E7FAF" WidthRequest="250" Margin="0,0,70,0" HorizontalOptions="Center" TextColor="White" />
-                        <Image Grid.Row="0" Source="lupainverted" HorizontalOptions="End" Margin="0,30,20,0" HeightRequest="23"/>
+                        <SearchBar Placeholder="Digite aqui o instrumento" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="45" Text="{Binding TextoBuscaInstrumento}"/>
+                        <CollectionView  HeightRequest="55"
+                                        ItemsSource="{Binding InstrumentosSelecionados }"
+                                        SelectionMode="Multiple"
+                                        SelectedItems="{Binding InstrumentosSelecionados}"
+                                        SelectionChanged="OnInstrumentosSelectionChanged">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding .}" />
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
                     </VerticalStackLayout>
                 </Border>
             </VerticalStackLayout>
@@ -128,10 +153,12 @@
 
                 <Label Grid.Row="0" Text="Informações:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
                 <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="355">
-                    <Entry Grid.Row="1" Placeholder="Descreva..." PlaceholderColor="#9E7FAF" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Nome}"  Margin="10,0,0,0"></Entry>
+                    <Entry Grid.Row="1" Placeholder="Descreva..." PlaceholderColor="#9E7FAF" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding NomeEvento}"  Margin="10,0,0,0"></Entry>
                 </Border>
             </Grid>
 
+            
+            <!--Escolha de músico ou banda-->
             <Grid Margin="0,25,0,0">
             <Label Text="Você procura:" FontSize="16" TextColor="#e7e7e7" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0"/>
         
@@ -155,7 +182,7 @@
                          Scale="1.4"/>
         </Grid>
 
-      
+      <!--criar evento-->
             <Grid>
                 <Button x:Name="criar" Grid.Row="0" Text="Criar Evento" Margin="0,20,0,0" BackgroundColor="#e7e7e7" TextColor="#4F1271"
             HeightRequest="50" WidthRequest="200" FontSize="17" FontAttributes="Bold" FontFamily="InterBold"></Button>
