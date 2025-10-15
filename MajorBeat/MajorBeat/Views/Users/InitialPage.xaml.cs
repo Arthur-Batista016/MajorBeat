@@ -9,8 +9,9 @@ public partial class InitialPage : ContentPage
 
     private async void register_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Hirers.HirerRegisterPage());
+        await Navigation.PushAsync(new UserRegisterView());
     }
+    
 
     private  async void login_Clicked(object sender, EventArgs e)
     {

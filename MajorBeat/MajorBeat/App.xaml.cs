@@ -1,4 +1,5 @@
-﻿using MajorBeat.Views.Users;
+﻿using MajorBeat.Views;
+using MajorBeat.Views.Users;
 
 namespace MajorBeat
 {
@@ -8,7 +9,7 @@ namespace MajorBeat
         {
             InitializeComponent();
 
-            MainPage = new InitialPage();
+            MainPage = new NavigationPage(new InitialPage()); 
         }
     }
 }

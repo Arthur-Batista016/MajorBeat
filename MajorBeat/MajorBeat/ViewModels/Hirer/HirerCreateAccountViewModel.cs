@@ -15,59 +15,20 @@ namespace MajorBeat.ViewModels
     {
 
 
-        private UsuarioService uService;
-
-
-        //  public ICommand AddPhotoCommand { get; set; }
-
         public ICommand ProximoCommand { get; set; }
         public ICommand RegistrarCommand { get; set; }
         private readonly INavigation _navigation;
 
-        /*  private async Task OnAddPhotoClicked()
-          {
-              string action = await _page.DisplayActionSheet("Adicionar Foto", "Cancelar", null, "Escolher da Galeria", "Tirar Foto");
-
-              FileResult photo = null;
-
-              try
-              {
-                  if (action == "Escolher da Galeria")
-                  {
-                      photo = await MediaPicker.PickPhotoAsync();
-                  }
-                  else if (action == "Tirar Foto")
-                  {
-                      photo = await MediaPicker.CapturePhotoAsync();
-                  }
-
-                  if (photo != null)
-                  {
-                      var stream = await photo.OpenReadAsync();
-                      var selectedImage = _page.FindByName<Image>("SelectedImage1");
-                      selectedImage.Source = ImageSource.FromStream(() => stream);
-                  }
-              }
-              catch (Exception ex)
-              {
-                  await _page.DisplayAlert("Erro", "Não foi possível obter a imagem: " + ex.Message, "OK");
-              }
-          }*/
+       
 
         public HirerCreateAccountViewModel(INavigation navigation)
         {
             _navigation = navigation;
-
-            //  uService = new UsuarioService();
             InicializarCommands();
-            //AddPhotoCommand = new Command(async () => await OnAddPhotoClicked());
-
         }
         public void InicializarCommands()
         {
             ProximoCommand = new Command(async () => await UserSave());
-
-            // RegistrarCommand = new Command(async () => await RegistrarUsuario());
 
         }
         public async Task UserSave()
@@ -79,7 +40,10 @@ namespace MajorBeat.ViewModels
             u.endereco = $"{Logradouro}, {Numero}, {Bairro}, {Cidade}, {Uf}, {Cep}";
             u.senha = Senha;
             u.empresa = Empresa;
-            if (ValidarCampos(u))
+
+
+
+            if (ValidarCampos())
             {
                 var viewmodel = new HirerCreateProfileViewModel(u);
                 await _navigation.PushAsync(new HirerCreateProfileView(viewmodel));
@@ -88,7 +52,7 @@ namespace MajorBeat.ViewModels
         }
 
 
-        private bool ValidarCampos(Contratante u)
+        private bool ValidarCampos()
         {
             bool valido = true;
 

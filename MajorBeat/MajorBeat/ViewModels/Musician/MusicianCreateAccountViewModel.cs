@@ -125,6 +125,8 @@ namespace MajorBeat.ViewModels
             u.endereco = $"{Logradouro}, {Numero}, {Bairro}, {Cidade}, {Uf}, {Cep}";
             u.senha = Senha;
             u.tipoMusico = Tipo;
+
+
             if (ValidarCampos())
             {
                 var viewmodel = new MusicianCreateProfileViewModel(u);

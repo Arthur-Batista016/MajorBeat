@@ -176,6 +176,7 @@ namespace MajorBeat.ViewModels.Hirers
             else
             {
                 ErroUserVisible = false;
+                
             }
             if (string.IsNullOrWhiteSpace(Biografia))
             {
@@ -185,6 +186,7 @@ namespace MajorBeat.ViewModels.Hirers
             else
             {
                 ErroBioVisible = false;
+                
             }
 
 
@@ -234,12 +236,12 @@ namespace MajorBeat.ViewModels.Hirers
 
 
             var service = new UsuarioService();
-            var musicoCadastrado = await service.PostContratanteAsync(usuario);
+            var contratanteCadastrado = await service.PostContratanteAsync(usuario);
 
             // Exibe mensagem de sucesso com o ID retornado
             await Application.Current.MainPage.DisplayAlert(
                 "Sucesso",
-                $"Músico {musicoCadastrado.nome} cadastrado com sucesso!\nID: {musicoCadastrado.id}",
+                $"Contratante {contratanteCadastrado.nome} cadastrado com sucesso!\nID: {contratanteCadastrado.id}",
                 "OK"
             );
 
@@ -254,43 +256,6 @@ namespace MajorBeat.ViewModels.Hirers
                     "OK"
                 );
     }
-} /*
-           public async Task RegistrarUsuario()
-            {
-                try
-                {
-                    var dto = new CadastroHirerDto
-                    {
-                        Nome = Nome,
-                        Email = Email,
-                        Telefone = Telefone,
-                        Logradouro = Logradouro,
-                        Numero = Numero,
-                        Cep = Cep,
-                        Bairro = Bairro,
-                        Cidade = Cidade,
-                        Uf = Uf,
-                        Senha = senha
-                    };
-
-
-
-
-                    Contratante cRegistrado = await uService.PostRegistrarUsuarioAsync(u);
-
-                    if (cRegistrado.id != 0)
-                    {
-                        string mensagem = $"{cRegistrado.nome} cadastrado com sucesso.";
-                        await Application.Current.MainPage.DisplayAlert("Informação", mensagem, "Ok");
-
-                        await Application.Current.MainPage
-                            .Navigation.PopAsync();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    await Application.Current.MainPage.DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "OK");
-                }
-            }*/
+}
     }
 }
