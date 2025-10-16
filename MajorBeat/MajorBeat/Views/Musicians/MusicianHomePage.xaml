@@ -4,7 +4,8 @@
              x:Name="HomePage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="MajorBeat.Views.Musicians.MusicianHomePage"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False">
 
     <!-- Grid da página inteira -->
     <Grid RowSpacing="0">

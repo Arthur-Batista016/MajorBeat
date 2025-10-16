@@ -1,24 +1,26 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using MajorBeat.Enums;
+using Microsoft.Maui.Controls.Shapes;
+using Microsoft.Maui.Graphics.Text;
+using Microsoft.Maui.Platform;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.Maui.Controls.Shapes;
-using Microsoft.Maui.Graphics.Text;
-using Microsoft.Maui.Platform;
 
 namespace MajorBeat.ViewModels.Users
 {
-    public partial class SearchBarViewModel:ObservableObject
+    public partial class SearchBarViewModel : ObservableObject
     {
         [ObservableProperty]
         public bool barVisibility = false;
 
         [ObservableProperty]
-        public RoundRectangle barFormat = new RoundRectangle {CornerRadius = new CornerRadius(10, 10, 10, 10) };
+        public RoundRectangle barFormat = new RoundRectangle { CornerRadius = new CornerRadius(10, 10, 10, 10) };
 
         [ObservableProperty]
         public string barBackground = "#AE92BD";
@@ -43,6 +45,35 @@ namespace MajorBeat.ViewModels.Users
         [ObservableProperty]
         public ObservableCollection<String> searchs;
 
+        [ObservableProperty]
+        public ObservableCollection<NomeGenero> generos = new ObservableCollection<NomeGenero>
+    {
+        NomeGenero.AXE,
+        NomeGenero.CLASSICO,
+        NomeGenero.ELETRONICO,
+        NomeGenero.FUNK,
+        NomeGenero.RAP,           // Hip-Hop/Rap
+        NomeGenero.JAZZ,
+        NomeGenero.POP,
+        NomeGenero.SAMBA,
+        NomeGenero.BLUES,
+        NomeGenero.FORRO,
+        NomeGenero.GOSPEL,
+        NomeGenero.TRAP,          // Infantil (você pode criar um enum separado se quiser)
+        NomeGenero.METAL,
+        NomeGenero.ROCK,
+        NomeGenero.SERTANEJO
+    };
+
+     
+
+
+        //Hirer Search Page
+        [ObservableProperty]
+        public bool isSearch = false;
+
+
+
 
 
         public ICommand SearchCommand { get; set; }
@@ -50,17 +81,43 @@ namespace MajorBeat.ViewModels.Users
         public SearchBarViewModel()
         {
             InicializarCommands();
+
+
+            AxeCommand = new Command(async () => await AxeChoosed());
+            BluesCommand = new Command(async () => await BluesChoosed());
+            ClassicoCommand = new Command(async () => await ClassicoChoosed());
+            DiscoCommand = new Command(async () => await DiscoChoosed());
+            EletronicoCommand = new Command(async () => await EletronicoChoosed());
+            ForroCommand = new Command(async () => await ForroChoosed());
+            FunkCommand = new Command(async () => await FunkChoosed());
+            GospelCommand = new Command(async () => await GospelChoosed());
+            HipHopCommand = new Command(async () => await HipHopChoosed());
+            InfantilCommand = new Command(async () => await InfantilChoosed());
+            JazzCommand = new Command(async () => await JazzChoosed());
+            MetalCommand = new Command(async () => await MetalChoosed());
+            PopCommand = new Command(async () => await PopChoosed());
+            RockCommand = new Command(async () => await RockChoosed());
+            SambaCommand = new Command(async () => await SambaChoosed());
+            SertanejoCommand = new Command(async () => await SertanejoChoosed());
+            OutroCommand = new Command(async () => await OutroChoosed());
+
+
+
+
+
+
         }
 
         public void InicializarCommands()
         {
             Searchs = new ObservableCollection<string>();
             SearchCommand = new Command(async () => await search());
+
          
         }
 
 
-
+        //METODOS DE PESQUISA
         public async Task onFocus()
         {
             if (Searchs.Count() == 0)
@@ -112,6 +169,118 @@ namespace MajorBeat.ViewModels.Users
                 await onFocus();
             
         }
+
+
+
+
+
+        //METODOS HIRER SEARCH PAGE
+        public ICommand AxeCommand { get; set; }
+        public ICommand BluesCommand { get; set; }
+        public ICommand ClassicoCommand { get;  set; }
+        public ICommand DiscoCommand { get; set; }
+        public ICommand EletronicoCommand { get;set; }
+        public ICommand ForroCommand { get; set; }
+        public ICommand FunkCommand { get; set; }
+        public ICommand GospelCommand { get;  set; }
+        public ICommand HipHopCommand { get; set; }
+        public ICommand InfantilCommand { get;  set; }
+        public ICommand JazzCommand { get;set ; }
+        public ICommand MetalCommand { get;set; }
+        public ICommand PopCommand { get; set; }
+        public ICommand RockCommand { get;  set; }
+        public ICommand SambaCommand { get;  set; }
+        public ICommand SertanejoCommand { get;  set; }
+        public ICommand OutroCommand { get; set; }
+
+        public async Task GenreChoosed()
+        {
+            IsSearch = true;
+        }
+
+        public async Task AxeChoosed()
+        {
+            IsSearch = true;
+        }
+
+        public async Task BluesChoosed()
+        {
+            IsSearch = true;
+        }
+
+        public async Task ClassicoChoosed()
+        {
+            IsSearch = true;
+        }
+
+        public async Task DiscoChoosed()
+        {
+            IsSearch = true;
+        }
+
+        public async Task EletronicoChoosed()
+        {
+            isSearch = true;
+        }
+
+        public async Task ForroChoosed()
+        {
+            IsSearch = true;
+        }
+
+        public async Task FunkChoosed()
+        {
+            IsSearch = true;
+        }
+
+        public async Task GospelChoosed()
+        {
+            IsSearch = true;
+        }
+
+        public async Task HipHopChoosed()
+        {
+            IsSearch = true;
+        }
+
+        public async Task InfantilChoosed()
+        {
+            IsSearch = true;
+        }
+
+        public async Task JazzChoosed()
+        {
+            IsSearch = true;
+        }
+        public async Task MetalChoosed()
+        {
+            IsSearch = true;
+        }
+
+        public async Task PopChoosed()
+        {
+            IsSearch = true;
+        }
+        public async Task RockChoosed()
+        {
+            IsSearch = true;
+        }
+
+        public async Task SambaChoosed()
+        {
+            IsSearch = true;
+        }
+
+        public async Task SertanejoChoosed()
+        {
+            IsSearch = true;
+        }
+
+        public async Task OutroChoosed()
+        {
+            IsSearch = true;
+        }
+
 
     }
 }

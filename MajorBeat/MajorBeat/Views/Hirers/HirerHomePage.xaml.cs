@@ -1,3 +1,5 @@
+using MajorBeat.ViewModels.Hirers;
+
 namespace MajorBeat.Views.Hirers;
 
 public partial class HirerHomePage : ContentPage
@@ -5,5 +7,7 @@ public partial class HirerHomePage : ContentPage
 	public HirerHomePage()
 	{
 		InitializeComponent();
+		BindingContext = new HirerViewModel();
 	}
+
 }

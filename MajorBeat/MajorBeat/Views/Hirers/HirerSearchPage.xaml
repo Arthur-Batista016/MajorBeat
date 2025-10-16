@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MajorBeat.Views.Hirers.HirerSearchPage"
-             Title="HirerSearchPage">
+             x:Name="SearchPage"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -56,7 +58,7 @@
         </VerticalStackLayout>
 
 
-        <ScrollView Grid.Row="1" Margin="0,0,0,20">
+        <ScrollView Grid.Row="1" Margin="0,0,0,20" IsVisible="True">
             <VerticalStackLayout>
 
                 
@@ -81,74 +83,74 @@
 
 
                     <Grid Grid.Row="1" x:Name="event1" Margin="0,0,200,0">
-                        <Image  Source="axe.png" HeightRequest="140"/>
+                        <ImageButton  Source="axe.png" HeightRequest="140"  Command="{Binding AxeCommand}"/>
                     </Grid>
 
-                    <Grid Grid.Row="1" Margin="100,0,0,0" x:Name="event2" HorizontalOptions="End">
-                        <Image Source="blues.png" HeightRequest="140"/>
+                    <Grid Grid.Row="1" Margin="200,0,0,0" x:Name="event2" HorizontalOptions="End">
+                        <ImageButton  Source="blues.png" HeightRequest="140"  Command="{Binding BluesCommand}"/>
                     </Grid>
 
 
                     <Grid Grid.Row="2" x:Name="event3" Margin="0,20,200,0">
-                        <Image Source="classico.png" HeightRequest="140"/>
+                        <ImageButton Source="classico.png" HeightRequest="140"  Command="{Binding ClassicoCommand}"/>
                     </Grid>
 
-                    <Grid Grid.Row="2" x:Name="event4" Margin="100,20,0,0" HorizontalOptions="End">
-                        <Image Source="disco.png" HeightRequest="140"/>
+                    <Grid Grid.Row="2" x:Name="event4" Margin="200,20,0,0" HorizontalOptions="End">
+                        <ImageButton Source="disco.png" HeightRequest="140"  Command="{Binding DiscoCommand}"/>
                     </Grid>
 
 
                     <Grid Grid.Row="3" x:Name="event5" Margin="0,20,200,0">
-                        <Image Source="eletronico.png" HeightRequest="140"/>
+                        <ImageButton Source="eletronico.png" HeightRequest="140"  Command="{Binding EletronicoCommand}"/>
                     </Grid>
 
-                    <Grid  Grid.Row="3" x:Name="event6" Margin="100,20,0,0" HorizontalOptions="End">
-                        <Image Source="forro.png" HeightRequest="140"/>
+                    <Grid  Grid.Row="3" x:Name="event6" Margin="200,20,0,0" HorizontalOptions="End">
+                        <ImageButton Source="forro.png" HeightRequest="140"  Command="{Binding ForroCommand}"/>
                     </Grid>
 
                     
                     <Grid Grid.Row="4" x:Name="event7" Margin="0,20,200,0">
-                        <Image Source="funk.png" HeightRequest="140"/>
+                        <ImageButton Source="funk.png" HeightRequest="140"  Command="{Binding FunkCommand}"/>
                     </Grid>
 
-                    <Grid Grid.Row="4" x:Name="event8" Margin="100,20,0,0" HorizontalOptions="End">
-                        <Image Source="gospel.png" HeightRequest="140"/>
+                    <Grid Grid.Row="4" x:Name="event8" Margin="200,20,0,0" HorizontalOptions="End">
+                        <ImageButton Source="gospel.png" HeightRequest="140"  Command="{Binding GospelCommand}"/>
                     </Grid>
 
                     <Grid Grid.Row="5" x:Name="event9" Margin="0,20,200,0">
-                        <Image Source="hiphop.png" HeightRequest="140"/>
+                        <ImageButton Source="hiphop.png" HeightRequest="140"  Command="{Binding HipHopCommand}"/>
                     </Grid>
 
-                    <Grid Grid.Row="5" x:Name="event10" Margin="100,20,0,0" HorizontalOptions="End">
-                        <Image Source="infantil.png" HeightRequest="140"/>
+                    <Grid Grid.Row="5" x:Name="event10" Margin="200,20,0,0" HorizontalOptions="End">
+                        <ImageButton Source="infantil.png" HeightRequest="140"  Command="{Binding InfantilCommand}"/>
                     </Grid>
 
                     <Grid Grid.Row="6" x:Name="event11" Margin="0,20,200,0">
-                        <Image Source="jazz.png" HeightRequest="140"/>
+                        <ImageButton Source="jazz.png" HeightRequest="140"  Command="{Binding JazzCommand}"/>
                     </Grid>
 
-                    <Grid Grid.Row="6" x:Name="event12" Margin="100,20,0,0" HorizontalOptions="End">
-                        <Image Source="metal.png" HeightRequest="140"/>
+                    <Grid Grid.Row="6" x:Name="event12" Margin="200,20,0,0" HorizontalOptions="End">
+                        <ImageButton Source="metal.png" HeightRequest="140"  Command="{Binding MetalCommand}"/>
                     </Grid>
 
                     <Grid Grid.Row="7" x:Name="event13" Margin="0,20,200,0">
-                        <Image Source="pop.png" HeightRequest="140"/>
+                        <ImageButton Source="pop.png" HeightRequest="140"  Command="{Binding PopCommand}"/>
                     </Grid>
 
-                    <Grid Grid.Row="7" x:Name="event14" Margin="100,20,0,0" HorizontalOptions="End">
-                        <Image Source="rock.png" HeightRequest="140"/>
+                    <Grid Grid.Row="7" x:Name="event14" Margin="200,20,0,0" HorizontalOptions="End">
+                        <ImageButton Source="rock.png" HeightRequest="140"  Command="{Binding RockCommand}"/>
                     </Grid>
 
                     <Grid Grid.Row="8" x:Name="event15" Margin="0,20,200,0">
-                        <Image Source="samba.png" HeightRequest="140"/>
+                        <ImageButton Source="samba.png" HeightRequest="140"  Command="{Binding SambaCommand}"/>
                     </Grid>
 
-                    <Grid Grid.Row="8" x:Name="event16" Margin="100,20,0,0" HorizontalOptions="End">
-                        <Image Source="sertanejo.png" HeightRequest="140"/>
+                    <Grid Grid.Row="8" x:Name="event16" Margin="200,20,0,0" HorizontalOptions="End">
+                        <ImageButton Source="sertanejo.png" HeightRequest="140"  Command="{Binding SertanejoCommand}"/>
                     </Grid>
 
                     <Grid Grid.Row="9" x:Name="event17" Margin="0,20,200,0">
-                        <Image Source="outro.png" HeightRequest="140"/>
+                        <ImageButton Source="outro.png" HeightRequest="140"  Command="{Binding OutroCommand}"/>
                     </Grid>
 
                    
@@ -172,7 +174,70 @@
 
 
 
+        <!-- Conteúdo principal -->
+        <ScrollView Grid.Row="1" IsVisible="{Binding IsSearch}">
+            <VerticalStackLayout>
+              
 
+                <Label Text="RESULTADOS ENCCONTRADOS:" TextColor="#4F1271" FontAttributes="Bold" FontSize="20" HorizontalOptions="Start" Margin="20,50,0,0"/>
+
+
+                <!-- Eventos -->
+                <CollectionView ItemsSource="{Binding Musicos}"  Margin="0,0,0,40" IsVisible="{Binding HasEvent}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,-100,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- Carousel de imagens -->
+                                <CarouselView ItemsSource="{Binding BindingContext.EventPhoto, Source={x:Reference SearchPage}}" Position="{Binding BindingContext.ActualPosition, Source={x:Reference SearchPage}, Mode=TwoWay}">
+                                    <CarouselView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding .}" HeightRequest="600" Margin="0,10,0,0"/>
+                                        </DataTemplate>
+                                    </CarouselView.ItemTemplate>
+                                </CarouselView>
+
+                                <!-- Contador de imagens -->
+                                <Border StrokeShape="RoundRectangle 10 10 0 0" Background="#4F1271" HeightRequest="25" WidthRequest="45" HorizontalOptions="End" VerticalOptions="Start" Margin="0,160,20,0">
+                                    <Label Text="{Binding BindingContext.PhotoCounter, Source={x:Reference SearchPage}}" HorizontalTextAlignment="Center" TextColor="White" FontSize="15"/>
+                                </Border>
+
+                                <!-- Informações do evento -->
+                                <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End" VerticalOptions="End" HeightRequest="140">
+                                    <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,0,0,0">
+                                        <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="20,55,0,0"/>
+
+
+                                        <!--Generos Musicais-->
+                                        <CollectionView ItemsSource="{Binding nomeGenero}" ItemsLayout="HorizontalList" Margin="0,5,0,0">
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border StrokeShape="RoundRectangle 8,8,8,8" BackgroundColor="#FFFFFF" Margin="20,20,0,0" WidthRequest="100" HorizontalOptions="Start" HeightRequest="35">
+                                                        <Label Text="{Binding .}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Margin="0,4,0,0"/>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+
+                                        <Grid>
+                                            <Label Text="{Binding avaliacoes[0].nota}" TextColor="#ffffff" FontSize="Large" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-95,50,0"/>
+                                            <Image Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-95,10,0"/>
+                                        </Grid>
+
+                                    </VerticalStackLayout>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
 
 
 

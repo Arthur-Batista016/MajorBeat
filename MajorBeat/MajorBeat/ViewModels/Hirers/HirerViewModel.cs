@@ -15,6 +15,7 @@ namespace MajorBeat.ViewModels.Hirers
     public partial class HirerViewModel:ObservableObject
     {
         private ObservableCollection<string> eventPhoto;
+        
         private int actualPosition;
 
         [ObservableProperty]
@@ -25,8 +26,14 @@ namespace MajorBeat.ViewModels.Hirers
 
         [ObservableProperty]
         private string musicianName;
-        private string title;
-        private DateTime data;
+
+        [ObservableProperty]
+        private ObservableCollection<NomeGenero> generos;
+
+        [ObservableProperty]
+        private Avaliacao avaliacao;
+
+        
      
         public ObservableCollection<string> EventPhoto
         {
@@ -72,6 +79,12 @@ namespace MajorBeat.ViewModels.Hirers
         public ICommand EnviarCommand { get; set; }
 
 
+
+
+
+
+
+
         public async Task EventsIsEmpyty()
         {
             HasEvent = musicos.Count > 0;
@@ -84,7 +97,7 @@ namespace MajorBeat.ViewModels.Hirers
             {
                 nome = MusicianName,
                 avaliacoes = new ObservableCollection<Avaliacao> {
-              new Avaliacao { nota = 4.2 }
+                new Avaliacao { nota = 4.2 }
             },
                 nomeGenero = new ObservableCollection<NomeGenero> { Enums.NomeGenero.SERTANEJO, Enums.NomeGenero.AXE }
             };

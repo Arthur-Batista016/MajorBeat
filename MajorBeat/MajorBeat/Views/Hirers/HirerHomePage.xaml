@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Name="HomePage"
              x:Class="MajorBeat.Views.Hirers.HirerHomePage"
-             Title="HirerHomePage">
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False">
     <!-- Grid da página inteira -->
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
@@ -64,12 +65,10 @@
                 </Border>
 
                 <Label Text="Musicos na sua região:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,0,0,0"/>
-                <Button Text="CRIAR EVENTO" Command="{Binding CriarCommand}"/>
-                <Entry Placeholder="sdgkslogpsmpiigfsr" Text="{Binding NameEvent,Mode=TwoWay}" />
-
+                
 
                 <!-- Eventos -->
-                <CollectionView ItemsSource="{Binding Musicos}"  Margin="0,40,0,40" IsVisible="{Binding HasEvent}">
+                <CollectionView ItemsSource="{Binding Musicos}"  Margin="0,0,0,40" IsVisible="{Binding HasEvent}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="0,-100,0,0">
@@ -84,7 +83,7 @@
                                 <CarouselView ItemsSource="{Binding BindingContext.EventPhoto, Source={x:Reference HomePage}}" Position="{Binding BindingContext.ActualPosition, Source={x:Reference HomePage}, Mode=TwoWay}">
                                     <CarouselView.ItemTemplate>
                                         <DataTemplate>
-                                            <Image Source="{Binding .}" HeightRequest="600" Margin="0,0,0,0"/>
+                                            <Image Source="{Binding .}" HeightRequest="600" Margin="0,10,0,0"/>
                                         </DataTemplate>
                                     </CarouselView.ItemTemplate>
                                 </CarouselView>
@@ -95,13 +94,13 @@
                                 </Border>
 
                                 <!-- Informações do evento -->
-                                <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End" VerticalOptions="End" HeightRequest="150">
+                                <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End" VerticalOptions="End" HeightRequest="140">
                                     <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,0,0,0">
-                                        <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
-                                        <Label Text="{Binding TipoEvento}" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0"/>
-
+                                        <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="20,55,0,0"/>
+                                        
+                                        
                                         <!--Generos Musicais-->
-                                        <CollectionView ItemsSource="{Binding NomeGenero}" ItemsLayout="HorizontalList">
+                                        <CollectionView ItemsSource="{Binding nomeGenero}" ItemsLayout="HorizontalList" Margin="0,5,0,0">
                                             <CollectionView.ItemTemplate>
                                                 <DataTemplate>
                                                     <Border StrokeShape="RoundRectangle 8,8,8,8" BackgroundColor="#FFFFFF" Margin="20,20,0,0" WidthRequest="100" HorizontalOptions="Start" HeightRequest="35">
@@ -111,16 +110,11 @@
                                             </CollectionView.ItemTemplate>
                                         </CollectionView>
 
-
-
-
-
-
                                         <Grid>
-                                            <Label Text="{Binding Avaliacoes[0].nota}" TextColor="#ffffff" FontSize="Large" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,60,0"/>
-                                            <Image Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,20,0"/>
-                                            <Label Text="{Binding Data,StringFormat='{0:dd MMM}'}" HorizontalOptions="End" FontSize="Medium" Margin="0,-80,20,0" TextColor="#FFFFFF"/>
+                                            <Label Text="{Binding avaliacoes[0].nota}" TextColor="#ffffff" FontSize="Large" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-95,50,0"/>
+                                            <Image Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-95,10,0"/>
                                         </Grid>
+                                        
                                     </VerticalStackLayout>
                                 </Border>
                             </Grid>
