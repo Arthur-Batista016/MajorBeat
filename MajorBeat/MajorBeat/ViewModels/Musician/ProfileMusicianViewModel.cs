@@ -56,10 +56,10 @@ namespace MajorBeat.ViewModels.Musicians
         public TipoMusico tipoMusico;
 
         [ObservableProperty]
-        public List<InstrumentoEnum> instrumentos;
+        public List<NomeInstrumento> instrumentos;
 
         [ObservableProperty]
-        public List<GeneroEnum> generos;
+        public List<NomeGenero> generos;
 
         [ObservableProperty]
         public byte[] fotoBytes;

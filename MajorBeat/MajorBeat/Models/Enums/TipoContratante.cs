@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MajorBeat.Models.Enums
 {
-    public enum TipoMusico
+    public enum TipoContratante
     {
-        SOLO,
-        BANDA
+        ESTABELECIMENTO,
+        PESSOA_FISICA
     }
 }
