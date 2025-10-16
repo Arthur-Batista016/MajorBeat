@@ -26,8 +26,7 @@
         <ShellContent  Icon="chathome.png"
                ContentTemplate="{DataTemplate viewsBands:BandCreateProfile}"/>
 
-        <ShellContent Icon="calendar.png"
-               ContentTemplate="{DataTemplate viewHirers:CalendarPage}"/>
+      
 
         <ShellContent Icon="profilehome.png"
             ContentTemplate="{DataTemplate local:ProfilePage}"/>

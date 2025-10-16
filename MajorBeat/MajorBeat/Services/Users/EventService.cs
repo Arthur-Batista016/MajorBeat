@@ -23,17 +23,27 @@ namespace MajorBeat.Services.Users
         {
             string urlComplementar = "/getAll";
             ObservableCollection<Evento> eventos = await
-            _request.GetAsync<ObservableCollection<Models.Evento>>(_baseUrl + urlComplementar);
+            _request.GetAsync<ObservableCollection<Evento>>(_baseUrl + urlComplementar);
             return eventos;
         }
 
         public async Task<Evento> GetEventById(long id)
         {
-            
                 string urlComplementar = $"/getById/{id}";
                 Evento evento = await _request.GetAsync<Evento>(_baseUrl + urlComplementar);
                 return evento;  
          }
+
+        public async Task<ObservableCollection<Evento>> GetEventsByGenre(NomeGenero nomeGenero)
+        {
+            string urlComplementar = $"/getByGenero/{nomeGenero}";
+            ObservableCollection<Evento> evento = await _request.GetAsync<ObservableCollection<Evento>>(_baseUrl + urlComplementar);
+            return evento;
+        }
+
+
+
+
 
         public Evento GetEventByTipoMusico(TipoMusico tipoMusico)
         {

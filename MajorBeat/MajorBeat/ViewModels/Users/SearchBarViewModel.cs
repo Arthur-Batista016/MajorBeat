@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MajorBeat.Enums;
+using MajorBeat.Models;
+using MajorBeat.Services.Users;
 using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Graphics.Text;
 using Microsoft.Maui.Platform;
@@ -16,6 +18,15 @@ namespace MajorBeat.ViewModels.Users
 {
     public partial class SearchBarViewModel : ObservableObject
     {
+
+
+        EventService _eService;
+
+        [ObservableProperty]
+        ObservableCollection<Evento> eventos;
+
+
+
         [ObservableProperty]
         public bool barVisibility = false;
 
@@ -63,14 +74,7 @@ namespace MajorBeat.ViewModels.Users
         NomeGenero.METAL,
         NomeGenero.ROCK,
         NomeGenero.SERTANEJO
-    };
-
-     
-
-
-        //Hirer Search Page
-        [ObservableProperty]
-        public bool isSearch = false;
+        };
 
 
 
@@ -82,6 +86,7 @@ namespace MajorBeat.ViewModels.Users
         {
             InicializarCommands();
 
+            _eService = new EventService();
 
             AxeCommand = new Command(async () => await AxeChoosed());
             BluesCommand = new Command(async () => await BluesChoosed());
@@ -174,7 +179,18 @@ namespace MajorBeat.ViewModels.Users
 
 
 
-        //METODOS HIRER SEARCH PAGE
+        //METODOS HIRER SEARCH PAGE]
+
+
+
+        //Hirer Search Page
+        [ObservableProperty]
+        public bool isSearch = false;
+
+        [ObservableProperty]
+        public bool findResults = true;
+
+
         public ICommand AxeCommand { get; set; }
         public ICommand BluesCommand { get; set; }
         public ICommand ClassicoCommand { get;  set; }
@@ -195,90 +211,133 @@ namespace MajorBeat.ViewModels.Users
 
         public async Task GenreChoosed()
         {
+           
             IsSearch = true;
+            FindResults = false;
         }
 
-        public async Task AxeChoosed()
+        public async Task<ObservableCollection<Evento>> AxeChoosed()
         {
-            IsSearch = true;
+            try
+            {
+                ObservableCollection<Evento> evento = await _eService.GetEventsByGenre(Enums.NomeGenero.AXE);
+                if (evento.Count.Equals(0))
+                {
+
+                }
+                else
+                {
+                    IsSearch = true;
+                    FindResults = false;
+              
+
+                }
+
+                return evento;
+            }
+            catch(Exception ex)
+            {
+                await Application.Current.MainPage
+                   .DisplayAlert("Erro", ex.Message, "OK");
+                return new ObservableCollection<Evento>();
+            }
+              
+            
         }
 
         public async Task BluesChoosed()
         {
             IsSearch = true;
+            FindResults = false;
         }
 
         public async Task ClassicoChoosed()
         {
             IsSearch = true;
+            FindResults = false;
         }
 
         public async Task DiscoChoosed()
         {
             IsSearch = true;
+            FindResults = false;
         }
 
         public async Task EletronicoChoosed()
         {
             isSearch = true;
+            FindResults = false;
         }
 
         public async Task ForroChoosed()
         {
             IsSearch = true;
+            FindResults = false;
+
         }
 
         public async Task FunkChoosed()
         {
             IsSearch = true;
+            FindResults = false;
         }
 
         public async Task GospelChoosed()
         {
             IsSearch = true;
+            FindResults = false;
         }
 
         public async Task HipHopChoosed()
         {
             IsSearch = true;
+            FindResults = false;
         }
 
         public async Task InfantilChoosed()
         {
             IsSearch = true;
+            FindResults = false;
         }
 
         public async Task JazzChoosed()
         {
             IsSearch = true;
+            FindResults = false;
         }
         public async Task MetalChoosed()
         {
             IsSearch = true;
+            FindResults = false;
         }
 
         public async Task PopChoosed()
         {
             IsSearch = true;
+            FindResults = false;
         }
         public async Task RockChoosed()
         {
             IsSearch = true;
+            FindResults = false;
         }
 
         public async Task SambaChoosed()
         {
             IsSearch = true;
+            FindResults = false;
         }
 
         public async Task SertanejoChoosed()
         {
             IsSearch = true;
+            FindResults = false;
         }
 
         public async Task OutroChoosed()
         {
             IsSearch = true;
+            FindResults = false;
         }
 
 
