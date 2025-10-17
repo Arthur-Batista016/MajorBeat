@@ -43,4 +43,21 @@ public partial class HirerSearchPage : ContentPage
     {
 
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Desfoca a barra de busca assim que a página aparece
+        Device.BeginInvokeOnMainThread(() =>
+        {
+            Vm?.onUnfocus();
+        });
+    }
+
+    private void MainGrid_Tapped(object sender, EventArgs e)
+    {
+        // Remove o foco do Entry
+        Vm.onUnfocus();
+    }
 }
