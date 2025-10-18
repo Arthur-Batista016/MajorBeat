@@ -28,10 +28,7 @@
 
       
 
-        <ShellContent Icon="profilehome.png"
-            ContentTemplate="{DataTemplate local:ProfilePage}"/>
-
-
+     
 
 
 </Shell>

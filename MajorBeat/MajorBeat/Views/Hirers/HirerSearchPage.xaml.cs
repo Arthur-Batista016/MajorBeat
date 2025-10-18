@@ -11,9 +11,27 @@ public partial class HirerSearchPage : ContentPage
         BindingContext = new SearchBarViewModel();
     }
 
+    private async void SearchButton_Clicked(object sender, EventArgs e)
+    {
+       
+
+        // Remove o foco do Entry para esconder a caret
+        searchBar.Unfocus();
+        Vm.UserEntry = "";
+    }
+
     private void searchBar_Focused(object sender, FocusEventArgs e)
     {
         Vm?.onFocus();
+        if (Vm.Searchs.Count.Equals(0))
+        {
+            Vm.RecentSearch = false;
+        }
+        else
+        {
+            Vm.RecentSearch = true;
+        }
+            Vm.BarBackground = "E7E7E7";
     }
 
     private void searchBar_Unfocused(object sender, FocusEventArgs e)
@@ -51,6 +69,7 @@ public partial class HirerSearchPage : ContentPage
         // Desfoca a barra de busca assim que a página aparece
         Device.BeginInvokeOnMainThread(() =>
         {
+            searchBar.Unfocus();
             Vm?.onUnfocus();
         });
     }

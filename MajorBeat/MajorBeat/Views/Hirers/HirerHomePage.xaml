@@ -13,19 +13,19 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Top bar e pesquisa -->
-        <VerticalStackLayout Grid.Row="0">
+
+        <Grid Grid.Row="0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Border StrokeShape="RoundRectangle 0 0 0 0" BackgroundColor="#4F1271"  Margin="0,0,0,0" WidthRequest="408" HorizontalOptions="Start" HeightRequest="90">
+                <Border StrokeShape="RoundRectangle 0 0 0 0"  x:Name="searchBarContainer"   BackgroundColor="#4F1271"  Margin="0,0,0,0" WidthRequest="408" HorizontalOptions="Start" HeightRequest="90">
                     <VerticalStackLayout Margin="0,0,0,0">
-                        <Border StrokeShape="{Binding BarFormat}" BackgroundColor="#AE92BD" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
+                        <Border StrokeShape="RoundRectangle 10,10,10,10" BackgroundColor="#AE92BD" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45" ZIndex="10">
                             <VerticalStackLayout>
-                                <Entry  Grid.Row="0" x:Name="searchBar"   Text="{Binding UserEntry}" Placeholder="Pesquisar..." BackgroundColor="#AE92BD" PlaceholderColor="{Binding PlaceholderColor}" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center" TextColor="{Binding TextColor}" />
-                                <ImageButton Grid.Row="0" Source="{Binding Lupa}" HorizontalOptions="End" Margin="0,-35,-20,0" HeightRequest="23" Command="{Binding SearchCommand}"/>
+                                <Entry  Grid.Row="0" x:Name="searchBar"  Text="" Placeholder="Pesquisar..." BackgroundColor="#AE92BD" PlaceholderColor="{Binding PlaceholderColor}"  WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center" TextColor="{Binding TextColor}" Focused="searchBar_Focused" Unfocused="searchBar_Unfocused"  />
+                                <ImageButton Grid.Row="0" Source="lupainverted.png" HorizontalOptions="End" Margin="0,-35,-20,0" HeightRequest="23"  />
                             </VerticalStackLayout>
                         </Border>
                         <ImageButton Grid.Row="0" Source="logoicone" HeightRequest="70" HorizontalOptions="End" VerticalOptions="Start" Margin="320,-55,0,0"/>
@@ -33,29 +33,11 @@
                 </Border>
             </Grid>
 
-            <Grid>
-                <Border IsVisible="{Binding RecentSearch}" StrokeShape="RoundRectangle 0 0 10 10" BackgroundColor="#E7E7E7" VerticalOptions="End" Margin="21,-25,0,0" WidthRequest="300"  HeightRequest="{Binding RecentSearchHeight}" HorizontalOptions="Start" >
-                    <VerticalStackLayout>
-                        <Label Text="Pesquisas Recentes" TextColor="#4F1271" HorizontalOptions="Start" Margin="5,10,0,0"/>
-                        <Image Source="searchline.png" HeightRequest="100" WidthRequest="150" Margin="135,-58,0,-40"/>
-
-                        <CollectionView Margin="0,0,0,0"  IsVisible="{Binding BarVisibility}" ItemsSource="{Binding Searchs}" >
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <VerticalStackLayout>
-                                        <Button BackgroundColor="Transparent"  Text="{Binding .}" HorizontalOptions="Start" WidthRequest="150" Margin="0,2,0,2" TextColor="#4f1271" />
-                                    </VerticalStackLayout>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </VerticalStackLayout>
-                </Border>
-
-            </Grid>
+            
 
 
+        </Grid>
 
-        </VerticalStackLayout>
 
         <!-- Conteúdo principal -->
         <ScrollView Grid.Row="1">

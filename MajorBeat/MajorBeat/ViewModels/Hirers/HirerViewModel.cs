@@ -2,6 +2,8 @@
 
 using MajorBeat.Enums;
 using MajorBeat.Models;
+using Microsoft.Maui.Controls.Shapes;
+using Microsoft.Maui.Graphics.Text;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +16,31 @@ namespace MajorBeat.ViewModels.Hirers
 {
     public partial class HirerViewModel:ObservableObject
     {
+
+        //PARA RETIRADA DO FOCUSED
+        [ObservableProperty]
+        public bool barVisibility = false;
+
+        [ObservableProperty]
+        public RoundRectangle barFormat = new RoundRectangle { CornerRadius = new CornerRadius(10, 10, 10, 10) };
+
+        [ObservableProperty]
+        public string barBackground = "#AE92BD";
+
+        [ObservableProperty]
+        public Color placeholderColor = Color.FromArgb("#FFFFFF");
+
+     
+
+        [ObservableProperty]
+        public Color textColor = Color.FromArgb("#FFFFFF");
+
+        [ObservableProperty]
+        public string lupa = "lupainverted.png";
+
+
+
+
         private ObservableCollection<string> eventPhoto;
         
         private int actualPosition;
@@ -33,8 +60,9 @@ namespace MajorBeat.ViewModels.Hirers
         [ObservableProperty]
         private Avaliacao avaliacao;
 
-        
-     
+
+
+
         public ObservableCollection<string> EventPhoto
         {
             get => eventPhoto;
@@ -123,5 +151,10 @@ namespace MajorBeat.ViewModels.Hirers
         {
 
         }
+
+
+       
+
+
     }
 }

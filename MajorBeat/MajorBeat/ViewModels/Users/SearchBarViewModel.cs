@@ -47,8 +47,35 @@ namespace MajorBeat.ViewModels.Users
         [ObservableProperty]
         public string lupa = "lupainverted.png";
 
-        [ObservableProperty]
-        public string userEntry;
+        
+        private string userEntry;
+
+        public string UserEntry
+        {
+            get => userEntry;
+            set
+            {
+                if (userEntry != value)
+                {
+                    userEntry = value;
+                    OnPropertyChanged(nameof(UserEntry));
+                    searchByLetters();
+                }
+            }
+        }
+
+        private ObservableCollection<string> filteredSearchs = new ObservableCollection<string>();
+        public ObservableCollection<string> FilteredSearchs
+        {
+            get => filteredSearchs;
+            set
+            {
+                filteredSearchs = value;
+                OnPropertyChanged(nameof(FilteredSearchs));
+            }
+        }
+
+
 
         [ObservableProperty]
         public bool recentSearch = false;
@@ -85,7 +112,7 @@ namespace MajorBeat.ViewModels.Users
         public SearchBarViewModel()
         {
             InicializarCommands();
-
+            onUnfocus();
             _eService = new EventService();
 
             AxeCommand = new Command(async () => await AxeChoosed());
@@ -169,21 +196,43 @@ namespace MajorBeat.ViewModels.Users
         {
          
                 Searchs.Add(userEntry);
-                RecentSearch = true;
+                BarBackground = "#4F1271";
                 OnPropertyChanged(nameof(RecentSearchHeight));
-                await onFocus();
+                await onUnfocus();
             
+        }
+
+        public async Task searchByLetters()
+        {
+
+            if (string.IsNullOrWhiteSpace(UserEntry))
+            {
+                FilteredSearchs = new ObservableCollection<string>(Searchs);
+            }
+            else
+            {
+
+                var filtrados = Searchs
+                    .Where(i => i.ToString().ToLowerInvariant().Contains(UserEntry, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+
+                FilteredSearchs = new ObservableCollection<string>(filtrados);
+
+
+            }
+
+
         }
 
 
 
 
-
-        //METODOS HIRER SEARCH PAGE]
+            //METODOS HIRER SEARCH PAGE]
 
 
 
         //Hirer Search Page
+        
         [ObservableProperty]
         public bool isSearch = false;
 
