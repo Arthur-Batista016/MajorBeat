@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.Hirers.CreateEventPageView"
+             Title="CreateEventPageView"
+             BackgroundColor="#4F1271"
+             Shell.NavBarIsVisible="False"
+            NavigationPage.HasNavigationBar="False">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid>
+                <Button  x:Name="voltar" HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7"/>
+                <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,46,250,0" HorizontalOptions="Center"/>
+                <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
+            </Grid>
+
+            <Label 
+         Text="Criação de evento"
+         TextColor="White"
+         FontSize="25"
+         VerticalOptions="Center" 
+         HorizontalOptions="Center"
+         FontAttributes="Bold" 
+         FontFamily="InterBold"/>
+
+
+            <VerticalStackLayout WidthRequest="370">
+                <!--titulo-->
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Titulo:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Label Grid.Row="0" Text="O titulo não pode ser nulo" IsVisible="{Binding ErroTituloVisible}" TextColor="Red" FontSize="10" Margin="0,15,0,0" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
+                        <Entry TextColor="#4F1271" Grid.Row="1" Placeholder="Festa do Luca" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Titulo}"></Entry>
+                    </Border>
+                </Grid>
+
+
+
+                <!--exibição-->
+                <Grid>
+                    <Label Text="Exibição:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,25,0,15" HorizontalTextAlignment="Start"></Label>
+                    <Frame HeightRequest="200"
+                   WidthRequest="370"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   BackgroundColor="White"
+                   Margin="0,50,0,0">
+                        <Image Aspect="AspectFill"
+                       Source="{Binding FotoSelecionada}"
+                       HeightRequest="200"
+                       WidthRequest="370"/>
+                    </Frame>
+                    <Border Stroke="Gray"
+                StrokeThickness="3"
+                BackgroundColor="white"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Margin="0,50,0,0"
+                WidthRequest="50"
+                HeightRequest="50"
+                StrokeShape="RoundRectangle 30">
+                        <ImageButton Source="vector.png"
+                         BackgroundColor="White"
+                         CornerRadius="30"
+                         WidthRequest="30"
+                         HeightRequest="30"
+                         Command="{Binding AddPhotoCommand}"/>
+                    </Border>
+
+                </Grid>
+
+                <!--localização-->
+                <VerticalStackLayout Margin="0,10,0,0">
+                    <Label Text="Localização:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,20,0,20" HorizontalTextAlignment="Start"></Label>
+                    <Grid Margin="0,20,0,0">
+                        <Label Text="Cep:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,-25,0,0" HorizontalTextAlignment="Start"></Label>
+                        <Label Grid.Row="0" Text="Cep inválido" IsVisible="{Binding ErroCepVisible}" TextColor="Red" Margin="40,-2,0,-20" FontSize="10" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="Start"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,10,0,0" WidthRequest="165" HorizontalOptions="Start">
+                        <Entry TextColor="#4F1271" Grid.Row="1" Placeholder="Ex:02250010" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Cep}"></Entry>
+                    </Border>
+                        <Label Text="Número:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,-25,80,0" HorizontalTextAlignment="End"></Label>
+                        <Label Grid.Row="0" Text="número inválido" IsVisible="{Binding ErroNumeroVisible}" TextColor="Red" Margin="0,0,0,-10" FontSize="10" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
+                        <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,10,0,0" WidthRequest="165" HorizontalOptions="End">
+                            <Entry TextColor="#4F1271" Grid.Row="1" Placeholder="Ex:1234" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Numero}"></Entry>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+                <Label Text="Complemento:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,30,0,0" HorizontalTextAlignment="Start"></Label>
+                <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,10,0,0" WidthRequest="370">
+                    <Entry TextColor="#4F1271" Placeholder="Ex:Casa 1" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Complemento}"></Entry>
+                </Border>
+                <!--data-->
+                <VerticalStackLayout Margin="0,30,0,0">
+                    <Label Text="Data:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,10,0,0" WidthRequest="370">
+                        <DatePicker WidthRequest="370" TextColor="#4F1271"
+        Format="dd/MM/yyyy"  Date="{Binding DataDoEvento}" MaximumDate= "{Binding MaxDate}" 
+        MinimumDate="{Binding MinDate}" />
+                    </Border>
+
+                </VerticalStackLayout>
+                <!--horas-->
+
+
+                <VerticalStackLayout HeightRequest="55" WidthRequest="370" Margin="0,30,0,15">
+                    <Grid>
+                    <Label Text="Início:" VerticalOptions="Start" FontAttributes="Bold" TextColor="white"  Margin="40,0,0,0" />
+                    <Label Text="Fim:" VerticalOptions="End" FontAttributes="Bold" TextColor="white" Margin="250,0,0,0" />
+                        
+                    </Grid>
+                    <Label Grid.Row="0" Text="O horário excede o tempo de um evento" IsVisible="{Binding ErroHorarioVisible}" TextColor="Red" Margin="0,0,0,-10" FontSize="10" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
+                    <Grid>
+                    <Grid HorizontalOptions="Start">
+                        
+                            <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,10,0,0" WidthRequest="150">
+                                <TimePicker TextColor="#4F1271" Grid.Row="1"
+            Time="{Binding HoraInicio}"
+            Format="HH:mm" 
+           WidthRequest="150" />
+                        </Border>
+
+                    </Grid>
+                        
+                    <Grid HorizontalOptions="End" HeightRequest="55">
+                        
+                            <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,10,0,0" WidthRequest="150">
+                            <TimePicker TextColor="#4F1271" Grid.Row="1"
+                         Time="{Binding HoraFim}"
+                         Format="HH:mm" 
+                        WidthRequest="150" />
+                        </Border>
+
+                    </Grid>
+                </Grid>
+                </VerticalStackLayout>
+                <!--tipo evento-->
+
+                
+                <VerticalStackLayout HorizontalOptions="Start" Margin="0,30,0,0">
+                    <Label Text="Selecione o tipo de evento" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,20,0,10" HorizontalTextAlignment="Start"></Label>
+                    <Label Grid.Row="0" Text="Adicione um tipo de evento" IsVisible="{Binding ErroTipoEventoVisible}" TextColor="Red" Margin="0,0,0,0" FontSize="10" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,0,0,0" WidthRequest="370">
+                        <Picker
+                 Title="Categorias"
+                 x:Name="Choice"
+                 Grid.Row="0"
+                 WidthRequest="370"
+                 HorizontalOptions="End"
+                 Margin="0,5,0,0"
+                 ZIndex="1"
+                 TextColor="#4F1271"
+                 ItemsSource="{Binding Tipos}"
+                 SelectedItem="{Binding Tipo, Mode=TwoWay}">
+
+
+                        </Picker>
+                    </Border>
+                </VerticalStackLayout>
+
+
+                <!--Instrumentos-->
+
+                <Grid Margin="0,30,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Instrumentos" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"/>
+                    <Label Grid.Row="0" Text="Adicione pelo menos um instrumento" IsVisible="{Binding ErroInstrumentoVisible}" TextColor="Red" Margin="0,15,0,0" FontSize="10" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="120">
+
+                        <VerticalStackLayout>
+                            <SearchBar Placeholder="Digite aqui o instrumento" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding TextoBuscaInstrumento}"/>
+                            <CollectionView  HeightRequest="55"
+                        ItemsSource="{Binding InstrumentosFiltrados }"
+                        SelectionMode="Multiple"
+                        SelectedItems="{Binding InstrumentosSelecionados}"
+                        SelectionChanged="OnInstrumentosSelectionChanged">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding .}" />
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+
+                <!--Estilos musicais-->
+
+                <Grid Margin="0,30,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/> 
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Estilos musicais" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"/>
+                    <Label Grid.Row="0" Text="Adicione pelo menos um estilo" IsVisible="{Binding ErroGeneroVisible}" TextColor="Red" FontSize="10" Margin="0,15,0,0" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="120">
+
+                        <VerticalStackLayout>
+                            <SearchBar Placeholder="Digite aqui o genero" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding TextoBusca}"/>
+                            <CollectionView  HeightRequest="55"
+                 ItemsSource="{Binding GenerosFiltrados}"
+                 SelectionMode="Multiple"
+                 SelectedItems="{Binding GenerosSelecionados}"
+                 SelectionChanged="OnGenerosSelectionChanged">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding .}" />
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!--informações-->
+                <Grid Margin="0,30,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="Informações:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="150">
+                        <Editor TextColor="#4F1271" AutoSize="TextChanges" Grid.Row="1" Placeholder="Descreva-se:" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Biografia}"></Editor>
+                    </Border>
+                </Grid>
+
+                <!--tipo musico-->
+                <Label Text="Você procura:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,25,0,15" HorizontalTextAlignment="Start"></Label>
+                <Grid Margin="0,20,0,0">
+                    <RadioButton Content="Músico solo" GroupName="UserType" TextColor="#e7e7e7" IsChecked="{Binding TipoMusico}"
+     HorizontalOptions="Center" FontSize="15" Margin="0,0,190,0" BorderColor="#e7e7e7" />
+                    <RadioButton Content="Banda" GroupName="UserType" TextColor="#e7e7e7" IsChecked="{Binding TipoMusico}"
+     HorizontalOptions="Center" FontSize="15" Margin="120,0,0,0" BorderColor="#e7e7e7" />
+                </Grid>
+
+
+            </VerticalStackLayout>
+            <Grid Margin="0,-20,0,50">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+
+                <Button Grid.Row="0" Text="Criar evento" Margin="0,70,0,0" BackgroundColor="#e7e7e7" TextColor="#4F1271" HeightRequest="60" WidthRequest="200" FontSize="17" FontAttributes="Bold" FontFamily="InterBold" Command="{Binding RegistrarCommand}" ></Button>
+                <!--Command="{Binding RegistrarCommand}"-->
+                <Label  Grid.Row="1" Text="Termos de Uso e Política de Privacidade" HorizontalOptions="Center" TextColor="#e7e7e7" Margin="0,30,0,0"></Label>
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

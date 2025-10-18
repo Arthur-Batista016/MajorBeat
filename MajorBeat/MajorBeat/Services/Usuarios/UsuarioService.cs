@@ -24,6 +24,14 @@ namespace MajorBeat.Services.Usuarios
             Musico musicoCadastrado = await _request.PostAsync(apiUrlBase+urlComplementar, musico);
             return musicoCadastrado;
         }
+
+        public async Task<Evento> PostEventoAsync(Evento evento)
+        {
+            string urlComplementar = "Eventos/criarEvento"; // Se a rota for algo como /api/musico ou /api/musico/cadastrar, altere aqui
+            Evento eventoCadastrado = await _request.PostAsync(apiUrlBase + urlComplementar, evento);
+            return eventoCadastrado;
+        }
+
         public async Task<Contratante> PostContratanteAsync(Contratante contratante)
         {
             string urlComplementar = "Contratante/cadastrar"; // Se a rota for algo como /api/musico ou /api/musico/cadastrar, altere aqui

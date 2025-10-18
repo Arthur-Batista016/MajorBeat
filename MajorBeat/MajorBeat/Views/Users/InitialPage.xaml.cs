@@ -1,3 +1,5 @@
+using MajorBeat.Views.Hirers;
+
 namespace MajorBeat.Views.Users;
 
 public partial class InitialPage : ContentPage
@@ -15,6 +17,6 @@ public partial class InitialPage : ContentPage
 
     private  async void login_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new LoginPage());
+        await Navigation.PushAsync(new CreateEventPageView());
     }
 }
