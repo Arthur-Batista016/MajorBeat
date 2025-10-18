@@ -17,27 +17,64 @@ namespace MajorBeat.Services.Usuarios
         {
             _request = new Request();
         }
+        private string _token = string.Empty;
 
-        public async Task<Musico> PostMusicoAsync(Musico musico)
+        public UsuarioService(string token)
         {
-            string urlComplementar = "Musico/cadastrar"; // Se a rota for algo como /api/musico ou /api/musico/cadastrar, altere aqui
-            Musico musicoCadastrado = await _request.PostAsync(apiUrlBase+urlComplementar, musico);
-            return musicoCadastrado;
+            _request = new Request();
+            _token = token;
+        }
+        public async Task<Musico> PostMusicoAsync(Musico u)
+        {
+            string urlComplementar = "Musico/cadastrar";
+            u = await _request.PostAsync(apiUrlBase + urlComplementar, u, string.Empty);
+
+            return u;
+        }
+
+        public async Task<Contratante> PostContratanteAsync(Contratante u)
+        {
+            string urlComplementar = "Contratante/cadastrar";
+            u = await _request.PostAsync(apiUrlBase + urlComplementar, u, string.Empty);
+
+            return u;
+        }
+
+        public async Task<Contratante> PostAutenticarUsuarioAsync(Contratante u)
+        {
+            string urlComplementar = "Contratante/login";
+            u = await _request.PostAsync(apiUrlBase + urlComplementar, u, string.Empty);
+
+            return u;
         }
 
         public async Task<Evento> PostEventoAsync(Evento evento)
         {
             string urlComplementar = "Eventos/criarEvento"; // Se a rota for algo como /api/musico ou /api/musico/cadastrar, altere aqui
-            Evento eventoCadastrado = await _request.PostAsync(apiUrlBase + urlComplementar, evento);
-            return eventoCadastrado;
+            evento = await _request.PostAsync(apiUrlBase + urlComplementar, evento, _token);
+            return evento;
         }
 
-        public async Task<Contratante> PostContratanteAsync(Contratante contratante)
-        {
-            string urlComplementar = "Contratante/cadastrar"; // Se a rota for algo como /api/musico ou /api/musico/cadastrar, altere aqui
-            Contratante contratanteCadastrado = await _request.PostAsync(apiUrlBase+urlComplementar, contratante);
-            return contratanteCadastrado;
-        }
+        /* public async Task<Musico> PostMusicoAsync(Musico musico)
+         {
+             string urlComplementar = "Musico/cadastrar"; // Se a rota for algo como /api/musico ou /api/musico/cadastrar, altere aqui
+             Musico musicoCadastrado = await _request.PostAsync(apiUrlBase+urlComplementar, musico);
+             return musicoCadastrado;
+         }
+
+         public async Task<Evento> PostEventoAsync(Evento evento)
+         {
+             string urlComplementar = "Eventos/criarEvento"; // Se a rota for algo como /api/musico ou /api/musico/cadastrar, altere aqui
+             Evento eventoCadastrado = await _request.PostAsync(apiUrlBase + urlComplementar, evento);
+             return eventoCadastrado;
+         }
+
+         public async Task<Contratante> PostContratanteAsync(Contratante contratante)
+         {
+             string urlComplementar = "Contratante/cadastrar"; // Se a rota for algo como /api/musico ou /api/musico/cadastrar, altere aqui
+             Contratante contratanteCadastrado = await _request.PostAsync(apiUrlBase+urlComplementar, contratante);
+             return contratanteCadastrado;
+         }*/
 
 
     }

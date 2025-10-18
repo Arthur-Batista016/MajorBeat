@@ -403,11 +403,11 @@ namespace MajorBeat.ViewModels.Musician
 
                 var service = new UsuarioService();
                 var musicoCadastrado = await service.PostMusicoAsync(usuario);
-
+                usuario.id = musicoCadastrado.id;
                 // Exibe mensagem de sucesso com o ID retornado
                 await Application.Current.MainPage.DisplayAlert(
                     "Sucesso",
-                    $"Músico {musicoCadastrado.nome} cadastrado com sucesso!\nID: {musicoCadastrado.id}",
+                    $"Músico {musicoCadastrado.nome} cadastrado com sucesso!\nID: {usuario.id}",
                     "OK"
                 );
 

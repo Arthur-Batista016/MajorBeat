@@ -238,8 +238,10 @@ namespace MajorBeat.ViewModels.Hirers
             var service = new UsuarioService();
             var contratanteCadastrado = await service.PostContratanteAsync(usuario);
 
-            // Exibe mensagem de sucesso com o ID retornado
-            await Application.Current.MainPage.DisplayAlert(
+
+                
+                // Exibe mensagem de sucesso com o ID retornado
+                await Application.Current.MainPage.DisplayAlert(
                 "Sucesso",
                 $"Contratante {contratanteCadastrado.nome} cadastrado com sucesso!\nID: {contratanteCadastrado.id}",
                 "OK"

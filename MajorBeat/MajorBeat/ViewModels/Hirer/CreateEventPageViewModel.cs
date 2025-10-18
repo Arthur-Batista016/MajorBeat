@@ -276,7 +276,7 @@ public class CreateEventPageViewModel : BaseViewModel
                 e.HoraFim = HoraFim;
 
             var service = new UsuarioService();
-            var musicoCadastrado = await service.PostEventoAsync(e);
+            //var musicoCadastrado = await service.PostEventoAsync(e);
 
 
 
