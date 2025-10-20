@@ -12,32 +12,53 @@ namespace MajorBeat.Services.Users
     public class EventService:Request
     {
         private readonly Request _request;
-        private const string _baseUrl = "localhost:8080/Eventos";
+        private const string _baseUrl = "http://localhost:8080/Eventos";
+        private string _token;
 
         public EventService()
         {
             _request = new Request();
+            _token = Preferences.Get("UsuarioToken", string.Empty);
         }
+
+        // Construtor opcional para passar token manualmente
+        public EventService(string token)
+        {
+            _request = new Request();
+            _token = token;
+        }
+
+        // Permite atualizar o token a qualquer momento
+        public void SetToken(string token)
+        {
+            _token = token;
+            Preferences.Set("UsuarioToken", token);
+        }
+
+
+
+
+        public string Token => _token;
 
         public async Task<ObservableCollection<Evento>> GetAllEvents()
         {
             string urlComplementar = "/getAll";
             ObservableCollection<Evento> eventos = await
-            _request.GetAsync<ObservableCollection<Evento>>(_baseUrl + urlComplementar);
+            _request.GetAsync<ObservableCollection<Evento>>(_baseUrl + urlComplementar, _token );
             return eventos;
         }
 
         public async Task<Evento> GetEventById(long id)
         {
                 string urlComplementar = $"/getById/{id}";
-                Evento evento = await _request.GetAsync<Evento>(_baseUrl + urlComplementar);
+                Evento evento = await _request.GetAsync<Evento>(_baseUrl + urlComplementar, _token);
                 return evento;  
          }
 
         public async Task<ObservableCollection<Evento>> GetEventsByGenre(NomeGenero nomeGenero)
         {
             string urlComplementar = $"/getByGenero/{nomeGenero}";
-            ObservableCollection<Evento> evento = await _request.GetAsync<ObservableCollection<Evento>>(_baseUrl + urlComplementar);
+            ObservableCollection<Evento> evento = await _request.GetAsync<ObservableCollection<Evento>>(_baseUrl + urlComplementar, _token);
             return evento;
         }
 

@@ -1,4 +1,4 @@
-using MajorBeat.ViewModels.Musicians;
+
 
 namespace MajorBeat.Views.Musicians;
 

@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MajorBeat.Views.Users.ChatPage"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False">
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -64,19 +65,26 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            
-            <Border HeightRequest="170">
-                <VerticalStackLayout>
-                    <Image Grid.Row="0" Source="profile.png" HorizontalOptions="Start" HeightRequest="50" VerticalOptions="Center" Margin="20,105,0,0"/>
-                    <Label Grid.Row="0" Text="Nome" HorizontalOptions="Start" Margin="100,-50,0,0" FontAttributes="Bold" TextColor="#4F1271"/>
-                    <Label Grid.Row="0" Text="14:11" HorizontalOptions="End" Margin="0,-30,10,0" TextColor="#4F1271"/>
-                    <Label Grid.Row="1" Text="Ultima mensagem aqui" HorizontalOptions="Center" Margin="0,20,55,0" TextColor="#4F1271"/>
-                    <Button BackgroundColor="Transparent" HeightRequest="3000" Margin="0,-65,0,0"/>
-                </VerticalStackLayout>
-            </Border>
+
+            <CollectionView Margin="0,0,0,0"  IsVisible="{Binding HasContacts}" ItemsSource="{Binding Musicos}" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout>
+                            <Image Grid.Row="0" Source="{Binding fotoPerfil}" HorizontalOptions="Start" HeightRequest="50" VerticalOptions="Center" Margin="20,105,0,0"/>
+                            <Label Grid.Row="0" Text="{Binding nome}" HorizontalOptions="Start" Margin="100,-50,0,0" FontAttributes="Bold" TextColor="#4F1271"/>
+                            <Label Grid.Row="0" Text="14:11" HorizontalOptions="End" Margin="0,-30,10,0" TextColor="#4F1271"/>
+                            <Label Grid.Row="1" Text="Ultima mensagem aqui" HorizontalOptions="Center" Margin="10,20,55,0" TextColor="#4F1271"/>
+                            <Button BackgroundColor="Transparent" HeightRequest="3000" Margin="0,-65,0,0"/>
+                            <Image Source="chatline.png" HeightRequest="100"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
         </Grid>
 
-        <Grid Grid.Row="1" IsVisible="True" >
+        <Grid Grid.Row="1" IsVisible="{Binding NoContacts}" >
             <Label Text="Você ainda não tem contatos adicionados." HorizontalOptions="Center" VerticalOptions="Center" TextColor="#783F8E" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="23"/>
         </Grid>
 

@@ -18,7 +18,7 @@ namespace MajorBeat.Models
         public string senha { get; set; }
         public string telefone { get; set; }
         public string endereco { get; set; }
-        public byte[]? fotoPerfil { get; set; }
+        public byte[] fotoPerfil { get; set; }
         public string biografia { get; set; }
         public DateTime dtCriacao { get; set; }
 

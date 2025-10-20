@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using MajorBeat.Enums;
 using MajorBeat.Models;
+using MajorBeat.Services.Musicians;
 using MajorBeat.Services.Users;
 using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Graphics.Text;
@@ -19,11 +20,23 @@ namespace MajorBeat.ViewModels.Users
     public partial class SearchBarViewModel : ObservableObject
     {
 
+       
+    // Você pode até repassar pro serviço se ele precisar
+   
+
 
         EventService _eService;
+        MusicianService _mService;
+
+      
 
         [ObservableProperty]
         ObservableCollection<Evento> eventos;
+
+        [ObservableProperty]
+        ObservableCollection<Musico> musicos;
+
+
 
 
 
@@ -113,7 +126,10 @@ namespace MajorBeat.ViewModels.Users
         {
             InicializarCommands();
             onUnfocus();
+            _mService = new MusicianService();
             _eService = new EventService();
+
+
 
             AxeCommand = new Command(async () => await AxeChoosed());
             BluesCommand = new Command(async () => await BluesChoosed());
@@ -265,30 +281,38 @@ namespace MajorBeat.ViewModels.Users
             FindResults = false;
         }
 
-        public async Task<ObservableCollection<Evento>> AxeChoosed()
+        public async Task<ObservableCollection<Musico>> AxeChoosed()
         {
             try
             {
-                ObservableCollection<Evento> evento = await _eService.GetEventsByGenre(Enums.NomeGenero.AXE);
-                if (evento.Count.Equals(0))
-                {
-
-                }
-                else
+                ObservableCollection<Musico> resultado = await _mService.GetMusicianByGenre(Enums.NomeGenero.AXE);
+                Musicos = resultado;
+                if (musicos.Count > 0)
                 {
                     IsSearch = true;
                     FindResults = false;
-              
+                }
+                else
+                {
+                    IsSearch = false;
+                    FindResults = true;
+                    await Application.Current.MainPage.DisplayAlert(
+                   "Aviso",
+                   "Nenhum músico do gênero Axé encontrado.",
+                   "OK");
+
+
 
                 }
 
-                return evento;
+                return musicos;
             }
             catch(Exception ex)
             {
-                await Application.Current.MainPage
-                   .DisplayAlert("Erro", ex.Message, "OK");
-                return new ObservableCollection<Evento>();
+                string detalhe = ex.ToString();
+                System.Diagnostics.Debug.WriteLine($"❌ ERRO COMPLETO: {detalhe}");
+                await Application.Current.MainPage.DisplayAlert("Erro", detalhe, "OK");
+                return new ObservableCollection<Musico>();
             }
               
             

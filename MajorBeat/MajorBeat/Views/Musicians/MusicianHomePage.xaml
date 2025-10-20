@@ -67,9 +67,7 @@
                 </Border>
 
                 <Label Text="Eventos próximos a você:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,0,0,0"/>
-                <Button Text="CRIAR EVENTO" Command="{Binding CriarCommand}"/>
-                <Entry Placeholder="sdgkslogpsmpiigfsr" Text="{Binding NameEvent,Mode=TwoWay}" />
-               
+                <Label Text="{Binding CurrentToken}"/>
 
                 <!-- Eventos -->
                 <CollectionView ItemsSource="{Binding Eventos}"  Margin="0,40,0,40" IsVisible="{Binding HasEvent}">

@@ -10,38 +10,22 @@ namespace MajorBeat.Models
 {
     public class Contratante
     {
-        public long IdContratante { get; set; }
+        public int id { get; set; }
+        public string nome { get; set; }
+        public string email { get; set; }
+        public string telefone { get; set; }
+        public string endereco { get; set; }
+        public string token { get; set; }
 
-        public string Nome { get; set; }
-
-        public string? Apelido { get; set; }
-
-        public string Email { get; set; }
-
-        public string Senha { get; set; }
-
-        public string Telefone { get; set; }
-
-        public string Endereco { get; set; }
-
-        public byte[] FotoPerfil { get; set; }
-
-        public string? Biografia { get; set; }
-
-        public DateTime DtCriacao { get; set; }
-
-        public ObservableCollection<string> Links { get; set; } = new();
-
-        public string NomeEmpresa { get; set; }
-
-        public TipoContratante TipoContratante { get; set; }
-
-        public Role Role { get; set; }
-
-        public ObservableCollection<string>? MediaUrl { get; set; } = new();
-
-        public ObservableCollection<Avaliacao> Avaliacoes { get; set; } = new();
-
-        public ObservableCollection<Chat> Chats { get; set; } = new();
+        public string senha { get; set; }
+        public string biografia { get; set; }
+        public string nomePerfil { get; set; }
+        public string empresa { get; set; }
+        public byte[] FotoBytes { get; set; }
+        public string linkLinkdin { get; set; }
+        public string linkInsta { get; set; }
+        public string linkTwitter { get; set; }
+        public string linkFacebook { get; set; }
+        public List<string> RedesSociais { get; set; }
     }
 }
