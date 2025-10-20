@@ -1,18 +1,21 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MajorBeat.Models;
+using MajorBeat.Services.Musicians;
 using MajorBeat.Services.Users;
 using System.Collections.ObjectModel;
 
 public partial class HomePageViewModel : ObservableObject
 {
     EventService _eService;
+    MusicianService _mService;
     private ObservableCollection<Evento> eventos;
     [ObservableProperty]
     private string currentToken;
 
     public HomePageViewModel()
     {
-        
+      
+        //MUSICIAN CONSTRUCTOR
         _eService = new EventService();
         currentToken = _eService.Token;
         ActualPosition = 0;

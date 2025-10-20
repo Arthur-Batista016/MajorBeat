@@ -14,14 +14,15 @@ namespace MajorBeat.Services.Musicians
         private readonly Request _request;
         private const string _baseUrl = "http://localhost:8080/Musico";
         private string _token;
-   
+        public string Token => _token;
 
-       
+
 
         public MusicianService()
         {
             _request = new Request();
             _token = Preferences.Get("UsuarioToken", string.Empty);
+
         }
 
 
