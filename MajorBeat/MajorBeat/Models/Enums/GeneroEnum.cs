@@ -8,8 +8,25 @@ namespace MajorBeat.Models.Enums
 {
     public enum GeneroEnum
     {
-        Pagode,
-        Sertanejo,
-        Gospel
+        ROCK,
+        SERTANEJO,
+        POP,
+        FUNK,
+        SAMBA,
+        JAZZ,
+        RAP,
+        METAL,
+        REGGAE,
+        BLUES,
+        FORRÓ,
+        AXÉ,
+        PAGODE,
+        MPB,
+        BOSSA_NOVA,
+        ELETRONICO,
+        COUNTRY,
+        GOSPEL,
+        CLÁSSICO,
+        TRAP
     }
 }

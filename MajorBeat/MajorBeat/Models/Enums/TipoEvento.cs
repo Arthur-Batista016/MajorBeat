@@ -8,10 +8,16 @@ namespace MajorBeat.Models.Enums
 {
     public enum TipoEvento
     {
-        Casamento,
-        Bar,
-        Aniversario,
-        Corporativo
+        ANIVERSARIO,
+        BAR,
+        CASAMENTO,
+        EVENTO_CORPORATIVO,
+        FESTIVAL,
+        FEIRA,
+        FORMATURA,
+        FUNERAL,
+        RESTAURANTE,
+        FESTA
 
     }
 }

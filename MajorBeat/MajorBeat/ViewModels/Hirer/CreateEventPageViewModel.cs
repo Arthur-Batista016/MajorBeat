@@ -9,8 +9,9 @@ namespace MajorBeat.ViewModels.Hirer;
 
 public class CreateEventPageViewModel : BaseViewModel
 {
-    
 
+
+    private UsuarioService uService;
     public CreateEventPageViewModel()
     {
         TodosGeneros = Enum.GetValues(typeof(GeneroEnum)).Cast<GeneroEnum>().ToList();
@@ -23,6 +24,9 @@ public class CreateEventPageViewModel : BaseViewModel
 
         // Define a data máxima como um valor fixo (ex: daqui a 1 ano)
         MaxDate = DateTime.Today.AddYears(1);
+
+        string token = Preferences.Get("UsuarioToken",string.Empty);
+        uService = new UsuarioService(token);
 
 
         RegistrarCommand = new Command(async () => await EventSave());
@@ -134,8 +138,8 @@ public class CreateEventPageViewModel : BaseViewModel
         }
     }
 
-    private byte[] _fotoBytes;
-    public byte[] FotoBytes
+    private ObservableCollection<byte[]> _fotoBytes;
+    public ObservableCollection<byte[]> FotoBytes
     {
         get => _fotoBytes;
         set
@@ -210,15 +214,15 @@ public class CreateEventPageViewModel : BaseViewModel
 
 
 
-    private string titulo;
-    public string Titulo
+    private string nome;
+    public string Nome
     {
-        get => titulo;
+        get => nome;
         set
         {
-            if (titulo != value)
+            if (nome != value)
             {
-                titulo = value;
+                nome = value;
                 onPropertyChanged();
             }
         }
@@ -263,22 +267,23 @@ public class CreateEventPageViewModel : BaseViewModel
             Evento e = new Evento();
 
 
-                e.titulo = Titulo;
+                e.nome = Nome;
                 e.endereco = $"{Numero}, {Complemento}, {Cep}";
                 e.descricao = Descricao;
                 e.data = DataDoEvento;
                 e.instrumentos = InstrumentosSelecionados.ToList();
                 e.generos = GenerosSelecionados.ToList();
-                e.imagemLocalEvento = FotoBytes;
+                e.imagemLocalEvento = FotoBytes.ToList();
                 e.tipoEvento = Tipo;
                 e.tipoMusico = TipoMusico;
                 e.HoraInicio = HoraInicio;
                 e.HoraFim = HoraFim;
 
             var service = new UsuarioService();
-            //var musicoCadastrado = await service.PostEventoAsync(e);
+            var musicoCadastrado = await uService.PostEventoAsync(e);
 
-
+            await Application.Current.MainPage.DisplayAlert("erro", " foi possível salvar o evento:", "ok");
+       
 
 
 
@@ -429,7 +434,7 @@ public class CreateEventPageViewModel : BaseViewModel
 
         // --- VALIDAÇÃO DE CAMPO DE TEXTO (Título) ---
         // Checa se o Título é nulo, vazio ou tem apenas espaços em branco
-        if (string.IsNullOrWhiteSpace(Titulo))
+        if (string.IsNullOrWhiteSpace(Nome))
         {
             ErroTituloVisible = true;
             isValid = false;

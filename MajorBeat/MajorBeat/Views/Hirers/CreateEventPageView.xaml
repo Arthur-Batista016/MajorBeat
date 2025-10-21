@@ -35,7 +35,7 @@
                     <Label Grid.Row="0" Text="Titulo:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
                     <Label Grid.Row="0" Text="O titulo não pode ser nulo" IsVisible="{Binding ErroTituloVisible}" TextColor="Red" FontSize="10" Margin="0,15,0,0" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
                     <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
-                        <Entry TextColor="#4F1271" Grid.Row="1" Placeholder="Festa do Luca" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Titulo}"></Entry>
+                        <Entry TextColor="#4F1271" Grid.Row="1" Placeholder="Festa do Luca" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Nome}"></Entry>
                     </Border>
                 </Grid>
 
@@ -113,7 +113,7 @@
                     <Label Text="Fim:" VerticalOptions="End" FontAttributes="Bold" TextColor="white" Margin="250,0,0,0" />
                         
                     </Grid>
-                    <Label Grid.Row="0" Text="O horário excede o tempo de um evento" IsVisible="{Binding ErroHorarioVisible}" TextColor="Red" Margin="0,0,0,-10" FontSize="10" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
+                    <Label Grid.Row="0" Text="Horário inválido" IsVisible="{Binding ErroHorarioVisible}" TextColor="Red" Margin="0,0,0,-10" FontSize="10" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
                     <Grid>
                     <Grid HorizontalOptions="Start">
                         

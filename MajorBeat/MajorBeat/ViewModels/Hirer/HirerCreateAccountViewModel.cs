@@ -48,6 +48,10 @@ namespace MajorBeat.ViewModels
                 var viewmodel = new HirerCreateProfileViewModel(u);
                 await _navigation.PushAsync(new HirerCreateProfileView(viewmodel));
             }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Erro", "Por favor, corrija os erros nos campos destacados.", "OK");
+            }
 
         }
 

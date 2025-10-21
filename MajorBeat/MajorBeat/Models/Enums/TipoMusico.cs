@@ -8,7 +8,7 @@ namespace MajorBeat.Models.Enums
 {
     public enum TipoMusico
     {
-        Solo,
-        Banda
+        SOLO,
+        BANDA
     }
 }

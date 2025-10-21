@@ -9,7 +9,7 @@ namespace MajorBeat.Models
 {
     public class Evento
     {
-        public string titulo { get; set; }
+        public string nome { get; set; }
         public string endereco { get; set; }
         public string descricao { get; set; }
         public List<InstrumentoEnum> instrumentos { get; set; }

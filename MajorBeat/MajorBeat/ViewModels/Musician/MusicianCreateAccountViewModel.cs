@@ -36,7 +36,7 @@ namespace MajorBeat.ViewModels
 
 
         // Label dinâmico
-        public string NomeLabel => Tipo == TipoMusico.Solo ? "Nome Completo" : "Nome da Banda";
+        public string NomeLabel => Tipo == TipoMusico.SOLO ? "Nome Completo" : "Nome da Banda";
 
         // Lista pro Picker
         public IEnumerable<TipoMusico> Tipos => Enum.GetValues(typeof(TipoMusico)).Cast<TipoMusico>();
@@ -131,6 +131,10 @@ namespace MajorBeat.ViewModels
             {
                 var viewmodel = new MusicianCreateProfileViewModel(u);
                 await _navigation.PushAsync(new MusicianCreateProfileView(viewmodel));
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Erro", "Por favor, corrija os erros nos campos destacados.", "OK");
             }
 
 

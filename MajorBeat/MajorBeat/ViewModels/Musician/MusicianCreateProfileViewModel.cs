@@ -87,14 +87,14 @@ namespace MajorBeat.ViewModels.Musician
             // Mostra todos inicialmente
             InstrumentosFiltrados = new ObservableCollection<InstrumentoEnum>(TodosInstrumentos);
             musico = m;
-            if (musico.tipoMusico == TipoMusico.Solo)
+            if (musico.tipoMusico == TipoMusico.SOLO)
             {
 
                 IsVisible = true;
                 cIsVisible = false;
 
             }
-            else if (musico.tipoMusico == TipoMusico.Banda)
+            else if (musico.tipoMusico == TipoMusico.BANDA)
             {
                 IsVisible = false;
                 cIsVisible = true;
@@ -309,7 +309,7 @@ namespace MajorBeat.ViewModels.Musician
         private bool ValidarCampos()
         {
             var valido = true;
-            if (string.IsNullOrWhiteSpace(Username) && musico.tipoMusico == TipoMusico.Solo)
+            if (string.IsNullOrWhiteSpace(Username) && musico.tipoMusico == TipoMusico.SOLO)
             {
                 ErroUserVisible = true;
                 valido = false;
@@ -357,6 +357,7 @@ namespace MajorBeat.ViewModels.Musician
 
             if (!ValidarCampos())
             {
+                await Application.Current.MainPage.DisplayAlert("Erro", "Por favor, corrija os erros nos campos destacados.", "OK");
                 return; // impede de prosseguir
             }
             try

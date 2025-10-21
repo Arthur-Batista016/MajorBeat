@@ -197,6 +197,7 @@ namespace MajorBeat.ViewModels.Hirers
             
             if (!ValidarCampos())
             {
+                await Application.Current.MainPage.DisplayAlert("Erro", "Por favor, corrija os erros nos campos destacados.", "OK");
                 return; // impede de prosseguir
             }
             try { 

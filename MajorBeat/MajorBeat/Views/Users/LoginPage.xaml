@@ -30,7 +30,7 @@
                     <Image Source="User_icon" HorizontalOptions="Center" HeightRequest="45" />
                 </Border>
                 <Border StrokeShape="RoundRectangle 0 10 0 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="300" HorizontalOptions="End" HeightRequest="70">
-                    <Entry Grid.Row="1" Placeholder="E-mail" PlaceholderColor="#854F1271" Margin="10,0,0,0" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Nome}"></Entry>
+                    <Entry Grid.Row="1" Placeholder="E-mail" PlaceholderColor="#854F1271" Margin="10,0,0,0" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Email}"></Entry>
                 </Border>
              
                 
@@ -42,7 +42,7 @@
                     <Image Source="password_icon" HorizontalOptions="Center" HeightRequest="45" />
                 </Border>
                 <Border StrokeShape="RoundRectangle 0 10 0 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="300" HorizontalOptions="End" HeightRequest="70">
-                    <Entry Grid.Row="1" Placeholder="Senha" PlaceholderColor="#854F1271" Margin="10,0,0,0" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Email}"></Entry>
+                    <Entry Grid.Row="1" Placeholder="Senha" PlaceholderColor="#854F1271" Margin="10,0,0,0" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Senha}"></Entry>
                 </Border>
             </Grid>
             

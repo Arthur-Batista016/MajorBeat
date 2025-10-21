@@ -48,9 +48,17 @@ namespace MajorBeat.Services.Usuarios
             return u;
         }
 
+        public async Task<Musico> PostAutenticarUsuarioMAsync(Musico u)
+        {
+            string urlComplementar = "Musico/login";
+            u = await _request.PostAsync(apiUrlBase + urlComplementar, u, string.Empty);
+
+            return u;
+        }
+
         public async Task<Evento> PostEventoAsync(Evento evento)
         {
-            string urlComplementar = "Eventos/criarEvento"; // Se a rota for algo como /api/musico ou /api/musico/cadastrar, altere aqui
+            string urlComplementar = "Eventos/criar"; // Se a rota for algo como /api/musico ou /api/musico/cadastrar, altere aqui
             evento = await _request.PostAsync(apiUrlBase + urlComplementar, evento, _token);
             return evento;
         }
