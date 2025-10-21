@@ -19,7 +19,7 @@ namespace MajorBeat.Enums
         REGGAE,
         BLUES,
         FORRO,
-        AXE,
+        AXÉ,
         PAGODE,
         MPB,
         BOSSA_NOVA,

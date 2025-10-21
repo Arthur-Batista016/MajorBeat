@@ -127,7 +127,7 @@ namespace MajorBeat.ViewModels.Hirers
                 avaliacoes = new ObservableCollection<Avaliacao> {
                 new Avaliacao { nota = 4.2 }
             },
-                nomeGenero = new ObservableCollection<NomeGenero> { Enums.NomeGenero.SERTANEJO, Enums.NomeGenero.AXE }
+                nomeGenero = new ObservableCollection<NomeGenero> { Enums.NomeGenero.SERTANEJO, Enums.NomeGenero.AXÉ }
             };
 
            Musicos.Add(musico);

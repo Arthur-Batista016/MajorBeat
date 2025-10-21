@@ -99,7 +99,7 @@ namespace MajorBeat.ViewModels.Users
         [ObservableProperty]
         public ObservableCollection<NomeGenero> generos = new ObservableCollection<NomeGenero>
     {
-        NomeGenero.AXE,
+        NomeGenero.AXÉ,
         NomeGenero.CLASSICO,
         NomeGenero.ELETRONICO,
         NomeGenero.FUNK,
@@ -285,9 +285,9 @@ namespace MajorBeat.ViewModels.Users
         {
             try
             {
-                ObservableCollection<Musico> resultado = await _mService.GetMusicianByGenre(Enums.NomeGenero.AXE);
+                ObservableCollection<Musico> resultado = await _mService.GetMusicianByGenre(Enums.NomeGenero.AXÉ);
                 Musicos = resultado;
-                if (musicos.Count > 0)
+                if (Musicos.Count > 0)
                 {
                     IsSearch = true;
                     FindResults = false;
@@ -297,26 +297,35 @@ namespace MajorBeat.ViewModels.Users
                     IsSearch = false;
                     FindResults = true;
                     await Application.Current.MainPage.DisplayAlert(
-                   "Aviso",
-                   "Nenhum músico do gênero Axé encontrado.",
-                   "OK");
-
-
-
+                        "Aviso",
+                        "Nenhum músico do gênero Axé encontrado.",
+                        "OK");
                 }
 
-                return musicos;
+                return Musicos;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                string detalhe = ex.ToString();
-                System.Diagnostics.Debug.WriteLine($"❌ ERRO COMPLETO: {detalhe}");
-                await Application.Current.MainPage.DisplayAlert("Erro", detalhe, "OK");
-                return new ObservableCollection<Musico>();
+                // Exibe o erro na tela
+                await Application.Current.MainPage.DisplayAlert(
+                    "Erro ao buscar músicos",
+                    $"Erro: {ex.Message}",
+                    "OK");
+
+                // Se já tiver músicos carregados, exibe a lista
+                if (Musicos != null && Musicos.Count > 0)
+                {
+                    var nomes = string.Join(Environment.NewLine, Musicos.Select(m => m.nome));
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Músicos carregados (parcialmente)",
+                        nomes,
+                        "OK");
+                }
+
+                return Musicos ?? new ObservableCollection<Musico>();
             }
-              
-            
         }
+
 
         public async Task BluesChoosed()
         {
@@ -389,12 +398,51 @@ namespace MajorBeat.ViewModels.Users
             IsSearch = true;
             FindResults = false;
         }
-        public async Task RockChoosed()
+        public async Task<ObservableCollection<Musico>> RockChoosed()
         {
-            IsSearch = true;
-            FindResults = false;
-        }
+            try
+            {
+                ObservableCollection<Musico> resultado = await _mService.GetMusicianByGenre(Enums.NomeGenero.ROCK);
+                Musicos = resultado;
+                if (Musicos.Count > 0)
+                {
+                    IsSearch = true;
+                    FindResults = false;
+                }
+                else
+                {
+                    IsSearch = false;
+                    FindResults = true;
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Aviso",
+                        "Nenhum músico do gênero Axé encontrado.",
+                        "OK");
+                }
 
+                return Musicos;
+            }
+            catch (Exception ex)
+            {
+                // Exibe o erro na tela
+                await Application.Current.MainPage.DisplayAlert(
+                    "Erro ao buscar músicos",
+                    $"Erro: {ex.Message}",
+                    "OK");
+
+                // Se já tiver músicos carregados, exibe a lista
+                if (Musicos != null && Musicos.Count > 0)
+                {
+                    var nomes = string.Join(Environment.NewLine, Musicos.Select(m => m.nome));
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Músicos carregados (parcialmente)",
+                        nomes,
+                        "OK");
+                }
+
+                return Musicos ?? new ObservableCollection<Musico>();
+            }
+        }
+        
         public async Task SambaChoosed()
         {
             IsSearch = true;

@@ -20,13 +20,13 @@ namespace MajorBeat.Models
         public string endereco { get; set; }
         public byte[] fotoPerfil { get; set; }
         public string biografia { get; set; }
-        public DateTime dtCriacao { get; set; }
+        public DateTime? dtCriacao { get; set; }
 
         public ObservableCollection<string> links { get; set; } = new();
         public TipoMusico tipoMusico { get; set; }
         public ObservableCollection<NomeInstrumento> nomeInstrumento { get; set; } = new();
         public ObservableCollection<NomeGenero> nomeGenero { get; set; } = new();
-        public Role role { get; set; }
+        public Role? role { get; set; }
         public ObservableCollection<string>? mediaUrl { get; set; } = new();
 
         public ObservableCollection<Avaliacao>? avaliacoes { get; set; } = new();

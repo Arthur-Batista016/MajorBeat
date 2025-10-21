@@ -34,7 +34,7 @@ public class LoginViewModel : BaseViewModel
                 "OK"
             );
 
-            Application.Current.MainPage = new NavigationPage(new MusicianHomePage());
+            Application.Current.MainPage = new NavigationPage(new HirerSearchPage());
 
         }
         catch (Exception ex)
