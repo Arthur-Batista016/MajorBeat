@@ -12,7 +12,7 @@ namespace MajorBeat.Services.Users
     public class EventService:Request
     {
         private readonly Request _request;
-        private const string _baseUrl = "http://localhost:8080/Eventos";
+        private const string _baseUrl = "https://majorbeat-fzedc4ekbuaufncw.brazilsouth-01.azurewebsites.net/Eventos";
         private string _token;
 
         public EventService()

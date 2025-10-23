@@ -12,7 +12,7 @@ namespace MajorBeat.Services.Musicians
     public class MusicianService
     {
         private readonly Request _request;
-        private const string _baseUrl = "http://localhost:8080/Musico";
+        private const string _baseUrl = "https://majorbeat-fzedc4ekbuaufncw.brazilsouth-01.azurewebsites.net/Musico";
         private string _token;
         public string Token => _token;
 
@@ -67,7 +67,9 @@ namespace MajorBeat.Services.Musicians
         public async Task<ObservableCollection<Musico>> GetMusicianByGenre(NomeGenero nomeGenero)
         {
             string urlComplementar = $"/getByGenero/{nomeGenero}";
+            
             ObservableCollection<Musico> musicos = await _request.GetAsync<ObservableCollection<Musico>>(_baseUrl + urlComplementar, _token);
+            
             return musicos;
         }
     }

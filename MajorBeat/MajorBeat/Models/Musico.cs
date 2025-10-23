@@ -12,6 +12,7 @@ namespace MajorBeat.Models
     public class Musico
     {
         public long idMusico { get; set; }
+        public string token { get; set; }
         public string nome { get; set; }
         public string? apelido { get; set; }
         public string email { get; set; }
@@ -25,7 +26,7 @@ namespace MajorBeat.Models
         public ObservableCollection<string> links { get; set; } = new();
         public TipoMusico tipoMusico { get; set; }
         public ObservableCollection<NomeInstrumento> nomeInstrumento { get; set; } = new();
-        public ObservableCollection<NomeGenero> nomeGenero { get; set; } = new();
+        public ObservableCollection<NomeGenero> nomeGeneros { get; set; } = new();
         public Role? role { get; set; }
         public ObservableCollection<string>? mediaUrl { get; set; } = new();
 

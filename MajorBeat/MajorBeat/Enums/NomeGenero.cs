@@ -27,6 +27,9 @@ namespace MajorBeat.Enums
         COUNTRY,
         GOSPEL,
         CLASSICO,
-        TRAP
+        TRAP,
+        DISCO,
+        
+        
     }
 }

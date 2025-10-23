@@ -97,7 +97,7 @@ namespace MajorBeat.ViewModels.Hirers
         {
             // Inicializa o Evento com valores exemplo
 
-            Musicos = new ObservableCollection<Musico>();
+            musicos = new ObservableCollection<Musico>();
             ChangeEventPhoto();
             ActualPosition = 0;
             CriarCommand = new Command(async () => { await EventoPadrao(); await EventsIsEmpyty(); });
@@ -115,7 +115,7 @@ namespace MajorBeat.ViewModels.Hirers
 
         public async Task EventsIsEmpyty()
         {
-            HasEvent = musicos.Count > 0;
+            hasEvent = musicos.Count > 0;
         }
 
         public async Task EventoPadrao()
@@ -123,14 +123,14 @@ namespace MajorBeat.ViewModels.Hirers
             ChangeEventPhoto();
             var musico = new Musico()
             {
-                nome = MusicianName,
+                nome = musicianName,
                 avaliacoes = new ObservableCollection<Avaliacao> {
                 new Avaliacao { nota = 4.2 }
             },
-                nomeGenero = new ObservableCollection<NomeGenero> { Enums.NomeGenero.SERTANEJO, Enums.NomeGenero.AXÉ }
+                nomeGeneros = new ObservableCollection<NomeGenero> { Enums.NomeGenero.SERTANEJO, Enums.NomeGenero.AXÉ }
             };
 
-           Musicos.Add(musico);
+           musicos.Add(musico);
 
         }
 

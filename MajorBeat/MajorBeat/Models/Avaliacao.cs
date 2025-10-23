@@ -14,7 +14,7 @@ namespace MajorBeat.Models
 
         public string? comentario { get; set; }
 
-        public DateTime data { get; set; }
+        public DateTime? data { get; set; }
         public long idAvaliador { get; set; }
 
         public long idRecebedor { get; set; }

@@ -19,10 +19,7 @@ namespace MajorBeat.ViewModels.Users
 {
     public partial class SearchBarViewModel : ObservableObject
     {
-
-       
-    // Você pode até repassar pro serviço se ele precisar
-   
+ 
 
 
         EventService _eService;
@@ -129,25 +126,9 @@ namespace MajorBeat.ViewModels.Users
             _mService = new MusicianService();
             _eService = new EventService();
 
+            GeneroCommand = new AsyncRelayCommand<NomeGenero>(BuscarPorGenero);
+            BackGenreCommand = new Command(async () => await BackGenreChoosed());
 
-
-            AxeCommand = new Command(async () => await AxeChoosed());
-            BluesCommand = new Command(async () => await BluesChoosed());
-            ClassicoCommand = new Command(async () => await ClassicoChoosed());
-            DiscoCommand = new Command(async () => await DiscoChoosed());
-            EletronicoCommand = new Command(async () => await EletronicoChoosed());
-            ForroCommand = new Command(async () => await ForroChoosed());
-            FunkCommand = new Command(async () => await FunkChoosed());
-            GospelCommand = new Command(async () => await GospelChoosed());
-            HipHopCommand = new Command(async () => await HipHopChoosed());
-            InfantilCommand = new Command(async () => await InfantilChoosed());
-            JazzCommand = new Command(async () => await JazzChoosed());
-            MetalCommand = new Command(async () => await MetalChoosed());
-            PopCommand = new Command(async () => await PopChoosed());
-            RockCommand = new Command(async () => await RockChoosed());
-            SambaCommand = new Command(async () => await SambaChoosed());
-            SertanejoCommand = new Command(async () => await SertanejoChoosed());
-            OutroCommand = new Command(async () => await OutroChoosed());
 
 
 
@@ -243,224 +224,71 @@ namespace MajorBeat.ViewModels.Users
 
 
 
-            //METODOS HIRER SEARCH PAGE]
+        //METODOS HIRER SEARCH PAGE]
 
 
 
         //Hirer Search Page
-        
+
+        [ObservableProperty]
+        public bool hirerNoSelect = true;
+
         [ObservableProperty]
         public bool isSearch = false;
 
         [ObservableProperty]
         public bool findResults = true;
 
+        [ObservableProperty]
+        public bool noMusics = false;
 
-        public ICommand AxeCommand { get; set; }
-        public ICommand BluesCommand { get; set; }
-        public ICommand ClassicoCommand { get;  set; }
-        public ICommand DiscoCommand { get; set; }
-        public ICommand EletronicoCommand { get;set; }
-        public ICommand ForroCommand { get; set; }
-        public ICommand FunkCommand { get; set; }
-        public ICommand GospelCommand { get;  set; }
-        public ICommand HipHopCommand { get; set; }
-        public ICommand InfantilCommand { get;  set; }
-        public ICommand JazzCommand { get;set ; }
-        public ICommand MetalCommand { get;set; }
-        public ICommand PopCommand { get; set; }
-        public ICommand RockCommand { get;  set; }
-        public ICommand SambaCommand { get;  set; }
-        public ICommand SertanejoCommand { get;  set; }
-        public ICommand OutroCommand { get; set; }
 
-        public async Task GenreChoosed()
+
+        public ICommand GeneroCommand { get; set; }
+        public ICommand BackGenreCommand { get; set; }
+
+        public async Task BackGenreChoosed()
         {
-           
-            IsSearch = true;
+            HirerNoSelect = true;
+            IsSearch = false;
             FindResults = false;
-        }
-
-        public async Task<ObservableCollection<Musico>> AxeChoosed()
-        {
-            try
-            {
-                ObservableCollection<Musico> resultado = await _mService.GetMusicianByGenre(Enums.NomeGenero.AXÉ);
-                Musicos = resultado;
-                if (Musicos.Count > 0)
-                {
-                    IsSearch = true;
-                    FindResults = false;
-                }
-                else
-                {
-                    IsSearch = false;
-                    FindResults = true;
-                    await Application.Current.MainPage.DisplayAlert(
-                        "Aviso",
-                        "Nenhum músico do gênero Axé encontrado.",
-                        "OK");
-                }
-
-                return Musicos;
-            }
-            catch (Exception ex)
-            {
-                // Exibe o erro na tela
-                await Application.Current.MainPage.DisplayAlert(
-                    "Erro ao buscar músicos",
-                    $"Erro: {ex.Message}",
-                    "OK");
-
-                // Se já tiver músicos carregados, exibe a lista
-                if (Musicos != null && Musicos.Count > 0)
-                {
-                    var nomes = string.Join(Environment.NewLine, Musicos.Select(m => m.nome));
-                    await Application.Current.MainPage.DisplayAlert(
-                        "Músicos carregados (parcialmente)",
-                        nomes,
-                        "OK");
-                }
-
-                return Musicos ?? new ObservableCollection<Musico>();
-            }
+            NoMusics = false;
+            Musicos = new ObservableCollection<Musico>();
         }
 
 
-        public async Task BluesChoosed()
-        {
-            IsSearch = true;
-            FindResults = false;
-        }
-
-        public async Task ClassicoChoosed()
-        {
-            IsSearch = true;
-            FindResults = false;
-        }
-
-        public async Task DiscoChoosed()
-        {
-            IsSearch = true;
-            FindResults = false;
-        }
-
-        public async Task EletronicoChoosed()
-        {
-            isSearch = true;
-            FindResults = false;
-        }
-
-        public async Task ForroChoosed()
-        {
-            IsSearch = true;
-            FindResults = false;
-
-        }
-
-        public async Task FunkChoosed()
-        {
-            IsSearch = true;
-            FindResults = false;
-        }
-
-        public async Task GospelChoosed()
-        {
-            IsSearch = true;
-            FindResults = false;
-        }
-
-        public async Task HipHopChoosed()
-        {
-            IsSearch = true;
-            FindResults = false;
-        }
-
-        public async Task InfantilChoosed()
-        {
-            IsSearch = true;
-            FindResults = false;
-        }
-
-        public async Task JazzChoosed()
-        {
-            IsSearch = true;
-            FindResults = false;
-        }
-        public async Task MetalChoosed()
-        {
-            IsSearch = true;
-            FindResults = false;
-        }
-
-        public async Task PopChoosed()
-        {
-            IsSearch = true;
-            FindResults = false;
-        }
-        public async Task<ObservableCollection<Musico>> RockChoosed()
-        {
-            try
-            {
-                ObservableCollection<Musico> resultado = await _mService.GetMusicianByGenre(Enums.NomeGenero.ROCK);
-                Musicos = resultado;
-                if (Musicos.Count > 0)
-                {
-                    IsSearch = true;
-                    FindResults = false;
-                }
-                else
-                {
-                    IsSearch = false;
-                    FindResults = true;
-                    await Application.Current.MainPage.DisplayAlert(
-                        "Aviso",
-                        "Nenhum músico do gênero Axé encontrado.",
-                        "OK");
-                }
-
-                return Musicos;
-            }
-            catch (Exception ex)
-            {
-                // Exibe o erro na tela
-                await Application.Current.MainPage.DisplayAlert(
-                    "Erro ao buscar músicos",
-                    $"Erro: {ex.Message}",
-                    "OK");
-
-                // Se já tiver músicos carregados, exibe a lista
-                if (Musicos != null && Musicos.Count > 0)
-                {
-                    var nomes = string.Join(Environment.NewLine, Musicos.Select(m => m.nome));
-                    await Application.Current.MainPage.DisplayAlert(
-                        "Músicos carregados (parcialmente)",
-                        nomes,
-                        "OK");
-                }
-
-                return Musicos ?? new ObservableCollection<Musico>();
-            }
-        }
         
-        public async Task SambaChoosed()
-        {
-            IsSearch = true;
-            FindResults = false;
-        }
 
-        public async Task SertanejoChoosed()
-        {
-            IsSearch = true;
-            FindResults = false;
-        }
 
-        public async Task OutroChoosed()
+        private async Task<ObservableCollection<Musico>> BuscarPorGenero(NomeGenero genero)
         {
-            IsSearch = true;
-            FindResults = false;
-        }
+            try
+            {
+                var resultado = await _mService.GetMusicianByGenre(genero);
+                Musicos = resultado;
 
+                if (Musicos?.Count > 0)
+                {
+                  
+                    HirerNoSelect = false;
+                    IsSearch = true;
+                    FindResults = true;
+                    NoMusics = false;
+
+                    
+                }
+               
+                return Musicos;
+            }
+            catch (Exception ex)
+            {
+                HirerNoSelect = false;
+                NoMusics = true;
+                IsSearch = false;
+                FindResults = false;
+                return Musicos = new ObservableCollection<Musico>();
+            }
+        }
 
     }
 }

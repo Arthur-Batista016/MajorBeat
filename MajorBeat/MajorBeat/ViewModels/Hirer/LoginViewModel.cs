@@ -1,7 +1,5 @@
 ﻿using MajorBeat.Models;
 using MajorBeat.Services.Usuarios;
-using MajorBeat.Views.Hirers;
-using MajorBeat.Views.Musicians;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Input;
 
@@ -20,34 +18,65 @@ public class LoginViewModel : BaseViewModel
     {
         try
         {
-            Contratante c = new Contratante();
+            try
+            {
+                Contratante c = new Contratante();
 
-            c.email = Email;
-            c.senha = Senha;
-            Contratante contratanteAutenticado = await _uService.PostAutenticarUsuarioAsync(c);
+                c.nome = Nome;
+                c.email = Email;
+                c.senha = Senha;
+                var service = new UsuarioService();
+                Contratante ca = await service.PostAutenticarUsuarioAsync(c);
 
-            Preferences.Set("UsuarioToken", contratanteAutenticado.token);
+                Preferences.Set("UsuarioToken", ca.token);
 
-            await Application.Current.MainPage.DisplayAlert(
-                "Sucesso",
-                $"Contratante {contratanteAutenticado.nome} cadastrado com sucesso!\nID: {contratanteAutenticado.id} Token {contratanteAutenticado.token}",
-                "OK"
-            );
+                await Application.Current.MainPage.DisplayAlert(
+                    "Sucesso",
+                    $"Contratante {c.nome} autenticado com sucesso!",
+                    "OK"
+                );
+                await Application.Current.MainPage.Navigation.PushAsync(new Views.Hirers.HirerHomePage());
+            }
+            catch
+            {
+                Musico m = new Musico();
+                m.nome = Nome;
+                m.email = Email;
+                m.senha = Senha;
+                var service = new UsuarioService();
+                Musico ma = await service.PostAutenticarUsuarioMAsync(m);
+                Preferences.Set("UsuarioToken", ma.token);
+                await Application.Current.MainPage.DisplayAlert(
+                    "Sucesso",
+                    $"Musico {m.nome}autenticado com sucesso!",
+                    "OK"
+                );
+                await Application.Current.MainPage.Navigation.PushAsync(new Views.Musicians.MusicianHomePage());
+            }
 
-            Application.Current.MainPage = new NavigationPage(new HirerSearchPage());
 
         }
         catch (Exception ex)
         {
             await Application.Current.MainPage.DisplayAlert(
                     "Erro ao cadastrar",
-                    $"N�o foi poss�vel concluir o cadastro.\nDetalhes: {ex.Message}",
+                    $"Não foi possível concluir o cadastro.\nDetalhes: {ex.Message}",
                     "OK"
                 );
 
 
         }
 
+    }
+    private string nome = string.Empty;
+    public string Nome
+    {
+        get { return nome; }
+        set
+        {
+            nome = value;
+            onPropertyChanged();
+        }
     }
 
     private string email = string.Empty;
@@ -57,7 +86,7 @@ public class LoginViewModel : BaseViewModel
         set
         {
             email = value;
-            OnPropertyChanged();
+            onPropertyChanged();
         }
     }
 
@@ -68,7 +97,7 @@ public class LoginViewModel : BaseViewModel
         set
         {
             senha = value;
-            OnPropertyChanged();
+            onPropertyChanged();
         }
 
     }

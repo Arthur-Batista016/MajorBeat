@@ -7,7 +7,6 @@ using System.Collections.ObjectModel;
 public partial class HomePageViewModel : ObservableObject
 {
     EventService _eService;
-    MusicianService _mService;
     private ObservableCollection<Evento> eventos;
     [ObservableProperty]
     private string currentToken;
@@ -23,14 +22,14 @@ public partial class HomePageViewModel : ObservableObject
         Eventos = new ObservableCollection<Evento>();
 
         // Chama o carregamento de eventos de forma assíncrona
-        Task.Run(async () => await ExibirTodosEventos());
+        ExibirTodosEventos();
     }
 
     private ObservableCollection<string> eventPhoto;
     private int actualPosition;
 
-    [ObservableProperty]
-    public bool hasEvent;
+    [ObservableProperty] 
+    private bool hasEvent;
 
     private string namevent;
     private string title;
@@ -55,7 +54,7 @@ public partial class HomePageViewModel : ObservableObject
         {
             eventos = value;
             OnPropertyChanged(nameof(Eventos));
-            HasEvent = eventos != null && eventos.Count > 0; // Atualiza HasEvent
+            hasEvent = eventos != null && eventos.Count > 0; // Atualiza HasEvent
         }
     }
 
@@ -91,7 +90,7 @@ public partial class HomePageViewModel : ObservableObject
 
     public async Task EventsIsEmpyty()
     {
-        HasEvent = Eventos != null && Eventos.Count > 0;
+        hasEvent = Eventos != null && Eventos.Count > 0;
     }
 
     public async Task ExibirTodosEventos()
@@ -100,7 +99,7 @@ public partial class HomePageViewModel : ObservableObject
         {
             ObservableCollection<Evento> eventos = await _eService.GetAllEvents();
             Eventos = eventos;
-            await ChangeEventPhoto();
+           
         }
         catch (Exception ex)
         {

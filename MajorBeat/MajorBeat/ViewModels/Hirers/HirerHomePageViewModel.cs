@@ -28,7 +28,6 @@ namespace MajorBeat.ViewModels.Hirers
             EventPhoto = new ObservableCollection<string>();
             musicos = new ObservableCollection<Musico>();
 
-            // Chama o carregamento de eventos de forma assíncrona
             Task.Run(async () => await ExibirTodosMusicos());
         }
 
@@ -106,9 +105,10 @@ namespace MajorBeat.ViewModels.Hirers
         {
             try
             {
+                
                 ObservableCollection<Musico> musicos = await _mService.GetAllMusicians();
                 Musicos = musicos;
-                await ChangeEventPhoto();
+               
             }
             catch (Exception ex)
             {

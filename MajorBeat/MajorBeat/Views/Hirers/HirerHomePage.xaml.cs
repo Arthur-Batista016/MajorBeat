@@ -9,7 +9,7 @@ public partial class HirerHomePage : ContentPage
     public HirerHomePage()
     {
         InitializeComponent();
-        BindingContext = new HirerViewModel();
+        BindingContext = new HirerHomePageViewModel();
 
       
     }
