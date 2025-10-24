@@ -1,3 +1,4 @@
+using MajorBeat.Views.Hirers;
 using System.Threading.Tasks;
 
 namespace MajorBeat.Views.Musicians;
@@ -21,6 +22,6 @@ public partial class MusicianHomePage : ContentPage
 
     private async void profile_page_btn_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new MusicianProfilePage());
+        await Navigation.PushAsync(new MusicianHomePage());
     }
 }
