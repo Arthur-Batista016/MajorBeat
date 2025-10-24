@@ -1,13 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MajorBeat.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MajorBeat.ViewModels.Musicians
 {
@@ -79,8 +73,7 @@ namespace MajorBeat.ViewModels.Musicians
         [ObservableProperty]
         public List<string> redesSociais;
 
-        // Propriedades da galeria        
-        
+        // === Galeria ===
         public ObservableCollection<string> Images { get; } = new()
         {
             "musicianprofile1.png",
@@ -88,8 +81,14 @@ namespace MajorBeat.ViewModels.Musicians
             "musicianprofile3.png"
         };
 
-        [ObservableProperty]
-        public int currentIndex;
+        [ObservableProperty] private int currentIndex;
+
+        public string PositionText => $"{CurrentIndex + 1}/{Images.Count}";
+
+        partial void OnCurrentIndexChanged(int value)
+        {
+            OnPropertyChanged(nameof(PositionText));
+        }
 
         [RelayCommand]
         public void Next()
@@ -103,6 +102,43 @@ namespace MajorBeat.ViewModels.Musicians
         {
             if (CurrentIndex > 0)
                 CurrentIndex--;
+        }
+
+        // === Tabs ===
+        [ObservableProperty] private string selectedTab = "Galeria";
+
+        public bool IsGaleriaVisible => SelectedTab == "Galeria";
+        public bool IsSobreVisible => SelectedTab == "Sobre";
+        public bool IsAvaliacoesVisible => SelectedTab == "Avaliacoes";
+
+        partial void OnSelectedTabChanged(string value)
+        {
+            OnPropertyChanged(nameof(IsGaleriaVisible));
+            OnPropertyChanged(nameof(IsSobreVisible));
+            OnPropertyChanged(nameof(IsAvaliacoesVisible));
+        }
+
+        [RelayCommand]
+        public void SelectTab(string tabName)
+        {
+            SelectedTab = tabName;
+        }
+
+        // === Construtor ===
+        public ProfileMusicianViewModel()
+        {
+            Username = "Marquinhos";
+            Nome = "Marcos José";
+            Biografia = "Oi, eu sou o Marquinhos. Minha música é um pedaço de mim, uma mistura das minhas raízes e das minhas descobertas pelo caminho.";
+            Instrumentos = new List<NomeInstrumento> { NomeInstrumento.GUITARRA };
+            Generos = new List<NomeGenero> { NomeGenero.SERTANEJO };
+            Email = "marcos.jose123@gmail.com";
+            Logradouro = "R. Alcântara, 113 - Vila Guilherme,\nSão Paulo - SP, 02110-010";
+            Telefone = "(11) 99999-9999";
+            LinkFacebook = "marcos.jose";
+            LinkLinkdin = "marcos.jose";
+            LinkInsta = "marcos.jose";
+            LinkTwitter = "marcos.jose";
         }
     }
 }

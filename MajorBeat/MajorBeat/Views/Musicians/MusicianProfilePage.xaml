@@ -8,10 +8,14 @@
     <ContentPage.BindingContext>
         <vm:ProfileMusicianViewModel />
     </ContentPage.BindingContext>
-    
+
     <Grid Margin="0,30,0,0">
-        <ScrollView Grid.Row="0">
+
+        <!-- Conteúdo principal -->
+        <ScrollView>
             <VerticalStackLayout>
+
+                <!-- Cabeçalho -->
                 <ImageButton Source="threepoints.png" HeightRequest="40" HorizontalOptions="End" Margin="0,0,-60,5" />
                 <StackLayout Orientation="Horizontal">
                     <Image Source="profilepicture.png" HeightRequest="120" HorizontalOptions="Start" Margin="20,0,0,0" />
@@ -25,111 +29,134 @@
                     </StackLayout>
                 </StackLayout>
 
-                <!-- Carrossel de Imagens -->
+                <!-- Carrossel -->
                 <Grid>
-                    <CarouselView x:Name="ImageCarousel"
-                          ItemsSource="{Binding Images}"
-                          Position="{Binding CurrentIndex, Mode=TwoWay}"
-                          Margin="0,20,0,20" >
+                    <CarouselView ItemsSource="{Binding Images}"
+                                  Position="{Binding CurrentIndex, Mode=TwoWay}"
+                                  Margin="0,20,0,20">
                         <CarouselView.ItemTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding}"
-                               Aspect="AspectFill"
-                               HeightRequest="300"/>
+                                <Image Source="{Binding}" Aspect="AspectFill" HeightRequest="300"/>
                             </DataTemplate>
                         </CarouselView.ItemTemplate>
                     </CarouselView>
 
-                    <!-- Contador -->
-                    <Frame HorizontalOptions="End"
-                       VerticalOptions="Start"
-                       Margin="0,35,20,0"
-                       BackgroundColor="#4F1271"
-                       HeightRequest="40"
-                       WidthRequest="45"
-                       CornerRadius="12"                   
-                       Padding="8">
-                        <Label x:Name="PositionLabel"
-                           Text="1/3"
-                           FontSize="16"
-                           TextColor="White"
-                           FontAttributes="Bold"
-                           VerticalOptions="Center" 
-                           HorizontalOptions="Center" />
+                    <Frame HorizontalOptions="End" VerticalOptions="Start"
+                           Margin="0,35,20,0"
+                           BackgroundColor="#4F1271"
+                           HeightRequest="40"
+                           WidthRequest="45"
+                           CornerRadius="12"
+                           Padding="8">
+                        <Label Text="{Binding PositionText}"
+                               FontSize="16"
+                               TextColor="White"
+                               FontAttributes="Bold"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center" />
                     </Frame>
                 </Grid>
 
-                <!-- Label tabs -->
+                <!-- Tabs -->
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="20,0,0,0">
+
+                    <!-- Galeria -->
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="2" />
                         </Grid.RowDefinitions>
-                        <Label x:Name="TabGaleria"
-                               Text="Galeria" 
-                               FontSize="25" 
-                               TextColor="#4F1271" 
-                               FontAttributes="Bold">
+                        <Label Text="Galeria"
+                               FontSize="25"
+                               TextColor="#783F8E"
+                               FontAttributes="None">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnGaleriaTapped" />
+                                <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Galeria" />
                             </Label.GestureRecognizers>
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding SelectedTab}" Value="Galeria">
+                                    <Setter Property="TextColor" Value="#4F1271" />
+                                    <Setter Property="FontAttributes" Value="Bold" />
+                                </DataTrigger>
+                            </Label.Triggers>
                         </Label>
-                        <BoxView x:Name="BoxViewGaleria"
-                                 Grid.Row="1"
-                                 HeightRequest="4" 
-                                 BackgroundColor="#4F1271"
-                                 HorizontalOptions="Start"
-                                 WidthRequest="90" />
+                        <BoxView Grid.Row="1" HeightRequest="3" BackgroundColor="#783F8E" WidthRequest="90">
+                            <BoxView.Triggers>
+                                <DataTrigger TargetType="BoxView" Binding="{Binding SelectedTab}" Value="Galeria">
+                                    <Setter Property="HeightRequest" Value="4" />
+                                    <Setter Property="BackgroundColor" Value="#4F1271" />
+                                </DataTrigger>
+                            </BoxView.Triggers>
+                        </BoxView>
                     </Grid>
+
+                    <!-- Sobre -->
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="2"/>
                         </Grid.RowDefinitions>
-                        <Label x:Name="TabSobre"
-                                   Text="Sobre"
-                                   FontSize="25"
-                                   TextColor="#783F8E"
-                                   Padding="50,0,50,0"
-                                   FontAttributes="None"
-                                   HorizontalOptions="Center">
+                        <Label Text="Sobre"
+                               FontSize="25"
+                               TextColor="#783F8E"
+                               Padding="50,0,50,0"
+                               FontAttributes="None"
+                               HorizontalOptions="Center">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnSobreTapped" />
+                                <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Sobre" />
                             </Label.GestureRecognizers>
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding SelectedTab}" Value="Sobre">
+                                    <Setter Property="TextColor" Value="#4F1271" />
+                                    <Setter Property="FontAttributes" Value="Bold" />
+                                </DataTrigger>
+                            </Label.Triggers>
                         </Label>
-                        <BoxView x:Name="BoxViewSobre"
-                                 Grid.Row="1"
-                                 HeightRequest="3"
-                                 BackgroundColor="#783F8E"
-                                 WidthRequest="90"/>
+                        <BoxView Grid.Row="1" HeightRequest="3" BackgroundColor="#783F8E" WidthRequest="90">
+                            <BoxView.Triggers>
+                                <DataTrigger TargetType="BoxView" Binding="{Binding SelectedTab}" Value="Sobre">
+                                    <Setter Property="HeightRequest" Value="4" />
+                                    <Setter Property="BackgroundColor" Value="#4F1271" />
+                                </DataTrigger>
+                            </BoxView.Triggers>
+                        </BoxView>
                     </Grid>
+
+                    <!-- Avaliações -->
                     <Grid Margin="-25,0,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="2"/>
                         </Grid.RowDefinitions>
-                        <Label x:Name="TabAvaliacoes"
-                               Text="Avaliações"
+                        <Label Text="Avaliações"
                                FontSize="25"
                                TextColor="#783F8E"
                                Padding="20,0,20,0"
                                FontAttributes="None"
                                HorizontalOptions="End">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnAvaliacoesTapped" />
+                                <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Avaliacoes" />
                             </Label.GestureRecognizers>
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding SelectedTab}" Value="Avaliacoes">
+                                    <Setter Property="TextColor" Value="#4F1271" />
+                                    <Setter Property="FontAttributes" Value="Bold" />
+                                </DataTrigger>
+                            </Label.Triggers>
                         </Label>
-                        <BoxView x:Name="BoxViewAvaliacoes"
-                                 Grid.Row="1"
-                                 HeightRequest="3"
-                                 BackgroundColor="#783F8E"
-                                 WidthRequest="120" />
+                        <BoxView Grid.Row="1" HeightRequest="3" BackgroundColor="#783F8E" WidthRequest="120">
+                            <BoxView.Triggers>
+                                <DataTrigger TargetType="BoxView" Binding="{Binding SelectedTab}" Value="Avaliacoes">
+                                    <Setter Property="HeightRequest" Value="4" />
+                                    <Setter Property="BackgroundColor" Value="#4F1271" />
+                                </DataTrigger>
+                            </BoxView.Triggers>
+                        </BoxView>
                     </Grid>
                 </StackLayout>
 
-                <!-- Tab Galeria -->
-                <StackLayout x:Name="galeriaStack" Orientation="Vertical" Margin="3,20,0,90" IsVisible="True">
+                <!-- Conteúdo das abas -->
+                <StackLayout IsVisible="{Binding IsGaleriaVisible}" Margin="3,20,0,90">
                     <StackLayout Orientation="Horizontal">
                         <Image Source="imagepost.png" WidthRequest="130" />
                         <Image Source="imagepost.png" WidthRequest="130" Margin="5,0,5,0" />
@@ -142,8 +169,7 @@
                     </StackLayout>
                 </StackLayout>
 
-                <!-- Tab Sobre -->
-                <StackLayout x:Name="sobreStack" Orientation="Vertical" IsVisible="False" Margin="25,20,25,90">
+                <StackLayout IsVisible="{Binding IsSobreVisible}" Margin="25,20,25,90">
                     <Label Text="{Binding Biografia}"
                            TextColor="#4F1271"
                            FontAttributes="Bold"/>
@@ -153,7 +179,7 @@
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Border BackgroundColor="#E7E7E7" StrokeShape="RoundRectangle 5" WidthRequest="135" HeightRequest="70" Margin="20,10,0,0">
-                        <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Vertical">
                                 <!-- CollectionView para exibir os Instrumentos -->
                                 <CollectionView ItemsSource="{Binding Instrumentos}">
                                     <CollectionView.ItemTemplate>
@@ -223,8 +249,7 @@
                     </StackLayout>
                 </StackLayout>
 
-                <!-- Tab Avaliações -->
-                <StackLayout x:Name="avaliacoesStack" IsVisible="False" Margin="0,20,0,90">
+                <StackLayout IsVisible="{Binding IsAvaliacoesVisible}" Margin="0,20,0,90">
                     <StackLayout Orientation="Horizontal">
                         <Grid Margin="30,0,0,0">
                             <Grid.RowDefinitions>
@@ -258,9 +283,9 @@
                     <!-- Feeds avaliações -->
                     <Border BackgroundColor="#E7E7E7" HorizontalOptions="Start" Margin="10,10,0,0" WidthRequest="380" HeightRequest="150" >
                         <StackLayout Orientation="Vertical">
-                        <StackLayout Orientation="Horizontal">
-                            <Image Source="profilepicture.png" HeightRequest="50" VerticalOptions="Start" Margin="10,10,15,0"/>
-                            <Label Text="Restaurante" TextColor="#4F1271" FontAttributes="Bold" FontSize="19" Margin="0,15,0,0"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="profilepicture.png" HeightRequest="50" VerticalOptions="Start" Margin="10,10,15,0"/>
+                                <Label Text="Restaurante" TextColor="#4F1271" FontAttributes="Bold" FontSize="19" Margin="0,15,0,0"/>
                                 <StackLayout Orientation="Horizontal" Margin="120,10,0,0" >
                                     <Label Text="4,0" TextColor="#4F1271" FontAttributes="Bold" Margin="0,10,0,0"/>
                                     <StackLayout Orientation="Vertical" Margin="0,10,0,0">
@@ -289,72 +314,31 @@
                         </StackLayout>
                     </Border>
                 </StackLayout>
+
             </VerticalStackLayout>
-    </ScrollView>
-        
-    <!-- Footer fixo -->
-    <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,0,0,0" HeightRequest="70" VerticalOptions="End">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+        </ScrollView>
 
-        <!-- Botões do Footer -->
-        <!-- Botão 1 -->
-        <Frame Grid.Column="0"
-               WidthRequest="50" HeightRequest="50"
-               CornerRadius="25"
-               BackgroundColor="#AE92BD"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
-               HasShadow="True">
-            <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" Clicked="home_page_btn_Clicked"/>
-        </Frame>
+        <!-- Footer fixo -->
+        <Grid BackgroundColor="#4F1271" Padding="10" HeightRequest="70" VerticalOptions="End">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <!-- Botão 2 -->
-        <Frame Grid.Column="1"
-               WidthRequest="50" HeightRequest="50"
-               CornerRadius="25"
-               BackgroundColor="#AE92BD"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
-               HasShadow="True">
-            <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" Clicked="search_page_btn_Clicked"/>
-        </Frame>
+            <Frame Grid.Column="0" BackgroundColor="#AE92BD" CornerRadius="25">
+                <ImageButton Source="home.png" WidthRequest="24" HeightRequest="24" Clicked="home_page_btn_Clicked"/>
+            </Frame>
 
-        <!-- Botão 3 -->
-        <Frame Grid.Column="2"
-               WidthRequest="50" HeightRequest="50"
-               CornerRadius="25"
-               BackgroundColor="#AE92BD"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
-               HasShadow="True">
-            <Image Source="chathome.png" WidthRequest="24" HeightRequest="24"/>
-        </Frame>
+            <Frame Grid.Column="1" BackgroundColor="#AE92BD" CornerRadius="25">
+                <ImageButton Source="searchhome.png" WidthRequest="24" HeightRequest="24" Clicked="search_page_btn_Clicked"/>
+            </Frame>
 
-        <Frame Grid.Column="3"
-               WidthRequest="50" HeightRequest="50"
-               CornerRadius="25"
-               BackgroundColor="#AE92BD"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
-               HasShadow="True">
-            <Image Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
-        </Frame>
-
-        <Frame Grid.Column="4"
-               WidthRequest="50" HeightRequest="50"
-               CornerRadius="25"
-               BackgroundColor="#783F8E"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
-               HasShadow="True">
-            <ImageButton x:Name="profile_page_btn" Source="profilehome.png" WidthRequest="24" HeightRequest="24" Clicked="profile_page_btn_Clicked"/>
-        </Frame>
-    </Grid>
+            <Frame Grid.Column="4" BackgroundColor="#783F8E" CornerRadius="25">
+                <ImageButton Source="profilehome.png" WidthRequest="24" HeightRequest="24" Clicked="profile_page_btn_Clicked"/>
+            </Frame>
+        </Grid>
     </Grid>
 </ContentPage>
