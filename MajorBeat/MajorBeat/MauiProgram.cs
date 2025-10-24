@@ -86,6 +86,7 @@ EntryHandler.Mapper.AppendToMapping("CustomEntry", (handler, view) =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                  
                 });
                 
             

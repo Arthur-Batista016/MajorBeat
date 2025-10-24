@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MajorBeat.Views.Hirers.HirerSearchPage"
              xmlns:enums="clr-namespace:MajorBeat.Enums"
-             xmlns:converters="clr-namespace:MajorBeat.Converters"
+             xmlns:local="clr-namespace:MajorBeat.Converters"
              x:Name="SearchPage"
              NavigationPage.HasNavigationBar="False"
              Shell.NavBarIsVisible="False">
@@ -11,8 +11,11 @@
 
 
     <ContentPage.Resources>
-        <converters:GeneroToStringConverter x:Key="GeneroConverter" />
+        <ResourceDictionary>
+            <local:GeneroWidthConverter x:Key="GeneroWidthConverter" />
+        </ResourceDictionary>
     </ContentPage.Resources>
+
 
 
     <Grid>
@@ -71,7 +74,7 @@
         <ScrollView Grid.Row="1" Margin="0,0,0,20" IsVisible="{Binding HirerNoSelect}">
             <VerticalStackLayout>
 
-                
+
 
                 <Grid HorizontalOptions="Center" Margin="0,30,0,0">
                     <Grid.RowDefinitions>
@@ -87,140 +90,142 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-
-
-
-
-
                     <Grid Grid.Row="1" x:Name="event1" Margin="0,0,200,0">
-                        <ImageButton Source="axe.png"
-                         HeightRequest="140"
-                         Command="{Binding GeneroCommand}"
-                         CommandParameter="{x:Static enums:NomeGenero.AXÉ}" />
+                        <ImageButton Source="{Binding AxeImage}"
+                     HeightRequest="140"
+                     Command="{Binding GeneroCommand}"
+                     CommandParameter="{x:Static enums:NomeGenero.AXÉ}"
+                     BackgroundColor="Transparent"                />
                     </Grid>
 
                     <Grid Grid.Row="1" Margin="200,0,0,0" x:Name="event2" HorizontalOptions="End">
-                        <ImageButton Source="blues.png"
-                         HeightRequest="140"
-                         Command="{Binding GeneroCommand}"
-                         CommandParameter="{x:Static enums:NomeGenero.BLUES}" />
+                        <ImageButton Source="{Binding BluesImage}"
+                     HeightRequest="140"
+                     Command="{Binding GeneroCommand}"
+                     CommandParameter="{x:Static enums:NomeGenero.BLUES}"
+                     BackgroundColor="Transparent"  />
                     </Grid>
 
                     <Grid Grid.Row="2" x:Name="event3" Margin="0,20,200,0">
-                        <ImageButton Source="classico.png"
-                         HeightRequest="140"
-                         Command="{Binding GeneroCommand}"
-                         CommandParameter="{x:Static enums:NomeGenero.CLASSICO}" />
+                        <ImageButton Source="{Binding ClassicoImage}"
+                     HeightRequest="140"
+                     Command="{Binding GeneroCommand}"
+                     CommandParameter="{x:Static enums:NomeGenero.CLÁSSICO}"
+                     BackgroundColor="Transparent" />
                     </Grid>
 
                     <Grid Grid.Row="2" x:Name="event4" Margin="200,20,0,0" HorizontalOptions="End">
-                        <ImageButton Source="disco.png"
-                         HeightRequest="140"
-                         Command="{Binding GeneroCommand}"
-                         CommandParameter="{x:Static enums:NomeGenero.DISCO}" />
+                        <ImageButton Source="{Binding DiscoImage}"
+                     HeightRequest="140"
+                     Command="{Binding GeneroCommand}"
+                     CommandParameter="{x:Static enums:NomeGenero.DISCO}" 
+                     BackgroundColor="Transparent" />
                     </Grid>
 
                     <Grid Grid.Row="3" x:Name="event5" Margin="0,20,200,0">
-                        <ImageButton Source="eletronico.png"
-                         HeightRequest="140"
-                         Command="{Binding GeneroCommand}"
-                         CommandParameter="{x:Static enums:NomeGenero.ELETRONICO}" />
+                        <ImageButton Source="{Binding EletronicoImage}"
+                     HeightRequest="140"
+                     Command="{Binding GeneroCommand}"
+                     CommandParameter="{x:Static enums:NomeGenero.ELETRONICO}" 
+                     BackgroundColor="Transparent" />
                     </Grid>
 
                     <Grid Grid.Row="3" x:Name="event6" Margin="200,20,0,0" HorizontalOptions="End">
-                        <ImageButton Source="forro.png"
-                         HeightRequest="140"
-                         Command="{Binding GeneroCommand}"
-                         CommandParameter="{x:Static enums:NomeGenero.FORRO}" />
+                        <ImageButton Source="{Binding ForroImage}"
+                     HeightRequest="140"
+                     Command="{Binding GeneroCommand}"
+                     CommandParameter="{x:Static enums:NomeGenero.FORRÓ}" 
+                      BackgroundColor="Transparent" />
                     </Grid>
 
                     <Grid Grid.Row="4" x:Name="event7" Margin="0,20,200,0">
-                        <ImageButton Source="funk.png"
-                         HeightRequest="140"
-                         Command="{Binding GeneroCommand}"
-                         CommandParameter="{x:Static enums:NomeGenero.FUNK}" />
+                        <ImageButton Source="{Binding FunkImage}"
+                     HeightRequest="140"
+                     Command="{Binding GeneroCommand}"
+                     CommandParameter="{x:Static enums:NomeGenero.FUNK}" 
+                     BackgroundColor="Transparent" />
                     </Grid>
 
                     <Grid Grid.Row="4" x:Name="event8" Margin="200,20,0,0" HorizontalOptions="End">
-                        <ImageButton Source="gospel.png"
-                         HeightRequest="140"
-                         Command="{Binding GeneroCommand}"
-                         CommandParameter="{x:Static enums:NomeGenero.GOSPEL}" />
+                        <ImageButton Source="{Binding GospelImage}"
+                     HeightRequest="140"
+                     Command="{Binding GeneroCommand}"
+                     CommandParameter="{x:Static enums:NomeGenero.GOSPEL}" 
+                     BackgroundColor="Transparent" />
                     </Grid>
 
                     <Grid Grid.Row="5" x:Name="event9" Margin="0,20,200,0">
-                        <ImageButton Source="hiphop.png"
-                         HeightRequest="140"
-                         Command="{Binding GeneroCommand}"
-                         CommandParameter="{x:Static enums:NomeGenero.RAP}" />
+                        <ImageButton Source="{Binding RapImage}"
+                     HeightRequest="140"
+                     Command="{Binding GeneroCommand}"
+                     CommandParameter="{x:Static enums:NomeGenero.RAP}" 
+                     BackgroundColor="Transparent" />
                     </Grid>
 
                     <Grid Grid.Row="5" x:Name="event10" Margin="200,20,0,0" HorizontalOptions="End">
-                        <ImageButton Source="infantil.png"
-                         HeightRequest="140"
-                         Command="{Binding GeneroCommand}"
-                         CommandParameter="{x:Static enums:NomeGenero.TRAP}" />
+                        <ImageButton Source="{Binding TrapImage}"
+                     HeightRequest="140"
+                     Command="{Binding GeneroCommand}"
+                     CommandParameter="{x:Static enums:NomeGenero.TRAP}" 
+                     BackgroundColor="Transparent" />
                     </Grid>
 
                     <Grid Grid.Row="6" x:Name="event11" Margin="0,20,200,0">
-                        <ImageButton Source="jazz.png"
-                         HeightRequest="140"
-                         Command="{Binding GeneroCommand}"
-                         CommandParameter="{x:Static enums:NomeGenero.JAZZ}" />
+                        <ImageButton Source="{Binding JazzImage}"
+                     HeightRequest="140"
+                     Command="{Binding GeneroCommand}"
+                     CommandParameter="{x:Static enums:NomeGenero.JAZZ}" 
+                      BackgroundColor="Transparent" />
                     </Grid>
 
                     <Grid Grid.Row="6" x:Name="event12" Margin="200,20,0,0" HorizontalOptions="End">
-                        <ImageButton Source="metal.png"
-                         HeightRequest="140"
-                         Command="{Binding GeneroCommand}"
-                         CommandParameter="{x:Static enums:NomeGenero.METAL}" />
+                        <ImageButton Source="{Binding MetalImage}"
+                     HeightRequest="140"
+                     Command="{Binding GeneroCommand}"
+                     CommandParameter="{x:Static enums:NomeGenero.METAL}" 
+                     BackgroundColor="Transparent" />
                     </Grid>
 
                     <Grid Grid.Row="7" x:Name="event13" Margin="0,20,200,0">
-                        <ImageButton Source="pop.png"
-                         HeightRequest="140"
-                         Command="{Binding GeneroCommand}"
-                         CommandParameter="{x:Static enums:NomeGenero.POP}" />
+                        <ImageButton Source="{Binding PopImage}"
+                     HeightRequest="140"
+                     Command="{Binding GeneroCommand}"
+                     CommandParameter="{x:Static enums:NomeGenero.POP}" 
+                     BackgroundColor="Transparent" />
                     </Grid>
 
                     <Grid Grid.Row="7" x:Name="event14" Margin="200,20,0,0" HorizontalOptions="End">
-                        <ImageButton Source="rock.png"
-                         HeightRequest="140"
-                         Command="{Binding GeneroCommand}"
-                         CommandParameter="{x:Static enums:NomeGenero.ROCK}" />
+                        <ImageButton Source="{Binding RockImage}"
+                     HeightRequest="140"
+                     Command="{Binding GeneroCommand}"
+                     CommandParameter="{x:Static enums:NomeGenero.ROCK}" 
+                     BackgroundColor="Transparent" />
                     </Grid>
 
                     <Grid Grid.Row="8" x:Name="event15" Margin="0,20,200,0">
-                        <ImageButton Source="samba.png"
-                         HeightRequest="140"
-                         Command="{Binding GeneroCommand}"
-                         CommandParameter="{x:Static enums:NomeGenero.SAMBA}" />
-                     </Grid>
-
-                    <Grid Grid.Row="8" x:Name="event16" Margin="200,20,0,0" HorizontalOptions="End">
-                        <ImageButton Source="sertanejo.png"
-                         HeightRequest="140"
-                         Command="{Binding GeneroCommand}"
-                         CommandParameter="{x:Static enums:NomeGenero.SERTANEJO}" />
-                        </Grid>
-
-                    <Grid Grid.Row="9" x:Name="event17" Margin="0,20,200,0">
-                        <ImageButton Source="outro.png"
-                             HeightRequest="140"
-                             Command="{Binding GeneroCommand}"
-                              />
+                        <ImageButton Source="{Binding SambaImage}"
+                     HeightRequest="140"
+                     Command="{Binding GeneroCommand}"
+                     CommandParameter="{x:Static enums:NomeGenero.SAMBA}" 
+                     BackgroundColor="Transparent" />
                     </Grid>
 
+                    <Grid Grid.Row="8" x:Name="event16" Margin="200,20,0,0" HorizontalOptions="End">
+                        <ImageButton Source="{Binding SertanejoImage}"
+                     HeightRequest="140"
+                     Command="{Binding GeneroCommand}"
+                     CommandParameter="{x:Static enums:NomeGenero.SERTANEJO}" 
+                     BackgroundColor="Transparent" />
+                    </Grid>
 
-
-
-
-
-
-
-
-
+                    <Grid Grid.Row="9" x:Name="event17" Margin="0,20,200,0">
+                        <ImageButton Source="{Binding OutroImage}"
+                     HeightRequest="140"
+                                     BackgroundColor="Transparent" 
+                      />
+                    </Grid>
                 </Grid>
+
             </VerticalStackLayout>
         </ScrollView>
 
@@ -289,36 +294,36 @@
 
 
 
-                              
+
 
                                 <!-- Informações do evento -->
                                 <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End" VerticalOptions="End" HeightRequest="250" Margin="0,0,0,50">
                                     <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,0,0,0">
-                                        
+
                                         <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="20,100,0,20"/>
 
 
                                         <!--Generos Musicais-->
                                         <Grid>
-                                            <CollectionView ItemsSource="{Binding nomeGeneros}" ItemsLayout="HorizontalList" Margin="0,5,0,0">
-                                            <CollectionView.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Border StrokeShape="RoundRectangle 8,8,8,8" BackgroundColor="#FFFFFF" Margin="20,20,0,0" WidthRequest="100" HorizontalOptions="Start" HeightRequest="35">
-                                                        <Label Text="{Binding ., Converter={StaticResource GeneroConverter}}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="17" FontAttributes="Bold" Margin="0,0,0,0" />
-                                                    </Border>
-                                                </DataTemplate>
-                                            </CollectionView.ItemTemplate>
-                                        </CollectionView>
+                                            <CollectionView ItemsSource="{Binding nomeGeneros}" ItemsLayout="HorizontalList" Margin="0,5,0,0" HeightRequest="150">
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#FFFFFF" Margin="20,-100,0,0" WidthRequest="{Binding ., Converter={StaticResource GeneroWidthConverter}}" HorizontalOptions="Start" HeightRequest="35">
+                                                            <Label Text="{Binding ., Converter={StaticResource GeneroConverter}}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" Margin="0,3,0,0" />
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
                                         </Grid>
-                                        
+
                                         <Grid>
-                                            <Label Text="{Binding avaliacoes[0].nota}" TextColor="#ffffff" FontSize="27" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-122,50,0"/>
-                                            <Image Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-120,10,0"/>
+                                            <Label Text="{Binding avaliacoes[0].nota}" TextColor="#ffffff" FontSize="27" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-207,50,0"/>
+                                            <Image Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-205,10,0"/>
                                         </Grid>
 
                                     </VerticalStackLayout>
                                 </Border>
-                            
+
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

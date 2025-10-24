@@ -60,82 +60,96 @@
 
         <ScrollView Grid.Row="1" Margin="0,0,0,20">
             <VerticalStackLayout>
-             
-                <Label Grid.Row="0" Text="TIPOS DE EVENTO" HorizontalOptions="Start" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" Margin="20,40,0,50"/>
-
-        <Grid HorizontalOptions="Center" Margin="0,0,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/> 
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
 
 
-                   
+
+                <Grid HorizontalOptions="Center" Margin="0,30,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+
+
 
 
 
                     <Grid Grid.Row="1" x:Name="event1" Margin="0,0,200,0">
-                <Image  Source="birthday.png" HeightRequest="140"/>
-                <Label Text="Aniversário" TextColor="#FFFFFF"  FontAttributes="Bold" Margin="10,10,0,0"/>
-            </Grid>
+                        <ImageButton Source="birthday.png"
+                 HeightRequest="140"
+                 Command="{Binding GeneroCommand}"
+                  />
+                    </Grid>
 
-            <Grid Grid.Row="1" Margin="100,0,0,0" x:Name="event2" HorizontalOptions="End">
-                <Image Source="bar" HeightRequest="140"/>
-                <Label Text="Bar" TextColor="#FFFFFF" FontAttributes="Bold" Margin="10,10,0,0"/>
-            </Grid>
+                    <Grid Grid.Row="1" Margin="200,0,0,0" x:Name="event2" HorizontalOptions="End">
+                        <ImageButton Source="bar.png"
+                 HeightRequest="140"
+                 Command="{Binding GeneroCommand}"
+                 />
+                    </Grid>
 
-          
-                <Grid Grid.Row="2" x:Name="event3" Margin="0,30,200,0">
-                <Image Source="casamento" HeightRequest="140"/>
-                <Label Text="Casamento" TextColor="#FFFFFF"  FontAttributes="Bold" Margin="10,10,0,0"/>
-            </Grid>
+                    <Grid Grid.Row="2" x:Name="event3" Margin="0,20,200,0">
+                        <ImageButton Source="casamento.png"
+                 HeightRequest="140"
+                 Command="{Binding GeneroCommand}"
+                 />
+                    </Grid>
 
-            <Grid Grid.Row="2" x:Name="event4" Margin="100,30,0,0" HorizontalOptions="End">
-                <Image Source="corporative" HeightRequest="140"/>
-                <Label Text="Corporativo" TextColor="#FFFFFF"  FontAttributes="Bold" Margin="10,10,0,0"/>
-            </Grid>
+                    <Grid Grid.Row="2" x:Name="event4" Margin="200,20,0,0" HorizontalOptions="End">
+                        <ImageButton Source="corporative.png"
+                 HeightRequest="140"
+                 Command="{Binding GeneroCommand}"
+                 />
+                    </Grid>
+
+                    <Grid Grid.Row="3" x:Name="event5" Margin="0,20,200,0">
+                        <ImageButton Source="festival.png"
+                 HeightRequest="140"
+                 Command="{Binding GeneroCommand}"
+                 />
+                    </Grid>
+
+                    <Grid Grid.Row="3" x:Name="event6" Margin="200,20,0,0" HorizontalOptions="End">
+                        <ImageButton Source="formatura.png"
+                 HeightRequest="140"
+                 Command="{Binding GeneroCommand}"
+                  />
+                    </Grid>
+
+                    <Grid Grid.Row="4" x:Name="event7" Margin="0,20,200,0" HorizontalOptions="End">
+                        <ImageButton Source="funeral.png"
+                            HeightRequest="140"
+                            Command="{Binding GeneroCommand}"
+                             />
+                    </Grid>
+
+                    <Grid Grid.Row="4" x:Name="event8" Margin="200,20,0,0" HorizontalOptions="End">
+                        <ImageButton Source="salaodefesta.png"
+                           HeightRequest="140"
+                           Command="{Binding GeneroCommand}"
+                             />
+                    </Grid>
 
 
 
 
 
-         
 
-            <Grid Grid.Row="3" x:Name="event5" Margin="0,30,200,0">
-                <Image Source="festival" HeightRequest="140"/>
-                <Label Text="Festival" TextColor="#FFFFFF" FontAttributes="Bold" Margin="10,10,0,0"/>
-            </Grid>
-
-            <Grid  Grid.Row="3" x:Name="event6" Margin="100,30,0,0" HorizontalOptions="End">
-                <Image Source="formatura" HeightRequest="140"/>
-                <Label Text="Formatura" TextColor="#FFFFFF"  FontAttributes="Bold" Margin="10,10,0,0"/>
-            </Grid>
-
-
-
-          
-                <Grid Grid.Row="4" x:Name="event7" Margin="0,30,200,0">
-                <Image Source="funeral" HeightRequest="140"/>
-                <Label Text="Funeral" TextColor="#FFFFFF"  FontAttributes="Bold" Margin="10,10,0,0"/>
-            </Grid>
-
-            <Grid Grid.Row="4" x:Name="event8" Margin="100,30,0,0" HorizontalOptions="End">
-                <Image Source="salaodefesta" HeightRequest="140"/>
-                <Label Text="Salão de Festa" TextColor="#FFFFFF"  FontAttributes="Bold" Margin="10,10,0,0"/>
-            </Grid>
 
 
 
 
                 </Grid>
-        </VerticalStackLayout>
+            </VerticalStackLayout>
         </ScrollView>
-
-
-
 
 
 

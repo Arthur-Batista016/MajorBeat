@@ -2,9 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Name="HomePage"
+             xmlns:local="clr-namespace:MajorBeat.Converters"
              x:Class="MajorBeat.Views.Hirers.HirerHomePage"
              NavigationPage.HasNavigationBar="False"
              Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:GeneroWidthConverter x:Key="GeneroWidthConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
     <!-- Grid da página inteira -->
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
@@ -12,6 +21,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+
+        
 
 
         <Grid Grid.Row="0">
@@ -46,8 +57,9 @@
                     <ImageButton Source="filter" HorizontalOptions="End" HeightRequest="20" BackgroundColor="Transparent"/>
                 </Border>
 
-                <Label Text="Musicos na sua região:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,0,0,0"/>
-                
+                <Label Text="Musicos na sua região:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,0,0,100"/>
+
+            
 
                 <!-- Eventos -->
                 <CollectionView ItemsSource="{Binding Musicos}"  Margin="0,0,0,40">
@@ -71,32 +83,36 @@
                                 </CarouselView>
 
                                 <!-- Contador de imagens -->
-                                <Border StrokeShape="RoundRectangle 10 10 0 0" Background="#4F1271" HeightRequest="25" WidthRequest="45" HorizontalOptions="End" VerticalOptions="Start" Margin="0,160,20,0">
+                                <Border IsVisible="False" StrokeShape="RoundRectangle 10 10 0 0" Background="#4F1271" HeightRequest="25" WidthRequest="45" HorizontalOptions="End" VerticalOptions="Start" Margin="0,160,20,0">
                                     <Label Text="{Binding BindingContext.PhotoCounter, Source={x:Reference HomePage}}" HorizontalTextAlignment="Center" TextColor="White" FontSize="15"/>
                                 </Border>
 
                                 <!-- Informações do evento -->
-                                <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End" VerticalOptions="End" HeightRequest="140">
+                                <!-- Informações do evento -->
+                                <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End" VerticalOptions="End" HeightRequest="250" Margin="0,0,0,50">
                                     <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,0,0,0">
-                                        <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="20,55,0,0"/>
-                                        
-                                        
+
+                                        <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="20,100,0,20"/>
+
+
                                         <!--Generos Musicais-->
-                                        <CollectionView ItemsSource="{Binding nomeGenero}" ItemsLayout="HorizontalList" Margin="0,5,0,0">
-                                            <CollectionView.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Border StrokeShape="RoundRectangle 8,8,8,8" BackgroundColor="#FFFFFF" Margin="20,20,0,0" WidthRequest="100" HorizontalOptions="Start" HeightRequest="35">
-                                                        <Label Text="{Binding .}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Margin="0,4,0,0"/>
-                                                    </Border>
-                                                </DataTemplate>
-                                            </CollectionView.ItemTemplate>
-                                        </CollectionView>
+                                        <Grid>
+                                            <CollectionView ItemsSource="{Binding nomeGeneros}" ItemsLayout="HorizontalList" Margin="0,5,0,0" HeightRequest="150">
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#FFFFFF" Margin="20,-100,0,0" WidthRequest="{Binding ., Converter={StaticResource GeneroWidthConverter}}" HorizontalOptions="Start" HeightRequest="35">
+                                                            <Label Text="{Binding ., Converter={StaticResource GeneroConverter}}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" Margin="0,3,0,0" />
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+                                        </Grid>
 
                                         <Grid>
-                                            <Label Text="{Binding avaliacoes[0].nota}" TextColor="#ffffff" FontSize="Large" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-95,50,0"/>
-                                            <Image Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-95,10,0"/>
+                                            <Label Text="{Binding avaliacoes[0].nota}" TextColor="#ffffff" FontSize="27" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-207,50,0"/>
+                                            <Image Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-205,10,0"/>
                                         </Grid>
-                                        
+
                                     </VerticalStackLayout>
                                 </Border>
                             </Grid>
@@ -119,11 +135,11 @@
 
                 <!-- Botões -->
                 <Frame Grid.Column="0" WidthRequest="60" HeightRequest="60" CornerRadius="30" BackgroundColor="#783F8E" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
-                    <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" />
+                    <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24"  />
                 </Frame>
 
                 <Frame Grid.Column="1" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
-                    <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" />
+                    <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" Clicked="search_page_btn_Clicked" />
                 </Frame>
 
                 <Frame Grid.Column="2" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">

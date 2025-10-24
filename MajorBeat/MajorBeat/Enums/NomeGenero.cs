@@ -18,7 +18,7 @@ namespace MajorBeat.Enums
         METAL,
         REGGAE,
         BLUES,
-        FORRO,
+        FORRÓ,
         AXÉ,
         PAGODE,
         MPB,
@@ -26,7 +26,7 @@ namespace MajorBeat.Enums
         ELETRONICO,
         COUNTRY,
         GOSPEL,
-        CLASSICO,
+        CLÁSSICO,
         TRAP,
         DISCO,
         

@@ -97,7 +97,7 @@ namespace MajorBeat.ViewModels.Users
         public ObservableCollection<NomeGenero> generos = new ObservableCollection<NomeGenero>
     {
         NomeGenero.AXÉ,
-        NomeGenero.CLASSICO,
+        NomeGenero.CLÁSSICO,
         NomeGenero.ELETRONICO,
         NomeGenero.FUNK,
         NomeGenero.RAP,           // Hip-Hop/Rap
@@ -105,7 +105,7 @@ namespace MajorBeat.ViewModels.Users
         NomeGenero.POP,
         NomeGenero.SAMBA,
         NomeGenero.BLUES,
-        NomeGenero.FORRO,
+        NomeGenero.FORRÓ,
         NomeGenero.GOSPEL,
         NomeGenero.TRAP,          // Infantil (você pode criar um enum separado se quiser)
         NomeGenero.METAL,
@@ -230,6 +230,27 @@ namespace MajorBeat.ViewModels.Users
 
         //Hirer Search Page
 
+        // Imagens fixas para cada gênero
+        public string AxeImage => "axe.png";
+        public string BluesImage => "blues.png";
+        public string ClassicoImage => "classico.png";
+        public string DiscoImage => "disco.png";
+        public string EletronicoImage => "eletronico.png";
+        public string ForroImage => "forro.png";
+        public string FunkImage => "funk.png";
+        public string GospelImage => "gospel.png";
+        public string RapImage => "hiphop.png";
+        public string TrapImage => "infantil.png";
+        public string JazzImage => "jazz.png";
+        public string MetalImage => "metal.png";
+        public string PopImage => "pop.png";
+        public string RockImage => "rock.png";
+        public string SambaImage => "samba.png";
+        public string SertanejoImage => "sertanejo.png";
+        public string OutroImage => "outro.png";
+        /// 
+
+
         [ObservableProperty]
         public bool hirerNoSelect = true;
 
@@ -289,6 +310,25 @@ namespace MajorBeat.ViewModels.Users
                 return Musicos = new ObservableCollection<Musico>();
             }
         }
+
+
+
+
+        ///MUSICIAN SEARCH PAGE 
+
+
+      
+
+
+
+
+        
+
+
+
+
+
+
 
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using MajorBeat.Models;
 using MajorBeat.Services.Musicians;
@@ -15,9 +16,15 @@ namespace MajorBeat.ViewModels.Hirers
     {
 
         MusicianService _mService;
+        
         private ObservableCollection<Musico> musicos;
+        
         [ObservableProperty]
         private string currentToken;
+
+        [ObservableProperty]
+        private string marginGenero = "100";
+
 
         public HirerHomePageViewModel()
         {
@@ -28,9 +35,10 @@ namespace MajorBeat.ViewModels.Hirers
             EventPhoto = new ObservableCollection<string>();
             musicos = new ObservableCollection<Musico>();
 
-            Task.Run(async () => await ExibirTodosMusicos());
+            ExibirTodosMusicos();
         }
 
+        public ICommand GerarCommand { get; set; }
 
 
         private ObservableCollection<string> eventPhoto;
@@ -101,18 +109,20 @@ namespace MajorBeat.ViewModels.Hirers
             HasMusicians = Musicos != null && Musicos.Count > 0;
         }
 
-        public async Task ExibirTodosMusicos()
+        public async Task<ObservableCollection<Musico>> ExibirTodosMusicos()
         {
             try
             {
                 
                 ObservableCollection<Musico> musicos = await _mService.GetAllMusicians();
                 Musicos = musicos;
+                return Musicos;
                
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Erro ao carregar musicos: {ex.Message}");
+                return Musicos = new ObservableCollection<Musico>();
             }
         }
 

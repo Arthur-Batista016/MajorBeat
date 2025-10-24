@@ -35,7 +35,7 @@ public class LoginViewModel : BaseViewModel
                     $"Contratante {c.nome} autenticado com sucesso!",
                     "OK"
                 );
-                await Application.Current.MainPage.Navigation.PushAsync(new Views.Hirers.HirerHomePage());
+                await Application.Current.MainPage.Navigation.PushAsync(new Views.Musicians.MusicianSearchPage());
             }
             catch
             {
@@ -51,7 +51,7 @@ public class LoginViewModel : BaseViewModel
                     $"Musico {m.nome}autenticado com sucesso!",
                     "OK"
                 );
-                await Application.Current.MainPage.Navigation.PushAsync(new Views.Musicians.MusicianHomePage());
+                await Application.Current.MainPage.Navigation.PushAsync(new Views.Musicians.MusicianSearchPage());
             }
 
 
