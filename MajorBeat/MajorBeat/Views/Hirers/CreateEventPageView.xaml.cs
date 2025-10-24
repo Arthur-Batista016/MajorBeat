@@ -1,4 +1,5 @@
 using MajorBeat.Models.Enums;
+using MajorBeat.Services;
 using MajorBeat.ViewModels.Hirer;
 
 namespace MajorBeat.Views.Hirers;

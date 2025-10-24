@@ -5,7 +5,10 @@
              Title="CreateEventPageView"
              BackgroundColor="#4F1271"
              Shell.NavBarIsVisible="False"
-            NavigationPage.HasNavigationBar="False">
+            NavigationPage.HasNavigationBar="False"
+             xmlns:viewModels="clr-namespace:MajorBeat.ViewModels.Hirer" 
+    xmlns:converters="clr-namespace:MajorBeat.Converters"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ScrollView>
         <VerticalStackLayout>
             <Grid>
@@ -13,6 +16,10 @@
                 <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,46,250,0" HorizontalOptions="Center"/>
                 <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
             </Grid>
+
+            
+
+
 
             <Label 
          Text="Criação de evento"
@@ -69,10 +76,48 @@
                          CornerRadius="30"
                          WidthRequest="30"
                          HeightRequest="30"
-                         Command="{Binding AddPhotoCommand}"/>
+                         Command="{Binding SelecionarMediaCommand}"/>
                     </Border>
 
                 </Grid>
+
+                <ContentPage.Resources>
+                    <converters:InvertedBoolConverter x:Key="InvertedBool" />
+                    <converters:PathToMediaSourceConverter x:Key="PathToMediaSource" />
+                </ContentPage.Resources>
+
+                <CollectionView ItemsSource="{Binding ArquivosDeMediaSelecionados}"
+        HeightRequest="150">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="5" WidthRequest="120" HeightRequest="120">
+
+                                <toolkit:MediaElement 
+            Source="{Binding FullPath, Converter={StaticResource PathToMediaSource}}"
+            IsVisible="{Binding IsVideo}"
+            ShouldAutoPlay="False"
+            ShouldShowPlaybackControls="True"
+            Aspect="AspectFill" />
+
+                                <Image 
+            Source="{Binding PreviewImageSource}"
+            IsVisible="{Binding IsVideo, Converter={StaticResource InvertedBool}}"
+            Aspect="AspectFill" />
+
+                                <Button Text="X"
+                VerticalOptions="Start"
+                HorizontalOptions="End"
+                
+                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateEventPageViewModel}}, Path=RemoverMediaCommand}"
+                CommandParameter="{Binding .}" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
                 <!--localização-->
                 <VerticalStackLayout Margin="0,10,0,0">

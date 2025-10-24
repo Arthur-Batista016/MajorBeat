@@ -2,6 +2,7 @@
 using Microsoft.Maui;
 using Microsoft.Maui.Controls.Hosting;
 using Microsoft.Maui.Hosting;
+using CommunityToolkit.Maui;
 
 #if ANDROID
 using AndroidX.AppCompat.Widget; // SearchView do AndroidX
@@ -37,6 +38,8 @@ namespace MajorBeat
 
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
+            .UseMauiCommunityToolkitMediaElement()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

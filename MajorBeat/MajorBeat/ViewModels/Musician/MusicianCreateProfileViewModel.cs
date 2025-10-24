@@ -1,5 +1,6 @@
 using MajorBeat.Models;
 using MajorBeat.Models.Enums;
+using MajorBeat.Services;
 using MajorBeat.Services.Usuarios;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,53 @@ namespace MajorBeat.ViewModels.Musician
 {
     public class MusicianCreateProfileViewModel : BaseViewModel
     {
+        private readonly MediaService _mediaService;
+        public ICommand RemoverMediaCommand { get; }
+        public ICommand SelecionarMediaCommand { get; }
+        public ObservableCollection<MediaFile> ArquivosDeMediaSelecionados { get; set; }
+
+
+
+        private async Task SelecionarMedia()
+        {
+            try
+            {
+                var pickOptions = new PickOptions
+                {
+                    PickerTitle = "Selecione Somente Imagens",
+                    FileTypes = FilePickerFileType.Images // <-- O FILTRO
+                };
+
+                var results = await FilePicker.Default.PickMultipleAsync(pickOptions);
+                if (results != null)
+                {
+                    foreach (var file in results)
+                    {
+                        // Usa o Modelo "Ideal" (MediaFile)
+                        var mediaFile = new MediaFile
+                        {
+                            OriginalFile = file
+                        };
+                        ArquivosDeMediaSelecionados.Add(mediaFile);
+                    }
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Erro", $"Falha ao selecionar mídia: {ex.Message}", "OK");
+            }
+        }
+
+
+        // O método RemoverMedia não muda
+        private void RemoverMedia(MediaFile mediaFile)
+        {
+            if (mediaFile != null)
+            {
+                ArquivosDeMediaSelecionados.Remove(mediaFile);
+            }
+        }
 
         private Musico musico { get; set; }
         public List<GeneroEnum> TodosGeneros { get; }
@@ -80,6 +128,16 @@ namespace MajorBeat.ViewModels.Musician
 
         public MusicianCreateProfileViewModel(Musico m)
         {
+
+            _mediaService = new MediaService();
+            RemoverMediaCommand = new Command<MediaFile>(RemoverMedia);
+
+
+            // --- INICIALIZAÇÃO ---
+            ArquivosDeMediaSelecionados = new ObservableCollection<MediaFile>();
+            SelecionarMediaCommand = new Command(async () => await SelecionarMedia());
+
+
             TodosGeneros = Enum.GetValues(typeof(GeneroEnum)).Cast<GeneroEnum>().ToList();
             GenerosFiltrados = new ObservableCollection<GeneroEnum>(TodosGeneros);
             TodosInstrumentos = Enum.GetValues(typeof(InstrumentoEnum)).Cast<InstrumentoEnum>().ToList();
@@ -362,6 +420,26 @@ namespace MajorBeat.ViewModels.Musician
             }
             try
             {
+                var token = Preferences.Get("UsuarioToken", string.Empty);
+                
+                List<string> urlsSalvas;
+
+                // 1. FAZ O UPLOAD (Somente se houver arquivos)
+                if (ArquivosDeMediaSelecionados.Count > 0)
+                {
+                    // Chama o serviço "Ideal" UMA VEZ com a lista inteira
+                    urlsSalvas = await _mediaService.UploadVariosArquivosAsync(
+                        ArquivosDeMediaSelecionados,
+                        token,
+                        "Musico/uploadTempMulti"); // <-- O endpoint "burro" de multi-upload
+                }
+                else
+                {
+                    urlsSalvas = new List<string>(); // Lista vazia
+                }
+
+
+
                 var usuario = musico;
                 usuario.biografia = Biografia;
                 usuario.apelido = Username;
@@ -372,6 +450,8 @@ namespace MajorBeat.ViewModels.Musician
                 usuario.linkTwitter = LinkTwitter;
                 usuario.linkFacebook = LinkFacebook;
                 usuario.linkLinkdin = LinkLinkedin;
+                usuario.mediaUrl = urlsSalvas;
+                
 
 
                 usuario.RedesSociais = new List<string>
@@ -380,27 +460,7 @@ namespace MajorBeat.ViewModels.Musician
             usuario.linkInsta,
             usuario.linkFacebook,
             usuario.linkTwitter,
-    };/*
-
-            string resumo =
-                $"Nome: {usuario.nome}\n" +
-                $"Email: {usuario.email}\n" +
-                $"Biografia: {usuario.biografia}\n" +
-                $"Telefone: {usuario.telefone}\n" +
-                $"Logradouro: {usuario.logradouro}, Nº {usuario.numero}\n" +
-                $"Bairro: {usuario.bairro}\n" +
-                $"Cidade: {usuario.cidade} - {usuario.uf}\n" +
-                $"CEP: {usuario.cep}\n" +
-                $"Senha: {usuario.senha}\n" +
-                $"NomePerfil: {usuario.username}\n"+
-                $"TipoMusico: {usuario.tipoMusico}\n"+
-                $"Bytes:{usuario.FotoBytes}\n"+
-                $"Instrumentos: {string.Join(", ", usuario.instrumentos)}\n" +
-                $"Gêneros: {string.Join(", ", usuario.generos)}\n" +
-                $"Links: {string.Join(", ", usuario.RedesSociais)}";
-
-
-            await Application.Current.MainPage.DisplayAlert("Resumo do Cadastro", resumo, "OK");*/
+    };
 
                 var service = new UsuarioService();
                 var musicoCadastrado = await service.PostMusicoAsync(usuario);
@@ -413,7 +473,7 @@ namespace MajorBeat.ViewModels.Musician
                 );
 
                 // Retorna à página anterior (ou navega conforme sua lógica)
-                await Application.Current.MainPage.Navigation.PopAsync();
+                await Application.Current.MainPage.Navigation.PushAsync(new Views.Users.InitialPage());
             }
             catch (Exception ex)
             {

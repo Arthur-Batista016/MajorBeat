@@ -1,5 +1,6 @@
 using MajorBeat.Models;
 using MajorBeat.Models.Enums;
+using MajorBeat.Services;
 using MajorBeat.Services.Usuarios;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Metrics;
@@ -9,11 +10,92 @@ namespace MajorBeat.ViewModels.Hirer;
 
 public class CreateEventPageViewModel : BaseViewModel
 {
+    private readonly MediaService _mediaService;
+    public ICommand RemoverMediaCommand { get; }
+    public ICommand SelecionarMediaCommand { get; }
+    public ObservableCollection<MediaFile> ArquivosDeMediaSelecionados { get; set; }
 
+    /*private async Task SelecionarMedia()
+    {
+        try
+        {
+            // --- INÍCIO DO CÓDIGO PARA OS "..." ---
+
+            // 1. Define os tipos de arquivo que queremos (MIME types e UTIs)
+            var customFileType = new FilePickerFileType(
+                new Dictionary<DevicePlatform, IEnumerable<string>>
+                {
+                // iOS (usa UTIs - Uniform Type Identifiers)
+                { DevicePlatform.iOS, new[] { "public.image", "public.movie" } }, 
+                
+                // Android (usa MIME types)
+                { DevicePlatform.Android, new[] { "image/*", "video/*" } }, 
+                
+                // Windows (usa extensões)
+                { DevicePlatform.WinUI, new[] { ".jpg", ".jpeg", ".png", ".gif", ".mp4", ".mov", ".avi", ".mkv" } }, 
+                
+                // Mac (usa UTIs)
+                { DevicePlatform.MacCatalyst, new[] { "public.image", "public.movie" } }
+                });
+
+            // 2. Cria as opções
+            var pickOptions = new PickOptions
+            {
+                PickerTitle = "Selecione Fotos ou Vídeos",
+                FileTypes = customFileType
+            };
+
+            // --- FIM DO CÓDIGO ---
+
+            // 3. Passa as opções para o método
+            var results = await FilePicker.Default.PickMultipleAsync(pickOptions);
+
+            if (results != null)
+            {
+                foreach (var file in results)
+                {
+                    bool isVideo = file.ContentType.StartsWith("video/");
+
+                    var mediaFile = new MediaFile
+                    {
+                        FileName = file.FileName,
+                        ContentType = file.ContentType,
+                        FullPath = file.FullPath, // <-- Salvamos o CAMINHO
+                        IsVideo = isVideo,
+                        // Só criamos o ImageSource se NÃO for vídeo
+                        PreviewImageSource = isVideo ? null : ImageSource.FromFile(file.FullPath)
+                    };
+
+                    ArquivosDeMediaSelecionados.Add(mediaFile);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            await Application.Current.MainPage.DisplayAlert("Erro", $"Falha ao selecionar mídia: {ex.Message}", "OK");
+        }
+    }*/
+
+    // O método RemoverMedia não muda
+    private void RemoverMedia(MediaFile mediaFile)
+    {
+        if (mediaFile != null)
+        {
+            ArquivosDeMediaSelecionados.Remove(mediaFile);
+        }
+    }
 
     private UsuarioService uService;
     public CreateEventPageViewModel()
     {
+        _mediaService = new MediaService();
+        RemoverMediaCommand = new Command<MediaFile>(RemoverMedia);
+
+
+        // --- INICIALIZAÇÃO ---
+        ArquivosDeMediaSelecionados = new ObservableCollection<MediaFile>();
+        //SelecionarMediaCommand = new Command(async () => await SelecionarMedia());
+
         TodosGeneros = Enum.GetValues(typeof(GeneroEnum)).Cast<GeneroEnum>().ToList();
         GenerosFiltrados = new ObservableCollection<GeneroEnum>(TodosGeneros);
         TodosInstrumentos = Enum.GetValues(typeof(InstrumentoEnum)).Cast<InstrumentoEnum>().ToList();
@@ -27,9 +109,10 @@ public class CreateEventPageViewModel : BaseViewModel
 
         string token = Preferences.Get("UsuarioToken",string.Empty);
         uService = new UsuarioService(token);
+        
 
 
-        RegistrarCommand = new Command(async () => await EventSave());
+       // RegistrarCommand = new Command(async () => await EventSave());
         AddPhotoCommand = new Command(async () => await OnAddPhotoClicked());
     }
 
@@ -138,8 +221,8 @@ public class CreateEventPageViewModel : BaseViewModel
         }
     }
 
-    private ObservableCollection<byte[]> _fotoBytes;
-    public ObservableCollection<byte[]> FotoBytes
+    private byte[] _fotoBytes;
+    public byte[] FotoBytes
     {
         get => _fotoBytes;
         set
@@ -255,7 +338,7 @@ public class CreateEventPageViewModel : BaseViewModel
             }
         }
     }
-    public async Task EventSave()
+   /* public async Task EventSave()
     {
         try
         {
@@ -264,6 +347,42 @@ public class CreateEventPageViewModel : BaseViewModel
                 await Application.Current.MainPage.DisplayAlert("Erro", "Por favor, corrija os erros nos campos destacados.", "OK");
                 return;
             }
+
+            var urlsSalvas = new List<string>();
+            var token = Preferences.Get("UsuarioToken", string.Empty);
+
+            // 1. FAZ O UPLOAD
+            foreach (var mediaFile in ArquivosDeMediaSelecionados)
+            {
+                // 2. LÊ OS BYTES DO ARQUIVO (SOMENTE AGORA!)
+                byte[] fileBytes;
+                try
+                {
+                    // File.ReadAllBytes é a forma mais fácil de ler do caminho
+                    fileBytes = File.ReadAllBytes(mediaFile.FullPath);
+                }
+                catch (Exception ex)
+                {
+                    // Falha ao ler o arquivo (ex: foi movido, permissão negada)
+                    await Application.Current.MainPage.DisplayAlert("Erro de Leitura", $"Não foi possível ler o arquivo: {mediaFile.FileName}. {ex.Message}", "OK");
+                    continue; // Pula este arquivo e tenta o próximo
+                }
+
+                // 3. Chama o serviço de upload (que espera byte[])
+                string url = await _mediaService.UploadFileParaCadastroAsync(
+                    fileBytes, // <-- Envia os bytes que acabamos de ler
+                    mediaFile.FileName,
+                    mediaFile.ContentType,
+                    token);
+
+                if (!string.IsNullOrEmpty(url))
+                {
+                    urlsSalvas.Add(url);
+                }
+            }
+
+
+
             Evento e = new Evento();
 
 
@@ -273,11 +392,12 @@ public class CreateEventPageViewModel : BaseViewModel
                 e.data = DataDoEvento;
                 e.instrumentos = InstrumentosSelecionados.ToList();
                 e.generos = GenerosSelecionados.ToList();
-                e.imagemLocalEvento = FotoBytes.ToList();
+            e.imagemLocalEvento = FotoBytes;
                 e.tipoEvento = Tipo;
                 e.tipoMusico = TipoMusico;
                 e.HoraInicio = HoraInicio;
                 e.HoraFim = HoraFim;
+                e.mediaUrl = urlsSalvas;
 
             var service = new UsuarioService();
             var musicoCadastrado = await uService.PostEventoAsync(e);
@@ -292,7 +412,7 @@ public class CreateEventPageViewModel : BaseViewModel
         {
             await Application.Current.MainPage.DisplayAlert("Erro", $"Não foi possível salvar o evento: {ex.Message}", "OK");
         }
-    }
+    }*/
     private async Task OnAddPhotoClicked()
     {
         await Task.Yield(); // Libera o UI thread

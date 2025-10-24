@@ -4,7 +4,15 @@
              x:Class="MajorBeat.Views.Musicians.MusicianCreateProfileView"
              BackgroundColor="#4F1271"
              Shell.NavBarIsVisible="False"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             xmlns:converters="clr-namespace:MajorBeat.Converters"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+              xmlns:viewModels="clr-namespace:MajorBeat.ViewModels.Musician">
+    <ContentPage.Resources>
+        <converters:InvertedBoolConverter x:Key="InvertedBool" />
+        <converters:PathToMediaSourceConverter x:Key="PathToMediaSource" />
+    </ContentPage.Resources>
+
     <ScrollView>
         <VerticalStackLayout>
             <Grid>
@@ -65,43 +73,12 @@
 
 
 
-
-
-
-
-                <!--         <Frame BackgroundColor="#f0f0f0" CornerRadius="10" Padding="10">
-                    <StackLayout>
-                        <SearchBar Placeholder="Digite aqui o instrumento"
-                       PlaceholderColor="Purple"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       CancelButtonColor="Purple" />
-
-                        <CollectionView  HeightRequest="80"
-                            ItemsSource="{Binding TodosInstrumentos}"
-                            SelectionMode="Multiple"
-                            SelectedItems="{Binding InstrumentosSelecionados}">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Label TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding .}" />
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </StackLayout>
-
-
-                </Frame>-->
-
-
-
-
-
-
-
-
-
-
             </Grid>
+
+
+            
+
+
             <!--Apelido-->
             <VerticalStackLayout WidthRequest="370">
 
@@ -128,19 +105,51 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Text="Destaques" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Label Grid.Row="0" Text="Adicione fotos:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
                     <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="200">
                         <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+<CollectionView ItemsSource="{Binding ArquivosDeMediaSelecionados}"
+HeightRequest="140">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
 
-                            <Border Stroke="#D9D9D9" StrokeShape="RoundRectangle 8" WidthRequest="185" HeightRequest="80" BackgroundColor="#D9D9D9" HorizontalOptions="Center" VerticalOptions="Center">
-                                <Label Text="Imagem PNG" FontSize="14" TextColor="black" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            </Border>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="5" WidthRequest="120" HeightRequest="120">
 
-                            <Label Text="Adicione fotos e vídeos favoritos aqui mostrando o seu talento." TextColor="#604F1271" FontAttributes="Bold" FontSize="14" HorizontalTextAlignment="Center" Margin="10,0,10,0"/>
-                            <Button Text="Adicionar" BackgroundColor="#4F1271" TextColor="White" CornerRadius="10" WidthRequest="150"/>
+                                <toolkit:MediaElement 
+    Source="{Binding FullPath, Converter={StaticResource PathToMediaSource}}"
+    IsVisible="{Binding IsVideo}"
+    ShouldAutoPlay="False"
+    ShouldShowPlaybackControls="True"
+    Aspect="AspectFill" />
+
+                                <Image 
+    Source="{Binding PreviewImageSource}"
+    IsVisible="{Binding IsVideo, Converter={StaticResource InvertedBool}}"
+    Aspect="AspectFill" />
+
+                                <Button Text="X"
+        VerticalOptions="Start"
+        HorizontalOptions="End"
+        
+        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MusicianCreateProfileViewModel}}, Path=RemoverMediaCommand}"
+        CommandParameter="{Binding .}" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                           
+                            
+                            <Button Text="Adicionar" BackgroundColor="#4F1271" TextColor="White" CornerRadius="10" WidthRequest="150" Command="{Binding SelecionarMediaCommand}" />
                         </VerticalStackLayout>
                     </Border>
                 </Grid>
+
+                
+
+                
 
 
                 <!--contatos-->

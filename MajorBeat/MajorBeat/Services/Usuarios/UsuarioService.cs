@@ -11,7 +11,7 @@ namespace MajorBeat.Services.Usuarios
     {
         private readonly Request _request;
 
-        private const string apiUrlBase = "http://localhost:8080/";
+        private const string apiUrlBase = "https://majorbeat-fzedc4ekbuaufncw.brazilsouth-01.azurewebsites.net/";
 
         public UsuarioService()
         {

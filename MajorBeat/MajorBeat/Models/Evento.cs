@@ -20,6 +20,7 @@ namespace MajorBeat.Models
         public byte[] imagemLocalEvento { get; set; }
         public TimeSpan HoraInicio { get; set; }
         public TimeSpan HoraFim { get; set; }
+        public List<string> mediaUrl { get; set; }
 
     }
 }

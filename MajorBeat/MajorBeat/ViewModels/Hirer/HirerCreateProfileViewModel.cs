@@ -1,7 +1,9 @@
 using MajorBeat.Models;
+using MajorBeat.Services;
 using MajorBeat.Services.Usuarios;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
@@ -13,14 +15,46 @@ namespace MajorBeat.ViewModels.Hirers
 {
     public class HirerCreateProfileViewModel : BaseViewModel
     {
+        private readonly MediaService _mediaService;
+        public ObservableCollection<FileResult> ArquivosDeMediaSelecionados { get; set; }
+        public ICommand SelecionarMediaCommand { get; }
         public ICommand ExibirResumoCommand { get; set; }
         private readonly UsuarioService uService;
         public ICommand AddPhotoCommand { get; }
         public ImageSource FotoSelecionada { get; set; }
 
         public Contratante Usuario { get; private set; }
+        private async Task SelecionarMedia()
+        {
+            try
+            {
+                // Permite selecionar vários
+                var results = await FilePicker.Default.PickMultipleAsync(new PickOptions
+                {
+                    PickerTitle = "Selecione imagens ou vídeos",
+                    // Deixe em branco para pegar qualquer tipo, ou especifique
+                    // FileTypes = FilePickerFileType.Images 
+                });
+
+                if (results != null)
+                {
+                    foreach (var file in results)
+                    {
+                        ArquivosDeMediaSelecionados.Add(file);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Erro", $"Falha ao selecionar mídia: {ex.Message}", "OK");
+            }
+        }
         public HirerCreateProfileViewModel(Contratante cc)
         {
+            _mediaService = new MediaService();
+            ArquivosDeMediaSelecionados = new ObservableCollection<FileResult>();
+            SelecionarMediaCommand = new Command(async () => await SelecionarMedia());
+
             Usuario = cc;
             AddPhotoCommand = new Command(async () => await OnAddPhotoClicked());
             ExibirResumoCommand = new Command(async () => await ExibirResumoCadastro());
@@ -219,21 +253,6 @@ namespace MajorBeat.ViewModels.Hirers
             usuario.linkTwitter,
     };
 
-            /* string resumo =
-                 $"Nome: {usuario.nome}\n" +
-                 $"Email: {usuario.email}\n" +
-                 $"Biografia: {usuario.biografia}\n" +
-                 $"Telefone: {usuario.telefone}\n" +
-                 $"Logradouro: {usuario.logradouro}, Nº {usuario.numero}\n" +
-                 $"Bairro: {usuario.bairro}\n" +
-                 $"Cidade: {usuario.cidade} - {usuario.uf}\n" +
-                 $"CEP: {usuario.cep}\n" +
-                 $"Senha: {usuario.senha}\n" +
-                 $"NomePerfil: {usuario.nomePerfil}\n" +
-                 $"Bytes:{usuario.FotoBytes}\n" +
-                 $"Links: {string.Join(", ", usuario.RedesSociais)}";
-
-             await Application.Current.MainPage.DisplayAlert("Resumo do Cadastro", resumo, "OK");*/
 
 
             var service = new UsuarioService();
@@ -248,9 +267,9 @@ namespace MajorBeat.ViewModels.Hirers
                 "OK"
             );
 
-            // Retorna à página anterior (ou navega conforme sua lógica)
-            await Application.Current.MainPage.Navigation.PopAsync();
-        }
+                // Retorna à página anterior (ou navega conforme sua lógica)
+                await Application.Current.MainPage.Navigation.PushAsync(new Views.Users.InitialPage());
+            }
             catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert(
