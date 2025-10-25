@@ -17,6 +17,7 @@ namespace MajorBeat.Enums
         FORMATURA,
         FUNERAL,
         RESTAURANTE,
-        FESTA
+        FESTA,
+        SALAO_DE_FESTAS
     }
 }

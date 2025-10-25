@@ -98,11 +98,11 @@
                                 <!-- Informações do evento -->
                                 <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End" VerticalOptions="End" HeightRequest="150">
                                     <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,0,0,0">
-                                        <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
-                                        <Label Text="{Binding TipoEvento}" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0"/>
+                                        <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
+                                        <Label Text="{Binding tipoEvento}" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0"/>
                                         
                                         <!--Generos Musicais-->
-                                        <CollectionView ItemsSource="{Binding NomeGenero}" ItemsLayout="HorizontalList">
+                                        <CollectionView ItemsSource="{Binding nomeGenero}" ItemsLayout="HorizontalList">
                                             <CollectionView.ItemTemplate>
                                                 <DataTemplate>
                                                     <Border StrokeShape="RoundRectangle 8,8,8,8" BackgroundColor="#FFFFFF" Margin="20,20,0,0" WidthRequest="100" HorizontalOptions="Start" HeightRequest="35">

@@ -24,7 +24,7 @@ namespace MajorBeat.Models
         public DateTime? dtCriacao { get; set; }
 
         public ObservableCollection<string> links { get; set; } = new();
-        public TipoMusico tipoMusico { get; set; }
+        public TipoMusico? tipoMusico { get; set; }
         public ObservableCollection<NomeInstrumento> nomeInstrumento { get; set; } = new();
         public ObservableCollection<NomeGenero> nomeGeneros { get; set; } = new();
         public Role? role { get; set; }

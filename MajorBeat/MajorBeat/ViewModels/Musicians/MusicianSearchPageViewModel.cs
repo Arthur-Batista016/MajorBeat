@@ -2,11 +2,9 @@
 using CommunityToolkit.Mvvm.Input;
 using MajorBeat.Enums;
 using MajorBeat.Models;
-using MajorBeat.Services.Musicians;
 using MajorBeat.Services.Users;
 using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Graphics.Text;
-using Microsoft.Maui.Platform;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,17 +13,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MajorBeat.ViewModels.Users
+namespace MajorBeat.ViewModels.Musicians
 {
-    public partial class SearchBarViewModel : ObservableObject
+    public partial class MusicianSearchPageViewModel:ObservableObject
     {
- 
+
+
 
 
         EventService _eService;
-        MusicianService _mService;
+     
 
-      
 
         [ObservableProperty]
         ObservableCollection<Evento> eventos;
@@ -37,6 +35,7 @@ namespace MajorBeat.ViewModels.Users
 
 
 
+        //METODOS DE PESQUISA
         [ObservableProperty]
         public bool barVisibility = false;
 
@@ -57,7 +56,7 @@ namespace MajorBeat.ViewModels.Users
         [ObservableProperty]
         public string lupa = "lupainverted.png";
 
-        
+
         private string userEntry;
 
         public string UserEntry
@@ -119,54 +118,36 @@ namespace MajorBeat.ViewModels.Users
 
         public ICommand SearchCommand { get; set; }
 
-        public SearchBarViewModel()
-        {
-            InicializarCommands();
-            onUnfocus();
-            _mService = new MusicianService();
-   
-
-            GeneroCommand = new AsyncRelayCommand<NomeGenero>(BuscarPorGenero);
-            BackGenreCommand = new Command(async () => await BackGenreChoosed());
-
-
-
-
-
-
-
-        }
 
         public void InicializarCommands()
         {
             Searchs = new ObservableCollection<string>();
             SearchCommand = new Command(async () => await search());
 
-         
+
         }
 
 
-        //METODOS DE PESQUISA
         public async Task onFocus()
         {
             if (Searchs.Count() == 0)
             {
-               BarFormat = new RoundRectangle { CornerRadius = new CornerRadius(10, 10, 10, 10) };
+                BarFormat = new RoundRectangle { CornerRadius = new CornerRadius(10, 10, 10, 10) };
             }
-            else if(Searchs.Count() >0 )
+            else if (Searchs.Count() > 0)
             {
-                
+
                 BarFormat = new RoundRectangle { CornerRadius = new CornerRadius(10, 10, 0, 0) };
                 RecentSearch = true;
             }
-            
+
             BarBackground = "#E7E7E7";
             BarVisibility = true;
             PlaceholderColor = Color.FromArgb("#4F1271");
             TextColor = Color.FromArgb("#4F1271");
             Lupa = "lupafocus.png";
-            
-           
+
+
         }
 
         public async Task onUnfocus()
@@ -183,20 +164,21 @@ namespace MajorBeat.ViewModels.Users
 
         public async Task recentSearchs()
         {
-            if(Searchs.Count() != 0) {
+            if (Searchs.Count() != 0)
+            {
                 RecentSearch = true;
             }
-            
+
         }
 
         public async Task search()
         {
-         
-                Searchs.Add(userEntry);
-                BarBackground = "#4F1271";
-                OnPropertyChanged(nameof(RecentSearchHeight));
-                await onUnfocus();
-            
+
+            Searchs.Add(userEntry);
+            BarBackground = "#4F1271";
+            OnPropertyChanged(nameof(RecentSearchHeight));
+            await onUnfocus();
+
         }
 
         public async Task searchByLetters()
@@ -224,99 +206,94 @@ namespace MajorBeat.ViewModels.Users
 
 
 
-        //METODOS HIRER SEARCH PAGE]
 
 
 
-        //Hirer Search Page
-
-        // Imagens fixas para cada gênero
-        public string AxeImage => "axe.png";
-        public string BluesImage => "blues.png";
-        public string ClassicoImage => "classico.png";
-        public string DiscoImage => "disco.png";
-        public string EletronicoImage => "eletronico.png";
-        public string ForroImage => "forro.png";
-        public string FunkImage => "funk.png";
-        public string GospelImage => "gospel.png";
-        public string RapImage => "hiphop.png";
-        public string TrapImage => "infantil.png";
-        public string JazzImage => "jazz.png";
-        public string MetalImage => "metal.png";
-        public string PopImage => "pop.png";
-        public string RockImage => "rock.png";
-        public string SambaImage => "samba.png";
-        public string SertanejoImage => "sertanejo.png";
-        public string OutroImage => "outro.png";
-        /// 
-
-
-        [ObservableProperty]
-        public bool hirerNoSelect = true;
-
-        [ObservableProperty]
-        public bool isSearch = false;
-
-        [ObservableProperty]
-        public bool findResults = true;
-
-        [ObservableProperty]
-        public bool noMusics = false;
 
 
 
-        public ICommand GeneroCommand { get; set; }
-        public ICommand BackGenreCommand { get; set; }
 
-        public async Task BackGenreChoosed()
+
+
+
+
+        ///MUSICIAN SEARCH PAGE 
+
+
+      
+
+        public MusicianSearchPageViewModel()
         {
-            HirerNoSelect = true;
-            IsSearch = false;
-            FindResults = false;
-            NoMusics = false;
-            Musicos = new ObservableCollection<Musico>();
+          
+            InicializarCommands();
+            onUnfocus();
+            _eService = new EventService();
+
+
+            TipoEventoCommand = new AsyncRelayCommand<TipoEvento>(BuscarEventosTipo);
+            BackEventCommand = new Command(async () => await BackEventChoosed());
+
         }
 
 
-        
+        [ObservableProperty]
+        public bool musicianNoSelect = true;
+
+        [ObservableProperty]
+        public bool isSearchEvent = false;
+
+        [ObservableProperty]
+        public bool findEvents = true;
+
+        [ObservableProperty]
+        public bool noEvents = false;
 
 
-        private async Task<ObservableCollection<Musico>> BuscarPorGenero(NomeGenero genero)
+
+        public ICommand TipoEventoCommand { get; set; }
+        public ICommand BackEventCommand { get; set; }
+
+
+        public async Task BackEventChoosed()
+        {
+            MusicianNoSelect = true;
+            IsSearchEvent = false;
+            FindEvents = false;
+            NoEvents = false;
+            Eventos = new ObservableCollection<Evento>();
+        }
+
+
+
+        private async Task<ObservableCollection<Evento>> BuscarEventosTipo(TipoEvento evento)
         {
             try
             {
-                var resultado = await _mService.GetMusicianByGenre(genero);
-                Musicos = resultado;
+                var resultado = await _eService.GetEventByTipoEvento(evento);
+                Eventos = resultado;
 
-                if (Musicos?.Count > 0)
+                if (Eventos?.Count > 0)
                 {
-                  
-                    HirerNoSelect = false;
-                    IsSearch = true;
-                    FindResults = true;
-                    NoMusics = false;
 
-                    
+                    MusicianNoSelect = false;
+                    IsSearchEvent = true;
+                    FindEvents = true;
+                    NoEvents = false;
+
+
                 }
-               
-                return Musicos;
+
+                return Eventos;
             }
             catch (Exception ex)
             {
-                HirerNoSelect = false;
-                NoMusics = true;
-                IsSearch = false;
-                FindResults = false;
-                return Musicos = new ObservableCollection<Musico>();
+                MusicianNoSelect = false;
+                NoEvents = true;
+                IsSearchEvent = false;
+                FindEvents = false;
+                return Eventos = new ObservableCollection<Evento>();
             }
         }
-
-
-
-
-
-
-
 
 
     }

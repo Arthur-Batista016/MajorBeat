@@ -1,16 +1,17 @@
 namespace MajorBeat.Views.Musicians;
 
 using System.Threading.Tasks;
+using MajorBeat.ViewModels.Musicians;
 using MajorBeat.ViewModels.Users;
 using MajorBeat.Views.Users;
 
 public partial class MusicianSearchPage : ContentPage
 {
-    private SearchBarViewModel Vm => BindingContext as SearchBarViewModel;
+    private MusicianSearchPageViewModel Vm => BindingContext as MusicianSearchPageViewModel;
     public MusicianSearchPage()
 	{
 		InitializeComponent();
-        BindingContext = new SearchBarViewModel();
+        BindingContext = new MusicianSearchPageViewModel();
 	}
 
     private void searchBar_Focused(object sender, FocusEventArgs e)

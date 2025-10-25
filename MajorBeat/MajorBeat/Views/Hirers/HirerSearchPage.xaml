@@ -279,7 +279,7 @@
                                
 
                                     <!-- Carousel de imagens -->
-                                <CarouselView ItemsSource="{Binding BindingContext.EventPhoto, Source={x:Reference SearchPage}}" Position="{Binding BindingContext.ActualPosition, Source={x:Reference SearchPage}, Mode=TwoWay}">
+                                <CarouselView ItemsSource="{Binding BindingContext.EventPhoto, Source={x:Reference SearchPage}}">
                                     <CarouselView.ItemTemplate>
                                         <DataTemplate>
                                             <Image Source="{Binding .}" HeightRequest="600" Margin="0,10,0,0"/>

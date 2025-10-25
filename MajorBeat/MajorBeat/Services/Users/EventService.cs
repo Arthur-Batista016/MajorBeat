@@ -63,12 +63,11 @@ namespace MajorBeat.Services.Users
         }
 
 
-
-
-
-        public Evento GetEventByTipoMusico(TipoMusico tipoMusico)
+        public async Task<ObservableCollection<Evento>> GetEventByTipoEvento(TipoEvento tipoEvento)
         {
-            return null;
+            string urlComplementar = $"/getByTipoEvento/{tipoEvento}";
+            ObservableCollection<Evento> evento = await _request.GetAsync<ObservableCollection<Evento>>(_baseUrl + urlComplementar, _token);
+            return evento;
         }
 
         public Evento GetEventByData(DateTime tipoMusico)

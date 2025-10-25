@@ -62,63 +62,83 @@
             
 
                 <!-- Eventos -->
-                <CollectionView ItemsSource="{Binding Musicos}"  Margin="0,0,0,40">
+                <CollectionView ItemsSource="{Binding Musicos}" Margin="0,0,0,40">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Margin="0,-100,0,0">
+                            <!-- Grid principal do item -->
+                            <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                                <!-- Carousel de imagens -->
-                                <CarouselView ItemsSource="{Binding BindingContext.EventPhoto, Source={x:Reference HomePage}}" Position="{Binding BindingContext.ActualPosition, Source={x:Reference HomePage}, Mode=TwoWay}">
+                                <!-- IMAGEM (fundo do item) -->
+                                <CarouselView ItemsSource="{Binding mediaUrl}"
+                              HeightRequest="600"
+                              Position="{Binding BindingContext.ActualPosition, Source={x:Reference HomePage}, Mode=TwoWay}">
                                     <CarouselView.ItemTemplate>
                                         <DataTemplate>
-                                            <Image Source="{Binding .}" HeightRequest="600" Margin="0,10,0,0"/>
+                                            <Image Source="{Binding .}" Aspect="AspectFill" />
                                         </DataTemplate>
                                     </CarouselView.ItemTemplate>
                                 </CarouselView>
 
-                                <!-- Contador de imagens -->
-                                <Border IsVisible="False" StrokeShape="RoundRectangle 10 10 0 0" Background="#4F1271" HeightRequest="25" WidthRequest="45" HorizontalOptions="End" VerticalOptions="Start" Margin="0,160,20,0">
-                                    <Label Text="{Binding BindingContext.PhotoCounter, Source={x:Reference HomePage}}" HorizontalTextAlignment="Center" TextColor="White" FontSize="15"/>
-                                </Border>
+                                <!-- CAMADA SOBRE A IMAGEM (texto e info do músico) -->
+                                <Border StrokeShape="RoundRectangle 0 0 5 5"
+                        BackgroundColor="#4F1271"
+                        Margin="0,450,0,0"
+                        VerticalOptions="Start"
+                        HeightRequest="250"
+                        WidthRequest="410"
+                        HorizontalOptions="End">
+                                    <VerticalStackLayout VerticalOptions="Center">
+                                        <Label Text="{Binding nome}"
+                               FontAttributes="Bold"
+                               FontSize="25"
+                               TextColor="White"
+                               Margin="20,10,0,0"/>
 
-                                <!-- Informações do evento -->
-                                <!-- Informações do evento -->
-                                <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End" VerticalOptions="End" HeightRequest="250" Margin="0,0,0,50">
-                                    <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,0,0,0">
+                                        <!-- Gêneros -->
+                                        <CollectionView ItemsSource="{Binding nomeGeneros}"
+                                        ItemsLayout="HorizontalList"
+                                        Margin="20,10,0,0"
+                                        HeightRequest="35">
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border StrokeShape="RoundRectangle 8"
+                                            BackgroundColor="White"
+                                            Margin="0,0,10,0"
+                                            WidthRequest="{Binding ., Converter={StaticResource GeneroWidthConverter}}">
+                                                        <Label Text="{Binding ., Converter={StaticResource GeneroConverter}}"
+                                               TextColor="#4F1271"
+                                               FontSize="18"
+                                               FontAttributes="Bold"
+                                               VerticalTextAlignment="Center"
+                                               HorizontalTextAlignment="Center"/>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
 
-                                        <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="20,100,0,20"/>
-
-
-                                        <!--Generos Musicais-->
-                                        <Grid>
-                                            <CollectionView ItemsSource="{Binding nomeGeneros}" ItemsLayout="HorizontalList" Margin="0,5,0,0" HeightRequest="150">
-                                                <CollectionView.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#FFFFFF" Margin="20,-100,0,0" WidthRequest="{Binding ., Converter={StaticResource GeneroWidthConverter}}" HorizontalOptions="Start" HeightRequest="35">
-                                                            <Label Text="{Binding ., Converter={StaticResource GeneroConverter}}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" Margin="0,3,0,0" />
-                                                        </Border>
-                                                    </DataTemplate>
-                                                </CollectionView.ItemTemplate>
-                                            </CollectionView>
+                                        <!-- Avaliação -->
+                                        <Grid Margin="0,10,0,0">
+                                            <Label Text="{Binding avaliacoes[0].nota}"
+                                   TextColor="White"
+                                   FontSize="27"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="End"
+                                   Margin="0,0,50,0"/>
+                                            <Image Source="eventstar.png"
+                                   HeightRequest="30"
+                                   HorizontalOptions="End"
+                                   Margin="0,0,10,0"/>
                                         </Grid>
-
-                                        <Grid>
-                                            <Label Text="{Binding avaliacoes[0].nota}" TextColor="#ffffff" FontSize="27" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-207,50,0"/>
-                                            <Image Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-205,10,0"/>
-                                        </Grid>
-
                                     </VerticalStackLayout>
                                 </Border>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+
             </VerticalStackLayout>
         </ScrollView>
 
