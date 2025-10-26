@@ -261,46 +261,51 @@
                 </Grid>
 
 
-                <Label Text="RESULTADOS ENCCONTRADOS:" TextColor="#4F1271" FontAttributes="Bold" FontSize="20" HorizontalOptions="Start" Margin="20,50,0,0"/>
+                <Label Text="RESULTADOS ENCCONTRADOS:" TextColor="#4F1271" FontAttributes="Bold" FontSize="20" HorizontalOptions="Start" Margin="20,0,0,0"/>
 
 
                 <!-- Eventos -->
-            
-                    <CollectionView ItemsSource="{Binding Musicos}"  Margin="0,100,0,40" IsVisible="{Binding FindResults}">
+                <!-- Eventos -->
+
+                <CollectionView ItemsSource="{Binding Musicos}"  Margin="0,50,0,40" IsVisible="{Binding FindResults}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Margin="0,-100,0,0">
+                            <Grid Margin="0,0,0,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                               
-
-                                    <!-- Carousel de imagens -->
-                                <CarouselView ItemsSource="{Binding BindingContext.EventPhoto, Source={x:Reference SearchPage}}">
-                                    <CarouselView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Image Source="{Binding .}" HeightRequest="600" Margin="0,10,0,0"/>
-                                        </DataTemplate>
-                                    </CarouselView.ItemTemplate>
-                                </CarouselView>
-
-                                <!-- Contador de imagens -->
-                                <Border StrokeShape="RoundRectangle 10 10 0 0" Background="#4F1271" HeightRequest="25" WidthRequest="45" HorizontalOptions="End" VerticalOptions="Start" Margin="0,160,20,0">
-                                    <Label Text="{Binding BindingContext.PhotoCounter, Source={x:Reference SearchPage}}" HorizontalTextAlignment="Center" TextColor="White" FontSize="15"/>
-                                </Border>
 
 
+                                <!-- Carousel de imagens 
+                        <CarouselView ItemsSource="{Binding BindingContext.EventPhoto, Source={x:Reference SearchPage}}">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+
+                        -->
+
+                                <!-- Contador de imagens 
+                        <Border StrokeShape="RoundRectangle 10 10 0 0" Background="#4F1271" HeightRequest="25" WidthRequest="45" HorizontalOptions="End" VerticalOptions="Start" Margin="0,160,20,0">
+                            <Label Text="{Binding BindingContext.PhotoCounter, Source={x:Reference SearchPage}}" HorizontalTextAlignment="Center" TextColor="White" FontSize="15"/>
+                        </Border>
+                        -->
+
+
+                                <Image Source="{Binding mediaUrl[0]}" WidthRequest="400"  HeightRequest="500" Margin="0,-300,0,0"/>
 
 
 
                                 <!-- Informações do evento -->
-                                <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End" VerticalOptions="End" HeightRequest="250" Margin="0,0,0,50">
+                                <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End" VerticalOptions="End" HeightRequest="200" Margin="0,450,0,50">
                                     <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,0,0,0">
 
-                                        <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="20,100,0,20"/>
+                                        <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="30" HorizontalOptions="Start" TextColor="#ffffff" Margin="20,30,0,20"/>
 
 
                                         <!--Generos Musicais-->
@@ -308,7 +313,7 @@
                                             <CollectionView ItemsSource="{Binding nomeGeneros}" ItemsLayout="HorizontalList" Margin="0,5,0,0" HeightRequest="150">
                                                 <CollectionView.ItemTemplate>
                                                     <DataTemplate>
-                                                        <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#FFFFFF" Margin="20,-100,0,0" WidthRequest="{Binding ., Converter={StaticResource GeneroWidthConverter}}" HorizontalOptions="Start" HeightRequest="35">
+                                                        <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#FFFFFF" Margin="20,-80,0,0" WidthRequest="{Binding ., Converter={StaticResource GeneroWidthConverter}}" HorizontalOptions="Start" HeightRequest="35">
                                                             <Label Text="{Binding ., Converter={StaticResource GeneroConverter}}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" Margin="0,3,0,0" />
                                                         </Border>
                                                     </DataTemplate>
@@ -317,7 +322,7 @@
                                         </Grid>
 
                                         <Grid>
-                                            <Label Text="{Binding avaliacoes[0].nota}" TextColor="#ffffff" FontSize="27" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-207,50,0"/>
+                                            <Label Text="{Binding NotaFormatada}" TextColor="#ffffff" FontSize="27" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-207,50,0"/>
                                             <Image Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-205,10,0"/>
                                         </Grid>
 
@@ -328,12 +333,12 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-                
+
             </VerticalStackLayout>
         </ScrollView>
 
 
-       
+
 
 
 

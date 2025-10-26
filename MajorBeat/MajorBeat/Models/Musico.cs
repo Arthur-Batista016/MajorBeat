@@ -32,5 +32,30 @@ namespace MajorBeat.Models
 
         public ObservableCollection<Avaliacao>? avaliacoes { get; set; } = new();
         public ObservableCollection<Chat>? chats { get; set; } = new();
+
+
+        public string NotaFormatada
+        {
+            get
+            {
+                // Verifica se a lista existe e não está vazia
+                if (this.avaliacoes?.Count > 0)
+                {
+                    var primeiraAvaliacao = this.avaliacoes[0];
+
+                    // Verifica se a nota do primeiro item é maior que zero
+                    if (primeiraAvaliacao != null && primeiraAvaliacao.nota > 0)
+                    {
+                        // Retorna a nota formatada (ex: 4.5)
+                        // (Nota: Assumindo que 'nota' é uma propriedade na classe Avaliacao)
+                        return primeiraAvaliacao.nota.ToString("F1", System.Globalization.CultureInfo.InvariantCulture);
+                    }
+                }
+
+                // Retorna o texto de fallback em qualquer outro caso (null, vazia, nota zero)
+                return "X";
+            }
+        }
+
     }
 }
