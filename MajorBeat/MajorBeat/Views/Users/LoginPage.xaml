@@ -10,7 +10,7 @@
 
 
         <Grid>
-            <Button  x:Name="voltar" HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7"></Button>
+            <Button  x:Name="voltar" HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7" Clicked="voltar_Clicked"></Button>
             <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,47,250,0" HorizontalOptions="Center"></Label>
             <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
         </Grid>

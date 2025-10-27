@@ -70,6 +70,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="8.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="4.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
@@ -78,19 +80,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\Bands\BandCreateProfile.xaml.cs">
-	    <DependentUpon>BandCreateProfile.xaml</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="Views\Bands\BandCreateProfile.xaml">
+	  <MauiXaml Update="Views\Hirers\CreateEventPageView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Hirers\HirerCreateProfileView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Hirers\HirerHomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Hirers\HirerSearchPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Musicians\MusicianCreateProfileView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Musicians\MusicianSearchPage.xaml">
@@ -102,15 +104,22 @@
 	  <MauiXaml Update="Views\Users\ConversationView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Users\InitialPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Users\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Musicians\MusicianHomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Users\UserRegisterView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Platforms\Android\Resources\" />
 	  <Folder Include="Services\Hirers\" />
 	</ItemGroup>
 

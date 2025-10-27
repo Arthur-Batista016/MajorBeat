@@ -19,23 +19,11 @@ namespace MajorBeat.ViewModels.Users
 {
     public partial class SearchBarViewModel : ObservableObject
     {
- 
 
-
-        EventService _eService;
         MusicianService _mService;
-
-      
-
-        [ObservableProperty]
-        ObservableCollection<Evento> eventos;
 
         [ObservableProperty]
         ObservableCollection<Musico> musicos;
-
-
-
-
 
         [ObservableProperty]
         public bool barVisibility = false;
@@ -57,7 +45,6 @@ namespace MajorBeat.ViewModels.Users
         [ObservableProperty]
         public string lupa = "lupainverted.png";
 
-        
         private string userEntry;
 
         public string UserEntry
@@ -69,7 +56,7 @@ namespace MajorBeat.ViewModels.Users
                 {
                     userEntry = value;
                     OnPropertyChanged(nameof(UserEntry));
-                    searchByLetters();
+                    SearchByLetters();
                 }
             }
         }
@@ -85,37 +72,22 @@ namespace MajorBeat.ViewModels.Users
             }
         }
 
-
+        private ObservableCollection<Musico> filteredMusicos = new ObservableCollection<Musico>();
+        public ObservableCollection<Musico> FilteredMusicos
+        {
+            get => filteredMusicos;
+            set
+            {
+                filteredMusicos = value;
+                OnPropertyChanged(nameof(FilteredMusicos));
+            }
+        }
 
         [ObservableProperty]
         public bool recentSearch = false;
 
         [ObservableProperty]
-        public ObservableCollection<String> searchs;
-
-        [ObservableProperty]
-        public ObservableCollection<NomeGenero> generos = new ObservableCollection<NomeGenero>
-    {
-        NomeGenero.AXÉ,
-        NomeGenero.CLÁSSICO,
-        NomeGenero.ELETRONICO,
-        NomeGenero.FUNK,
-        NomeGenero.RAP,           // Hip-Hop/Rap
-        NomeGenero.JAZZ,
-        NomeGenero.POP,
-        NomeGenero.SAMBA,
-        NomeGenero.BLUES,
-        NomeGenero.FORRÓ,
-        NomeGenero.GOSPEL,
-        NomeGenero.TRAP,          // Infantil (você pode criar um enum separado se quiser)
-        NomeGenero.METAL,
-        NomeGenero.ROCK,
-        NomeGenero.SERTANEJO
-        };
-
-
-
-
+        public ObservableCollection<string> searchs;
 
         public ICommand SearchCommand { get; set; }
 
@@ -124,49 +96,32 @@ namespace MajorBeat.ViewModels.Users
             InicializarCommands();
             onUnfocus();
             _mService = new MusicianService();
-   
-
-            GeneroCommand = new AsyncRelayCommand<NomeGenero>(BuscarPorGenero);
-            BackGenreCommand = new Command(async () => await BackGenreChoosed());
-
-
-
-
-
-
-
         }
 
         public void InicializarCommands()
         {
             Searchs = new ObservableCollection<string>();
             SearchCommand = new Command(async () => await search());
-
-         
         }
-
 
         //METODOS DE PESQUISA
         public async Task onFocus()
         {
             if (Searchs.Count() == 0)
             {
-               BarFormat = new RoundRectangle { CornerRadius = new CornerRadius(10, 10, 10, 10) };
+                BarFormat = new RoundRectangle { CornerRadius = new CornerRadius(10, 10, 10, 10) };
             }
-            else if(Searchs.Count() >0 )
+            else if (Searchs.Count() > 0)
             {
-                
                 BarFormat = new RoundRectangle { CornerRadius = new CornerRadius(10, 10, 0, 0) };
                 RecentSearch = true;
             }
-            
+
             BarBackground = "#E7E7E7";
             BarVisibility = true;
             PlaceholderColor = Color.FromArgb("#4F1271");
             TextColor = Color.FromArgb("#4F1271");
             Lupa = "lupafocus.png";
-            
-           
         }
 
         public async Task onUnfocus()
@@ -178,49 +133,51 @@ namespace MajorBeat.ViewModels.Users
             TextColor = Color.FromArgb("#FFFFFF");
             Lupa = "lupainverted.png";
             RecentSearch = false;
-
         }
 
         public async Task recentSearchs()
         {
-            if(Searchs.Count() != 0) {
+            if (Searchs.Count() != 0)
+            {
                 RecentSearch = true;
             }
-            
         }
 
         public async Task search()
         {
-         
-                Searchs.Add(userEntry);
-                BarBackground = "#4F1271";
-                OnPropertyChanged(nameof(RecentSearchHeight));
-                await onUnfocus();
-            
+            Searchs.Add(userEntry);
+            BarBackground = "#4F1271";
+            OnPropertyChanged(nameof(RecentSearchHeight));
+            await onUnfocus();
+            BarSearch = true;
+            HirerNoSelect = false;
         }
 
-        public async Task searchByLetters()
+        public async Task<ObservableCollection<Musico>> SearchByLetters()
         {
-
             if (string.IsNullOrWhiteSpace(UserEntry))
             {
                 FilteredSearchs = new ObservableCollection<string>(Searchs);
+                FilteredMusicos = new ObservableCollection<Musico>(Musicos);
+                return FilteredMusicos;
             }
             else
             {
+                var searchLower = UserEntry.ToLowerInvariant();
 
+                // Filtra pesquisas recentes
                 var filtrados = Searchs
-                    .Where(i => i.ToString().ToLowerInvariant().Contains(UserEntry, StringComparison.OrdinalIgnoreCase))
+                    .Where(i => i.ToLowerInvariant().Contains(searchLower))
                     .ToList();
-
                 FilteredSearchs = new ObservableCollection<string>(filtrados);
 
-
+                // Filtra músicos
+                var musicosFiltrados = Musicos
+                    .Where(m => m.nome.ToLowerInvariant().Contains(searchLower))
+                    .ToList();
+                return FilteredMusicos = new ObservableCollection<Musico>(musicosFiltrados);
             }
-
-
         }
-
 
 
 
@@ -258,6 +215,9 @@ namespace MajorBeat.ViewModels.Users
         public bool isSearch = false;
 
         [ObservableProperty]
+        public bool barSearch = false;
+
+        [ObservableProperty]
         public bool findResults = true;
 
         [ObservableProperty]
@@ -274,6 +234,7 @@ namespace MajorBeat.ViewModels.Users
             IsSearch = false;
             FindResults = false;
             NoMusics = false;
+            BarSearch = false;
             Musicos = new ObservableCollection<Musico>();
         }
 
@@ -285,7 +246,7 @@ namespace MajorBeat.ViewModels.Users
         {
             try
             {
-                var resultado = await _mService.GetMusicianByGenre(genero);
+                ObservableCollection<Musico> resultado = await _mService.GetMusicianByGenre(genero);
                 Musicos = resultado;
 
                 if (Musicos?.Count > 0)

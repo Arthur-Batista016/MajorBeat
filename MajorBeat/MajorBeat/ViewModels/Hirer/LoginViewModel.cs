@@ -1,4 +1,4 @@
-﻿using MajorBeat.Models;
+﻿using MajorBeat.ModelsJeff;
 using MajorBeat.Services.Usuarios;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Input;
@@ -35,7 +35,7 @@ public class LoginViewModel : BaseViewModel
                     $"Contratante {c.nome} autenticado com sucesso!",
                     "OK"
                 );
-                await Application.Current.MainPage.Navigation.PushAsync(new Views.Musicians.MusicianSearchPage());
+                await Application.Current.MainPage.Navigation.PushAsync(new Views.Hirers.HirerHomePage());
             }
             catch
             {
@@ -51,7 +51,7 @@ public class LoginViewModel : BaseViewModel
                     $"Musico {m.nome}autenticado com sucesso!",
                     "OK"
                 );
-                await Application.Current.MainPage.Navigation.PushAsync(new Views.Musicians.MusicianSearchPage());
+                await Application.Current.MainPage.Navigation.PushAsync(new Views.Musicians.MusicianHomePage());
             }
 
 

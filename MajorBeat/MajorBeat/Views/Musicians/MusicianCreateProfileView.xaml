@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.Musicians.MusicianCreateProfileView"
+             BackgroundColor="#4F1271"
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:converters="clr-namespace:MajorBeat.Converters"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+              xmlns:viewModels="clr-namespace:MajorBeat.ViewModels.Musician">
+    <ContentPage.Resources>
+        <converters:InvertedBoolConverter x:Key="InvertedBool" />
+        <converters:PathToMediaSourceConverter x:Key="PathToMediaSource" />
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid>
+                <Button  x:Name="voltar" HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7" Clicked="voltar_Clicked_1"/>
+                <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,46,250,0" HorizontalOptions="Center"/>
+                <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
+            </Grid>
+
+            <Label 
+            IsVisible="{Binding IsVisible}"
+            Text="Criar Perfil"
+            TextColor="White"
+            FontSize="25"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontAttributes="Bold" 
+            FontFamily="InterBold"/>
+
+
+            <Label 
+            IsVisible="{Binding cIsVisible}"
+            Text="Criar Perfil da banda"
+            TextColor="White"
+            FontSize="25"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontAttributes="Bold" 
+            FontFamily="InterBold"/>
+
+            <Grid>
+                <Frame HeightRequest="200"
+                       WidthRequest="200"
+                       CornerRadius="100"
+                       BackgroundColor="White"
+                       Margin="0,0,0,0">
+                    <Image Aspect="AspectFill"
+                           HeightRequest="200"
+                           WidthRequest="200"
+                           Source="{Binding FotoSelecionada}" />
+
+                </Frame>
+                <Border Stroke="Gray"
+                    StrokeThickness="3"
+                    BackgroundColor="white"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    Margin="0,100,100,0"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    StrokeShape="RoundRectangle 30">
+                    <ImageButton Source="vector.png"
+                             BackgroundColor="White"
+                             CornerRadius="30"
+                             WidthRequest="30"
+                             HeightRequest="30"
+                             Command="{Binding AddPhotoCommand}"/>
+                </Border>
+
+
+
+            </Grid>
+
+
+            
+
+
+            <!--Apelido-->
+            <VerticalStackLayout WidthRequest="370">
+
+                <VerticalStackLayout IsVisible="{Binding IsVisible}">
+                    <Grid Margin="0,25,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Text="Apelido" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                        <Label Grid.Row="0" Text="O apelido não pode ser nulo" IsVisible="{Binding ErroUserVisible}" TextColor="Red" FontSize="10" Margin="0,15,0,0" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
+                        <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
+                            <Entry Grid.Row="1" Placeholder="Ex: Marquinhos" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Username}"></Entry>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+
+
+                <!--Destaques-->
+
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Adicione fotos:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="200">
+                        <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+<CollectionView ItemsSource="{Binding ArquivosDeMediaSelecionados}"
+HeightRequest="140">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="5" WidthRequest="120" HeightRequest="120">
+
+                                <toolkit:MediaElement 
+    Source="{Binding FullPath, Converter={StaticResource PathToMediaSource}}"
+    IsVisible="{Binding IsVideo}"
+    ShouldAutoPlay="False"
+    ShouldShowPlaybackControls="True"
+    Aspect="AspectFill" />
+
+                                <Image 
+    Source="{Binding PreviewImageSource}"
+    IsVisible="{Binding IsVideo, Converter={StaticResource InvertedBool}}"
+    Aspect="AspectFill" />
+
+                                <Button Text="X"
+        VerticalOptions="Start"
+        HorizontalOptions="End"
+        
+        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MusicianCreateProfileViewModel}}, Path=RemoverMediaCommand}"
+        CommandParameter="{Binding .}" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                           
+                            
+                            <Button Text="Adicionar" BackgroundColor="#4F1271" TextColor="White" CornerRadius="10" WidthRequest="150" Command="{Binding SelecionarMediaCommand}" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                
+
+                
+
+
+                <!--contatos-->
+
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Contatos" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="170">
+                        <VerticalStackLayout>
+                            <Grid HeightRequest="55">
+                                <Label Text="Adicionar links" TextColor="#4F1271" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,20,0,0" HorizontalTextAlignment="Start"/>
+                                <BoxView 
+                                    HeightRequest="1"        
+                                    BackgroundColor="Gray"
+                                    HorizontalOptions="FillAndExpand"
+                                    Margin="0,60,0,0"/>
+                            </Grid>
+                            <Grid>
+                                <Grid WidthRequest="120" 
+                                    Margin="50,0,0,0" 
+                                    HorizontalOptions="Start">
+
+                                    <Image Source="linkedin.png"
+                                        HeightRequest="30"
+                                        WidthRequest="30"
+                                        Margin="0,0,160,0"/>
+                                    <Entry Placeholder="Adicionar +" 
+                                           PlaceholderColor="#604F1271"
+                                           TextColor="#4F1271"
+                                           FontAttributes="Bold" 
+                                           FontFamily="InterBold" 
+                                           HeightRequest="55"
+                                           Text="{Binding LinkLinkedin}"/>
+
+                                </Grid>
+                                <Grid WidthRequest="120" 
+                                      Margin="0,0,30,0" 
+                                      HorizontalOptions="End">
+
+                                    <Image Source="instagram.png"
+                                         HeightRequest="30"
+                                         WidthRequest="30"
+                                         Margin="0,0,160,0"/>
+                                    <Entry Placeholder="Adicionar +" 
+                                         PlaceholderColor="#604F1271"
+                                         TextColor="#4F1271"
+                                         FontAttributes="Bold" 
+                                         FontFamily="InterBold" 
+                                         HeightRequest="55"
+                                         Text="{Binding LinkInsta}"/>
+                                </Grid>
+                            </Grid>
+                            <Grid>
+                                <Grid WidthRequest="120" 
+                                    Margin="50,0,0,0" 
+                                    HorizontalOptions="Start">
+
+                                    <Image Source="facebook.png"
+                                        HeightRequest="30"
+                                        WidthRequest="30"
+                                        Margin="0,0,160,0"/>
+
+                                    <Entry Grid.Row="1" 
+                                        Placeholder="Adicionar +" 
+                                        PlaceholderColor="#604F1271"
+                                        TextColor="#4F1271"
+                                        FontAttributes="Bold" 
+                                        FontFamily="InterBold" 
+                                        HeightRequest="55"
+                                        Text="{Binding LinkFacebook}"/>
+
+                                </Grid>
+                                <Grid WidthRequest="120" 
+                                      Margin="0,0,30,0" 
+                                      HorizontalOptions="End" >
+
+                                    <Image Source="twitter.png"
+                                        HeightRequest="30"
+                                        WidthRequest="30"
+                                        Margin="0,0,160,0"/>
+
+                                    <Entry Grid.Row="1" 
+                                        Placeholder="Adicionar +" 
+                                        PlaceholderColor="#604F1271" 
+                                        TextColor="#4F1271"
+                                        FontAttributes="Bold" 
+                                        FontFamily="InterBold" 
+                                        HeightRequest="55"
+                                        Text="{Binding LinkTwitter}"/>
+                                </Grid>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+
+                <!--Instrumentos-->
+
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Instrumentos" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"/>
+                    <Label Grid.Row="0" Text="Adicione pelo menos um instrumento" IsVisible="{Binding ErroInstrumentoVisible}" TextColor="Red" Margin="0,15,0,0" FontSize="10" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="120">
+
+                        <VerticalStackLayout>
+                            <SearchBar Placeholder="Digite aqui o instrumento" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding TextoBuscaInstrumento}"/>
+                            <CollectionView  HeightRequest="55"
+                                        ItemsSource="{Binding InstrumentosFiltrados }"
+                                        SelectionMode="Multiple"
+                                        SelectedItems="{Binding InstrumentosSelecionados}"
+                                        SelectionChanged="OnInstrumentosSelectionChanged">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding .}" />
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+
+                <!--Estilos musicais-->
+
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Estilos musicais" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"/>
+                    <Label Grid.Row="0" Text="Adicione pelo menos um estilo" IsVisible="{Binding ErroGeneroVisible}" TextColor="Red" FontSize="10" Margin="0,15,0,0" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="120">
+
+                        <VerticalStackLayout>
+                            <SearchBar Placeholder="Digite aqui o genero" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding TextoBusca}"/>
+                            <CollectionView  HeightRequest="55"
+                                 ItemsSource="{Binding GenerosFiltrados}"
+                                 SelectionMode="Multiple"
+                                 SelectedItems="{Binding GenerosSelecionados}"
+                                 SelectionChanged="OnGenerosSelectionChanged">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding .}" />
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="Biografia" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Label Grid.Row="0" Text="Preencha a biografia" IsVisible="{Binding ErroBioVisible}" TextColor="Red" FontSize="10" Margin="0,15,0,0" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="150">
+                        <Editor AutoSize="TextChanges" Grid.Row="1" Placeholder="Descreva-se:" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Biografia}"></Editor>
+                    </Border>
+                </Grid>
+            </VerticalStackLayout>
+
+
+            <Grid Margin="0,-20,0,50">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+
+                <Button Grid.Row="0" Text="Criar Perfil" Margin="0,70,0,0" BackgroundColor="#e7e7e7" TextColor="#4F1271" HeightRequest="60" WidthRequest="200" FontSize="17" FontAttributes="Bold" FontFamily="InterBold" Command="{Binding ExibirResumoCommand}"></Button>
+                <!--Command="{Binding RegistrarCommand}"-->
+                <Label  Grid.Row="1" Text="Termos de Uso e Política de Privacidade" HorizontalOptions="Center" TextColor="#e7e7e7" Margin="0,30,0,0"></Label>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

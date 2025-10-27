@@ -41,7 +41,7 @@ public partial class HirerSearchPage : ContentPage
 
     private async void home_page_btn_Clicked(object sender, EventArgs e)
     {
-        
+        await Navigation.PushAsync(new HirerHomePage());
     }
 
     private void searchBar_Completed(object sender, EventArgs e)

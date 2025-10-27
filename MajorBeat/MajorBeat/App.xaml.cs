@@ -10,7 +10,7 @@ namespace MajorBeat
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage(new InitialPage());
         }
     }
 }

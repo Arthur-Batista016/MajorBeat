@@ -3,6 +3,8 @@ using Microsoft.Maui;
 using Microsoft.Maui.Controls.Hosting;
 using Microsoft.Maui.Hosting;
 using Microsoft.Maui.Handlers;
+using CommunityToolkit.Maui;
+
 
 
 #if ANDROID
@@ -82,6 +84,8 @@ EntryHandler.Mapper.AppendToMapping("CustomEntry", (handler, view) =>
 
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
+                .UseMauiCommunityToolkitMediaElement()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

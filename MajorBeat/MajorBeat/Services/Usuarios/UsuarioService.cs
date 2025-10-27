@@ -1,4 +1,5 @@
-﻿using MajorBeat.Models;
+﻿
+using MajorBeat.ModelsJeff;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -7,7 +7,6 @@
     xmlns:viewsUsers="clr-namespace:MajorBeat.Views.Users"
     xmlns:viewMusicians="clr-namespace:MajorBeat.Views.Musicians"
     xmlns:viewHirers="clr-namespace:MajorBeat.Views.Hirers"
-    xmlns:viewsBands="clr-namespace:MajorBeat.Views.Bands"
     Shell.FlyoutBehavior="Disabled"
     FlyoutIcon="homebuttoncircle.png"
    
@@ -23,8 +22,6 @@
 
        
 
-        <ShellContent  Icon="chathome.png"
-               ContentTemplate="{DataTemplate viewsBands:BandCreateProfile}"/>
 
       
 

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.Hirers.HirerCreateProfileView"
+             BackgroundColor="#4F1271"
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid>
+                <Button  x:Name="voltar" HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7" Clicked="voltar_Clicked_1"/>
+                <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,46,250,0" HorizontalOptions="Center"/>
+                <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
+            </Grid>
+
+            <Label 
+            Text="Criar Perfil"
+            TextColor="White"
+            FontSize="25"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontAttributes="Bold" 
+            FontFamily="InterBold"/>
+
+            <Grid>
+                <Frame HeightRequest="200"
+                       WidthRequest="200"
+                       CornerRadius="100"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       BackgroundColor="White"
+                       Margin="0,25,0,0">
+                    <Image Aspect="AspectFill"
+                           Source="{Binding FotoSelecionada}"
+                           HeightRequest="200"
+                           WidthRequest="200"/>
+                </Frame>
+                <Border Stroke="Gray"
+                    StrokeThickness="3"
+                    BackgroundColor="white"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    Margin="0,100,100,0"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    StrokeShape="RoundRectangle 30">
+                    <ImageButton Source="vector.png"
+                             BackgroundColor="White"
+                             CornerRadius="30"
+                             WidthRequest="30"
+                             HeightRequest="30"
+                             Command="{Binding AddPhotoCommand}"/>
+                </Border>
+
+            </Grid>
+
+            <VerticalStackLayout WidthRequest="370">
+                <!--nome perfil-->
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Nome do Perfil" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Label Grid.Row="0" Text="O nome do perfil não pode ser nulo" IsVisible="{Binding ErroUserVisible}" TextColor="Red" FontSize="10" Margin="0,15,0,0" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
+                        <Entry TextColor="#4F1271" Grid.Row="1" Placeholder="Ex: Wagner Moura" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding NomePerfil}"></Entry>
+                    </Border>
+                </Grid>
+
+                <!--contatos-->
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Contatos" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="165">
+                        <VerticalStackLayout>
+                            <Grid HeightRequest="55">
+                                <Label Text="Adicionar links" TextColor="#4F1271" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,20,0,0" HorizontalTextAlignment="Start"/>
+                                <BoxView 
+                                    HeightRequest="1"        
+                                    BackgroundColor="Gray"
+                                    HorizontalOptions="FillAndExpand"
+                                    Margin="0,60,0,0"/>
+                            </Grid>
+                            <Grid>
+                                <Grid WidthRequest="120" 
+                                      Margin="50,0,0,0" 
+                                      HorizontalOptions="Start">
+
+                                    <Image Source="linkedin.png"
+                                           HeightRequest="30"
+                                           WidthRequest="30"
+                                           Margin="0,0,160,0"/>
+                                    <Entry Placeholder="Adicionar +" 
+                                           PlaceholderColor="#604F1271" 
+                                           FontAttributes="Bold" 
+                                           FontFamily="InterBold" 
+                                           HeightRequest="55"
+                                           TextColor="#4F1271"
+                                           Text="{Binding LinkLinkedin}"/>
+
+                                </Grid>
+                                <Grid WidthRequest="120" 
+                                      Margin="0,0,30,0" 
+                                      HorizontalOptions="End">
+
+                                    <Image Source="instagram.png"
+                                           HeightRequest="30"
+                                           WidthRequest="30"
+                                           Margin="0,0,160,0"/>
+                                    <Entry  
+                                           Placeholder="Adicionar +" 
+                                           PlaceholderColor="#604F1271" 
+                                           FontAttributes="Bold" 
+                                           FontFamily="InterBold" 
+                                           HeightRequest="55"
+                                           TextColor="#4F1271"
+                                           Text="{Binding LinkInsta}"/>
+                                </Grid>
+                            </Grid>
+                            <Grid>
+                                <Grid WidthRequest="120" 
+                                      Margin="50,0,0,0" 
+                                      HorizontalOptions="Start">
+
+                                    <Image Source="facebook.png"
+                                           HeightRequest="30"
+                                           WidthRequest="30"
+                                           Margin="0,0,160,0"/>
+
+                                    <Entry Grid.Row="1" 
+                                           Placeholder="Adicionar +" 
+                                           PlaceholderColor="#604F1271" 
+                                           FontAttributes="Bold" 
+                                           FontFamily="InterBold" 
+                                           HeightRequest="55"
+                                           TextColor="#4F1271"
+                                           Text="{Binding LinkFacebook}"/>
+
+                                </Grid>
+                                <Grid WidthRequest="120" 
+                                      Margin="0,0,30,0" 
+                                      HorizontalOptions="End" >
+
+                                    <Image Source="twitter.png"
+                                               HeightRequest="30"
+                                               WidthRequest="30"
+                                               Margin="0,0,160,0"/>
+
+                                    <Entry 
+                                               Grid.Row="1" 
+                                               Placeholder="Adicionar +" 
+                                               PlaceholderColor="#604F1271" 
+                                               FontAttributes="Bold" 
+                                               FontFamily="InterBold" 
+                                               HeightRequest="55"
+                                               TextColor="#4F1271"
+                                               Text="{Binding LinkTwitter}"/>
+                                </Grid>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+
+                <!--biografia-->
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="Biografia" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Label Grid.Row="0" Text="Preencha a biografia" IsVisible="{Binding ErroBioVisible}" TextColor="Red" FontSize="10" Margin="0,15,0,0" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="150">
+                        <Editor TextColor="#4F1271" AutoSize="TextChanges" Grid.Row="1" Placeholder="Descreva-se:" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Biografia}"></Editor>
+                    </Border>
+                </Grid>
+            </VerticalStackLayout>
+            <Grid Margin="0,-20,0,50">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+
+                <Button Grid.Row="0" Text="Criar Perfil" Margin="0,70,0,0" BackgroundColor="#e7e7e7" TextColor="#4F1271" HeightRequest="60" WidthRequest="200" FontSize="17" FontAttributes="Bold" FontFamily="InterBold" Command="{Binding ExibirResumoCommand}" ></Button>
+                <!--Command="{Binding RegistrarCommand}"-->
+                <Label  Grid.Row="1" Text="Termos de Uso e Política de Privacidade" HorizontalOptions="Center" TextColor="#e7e7e7" Margin="0,30,0,0"></Label>
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
