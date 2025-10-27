@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,10 +36,34 @@ namespace MajorBeat.Services
         {
             HttpClient httpClient = new HttpClient();
 
-            httpClient.DefaultRequestHeaders.Authorization
-            = new AuthenticationHeaderValue("Bearer", token);
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var serializerSettings = new JsonSerializerSettings
+            {
+                // 2. Resolve o problema da nomenclatura (PascalCase -> camelCase)
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
 
-            var content = new StringContent(JsonConvert.SerializeObject(data));
+                DateFormatString = "yyyy-MM-ddTHH:mm:ss"
+            };
+
+            // 3. Adiciona o conversor para resolver o problema dos Enums (Número -> String)
+            serializerSettings.Converters.Add(new StringEnumConverter());
+
+            // 4. Serialize o objeto usando as novas configurações
+            var json = JsonConvert.SerializeObject(data, serializerSettings);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            /*exibir json post
+                        // 1. Converte o objeto para uma string JSON
+                        var jsonPayload = JsonConvert.SerializeObject(data);
+
+                        // 2. EXIBE O JSON NA JANELA DE OUTPUT DO VISUAL STUDIO
+                        Debug.WriteLine($"JSON ENVIADO: {jsonPayload}");
+
+                        // 3. Usa a string JSON que acabou de criar
+                        var content = new StringContent(jsonPayload);
+            */
+
+
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage response = await httpClient.PostAsync(uri, content);
             string serialized = await response.Content.ReadAsStringAsync();
@@ -45,8 +71,7 @@ namespace MajorBeat.Services
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 result = await Task.Run(() => JsonConvert.DeserializeObject<TResult>(serialized));
-            else
-                throw new Exception(serialized);
+            else throw new Exception(serialized);
 
             return result;
         }

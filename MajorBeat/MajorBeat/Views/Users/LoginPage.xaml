@@ -30,7 +30,7 @@
                     <Image Source="User_icon" HorizontalOptions="Center" HeightRequest="45" />
                 </Border>
                 <Border StrokeShape="RoundRectangle 0 10 0 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="300" HorizontalOptions="End" HeightRequest="70">
-                    <Entry Grid.Row="1" Placeholder="E-mail" PlaceholderColor="#854F1271" Margin="10,0,0,0" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Email}"></Entry>
+                    <Entry Grid.Row="1" TextColor="#4F1271" Placeholder="E-mail" PlaceholderColor="#854F1271" Margin="10,0,0,0" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Email}"></Entry>
                 </Border>
 
 
@@ -42,7 +42,7 @@
                     <Image Source="password_icon" HorizontalOptions="Center" HeightRequest="45" />
                 </Border>
                 <Border StrokeShape="RoundRectangle 0 10 0 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="300" HorizontalOptions="End" HeightRequest="70">
-                    <Entry Grid.Row="1" Placeholder="Senha" PlaceholderColor="#854F1271" Margin="10,0,0,0" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Senha}"></Entry>
+                    <Entry Grid.Row="1" TextColor="#4F1271" Placeholder="Senha" PlaceholderColor="#854F1271" Margin="10,0,0,0" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Senha}"></Entry>
                 </Border>
             </Grid>
 
@@ -59,7 +59,7 @@
 
             <Button Grid.Row="0" Text="Entrar" Margin="0,70,0,0" BackgroundColor="#e7e7e7" TextColor="#4F1271" HeightRequest="60" WidthRequest="270" FontSize="17" FontAttributes="Bold" FontFamily="InterBold" Command="{Binding AutenticarCommand}"></Button>
             <Label Text="Não possui conta?" Grid.Row="1" HorizontalOptions="Center" Margin="0,15,70,0" FontSize="17" TextColor="#EEE8F1"/>
-            <Button Text="CRIAR CONTA" Grid.Row="1" BackgroundColor="Transparent" WidthRequest="120" HorizontalOptions="End" FontAttributes="Bold" Margin="0,5,55,0"/>
+            <Button Text="CRIAR CONTA" Grid.Row="1" BackgroundColor="Transparent" WidthRequest="120" HorizontalOptions="End" FontAttributes="Bold" Margin="0,5,55,0" Clicked="semConta"/>
         </Grid>
 
         <Grid>

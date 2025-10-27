@@ -1,5 +1,4 @@
-﻿using MajorBeat.ModelsJeff.EnumsJeff;
-using MajorBeat.ModelsJeff.EnumsJeff;
+﻿using MajorBeat.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +12,8 @@ namespace MajorBeat.ModelsJeff
         public string nome { get; set; }
         public string endereco { get; set; }
         public string descricao { get; set; }
-        public List<InstrumentoEnum> instrumentos { get; set; }
-        public List<GeneroEnum> generos { get; set; }
+        public List<NomeInstrumento> instrumentos { get; set; }
+        public List<NomeGenero> generos { get; set; }
         public TipoEvento tipoEvento { get; set; }
         public TipoMusico tipoMusico { get; set; }
         public DateTime data { get; set; }

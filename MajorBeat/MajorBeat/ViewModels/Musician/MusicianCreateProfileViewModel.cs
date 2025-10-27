@@ -1,5 +1,5 @@
+using MajorBeat.Enums;
 using MajorBeat.ModelsJeff;
-using MajorBeat.ModelsJeff.EnumsJeff;
 using MajorBeat.Services;
 using MajorBeat.Services.Usuarios;
 using System;
@@ -20,7 +20,10 @@ namespace MajorBeat.ViewModels.Musician
         public ICommand SelecionarMediaCommand { get; }
         public ObservableCollection<MediaFile> ArquivosDeMediaSelecionados { get; set; }
 
+        public bool MostrarListaDeMedia => ArquivosDeMediaSelecionados.Count > 0;
 
+        // Propriedade para MOSTRAR o placeholder (o 'Border')
+        public bool MostrarPlaceholder => ArquivosDeMediaSelecionados.Count == 0;
 
         private async Task SelecionarMedia()
         {
@@ -45,7 +48,9 @@ namespace MajorBeat.ViewModels.Musician
                         ArquivosDeMediaSelecionados.Add(mediaFile);
                     }
                 }
-               
+                onPropertyChanged(nameof(MostrarListaDeMedia));
+                onPropertyChanged(nameof(MostrarPlaceholder));
+
             }
             catch (Exception ex)
             {
@@ -60,23 +65,25 @@ namespace MajorBeat.ViewModels.Musician
             if (mediaFile != null)
             {
                 ArquivosDeMediaSelecionados.Remove(mediaFile);
+                onPropertyChanged(nameof(MostrarListaDeMedia));
+                onPropertyChanged(nameof(MostrarPlaceholder));
             }
         }
 
         private Musico musico { get; set; }
-        public List<GeneroEnum> TodosGeneros { get; }
+        public List<NomeGenero> TodosGeneros { get; }
 
-        public List<InstrumentoEnum> TodosInstrumentos { get; }
-        public ObservableCollection<InstrumentoEnum> InstrumentosSelecionados { get; set; } = new();
-        public ObservableCollection<GeneroEnum> GenerosSelecionados { get; set; } = new();
+        public List<NomeInstrumento> TodosInstrumentos { get; }
+        public ObservableCollection<NomeInstrumento> InstrumentosSelecionados { get; set; } = new();
+        public ObservableCollection<NomeGenero> GenerosSelecionados { get; set; } = new();
 
         public ICommand AddPhotoCommand { get; }
         public ImageSource FotoSelecionada { get; set; }
 
         public ICommand ExibirResumoCommand { get; }
 
-        private ObservableCollection<InstrumentoEnum> _instrumentosFiltrados;
-        public ObservableCollection<InstrumentoEnum> InstrumentosFiltrados
+        private ObservableCollection<NomeInstrumento> _instrumentosFiltrados;
+        public ObservableCollection<NomeInstrumento> InstrumentosFiltrados
         {
             get => _instrumentosFiltrados;
             set
@@ -86,8 +93,8 @@ namespace MajorBeat.ViewModels.Musician
             }
         }
 
-        private ObservableCollection<GeneroEnum> _generosFiltrados;
-        public ObservableCollection<GeneroEnum> GenerosFiltrados
+        private ObservableCollection<NomeGenero> _generosFiltrados;
+        public ObservableCollection<NomeGenero> GenerosFiltrados
         {
             get => _generosFiltrados;
             set
@@ -138,12 +145,12 @@ namespace MajorBeat.ViewModels.Musician
             SelecionarMediaCommand = new Command(async () => await SelecionarMedia());
 
 
-            TodosGeneros = Enum.GetValues(typeof(GeneroEnum)).Cast<GeneroEnum>().ToList();
-            GenerosFiltrados = new ObservableCollection<GeneroEnum>(TodosGeneros);
-            TodosInstrumentos = Enum.GetValues(typeof(InstrumentoEnum)).Cast<InstrumentoEnum>().ToList();
+            TodosGeneros = Enum.GetValues(typeof(NomeGenero)).Cast<NomeGenero>().ToList();
+            GenerosFiltrados = new ObservableCollection<NomeGenero>(TodosGeneros);
+            TodosInstrumentos = Enum.GetValues(typeof(NomeInstrumento)).Cast<NomeInstrumento>().ToList();
 
             // Mostra todos inicialmente
-            InstrumentosFiltrados = new ObservableCollection<InstrumentoEnum>(TodosInstrumentos);
+            InstrumentosFiltrados = new ObservableCollection<NomeInstrumento>(TodosInstrumentos);
             musico = m;
             if (musico.tipoMusico == TipoMusico.SOLO)
             {
@@ -340,7 +347,7 @@ namespace MajorBeat.ViewModels.Musician
         {
             if (string.IsNullOrWhiteSpace(TextoBuscaInstrumento))
             {
-                InstrumentosFiltrados = new ObservableCollection<InstrumentoEnum>(TodosInstrumentos);
+                InstrumentosFiltrados = new ObservableCollection<NomeInstrumento>(TodosInstrumentos);
             }
             else
             {
@@ -349,7 +356,7 @@ namespace MajorBeat.ViewModels.Musician
                     .Where(i => i.ToString().ToLowerInvariant().Contains(filtro))
                     .ToList();
 
-                InstrumentosFiltrados = new ObservableCollection<InstrumentoEnum>(filtrados);
+                InstrumentosFiltrados = new ObservableCollection<NomeInstrumento>(filtrados);
             }
         }
         private void FiltrarGeneros()
@@ -420,8 +427,6 @@ namespace MajorBeat.ViewModels.Musician
             }
             try
             {
-                var token = Preferences.Get("UsuarioToken", string.Empty);
-                
                 List<string> urlsSalvas;
 
                 // 1. FAZ O UPLOAD (Somente se houver arquivos)
@@ -430,7 +435,7 @@ namespace MajorBeat.ViewModels.Musician
                     // Chama o serviço "Ideal" UMA VEZ com a lista inteira
                     urlsSalvas = await _mediaService.UploadVariosArquivosAsync(
                         ArquivosDeMediaSelecionados,
-                        token,
+                        "",
                         "Musico/uploadTempMulti"); // <-- O endpoint "burro" de multi-upload
                 }
                 else
@@ -444,8 +449,8 @@ namespace MajorBeat.ViewModels.Musician
                 usuario.biografia = Biografia;
                 usuario.apelido = Username;
                 usuario.FotoBytes = FotoBytes;
-                usuario.instrumentos = InstrumentosSelecionados.ToList();
-                usuario.generos = GenerosSelecionados.ToList();
+                usuario.nomeInstrumentos = InstrumentosSelecionados.ToList();
+                usuario.nomeGeneros = GenerosSelecionados.ToList();
                 usuario.linkInsta = LinkInsta;
                 usuario.linkTwitter = LinkTwitter;
                 usuario.linkFacebook = LinkFacebook;
@@ -464,11 +469,10 @@ namespace MajorBeat.ViewModels.Musician
 
                 var service = new UsuarioService();
                 var musicoCadastrado = await service.PostMusicoAsync(usuario);
-                usuario.id = musicoCadastrado.id;
                 // Exibe mensagem de sucesso com o ID retornado
                 await Application.Current.MainPage.DisplayAlert(
                     "Sucesso",
-                    $"Músico {musicoCadastrado.nome} cadastrado com sucesso!\nID: {usuario.id}",
+                    $"Músico {musicoCadastrado.nome} cadastrado com sucesso!\nID: {musicoCadastrado.idMusico}",
                     "OK"
                 );
 

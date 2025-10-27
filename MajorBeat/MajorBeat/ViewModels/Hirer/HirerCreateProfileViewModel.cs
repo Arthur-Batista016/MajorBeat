@@ -263,7 +263,7 @@ namespace MajorBeat.ViewModels.Hirers
                 // Exibe mensagem de sucesso com o ID retornado
                 await Application.Current.MainPage.DisplayAlert(
                 "Sucesso",
-                $"Contratante {contratanteCadastrado.nome} cadastrado com sucesso!\nID: {contratanteCadastrado.id}",
+                $"Contratante {contratanteCadastrado.nome} cadastrado com sucesso!\nID: {contratanteCadastrado.idContratante}",
                 "OK"
             );
 

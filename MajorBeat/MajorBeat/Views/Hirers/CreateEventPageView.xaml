@@ -9,6 +9,10 @@
              xmlns:viewModels="clr-namespace:MajorBeat.ViewModels.Hirer" 
     xmlns:converters="clr-namespace:MajorBeat.Converters"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <ContentPage.Resources>
+                    <converters:InvertedBoolConverter x:Key="InvertedBool" />
+                    <converters:PathToMediaSourceConverter x:Key="PathToMediaSource" />
+                </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout>
             <Grid>
@@ -48,76 +52,65 @@
 
 
 
-                <!--exibição-->
-                <Grid>
-                    <Label Text="Exibição:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,25,0,15" HorizontalTextAlignment="Start"></Label>
-                    <Frame HeightRequest="200"
-                   WidthRequest="370"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   BackgroundColor="White"
-                   Margin="0,50,0,0">
-                        <Image Aspect="AspectFill"
-                       Source="{Binding FotoSelecionada}"
-                       HeightRequest="200"
-                       WidthRequest="370"/>
-                    </Frame>
-                    <Border Stroke="Gray"
-                StrokeThickness="3"
-                BackgroundColor="white"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Margin="0,50,0,0"
-                WidthRequest="50"
-                HeightRequest="50"
-                StrokeShape="RoundRectangle 30">
-                        <ImageButton Source="vector.png"
-                         BackgroundColor="White"
-                         CornerRadius="30"
-                         WidthRequest="30"
-                         HeightRequest="30"
-                         Command="{Binding SelecionarMediaCommand}"/>
-                    </Border>
-
-                </Grid>
-
-                <ContentPage.Resources>
-                    <converters:InvertedBoolConverter x:Key="InvertedBool" />
-                    <converters:PathToMediaSourceConverter x:Key="PathToMediaSource" />
-                </ContentPage.Resources>
-
-                <CollectionView ItemsSource="{Binding ArquivosDeMediaSelecionados}"
-        HeightRequest="150">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
-                    </CollectionView.ItemsLayout>
-
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Padding="5" WidthRequest="120" HeightRequest="120">
-
-                                <toolkit:MediaElement 
-            Source="{Binding FullPath, Converter={StaticResource PathToMediaSource}}"
-            IsVisible="{Binding IsVideo}"
-            ShouldAutoPlay="False"
-            ShouldShowPlaybackControls="True"
-            Aspect="AspectFill" />
-
-                                <Image 
-            Source="{Binding PreviewImageSource}"
-            IsVisible="{Binding IsVideo, Converter={StaticResource InvertedBool}}"
-            Aspect="AspectFill" />
-
-                                <Button Text="X"
-                VerticalOptions="Start"
-                HorizontalOptions="End"
+                        
+                        
                 
-                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateEventPageViewModel}}, Path=RemoverMediaCommand}"
-                CommandParameter="{Binding .}" />
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                        
+                <!--exibição-->
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Adicione fotos:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="220">
+                        <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                            <CollectionView ItemsSource="{Binding ArquivosDeMediaSelecionados}"
+HeightRequest="150" IsVisible="{Binding MostrarListaDeMedia}">
+
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                                </CollectionView.ItemsLayout>
+
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Padding="5" WidthRequest="120" HeightRequest="120">
+
+                                            <toolkit:MediaElement 
+    Source="{Binding FullPath, Converter={StaticResource PathToMediaSource}}"
+    IsVisible="{Binding IsVideo}"
+    ShouldAutoPlay="False"
+    ShouldShowPlaybackControls="True"
+    Aspect="AspectFill" />
+
+                                            <Image 
+    Source="{Binding PreviewImageSource}"
+    IsVisible="{Binding IsVideo, Converter={StaticResource InvertedBool}}"
+    Aspect="AspectFill" />
+
+                                            <Button Text="X"
+        VerticalOptions="Start"
+        HorizontalOptions="End"
+        
+        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateEventPageViewModel}}, Path=RemoverMediaCommand}"
+        CommandParameter="{Binding .}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                            <Border Stroke="#D9D9D9" StrokeShape="RoundRectangle 8" WidthRequest="185" HeightRequest="80" BackgroundColor="#D9D9D9" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding MostrarPlaceholder}">
+                                <Label Text="Imagem PNG" FontSize="14" TextColor="black" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Border>
+
+                            <Label Text="Adicione fotos do local do evento." TextColor="#604F1271" FontAttributes="Bold" FontSize="14" HorizontalTextAlignment="Center" Margin="10,0,10,0" IsVisible="{Binding MostrarPlaceholder}"/>
+
+
+
+                            <Button Text="Adicionar" BackgroundColor="#4F1271" TextColor="White" CornerRadius="10" WidthRequest="150" Command="{Binding SelecionarMediaCommand}" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
 
                 <!--localização-->
                 <VerticalStackLayout Margin="0,10,0,0">
@@ -276,7 +269,7 @@
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Text="Informações:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
                     <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="150">
-                        <Editor TextColor="#4F1271" AutoSize="TextChanges" Grid.Row="1" Placeholder="Descreva-se:" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Biografia}"></Editor>
+                        <Editor TextColor="#4F1271" AutoSize="TextChanges" Grid.Row="1" Placeholder="Descreva-se:" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Descricao}"></Editor>
                     </Border>
                 </Grid>
 
@@ -300,8 +293,6 @@
 
 
                 <Button Grid.Row="0" Text="Criar evento" Margin="0,70,0,0" BackgroundColor="#e7e7e7" TextColor="#4F1271" HeightRequest="60" WidthRequest="200" FontSize="17" FontAttributes="Bold" FontFamily="InterBold" Command="{Binding RegistrarCommand}" ></Button>
-                <!--Command="{Binding RegistrarCommand}"-->
-                <Label  Grid.Row="1" Text="Termos de Uso e Política de Privacidade" HorizontalOptions="Center" TextColor="#e7e7e7" Margin="0,30,0,0"></Label>
             </Grid>
 
         </VerticalStackLayout>

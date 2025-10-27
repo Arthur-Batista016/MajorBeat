@@ -1,5 +1,5 @@
+using MajorBeat.Enums;
 using MajorBeat.ModelsJeff;
-using MajorBeat.ModelsJeff.EnumsJeff;
 using MajorBeat.ViewModels.Musician;
 using MajorBeat.Views;
 using MajorBeat.Views.Musicians;
@@ -66,39 +66,13 @@ namespace MajorBeat.ViewModels
             } else { 
                 ErroTelefoneVisible = false; 
             }
-            if (string.IsNullOrWhiteSpace(Logradouro)) 
-            { 
-                ErroLogradouroVisible = true; 
-                valido = false; 
-            } else { 
-                ErroLogradouroVisible = false; 
-            }
+            
             if (string.IsNullOrWhiteSpace(Numero) || !Numero.All(char.IsDigit)) 
             { 
                 ErroNumeroVisible = true; 
                 valido = false;
             } else { 
                 ErroNumeroVisible = false;
-            }
-            if (string.IsNullOrWhiteSpace(Bairro)) 
-            { 
-                ErroBairroVisible = true; 
-                valido = false; 
-            } else { 
-                ErroBairroVisible = false; 
-            }
-            if (string.IsNullOrWhiteSpace(Cidade)) 
-            { 
-                ErroCidadeVisible = true; 
-                valido = false; 
-            } else { 
-                ErroCidadeVisible = false; 
-            }
-            if (string.IsNullOrWhiteSpace(Uf) || Uf.Length != 2) { 
-                ErroUfVisible = true;
-                valido = false; 
-            } else { 
-                ErroUfVisible = false; 
             }
             if (string.IsNullOrWhiteSpace(Cep) || Cep.Length != 8 || !Cep.All(char.IsDigit)) {
                 ErroCepVisible = true; 
@@ -122,7 +96,7 @@ namespace MajorBeat.ViewModels
             u.nome = Nome;
             u.email = Email;
             u.telefone = Telefone;
-            u.endereco = $"{Logradouro}, {Numero}, {Bairro}, {Cidade}, {Uf}, {Cep}";
+            u.endereco = $"{Cep}, {Numero}, {Complemento}";
             u.senha = Senha;
             u.tipoMusico = Tipo;
 
@@ -155,6 +129,17 @@ namespace MajorBeat.ViewModels
             }
         }
 
+        private string complemento = string.Empty;
+        public string Complemento
+        {
+            get { return complemento; }
+            set
+            {
+                complemento = value;
+                onPropertyChanged();
+            }
+        }
+
         private string email = string.Empty;
         public string Email
         {
@@ -177,16 +162,7 @@ namespace MajorBeat.ViewModels
             }
         }
 
-        private string logradouro = string.Empty;
-        public string Logradouro
-        {
-            get { return logradouro; }
-            set
-            {
-                logradouro = value;
-                onPropertyChanged();
-            }
-        }
+        
 
         private string numero = string.Empty;
         public string Numero
@@ -210,38 +186,6 @@ namespace MajorBeat.ViewModels
             }
         }
 
-        private string bairro = string.Empty;
-        public string Bairro
-        {
-            get { return bairro; }
-            set
-            {
-                bairro = value;
-                onPropertyChanged();
-            }
-        }
-
-        private string cidade = string.Empty;
-        public string Cidade
-        {
-            get { return cidade; }
-            set
-            {
-                cidade = value;
-                onPropertyChanged();
-            }
-        }
-
-        private string uf = string.Empty;
-        public string Uf
-        {
-            get { return uf; }
-            set
-            {
-                uf = value;
-                onPropertyChanged();
-            }
-        }
 
         private string senha = string.Empty;
         public string Senha
@@ -289,13 +233,6 @@ namespace MajorBeat.ViewModels
             set { erroTelefoneVisible = value; onPropertyChanged(); }
         }
 
-        private bool erroLogradouroVisible;
-        public bool ErroLogradouroVisible
-        {
-            get => erroLogradouroVisible;
-            set { erroLogradouroVisible = value; onPropertyChanged(); }
-        }
-
         private bool erroNumeroVisible;
         public bool ErroNumeroVisible
         {
@@ -303,26 +240,6 @@ namespace MajorBeat.ViewModels
             set { erroNumeroVisible = value; onPropertyChanged(); }
         }
 
-        private bool erroBairroVisible;
-        public bool ErroBairroVisible
-        {
-            get => erroBairroVisible;
-            set { erroBairroVisible = value; onPropertyChanged(); }
-        }
-
-        private bool erroCidadeVisible;
-        public bool ErroCidadeVisible
-        {
-            get => erroCidadeVisible;
-            set { erroCidadeVisible = value; onPropertyChanged(); }
-        }
-
-        private bool erroUfVisible;
-        public bool ErroUfVisible
-        {
-            get => erroUfVisible;
-            set { erroUfVisible = value; onPropertyChanged(); }
-        }
 
         private bool erroCepVisible;
         public bool ErroCepVisible

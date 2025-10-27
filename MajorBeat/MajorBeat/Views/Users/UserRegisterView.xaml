@@ -65,7 +65,7 @@
                     <Label Text="Telefone invalido" TextColor="Red" FontSize="10" FontAttributes="Bold" FontFamily="InterBold" Margin="0,0,0,0" HorizontalTextAlignment="End" IsVisible="{Binding ContratanteVM.ErroTelefoneVisible}"></Label>
 
                     <Border WidthRequest="370" BackgroundColor="#e7e7e7" StrokeShape="RoundRectangle 10">
-                        <Grid Margin="40,0,0,0">
+                        <Grid Margin="4,0,0,0">
                             <Entry 
             Placeholder="Ex:(11) 95802-7781"
             HeightRequest="55"
@@ -109,74 +109,25 @@
             <!--ENDERECO-->
 
 
-                    <Grid Margin="0,35,0,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-
-                        <Label Grid.Row="0" Text="Endereço" TextColor="#e7e7e7" Margin="25,-5,0,0" FontSize="18"  FontFamily="InterBold" FontAttributes="Bold" ></Label>
-
-                        <Grid Margin="0,45,0,0">
-
-
-                            <!--logradouro-->
-                            <Label Grid.Row="1" Text="Logradouro:" TextColor="#e7e7e7"  FontFamily="InterBold" FontAttributes="Bold" Margin="25,0,0,0" HorizontalTextAlignment="Start"></Label>
-                            <Label Text="O logradouro não pode ser nulo" TextColor="Red" FontSize="10" FontAttributes="Bold" FontFamily="InterBold" Margin="25,20,0,20" HorizontalTextAlignment="Start" IsVisible="{Binding ContratanteVM.ErroLogradouroVisible}"></Label>
-                            <Border   Grid.Row="2" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="220" Margin="0,-175,0,0" HorizontalOptions="Start" HeightRequest="55">
-                                <Entry TextColor="#4F1271" Grid.Row="2" Placeholder="Ex: R.Alcântara" HorizontalOptions="Start" Margin="0,0,0,0" WidthRequest="190" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271" Text="{Binding ContratanteVM.Logradouro}"></Entry>
+                    <VerticalStackLayout Margin="0,10,0,0">
+                        <Label Text="Localização:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,20,0,20" HorizontalTextAlignment="Start"></Label>
+                        <Grid Margin="0,20,0,0">
+                            <Label Text="Cep:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,-25,0,0" HorizontalTextAlignment="Start"></Label>
+                            <Label Grid.Row="0" Text="Cep inválido" IsVisible="{Binding ContratanteVM.ErroCepVisible}" TextColor="Red" Margin="40,-2,0,-20" FontSize="10" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="Start"></Label>
+                            <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,10,0,0" WidthRequest="165" HorizontalOptions="Start">
+                                <Entry TextColor="#4F1271" Grid.Row="1" Placeholder="Ex:02250010" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding ContratanteVM.Cep}"></Entry>
                             </Border>
-
-                            <!--numero-->
-                            <Label Grid.Row="1" Text="Número:" TextColor="#e7e7e7" HorizontalTextAlignment="Center" Margin="200,0,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
-                            <Label Text="Numero invalido" TextColor="Red" FontSize="10" FontAttributes="Bold" FontFamily="InterBold" Margin="40,20,0,20" HorizontalTextAlignment="End" IsVisible="{Binding ContratanteVM.ErroNumeroVisible}"></Label>
-                            <Border   Grid.Row="2" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="120" Margin="0,-175,0,0" HorizontalOptions="End" HeightRequest="55">
-                                <Entry TextColor="#4F1271" Grid.Row="2" Placeholder="Ex: 1234" PlaceholderColor="#707F5297" HorizontalOptions="End" Margin="0,0,0,0" WidthRequest="110" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding ContratanteVM.Numero}"></Entry>
+                            <Label Text="Número:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,-25,80,0" HorizontalTextAlignment="End"></Label>
+                            <Label Grid.Row="0" Text="número inválido" IsVisible="{Binding ContratanteVM.ErroNumeroVisible}" TextColor="Red" Margin="0,0,0,-10" FontSize="10" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
+                            <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,10,0,0" WidthRequest="165" HorizontalOptions="End">
+                                <Entry TextColor="#4F1271" Grid.Row="1" Placeholder="Ex:1234" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding ContratanteVM.Numero}"></Entry>
                             </Border>
                         </Grid>
-
-
-                        <Grid Margin="0,150,0,0">
-
-                            <!--cep-->
-                            <Label Grid.Row="3" Text="CEP:" TextColor="#e7e7e7" Margin="25,-10,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
-                            <Label Text="CEP invalido" TextColor="Red" FontSize="10" FontAttributes="Bold" FontFamily="InterBold" Margin="25,10,0,20" HorizontalTextAlignment="Start" IsVisible="{Binding ContratanteVM.ErroCepVisible}"></Label>
-                            <Border   Grid.Row="4" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="130" Margin="0,-90,0,0" HorizontalOptions="Start" HeightRequest="55">
-                                <Entry TextColor="#4F1271" Grid.Row="4" Placeholder="Ex:23987501" Margin="0,0,0,0" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271" Text="{Binding ContratanteVM.Cep}"></Entry>
-                            </Border>
-
-                            <!--bairro-->
-                            <Label  Grid.Row="3" Text="Bairro:" HorizontalTextAlignment="Center" TextColor="#e7e7e7" Margin="0,-10,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
-                            <Label Text="O bairro não pode ser nulo" TextColor="Red" FontSize="10" FontAttributes="Bold" FontFamily="InterBold" Margin="40,10,0,20" HorizontalTextAlignment="End" IsVisible="{Binding ContratanteVM.ErroBairroVisible}"></Label>
-                            <Border  Grid.Row="4" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="220" Margin="0,-90,0,0" HorizontalOptions="End" HeightRequest="55">
-                                <Entry TextColor="#4F1271"  Grid.Row="4" Placeholder="Ex: Vila Maria Alta" PlaceholderColor="#707F5297" Margin="0,0,0,0" HorizontalOptions="Center" WidthRequest="200" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding ContratanteVM.Bairro}"></Entry>
-                            </Border>
-                        </Grid>
-
-                        <Grid Margin="0,300,0,0">
-                            <!--cidade-->
-                            <Label  Grid.Row="5" Text="Cidade:" TextColor="#e7e7e7" Margin="22,-50,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
-                            <Label Text="A cidade não pode ser vazio" TextColor="Red" FontSize="10" FontAttributes="Bold" FontFamily="InterBold" Margin="20,-35,0,0" HorizontalTextAlignment="Start" IsVisible="{Binding ContratanteVM.ErroCidadeVisible}"></Label>
-                            <Border  Grid.Row="6" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="175" Margin="0,-30,0,0" HorizontalOptions="Start" HeightRequest="55">
-                                <Entry TextColor="#4F1271" Grid.Row="6" Placeholder="Ex: Campinas" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271" Text="{Binding ContratanteVM.Cidade}"></Entry>
-                            </Border>
-
-                            <!--uf-->
-                            <Label  Grid.Row="5" Text="UF:" Margin="0,-50,150,0" TextColor="#e7e7e7" HorizontalOptions="End" FontAttributes="Bold"  FontFamily="InterBold"></Label>
-                            <Label Text="O nome não pode ser vazio" TextColor="Red" FontSize="10" FontAttributes="Bold" FontFamily="InterBold" Margin="0,-35,0,65" HorizontalTextAlignment="End" IsVisible="{Binding ContratanteVM.ErroUfVisible}"></Label>
-                            <Border  Grid.Row="6" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="180" Margin="0,-30,0,0" HorizontalOptions="End" HeightRequest="55" >
-                                <Entry TextColor="#4F1271" Grid.Row="6" Placeholder="Ex: São Paulo" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271"  BackgroundColor="Transparent" Text="{Binding ContratanteVM.Uf}"></Entry>
-                            </Border>
-                        </Grid>
-
-
-                    </Grid>
+                    </VerticalStackLayout>
+                    <Label Text="Complemento:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,30,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,10,0,0" WidthRequest="370">
+                        <Entry TextColor="#4F1271" Placeholder="Ex:Casa 1" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding ContratanteVM.Complemento}"></Entry>
+                    </Border>
 
                     <!--senha-->
                     <Grid Margin="0,40,0,0">
@@ -288,7 +239,7 @@
                     <Label Text="Telefone invalido" TextColor="Red" FontSize="10" FontAttributes="Bold" FontFamily="InterBold" Margin="0,0,0,0" HorizontalTextAlignment="End" IsVisible="{Binding MusicoVM.ErroTelefoneVisible}"></Label>
 
                     <Border WidthRequest="370" BackgroundColor="#e7e7e7" StrokeShape="RoundRectangle 10">
-                        <Grid Margin="40,0,0,0">
+                        <Grid Margin="4,0,0,0">
 
 
                            
@@ -305,78 +256,29 @@
                     </Border>
 
                     <!--ENDERECO-->
-                       
-
-                <Grid Margin="0,35,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
 
 
-                    <Label Grid.Row="0" Text="Endereço" TextColor="#e7e7e7" Margin="25,-5,0,0" FontSize="18"  FontFamily="InterBold" FontAttributes="Bold" ></Label>
+                    <VerticalStackLayout Margin="0,10,0,0">
+                        <Label Text="Localização:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,20,0,20" HorizontalTextAlignment="Start"></Label>
+                        <Grid Margin="0,20,0,0">
+                            <Label Text="Cep:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,-25,0,0" HorizontalTextAlignment="Start"></Label>
+                            <Label Grid.Row="0" Text="Cep inválido" IsVisible="{Binding MusicoVM.ErroCepVisible}" TextColor="Red" Margin="40,-2,0,-20" FontSize="10" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="Start"></Label>
+                            <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,10,0,0" WidthRequest="165" HorizontalOptions="Start">
+                                <Entry TextColor="#4F1271" Grid.Row="1" Placeholder="Ex:02250010" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding MusicoVM.Cep}"></Entry>
+                            </Border>
+                            <Label Text="Número:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,-25,80,0" HorizontalTextAlignment="End"></Label>
+                            <Label Grid.Row="0" Text="número inválido" IsVisible="{Binding MusicoVM.ErroNumeroVisible}" TextColor="Red" Margin="0,0,0,-10" FontSize="10" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
+                            <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,10,0,0" WidthRequest="165" HorizontalOptions="End">
+                                <Entry TextColor="#4F1271" Grid.Row="1" Placeholder="Ex:1234" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding MusicoVM.Numero}"></Entry>
+                            </Border>
+                        </Grid>
+                    </VerticalStackLayout>
+                    <Label Text="Complemento:" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,30,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,10,0,0" WidthRequest="370">
+                        <Entry TextColor="#4F1271" Placeholder="Ex:Casa 1" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding MusicoVM.Complemento}"></Entry>
+                    </Border>
 
-                    <Grid Margin="0,45,0,0">
-
-
-                        <!--logradouro-->
-                        <Label Grid.Row="1" Text="Logradouro:" TextColor="#e7e7e7"  FontFamily="InterBold" FontAttributes="Bold" Margin="25,0,0,0" HorizontalTextAlignment="Start"></Label>
-                            <Label Text="O logradouro não pode ser nulo" TextColor="Red" FontSize="10" FontAttributes="Bold" FontFamily="InterBold" Margin="25,20,0,20" HorizontalTextAlignment="Start" IsVisible="{Binding MusicoVM.ErroLogradouroVisible}"></Label>
-                            <Border   Grid.Row="2" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="220" Margin="0,-175,0,0" HorizontalOptions="Start" HeightRequest="55">
-                                <Entry TextColor="#4F1271" Grid.Row="2" Placeholder="Ex: R.Alcântara" HorizontalOptions="Start" Margin="0,0,0,0" WidthRequest="190" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271" Text="{Binding MusicoVM.Logradouro}"></Entry>
-                        </Border>
-
-                        <!--numero-->
-                        <Label Grid.Row="1" Text="Número:" TextColor="#e7e7e7" HorizontalTextAlignment="Center" Margin="200,0,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
-                            <Label Text="Numero invalido" TextColor="Red" FontSize="10" FontAttributes="Bold" FontFamily="InterBold" Margin="40,20,0,20" HorizontalTextAlignment="End" IsVisible="{Binding MusicoVM.ErroNumeroVisible}"></Label>
-                            <Border   Grid.Row="2" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="120" Margin="0,-175,0,0" HorizontalOptions="End" HeightRequest="55">
-                                <Entry TextColor="#4F1271" Grid.Row="2" Placeholder="Ex: 1234" PlaceholderColor="#707F5297" HorizontalOptions="End" Margin="0,0,0,0" WidthRequest="110" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding MusicoVM.Numero}"></Entry>
-                        </Border>
-                    </Grid>
-
-
-                    <Grid Margin="0,150,0,0">
-
-                        <!--cep-->
-                        <Label Grid.Row="3" Text="CEP:" TextColor="#e7e7e7" Margin="25,-10,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
-                            <Label Text="CEP invalido" TextColor="Red" FontSize="10" FontAttributes="Bold" FontFamily="InterBold" Margin="25,10,0,20" HorizontalTextAlignment="Start" IsVisible="{Binding MusicoVM.ErroCepVisible}"></Label>
-                            <Border   Grid.Row="4" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="130" Margin="0,-90,0,0" HorizontalOptions="Start" HeightRequest="55">
-                                <Entry TextColor="#4F1271" Grid.Row="4" Placeholder="Ex:23987501" Margin="0,0,0,0" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271" Text="{Binding MusicoVM.Cep}"></Entry>
-                        </Border>
-
-                        <!--bairro-->
-                        <Label  Grid.Row="3" Text="Bairro:" HorizontalTextAlignment="Center" TextColor="#e7e7e7" Margin="0,-10,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
-                            <Label Text="O bairro não pode ser nulo" TextColor="Red" FontSize="10" FontAttributes="Bold" FontFamily="InterBold" Margin="40,10,0,20" HorizontalTextAlignment="End" IsVisible="{Binding MusicoVM.ErroBairroVisible}"></Label>
-                            <Border  Grid.Row="4" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="220" Margin="0,-90,0,0" HorizontalOptions="End" HeightRequest="55">
-                                <Entry TextColor="#4F1271"  Grid.Row="4" Placeholder="Ex: Vila Maria Alta" PlaceholderColor="#707F5297" Margin="0,0,0,0" HorizontalOptions="Center" WidthRequest="200" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding MusicoVM.Bairro}"></Entry>
-                        </Border>
-                    </Grid>
-
-                    <Grid Margin="0,300,0,0">
-                        <!--cidade-->
-                        <Label  Grid.Row="5" Text="Cidade:" TextColor="#e7e7e7" Margin="22,-50,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
-                            <Label Text="A cidade não pode ser vazio" TextColor="Red" FontSize="10" FontAttributes="Bold" FontFamily="InterBold" Margin="20,-35,0,0" HorizontalTextAlignment="Start" IsVisible="{Binding MusicoVM.ErroCidadeVisible}"></Label>
-                            <Border  Grid.Row="6" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="175" Margin="0,-30,0,0" HorizontalOptions="Start" HeightRequest="55">
-                                <Entry TextColor="#4F1271" Grid.Row="6" Placeholder="Ex: Campinas" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271" Text="{Binding MusicoVM.Cidade}"></Entry>
-                        </Border>
-
-                        <!--uf-->
-                        <Label  Grid.Row="5" Text="UF:" Margin="0,-50,150,0" TextColor="#e7e7e7" HorizontalOptions="End" FontAttributes="Bold"  FontFamily="InterBold"></Label>
-                            <Label Text="O nome não pode ser vazio" TextColor="Red" FontSize="10" FontAttributes="Bold" FontFamily="InterBold" Margin="0,-35,0,65" HorizontalTextAlignment="End" IsVisible="{Binding MusicoVM.ErroUfVisible}"></Label>
-                            <Border  Grid.Row="6" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="180" Margin="0,-30,0,0" HorizontalOptions="End" HeightRequest="55" >
-                                <Entry TextColor="#4F1271"  Grid.Row="6" Placeholder="Ex: São Paulo" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271"  BackgroundColor="Transparent" Text="{Binding MusicoVM.Uf}"></Entry>
-                        </Border>
-                    </Grid>
-
-
-                </Grid>
-
-                <!--senha-->
+                    <!--senha-->
                 <Grid Margin="0,40,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>

@@ -14,4 +14,9 @@ public partial class LoginPage : ContentPage
     {
         await Navigation.PushAsync(new InitialPage());
     }
+
+    private async void semConta(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new UserRegisterView());
+    }
 }

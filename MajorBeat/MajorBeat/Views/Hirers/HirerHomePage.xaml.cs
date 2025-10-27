@@ -27,7 +27,7 @@ public partial class HirerHomePage : ContentPage
 
     private async void home_page_btn_Clicked(object sender, EventArgs e)
     {
-      
+        await Navigation.PushAsync(new CreateEventPageView());
     }
 
     private async void search_page_btn_Clicked(object sender, EventArgs e)

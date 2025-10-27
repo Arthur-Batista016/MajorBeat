@@ -17,7 +17,7 @@
    
 
     <!-- Grid da página inteira -->
-    <Grid RowSpacing="0">
+    <Grid RowSpacing="0" HorizontalOptions="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -33,7 +33,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Border StrokeShape="RoundRectangle 0 0 0 0"  x:Name="searchBarContainer"   BackgroundColor="#4F1271"  Margin="0,0,0,0" WidthRequest="408" HorizontalOptions="Start" HeightRequest="90">
+                <Border StrokeShape="RoundRectangle 0 0 0 0"  x:Name="searchBarContainer"   BackgroundColor="#4F1271"  Margin="0,0,0,0" HorizontalOptions="Fill" HeightRequest="90">
                     <VerticalStackLayout Margin="0,0,0,0">
                         <Border StrokeShape="RoundRectangle 10,10,10,10" BackgroundColor="#AE92BD" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45" ZIndex="10">
                             <VerticalStackLayout>
@@ -56,7 +56,7 @@
         <ScrollView Grid.Row="1">
             <VerticalStackLayout>
                 <Border StrokeShape="RoundRectangle 10" BackgroundColor="#4F1271" WidthRequest="60" HorizontalOptions="End" HeightRequest="40" Margin="0,40,30,0">
-                    <ImageButton Source="filter" HorizontalOptions="End" HeightRequest="20" BackgroundColor="Transparent"/>
+                    <ImageButton Source="filter" HorizontalOptions="Center" HeightRequest="20" BackgroundColor="Transparent"/>
                 </Border>
 
                 <Label Text="Musicos na sua região:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,0,0,100"/>
@@ -95,12 +95,12 @@
                                 -->
 
 
-                                <Image Source="{Binding mediaUrl[0]}" WidthRequest="450"  HeightRequest="600" Margin="0,-70,0,0"/>
+                                <Image Source="{Binding mediaUrl[0]}"  HeightRequest="600" Margin="0,-70,0,0" HorizontalOptions="Fill"/>
 
 
 
                                 <!-- Informações do evento -->
-                                <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End" VerticalOptions="End" HeightRequest="200" Margin="0,430,0,50">
+                                <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" HorizontalOptions="Fill" VerticalOptions="End" HeightRequest="200" Margin="0,430,0,50">
                                     <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,0,0,0">
 
                                         <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="30" HorizontalOptions="Start" TextColor="#ffffff" Margin="20,30,0,20"/>
@@ -154,7 +154,7 @@
                 <Frame Grid.Column="1" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
                     <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" Clicked="search_page_btn_Clicked" />
                 </Frame>
-
+                
                 <Frame Grid.Column="2" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
                     <Image Source="chathome.png" WidthRequest="24" HeightRequest="24"/>
                 </Frame>
@@ -164,7 +164,7 @@
                 </Frame>
 
                 <Frame Grid.Column="4" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
-                    <Image Source="profilehome.png" WidthRequest="24" HeightRequest="24"/>
+                    <ImageButton Source="profilehome.png" WidthRequest="24" HeightRequest="24" Clicked="home_page_btn_Clicked"/>
                 </Frame>
             </Grid>
         </VerticalStackLayout>

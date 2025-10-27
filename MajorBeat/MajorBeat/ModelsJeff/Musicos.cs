@@ -1,4 +1,4 @@
-﻿using MajorBeat.ModelsJeff.EnumsJeff;
+﻿using MajorBeat.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace MajorBeat.ModelsJeff
 {
     public class Musico
     {
-        public int id { get; set; }
+        public int idMusico { get; set; }
         public string token { get; set; }
         public string nome { get; set; }
         public string email { get; set; }
@@ -19,8 +19,8 @@ namespace MajorBeat.ModelsJeff
         public string biografia { get; set; }
         public string apelido { get; set; }
         public TipoMusico tipoMusico { get; set; }
-        public List<InstrumentoEnum> instrumentos { get; set; }
-        public List<GeneroEnum> generos { get; set; }
+        public List<NomeInstrumento> nomeInstrumentos { get; set; }
+        public List<NomeGenero> nomeGeneros { get; set; }
         public byte[] FotoBytes { get; set; }
         public string linkLinkdin { get; set; }
         public string linkInsta { get; set; }

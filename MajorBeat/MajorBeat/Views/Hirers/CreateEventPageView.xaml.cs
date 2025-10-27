@@ -1,4 +1,4 @@
-using MajorBeat.ModelsJeff.EnumsJeff;
+using MajorBeat.Enums;
 using MajorBeat.Services;
 using MajorBeat.ViewModels.Hirer;
 
@@ -18,11 +18,11 @@ public partial class CreateEventPageView : ContentPage
         if (BindingContext is CreateEventPageViewModel viewModel)
         {
             // Remove instrumentos que foram desmarcados
-            foreach (InstrumentoEnum removido in e.PreviousSelection.Except(e.CurrentSelection))
+            foreach (NomeInstrumento removido in e.PreviousSelection.Except(e.CurrentSelection))
                 viewModel.InstrumentosSelecionados.Remove(removido);
 
             // Adiciona novos instrumentos selecionados
-            foreach (InstrumentoEnum adicionado in e.CurrentSelection.Except(e.PreviousSelection))
+            foreach (NomeInstrumento adicionado in e.CurrentSelection.Except(e.PreviousSelection))
                 viewModel.InstrumentosSelecionados.Add(adicionado);
         }
     }
@@ -32,11 +32,11 @@ public partial class CreateEventPageView : ContentPage
         if (BindingContext is CreateEventPageViewModel viewModel)
         {
             // Remove gêneros que foram desmarcados
-            foreach (GeneroEnum removido in e.PreviousSelection.Except(e.CurrentSelection))
+            foreach (NomeGenero removido in e.PreviousSelection.Except(e.CurrentSelection))
                 viewModel.GenerosSelecionados.Remove(removido);
 
             // Adiciona novos gêneros selecionados
-            foreach (GeneroEnum adicionado in e.CurrentSelection.Except(e.PreviousSelection))
+            foreach (NomeGenero adicionado in e.CurrentSelection.Except(e.PreviousSelection))
                 viewModel.GenerosSelecionados.Add(adicionado);
         }
     }
