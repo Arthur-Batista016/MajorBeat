@@ -475,7 +475,7 @@
         HorizontalOptions="Center"
         VerticalOptions="Center"
         HasShadow="True">
-                    <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" />
+                    <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" Clicked="search_page_btn_Clicked"/>
                 </Frame>
 
                 <!-- Botão 3 -->
@@ -506,7 +506,7 @@
              HorizontalOptions="Center"
              VerticalOptions="Center"
              HasShadow="True">
-                    <Image Source="profilehome.png" WidthRequest="24" HeightRequest="24"/>
+                    <ImageButton Clicked="profile_btn_Clicked"  Source="profilehome.png" WidthRequest="24" HeightRequest="24"/>
                 </Frame>
             </Grid>
         </VerticalStackLayout>

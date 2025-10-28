@@ -16,7 +16,7 @@ namespace MajorBeat.Models
 
         public TipoMusico tipoMusico { get; set; }
         public StatusEvento status { get; set; }
-        public TipoEvento tipoEvento { get; set; }
+        public TipoEvento? tipoEvento { get; set; }
 
         public DateTime data { get; set; }
 
@@ -38,5 +38,6 @@ namespace MajorBeat.Models
         public Contratante contratante { get; set; }
 
         public ObservableCollection<Avaliacao> avaliacoes { get; set; } = new();
+        public List<string> mediaUrl { get; set; }
     }
 }

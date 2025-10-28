@@ -44,6 +44,18 @@ public partial class HirerSearchPage : ContentPage
         await Navigation.PushAsync(new HirerHomePage());
     }
 
+    private async void search_page_btn_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new HirerSearchPage());
+
+    }
+
+    private async void profile_btn_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new HirerProfilePage());
+
+    }
+
     private void searchBar_Completed(object sender, EventArgs e)
     {
         var entry = (Entry)sender;

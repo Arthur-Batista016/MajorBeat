@@ -148,7 +148,7 @@
 
                 <!-- Botões -->
                 <Frame Grid.Column="0" WidthRequest="60" HeightRequest="60" CornerRadius="30" BackgroundColor="#783F8E" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
-                    <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24"  />
+                    <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24"  Clicked="home_page_btn_Clicked"/>
                 </Frame>
 
                 <Frame Grid.Column="1" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
@@ -164,7 +164,7 @@
                 </Frame>
 
                 <Frame Grid.Column="4" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
-                    <ImageButton Source="profilehome.png" WidthRequest="24" HeightRequest="24" Clicked="home_page_btn_Clicked"/>
+                    <ImageButton Source="profilehome.png" WidthRequest="24" HeightRequest="24" Clicked="profile_btn_Clicked" />
                 </Frame>
             </Grid>
         </VerticalStackLayout>

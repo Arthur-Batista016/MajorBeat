@@ -27,12 +27,18 @@ public partial class HirerHomePage : ContentPage
 
     private async void home_page_btn_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new CreateEventPageView());
+        await Navigation.PushAsync(new HirerHomePage());
     }
 
     private async void search_page_btn_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new HirerSearchPage());
+        await Navigation.PushAsync(new HirerSearchPage());//
+
+    }
+
+    private async void profile_btn_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new HirerProfilePage());
 
     }
 }
