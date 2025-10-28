@@ -62,15 +62,34 @@
 
 
 
+        <Grid Grid.Row="1" IsVisible="{Binding NoEvents}">
+            <Grid>
+                <Button   HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start"  VerticalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7" Command="{Binding BackGenreCommand}"></Button>
+                <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,47,250,0" HorizontalOptions="Center"></Label>
+                <Image Source="back.png" HeightRequest="20" Margin="-330,50,0,0" VerticalOptions="Start"   ZIndex="1"/>
+            </Grid>
+            <Label Text="Sem Musicos Disponiveis no Momento para este Gênero!" HorizontalOptions="Center" VerticalOptions="Center" FontSize="26" WidthRequest="420" Margin="70,-40,0,0" TextColor="#4F1271"/>
+        </Grid>
+
+
+
+
+
         <ScrollView Grid.Row="1"  IsVisible="{Binding IsSearchEvent}">
             <VerticalStackLayout>
-             
+
+                <Grid>
+                    <Button  x:Name="voltar" HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7" Command="{Binding BackEventCommand}"></Button>
+                    <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,47,250,0" HorizontalOptions="Center"></Label>
+                    <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
+                </Grid>
 
                 <Label Text="RESULTADOS ENCONTRADOS:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,50,0,0"/>
               
 
                 <!-- Eventos -->
-                <CollectionView ItemsSource="{Binding Eventos}"  Margin="0,100,0,40" IsVisible="{Binding FindEvents}">
+                <!-- Eventos -->
+                <CollectionView ItemsSource="{Binding Eventos}"  Margin="0,0,0,40" IsVisible="{Binding FindEvents}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="0,-100,0,0">
@@ -81,15 +100,15 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                               
-                                            <Image Source="{Binding .}" HeightRequest="600" Margin="0,0,0,0"/>
-                                  
 
-                               
+                                <Image Source="{Binding mediaUrl[0]}" HeightRequest="600" Margin="0,0,0,0"/>
+
+
+
 
                                 <!-- Informações do evento -->
-                                <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" WidthRequest="410" HorizontalOptions="End" VerticalOptions="End" HeightRequest="200">
-                                    <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,0,0,0">
+                                <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" HorizontalOptions="Fill" VerticalOptions="End" HeightRequest="200">
+                                    <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,-30,0,0">
                                         <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
                                         <Label Text="{Binding tipoEvento}" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0"/>
 
@@ -97,7 +116,7 @@
                                         <CollectionView ItemsSource="{Binding generos}" ItemsLayout="HorizontalList">
                                             <CollectionView.ItemTemplate>
                                                 <DataTemplate>
-                                                    <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#FFFFFF" Margin="20,20,0,0"  WidthRequest="130" HorizontalOptions="Start" HeightRequest="35">
+                                                    <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#FFFFFF" Margin="20,30,0,0"  WidthRequest="130" HorizontalOptions="Start" HeightRequest="35">
                                                         <Label Text="{Binding .}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Margin="0,4,0,0"/>
                                                     </Border>
                                                 </DataTemplate>
@@ -110,7 +129,7 @@
 
 
                                         <Grid Margin="0,0,0,0">
-                                            <Label Text="{Binding horaInicio,StringFormat='{0:h\\:mm} -'}" TextColor="#ffffff" FontSize="20" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,70,0"/>
+                                            <Label Text="{Binding horaInicio,StringFormat='{0:h\\:mm} -'}" TextColor="#ffffff" FontSize="20" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,60,0"/>
                                             <Label Text="{Binding horaFim,StringFormat='{0:h\\:mm}'}"  TextColor="#ffffff" FontSize="20" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,15,0"/>
                                             <Label Text="{Binding data,StringFormat='{0:dd MMM}'}" HorizontalOptions="End" FontSize="20" Margin="0,-80,20,0" TextColor="#FFFFFF"/>
                                         </Grid>
@@ -120,6 +139,7 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+
             </VerticalStackLayout>
         </ScrollView>
 

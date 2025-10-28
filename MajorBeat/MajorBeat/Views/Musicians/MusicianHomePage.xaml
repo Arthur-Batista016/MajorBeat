@@ -62,11 +62,10 @@
         <!-- Conteúdo principal -->
         <ScrollView Grid.Row="1">
             <VerticalStackLayout>
-                <Border StrokeShape="RoundRectangle 10" BackgroundColor="#4F1271"   HeightRequest="40" Margin="0,40,30,0">
-                    <ImageButton Source="filter" HorizontalOptions="End" HeightRequest="20" BackgroundColor="Transparent"/>
+                <Border StrokeShape="RoundRectangle 10" BackgroundColor="#4F1271" WidthRequest="60" HorizontalOptions="End" HeightRequest="40" Margin="0,40,30,0">
+                    <ImageButton Source="filter" HorizontalOptions="Center" HeightRequest="20" BackgroundColor="Transparent"/>
                 </Border>
-
-                <Label Text="Eventos próximos a você:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,0,0,0"/>
+                <Label Text="Eventos próximos a você:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,30,0,0"/>
               
                 <!-- Eventos -->
                 <!-- Eventos -->
@@ -89,7 +88,7 @@
 
                                 <!-- Informações do evento -->
                                 <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" HorizontalOptions="Fill" VerticalOptions="End" HeightRequest="200">
-                                    <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,0,0,0">
+                                    <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,-30,0,0">
                                         <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
                                         <Label Text="{Binding tipoEvento}" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0"/>
 
@@ -97,7 +96,7 @@
                                         <CollectionView ItemsSource="{Binding generos}" ItemsLayout="HorizontalList">
                                             <CollectionView.ItemTemplate>
                                                 <DataTemplate>
-                                                    <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#FFFFFF" Margin="20,20,0,0"  WidthRequest="130" HorizontalOptions="Start" HeightRequest="35">
+                                                    <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#FFFFFF" Margin="20,30,0,0"  WidthRequest="130" HorizontalOptions="Start" HeightRequest="35">
                                                         <Label Text="{Binding .}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Margin="0,4,0,0"/>
                                                     </Border>
                                                 </DataTemplate>
@@ -110,7 +109,7 @@
 
 
                                         <Grid Margin="0,0,0,0">
-                                            <Label Text="{Binding horaInicio,StringFormat='{0:h\\:mm} -'}" TextColor="#ffffff" FontSize="20" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,70,0"/>
+                                            <Label Text="{Binding horaInicio,StringFormat='{0:h\\:mm} -'}" TextColor="#ffffff" FontSize="20" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,60,0"/>
                                             <Label Text="{Binding horaFim,StringFormat='{0:h\\:mm}'}"  TextColor="#ffffff" FontSize="20" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-115,15,0"/>
                                             <Label Text="{Binding data,StringFormat='{0:dd MMM}'}" HorizontalOptions="End" FontSize="20" Margin="0,-80,20,0" TextColor="#FFFFFF"/>
                                         </Grid>
@@ -120,6 +119,7 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+                
             </VerticalStackLayout>
         </ScrollView>
 
