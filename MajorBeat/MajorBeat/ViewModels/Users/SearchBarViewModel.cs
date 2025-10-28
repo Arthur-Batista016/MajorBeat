@@ -96,12 +96,15 @@ namespace MajorBeat.ViewModels.Users
             InicializarCommands();
             onUnfocus();
             _mService = new MusicianService();
+            GeneroCommand = new AsyncRelayCommand<NomeGenero>(BuscarPorGenero);
+            BackGenreCommand = new Command(async()=> BackGenreChoosed());
         }
 
         public void InicializarCommands()
         {
             Searchs = new ObservableCollection<string>();
             SearchCommand = new Command(async () => await search());
+            
         }
 
         //METODOS DE PESQUISA
