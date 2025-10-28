@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:vm="clr-namespace:MajorBeat.ViewModels.Hirer"
+              x:Class="MajorBeat.Views.Hirers.MusicianDetails"
+              Shell.NavBarIsVisible="False"
+              NavigationPage.HasNavigationBar="False">
+             <!-- xmlns:calendar="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar"-->
+            
+
+    <Grid Margin="0,30,0,0">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="profilepicture.png" HeightRequest="120" HorizontalOptions="Start" Margin="20,0,0,0" />
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding apelido}" FontSize="25" TextColor="#4F1271" FontAttributes="Bold" Margin="10,35,0,0" />
+                        <Label Text="{Binding nome}" FontSize="15" TextColor="#783F8E" Margin="10,0,0,0" />
+                    </StackLayout>
+                </StackLayout>
+
+                <Grid>
+                    <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding mediaUrl[0]}" Position="{Binding CurrentIndex, Mode=TwoWay}"  Margin="0,20,0,20" >
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding}" Aspect="AspectFill" HeightRequest="300"/>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <Frame HorizontalOptions="End"  VerticalOptions="Start" Margin="0,35,20,0" BackgroundColor="#4F1271" HeightRequest="40" WidthRequest="45" CornerRadius="12" Padding="8">
+                        <Label Text="{Binding ImageCounter}" FontSize="16" TextColor="White" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" />
+
+                    </Frame>
+                </Grid>
+
+                <VerticalStackLayout Spacing="35" Margin="0,30,0,0" HorizontalOptions="Center" VerticalOptions="Center">
+                    <HorizontalStackLayout Spacing="60" HorizontalOptions="Center" VerticalOptions="Center">
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,10,0,0">
+                            <HorizontalStackLayout Spacing="10" VerticalOptions="Center" >
+                                <Label Text="4.2" TextColor="#4F1271"  FontSize="28" FontAttributes="Bold" VerticalOptions="Center" />
+                                <Image Source="starrounded.png" HeightRequest="35" VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+                            <Label Text="Avaliação" FontSize="17" TextColor="#4F1271" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="0,10,0,0"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="8" HorizontalOptions="Center" VerticalOptions="Center">
+                            <ImageButton Source="addcontact.png"  HeightRequest="70" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,-10"/>
+                            <Label Text="Adicionar contato" FontSize="16" TextColor="#4F1271" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+
+                    <!--Tabs-->
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="20,0,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="2"/>
+                            </Grid.RowDefinitions>
+                            <Label x:Name="TabGaleria" Text="Galeria" FontSize="25" TextColor="{Binding TabGaleriaTextColor}" FontAttributes="{Binding TabGaleriaFontAttributes}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Galeria"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <BoxView x:Name="BoxViewGaleria" Grid.Row="1" HeightRequest="{Binding BoxViewGaleriaHeightRequest}"  BackgroundColor="{Binding BoxViewGaleriaBackgroundColor}" HorizontalOptions="Start" WidthRequest="90" />
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="2"/>
+                            </Grid.RowDefinitions>
+                            <Label x:Name="TabSobre" Text="Sobre" FontSize="25" TextColor="{Binding TabSobreTextColor}" Padding="50,0,50,0" FontAttributes="{Binding TabSobreFontAttributes}" HorizontalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Sobre"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <BoxView x:Name="BoxViewSobre" Grid.Row="1" HeightRequest="{Binding BoxViewSobreHeightRequest}" BackgroundColor="{Binding BoxViewSobreBackgroundColor}" WidthRequest="90"/>
+                        </Grid>
+                        <Grid Margin="-25,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="2"/>
+                            </Grid.RowDefinitions>
+                            <Label x:Name="TabAvaliacoes" Text="Avaliações" FontSize="25" TextColor="{Binding TabAvaliacoesTextColor}" Padding="20,0,20,0" FontAttributes="{Binding TabAvaliacoesFontAttributes}" HorizontalOptions="End">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Avaliacoes"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <BoxView x:Name="BoxViewAvaliacoes" Grid.Row="1" HeightRequest="{Binding BoxViewAvaliacoesHeightRequest}" BackgroundColor="{Binding BoxViewAvaliacoesBackgroundColor}" WidthRequest="120" />
+                        </Grid>
+                    </StackLayout>
+
+                    <StackLayout x:Name="galeriaStack" Orientation="Vertical" Margin="3,0,0,90" IsVisible="{Binding IsGaleriaVisible}">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="imagepost.png" WidthRequest="130" />
+                            <Image Source="imagepost.png" WidthRequest="130" Margin="5,0,5,0" />
+                            <Image Source="imagepost.png" WidthRequest="130" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="0,8,0,0">
+                            <Image Source="imagepost.png" WidthRequest="130" />
+                            <Image Source="imagepost.png" WidthRequest="130" Margin="5,0,5,0" />
+                            <Image Source="imagepost.png" WidthRequest="130" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <!-- Sobre -->
+                    <StackLayout x:Name="sobreStack" Orientation="Vertical" IsVisible="{Binding IsSobreVisible}" Margin="25,0,25,90">
+                        <Label Text="{Binding biografia}" 
+                       TextColor="#4F1271"
+                       FontAttributes="Bold"
+                       />
+                        <HorizontalStackLayout HorizontalOptions="Center" Spacing="120" Margin="0,20,0,0">
+                            <Label Text="Gêneros: " FontAttributes="Bold" TextColor="#4F1271" HorizontalOptions="Center" Margin="20,0,0,10" FontSize="16"/>
+                            <Label Text="Instrumentos :" FontAttributes="Bold" TextColor="#4F1271" HorizontalOptions="Center" Margin="-20,0,0,10"  FontSize="16"/>
+                        </HorizontalStackLayout>
+                        <VerticalStackLayout HorizontalOptions="Center" Margin="0,10,0,0" Spacing="5">
+
+
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,0,0,10" Spacing="70">
+                                <Border BackgroundColor="#E7E7E7" StrokeShape="RoundRectangle 5" WidthRequest="100" HeightRequest="55" Margin="0,0,10,0">
+                                    <VerticalStackLayout>
+                                        <CollectionView ItemsSource="{Binding nomeGeneros}" HeightRequest="90">
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout>
+                                                        <Label Text="{Binding .}" HorizontalOptions="Center" TextColor="#783F8E"/>
+                                                        <BoxView HeightRequest="1" Color="#4F1271" HorizontalOptions="FillAndExpand" Margin="5,5,5,5"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+                                    </VerticalStackLayout>
+                                </Border>
+
+                                <Border BackgroundColor="#E7E7E7" StrokeShape="RoundRectangle 5" WidthRequest="100" HeightRequest="55">
+                                    <VerticalStackLayout>
+                                        <CollectionView ItemsSource="{Binding nomeInstrumento}" HeightRequest="80">
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout>
+                                                        <Label Text="{Binding .}" HorizontalOptions="Center" TextColor="#783F8E"/>
+                                                        <BoxView HeightRequest="1" Color="#4F1271" HorizontalOptions="FillAndExpand" Margin="5,5,5,5"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+                                    </VerticalStackLayout>
+                                </Border>
+                            </StackLayout>
+                        </VerticalStackLayout>
+                        <Line HorizontalOptions="Start" X1="0" Y1="20" X2="410" Y2="20" Stroke="#4F1271" StrokeThickness="3" Margin="-30,0,0,0" />
+                        <VerticalStackLayout Margin="0,30,0,0">
+                            <Label Text="Disponibilidade" FontSize="22" TextColor="#4F1271" FontAttributes="Bold" Margin="0,0,0,10" HorizontalOptions="Center"/>
+                            <VerticalStackLayout Padding="20,10" Spacing="10">
+
+                            <!--
+                                <Grid>
+                                    <calendar:SfCalendar
+                                    x:Name="MusicianCalendar"
+                                    View="Month"
+                                    SelectionMode="Multiple"
+                                    DisplayDate="{Binding CurrentMonth}"
+                                    SelectedDates="{Binding UnavailableDates}"
+                                    Background="Transparent"
+                                    ShowTrailingAndLeadingDates="False"
+                                    HeightRequest="350"
+                                    SelectionBackground="#4f1271"
+                                    TodayHighlightBrush="#4f1271"
+                                    VerticalOptions="FillAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    EnablePastDates="False"
+                                    >
+                                        <calendar:SfCalendar.MonthView>
+                                            <calendar:CalendarMonthView>
+                                                <calendar:CalendarMonthView.HeaderView>
+                                                    <calendar:CalendarMonthHeaderView TextFormat="ddd" Height="40"/>
+                                                </calendar:CalendarMonthView.HeaderView>
+
+                                            </calendar:CalendarMonthView>
+                                        </calendar:SfCalendar.MonthView>
+                                    </calendar:SfCalendar>
+
+                                    <Line HorizontalOptions="Start" X1="0" Y1="20" X2="320" Y2="20" Stroke="#4F1271" StrokeThickness="3" Margin="0,46,0,0" />
+                                </Grid>
+                                -->
+                                <!-- Legenda -->
+                                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Margin="0,10,0,0">
+                                    <BoxView WidthRequest="20" HeightRequest="20" Color="#4f1271"/>
+                                    <Label Text="Dias indisponíveis" TextColor="Black"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+
+                        <!--Informations-->
+                        <Line HorizontalOptions="Start" X1="0" Y1="20" X2="410" Y2="20" Stroke="#4F1271" StrokeThickness="3" Margin="-30,0,0,0" />
+                        <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                            <Image Source="emailicon.png" WidthRequest="40" />
+                            <Label Text="{Binding email}" VerticalOptions="Center" TextColor="#4F1271" Margin="15,0,0,0"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                            <Image Source="pinicon.png" WidthRequest="30" />
+                            <Label Text="{Binding Logradouro}" VerticalOptions="Center" TextColor="#4F1271" Margin="24,0,0,0"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                            <Image Source="phoneicon.png" WidthRequest="35" />
+                            <Label Text="{Binding telefone}" VerticalOptions="Center" TextColor="#4F1271" Margin="19,0,0,0"/>
+                        </StackLayout>
+                        <Line HorizontalOptions="Start" X1="0" Y1="20" X2="410" Y2="20" Stroke="#4F1271" StrokeThickness="3" Margin="-30,0,0,0" />
+                        <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                            <Image Source="facebook.png" WidthRequest="45" Margin="0,0,10,0"/>
+                            <Label Text="{Binding LinkFacebook}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center" Margin="0,0,40,0"/>
+                            <Image Source="linkedin.png" WidthRequest="45" Margin="0,0,10,0"/>
+                            <Label Text="{Binding LinkLinkdin}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                            <Image Source="instagram.png" WidthRequest="45" Margin="0,0,10,0"/>
+                            <Label Text="{Binding LinkInsta}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center" Margin="0,0,40,0"/>
+                            <Image Source="twitter.png" WidthRequest="45" Margin="0,0,10,0"/>
+                            <Label Text="{Binding LinkTwitter}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <!-- Avaliações -->
+                    <StackLayout x:Name="avaliacoesStack" IsVisible="{Binding IsAvaliacoesVisible}" Margin="0,0,0,90">
+                        <StackLayout Orientation="Horizontal">
+                            <Grid Margin="30,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Text="5" TextColor="#4F1271" FontAttributes="Bold"/>
+                                <ProgressBar HorizontalOptions="Start" WidthRequest="150" Progress="0.35" ProgressColor="#4F1271" Margin="15,0,0,0"/>
+                                <Label Text="4" Grid.Row="2" TextColor="#4F1271" FontAttributes="Bold"/>
+                                <ProgressBar Grid.Row="2" HorizontalOptions="Start" WidthRequest="150" Progress="0.25" ProgressColor="#4F1271" Margin="15,0,0,0"/>
+                                <Label Text="3" Grid.Row="3" TextColor="#4F1271" FontAttributes="Bold"/>
+                                <ProgressBar Grid.Row="3" HorizontalOptions="Start" WidthRequest="150" Progress="0.7" ProgressColor="#4F1271" Margin="15,0,0,0"/>
+                                <Label Text="2" Grid.Row="4" TextColor="#4F1271" FontAttributes="Bold"/>
+                                <ProgressBar Grid.Row="4" HorizontalOptions="Start" WidthRequest="150" Progress="0.10" ProgressColor="#4F1271" Margin="15,0,0,0"/>
+                                <Label Text="1" Grid.Row="5" TextColor="#4F1271" FontAttributes="Bold"/>
+                                <ProgressBar Grid.Row="5" HorizontalOptions="Start" WidthRequest="150" Progress="0.25" ProgressColor="#4F1271" Margin="15,0,0,0"/>
+                            </Grid>
+                            <StackLayout Orientation="Vertical" Margin="50,0,0,0">
+                                <Label Text="4,2" TextColor="#4F1271" FontAttributes="Bold" HorizontalOptions="Center" FontSize="35" />
+                                <Image Source="ratingstars.png" WidthRequest="110" Margin="0,0,0,5"/>
+                                <Label Text="50 AVALIAÇÕES" TextColor="#4F1271" FontAttributes="Bold" HorizontalOptions="Center" />
+                            </StackLayout>
+                        </StackLayout>
+                        <Border StrokeShape="RoundRectangle 10 10 10 10" BackgroundColor="#4F1271" Margin="0,20,30,0" WidthRequest="70" HeightRequest="50" HorizontalOptions="End">
+                            <Image Source="filter.png" HeightRequest="30" />
+                        </Border>
+
+                        <Border BackgroundColor="#E7E7E7" HorizontalOptions="Start" Margin="10,10,0,0" WidthRequest="380" HeightRequest="150" >
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="profilepicture.png" HeightRequest="50" VerticalOptions="Start" Margin="10,10,15,0"/>
+                                    <Label Text="Restaurante" TextColor="#4F1271" FontAttributes="Bold" FontSize="19" Margin="0,15,0,0"/>
+                                    <StackLayout Orientation="Horizontal" Margin="120,10,0,0" >
+                                        <Label Text="4,1" TextColor="#4F1271" FontAttributes="Bold" Margin="0,10,0,0"/>
+                                        <StackLayout Orientation="Vertical" Margin="0,10,0,0">
+                                            <Image Source="starrounded.png" HeightRequest="20" />
+                                            <Label Text="29/07" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Label Text="O músico trouxe uma performance envolvente e única, criando uma atmosfera acolhedora e sofisticada. Seu repertório, bem escolhido, encanto..." TextColor="#AE92BD" Margin="10,10,8,0"/>
+                            </StackLayout>
+                        </Border>
+                        <Border BackgroundColor="#E7E7E7" HorizontalOptions="Start" Margin="10,15,0,0" WidthRequest="380" HeightRequest="150" >
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="profilepicture.png" HeightRequest="50" VerticalOptions="Start" Margin="10,10,15,0"/>
+                                    <Label Text="Restaurante" TextColor="#4F1271" FontAttributes="Bold" FontSize="19" Margin="0,15,0,0"/>
+                                    <StackLayout Orientation="Horizontal" Margin="120,10,0,0" >
+                                        <Label Text="4,2" TextColor="#4F1271" FontAttributes="Bold" Margin="0,10,0,0"/>
+                                        <StackLayout Orientation="Vertical" Margin="0,10,0,0">
+                                            <Image Source="starrounded.png" HeightRequest="20" />
+                                            <Label Text="29/07" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Label Text="O músico trouxe uma performance envolvente e única, criando uma atmosfera acolhedora e sofisticada. Seu repertório, bem escolhido, encanto..." TextColor="#AE92BD" Margin="10,10,8,0"/>
+                            </StackLayout>
+                        </Border>
+                    </StackLayout>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Footer -->
+        <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,0,0,0" HeightRequest="70" VerticalOptions="End">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Frame Grid.Column="0" WidthRequest="50" HeightRequest="50"  CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" />
+            </Frame>
+
+            <Frame Grid.Column="1" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" />
+            </Frame>
+
+            <Frame Grid.Column="2" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton Source="chathome.png" WidthRequest="24" HeightRequest="24"/>
+            </Frame>
+
+            <Frame Grid.Column="3" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton Source="calendar.png" WidthRequest="24" HeightRequest="24" />
+            </Frame>
+
+            <Frame Grid.Column="4" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#783F8E" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton x:Name="profile_page_btn" Source="profilehome.png" WidthRequest="24" HeightRequest="24" />
+            </Frame>
+        </Grid>
+    </Grid>
+
+</ContentPage>

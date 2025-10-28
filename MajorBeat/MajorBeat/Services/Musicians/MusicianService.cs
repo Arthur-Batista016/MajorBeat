@@ -56,6 +56,14 @@ namespace MajorBeat.Services.Musicians
             return musicos;
         }
 
+
+        public async Task<Musico> GetMusicianById(long id)
+        {
+            string urlComplementar = $"/getById/{id}";
+            Musico  musico = await _request.GetAsync<Musico>(_baseUrl + urlComplementar, _token);
+            return musico;
+        }
+
         public async Task<ObservableCollection<Musico>> GetMusicianByType(TipoMusico tipoMusico)
         {
             string urlComplementar = $"/getByGenero/{tipoMusico}";

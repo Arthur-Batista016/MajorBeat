@@ -17,7 +17,7 @@ namespace MajorBeat.ModelsJeff
         public string endereco { get; set; }
         public string senha { get; set; }
         public string biografia { get; set; }
-        public string apelido { get; set; }
+        public string? apelido { get; set; }
         public TipoMusico tipoMusico { get; set; }
         public List<NomeInstrumento> nomeInstrumentos { get; set; }
         public List<NomeGenero> nomeGeneros { get; set; }

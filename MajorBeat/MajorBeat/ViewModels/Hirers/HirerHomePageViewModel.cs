@@ -1,30 +1,20 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using MajorBeat.Models;
+using MajorBeat.Services.Musicians;
+using MajorBeat.Services.Users;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
-using MajorBeat.Models;
-using MajorBeat.Services.Musicians;
-using MajorBeat.Services.Users;
 
 namespace MajorBeat.ViewModels.Hirers
 {
     public partial class HirerHomePageViewModel : ObservableObject
     {
-
-        MusicianService _mService;
-        
-        private ObservableCollection<Musico> musicos;
-        
-        [ObservableProperty]
-        private string currentToken;
-
-        [ObservableProperty]
-        private string marginGenero = "100";
-
 
         public HirerHomePageViewModel()
         {
@@ -36,7 +26,25 @@ namespace MajorBeat.ViewModels.Hirers
             musicos = new ObservableCollection<Musico>();
 
             ExibirTodosMusicos();
+
+            ClickMusicianCommand = new Command<Musico>(async (musico) => await MusicianTapped(musico));
+
         }
+
+
+
+        MusicianService _mService;
+
+        private ObservableCollection<Musico> musicos;
+
+        [ObservableProperty]
+        private string currentToken;
+
+        [ObservableProperty]
+        private string marginGenero = "100";
+
+
+        
 
         public ICommand GerarCommand { get; set; }
 
@@ -113,11 +121,11 @@ namespace MajorBeat.ViewModels.Hirers
         {
             try
             {
-                
+
                 ObservableCollection<Musico> musicos = await _mService.GetAllMusicians();
                 Musicos = musicos;
                 return Musicos;
-               
+
             }
             catch (Exception ex)
             {
@@ -134,12 +142,31 @@ namespace MajorBeat.ViewModels.Hirers
             "birthday.png",
             "bar.png"
         };
+        }
 
 
 
 
+
+        public ICommand ClickMusicianCommand { get; set; }
+
+        private async Task MusicianTapped(Musico musico)
+        {
+
+            if (musico == null)
+                return;
+
+            long id = musico.idMusico;
+
+            
 
 
         }
+
+
+
+
+
     }
-}
+    }
+

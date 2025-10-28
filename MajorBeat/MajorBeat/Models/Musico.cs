@@ -19,7 +19,7 @@ namespace MajorBeat.Models
         public string senha { get; set; }
         public string telefone { get; set; }
         public string endereco { get; set; }
-        public byte[] fotoPerfil { get; set; }
+        public byte[]? fotoPerfil { get; set; }
         public string biografia { get; set; }
         public DateTime? dtCriacao { get; set; }
 
@@ -33,6 +33,10 @@ namespace MajorBeat.Models
         public ObservableCollection<Avaliacao>? avaliacoes { get; set; } = new();
         public ObservableCollection<Chat>? chats { get; set; } = new();
 
+        public string? linkLinkdin { get; set; }
+        public string? linkInsta { get; set; }
+        public string? linkTwitter { get; set; }
+        public string? linkFacebook { get; set; }
 
         public string NotaFormatada
         {

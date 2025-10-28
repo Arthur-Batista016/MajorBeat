@@ -20,12 +20,15 @@
         <ShellContent Icon="homebuttoncircle.png"
                  ContentTemplate="{DataTemplate viewMusicians:MusicianHomePage}" Route="MainPage"/>
 
-       
+    <ShellContent
+        ContentTemplate="{DataTemplate viewHirers:HirerSearchPage}"
+        Route="HirerHomePage" />
 
 
-      
 
-     
+
+
+
 
 
 </Shell>
