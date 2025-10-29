@@ -497,7 +497,7 @@
              HorizontalOptions="Center"
              VerticalOptions="Center"
              HasShadow="True">
-                    <Image Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
+                    <ImageButton x:Name="calendar" Source="calendar.png" WidthRequest="24" HeightRequest="24" Clicked="calendar_Clicked_1"/>
                 </Frame>
 
                 <Frame Grid.Column="4"

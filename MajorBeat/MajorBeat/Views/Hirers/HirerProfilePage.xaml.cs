@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using MajorBeat.ViewModels.Hirers;
 using MajorBeat.Views.Musicians;
 using MajorBeat.Views.Users;
@@ -24,5 +25,11 @@ public partial class HirerProfilePage : ContentPage
     private async void chat_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new ChatPage());
+    }
+
+    
+    private async void calendar_Clicked_1(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new CreateEventPageView());
     }
 }

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using MajorBeat.ViewModels.Users;
 using MajorBeat.Views.Users;
 
@@ -91,5 +92,11 @@ public partial class HirerSearchPage : ContentPage
     {
         // Remove o foco do Entry
         Vm.onUnfocus();
+    }
+
+   
+    private async void calendar_Clicked_1(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new CreateEventPageView());
     }
 }

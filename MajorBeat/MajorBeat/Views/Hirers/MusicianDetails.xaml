@@ -9,7 +9,7 @@
              >
             <!--:calendar="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar"-->
 
-    <Grid Margin="0,30,0,0">
+    <Grid Margin="0,50,0,0">
         <ScrollView Grid.Row="0">
             <VerticalStackLayout>
                 <StackLayout Orientation="Horizontal">
@@ -29,11 +29,8 @@
                         </CarouselView.ItemTemplate>
                     </CarouselView>-->
 
-                    <Image Source="{Binding Musico.mediaUrl[0]}" Aspect="AspectFill" HeightRequest="300" Margin="0,0,0,0"/>
-                    <Frame HorizontalOptions="End"  VerticalOptions="Start" Margin="0,35,20,0" BackgroundColor="#4F1271" HeightRequest="40" WidthRequest="45" CornerRadius="12" Padding="8">
-                        <Label Text="{Binding ImageCounter}" FontSize="16" TextColor="White" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" />
-
-                    </Frame>
+                    <Image Source="{Binding Musico.mediaUrl[0]}" Aspect="AspectFill" HeightRequest="300" Margin="0,50,0,0"/>
+                   
                 </Grid>
 
                 <VerticalStackLayout Spacing="35" Margin="0,30,0,0" HorizontalOptions="Center" VerticalOptions="Center">
@@ -222,7 +219,7 @@
                     </StackLayout>
 
                     <!-- Avaliações -->
-                    <StackLayout x:Name="avaliacoesStack" IsVisible="{Binding IsAvaliacoesVisible}" Margin="0,0,0,90">
+                    <StackLayout x:Name="avaliacoesStack" IsVisible="{Binding IsAvaliacoesVisible}" Margin="0,0,0,110">
                         <StackLayout Orientation="Horizontal">
                             <Grid Margin="30,0,0,0">
                                 <Grid.RowDefinitions>
@@ -314,7 +311,7 @@
             </Frame>
 
             <Frame Grid.Column="3" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
-                <ImageButton Source="calendar.png" WidthRequest="24" HeightRequest="24" />
+                <ImageButton x:Name="calendar" Source="calendar.png" WidthRequest="24" HeightRequest="24" Clicked="calendar_Clicked_1"/>
             </Frame>
 
             <Frame Grid.Column="4" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#783F8E" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">

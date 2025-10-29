@@ -321,7 +321,7 @@
             </Frame>
 
             <Frame Grid.Column="3" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
-                <Image Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
+                <ImageButton x:Name="calendar" Source="calendar.png" WidthRequest="24" HeightRequest="24" Clicked="calendar_Clicked_1"/>
             </Frame>
 
             <Frame Grid.Column="4" WidthRequest="60" HeightRequest="60" CornerRadius="30" BackgroundColor="#783F8E" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
