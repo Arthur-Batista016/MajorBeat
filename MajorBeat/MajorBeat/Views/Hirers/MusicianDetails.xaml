@@ -6,8 +6,8 @@
               x:Class="MajorBeat.Views.Hirers.MusicianDetails"
               Shell.NavBarIsVisible="False"
               NavigationPage.HasNavigationBar="False"
-             xmlns:calendar="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar">
-            
+             >
+            <!--:calendar="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar"-->
 
     <Grid Margin="0,30,0,0">
         <ScrollView Grid.Row="0">
@@ -154,7 +154,7 @@
                             <Label Text="Disponibilidade" FontSize="22" TextColor="#4F1271" FontAttributes="Bold" Margin="0,0,0,10" HorizontalOptions="Center"/>
                             <VerticalStackLayout Padding="20,10" Spacing="10">
 
-                            
+                            <!--
                                 <Grid>
                                     <calendar:SfCalendar
                                     x:Name="MusicianCalendar"
@@ -183,7 +183,7 @@
 
                                     <Line HorizontalOptions="Start" X1="0" Y1="20" X2="320" Y2="20" Stroke="#4F1271" StrokeThickness="3" Margin="0,46,0,0" />
                                 </Grid>
-                                
+                                -->
                                 <!-- Legenda -->
                                 <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Margin="0,10,0,0">
                                     <BoxView WidthRequest="20" HeightRequest="20" Color="#4f1271"/>

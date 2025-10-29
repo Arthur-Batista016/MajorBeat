@@ -35,7 +35,7 @@
                 </Grid.RowDefinitions>
                 <Border StrokeShape="RoundRectangle 0 0 0 0"  BackgroundColor="#4F1271"  Margin="0,0,0,0" HorizontalOptions="Fill" HeightRequest="90">
                     <VerticalStackLayout Margin="0,0,0,0">
-                        <Border StrokeShape="{Binding BarFormat}" BackgroundColor="{Binding BarBackground}" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45" ZIndex="10">
+                        <Border StrokeShape="RoundRectangle 10, 10, 10, 10" BackgroundColor="#AE92BD" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45" ZIndex="10">
                             <VerticalStackLayout>
                                 <Entry  Grid.Row="0"  Text="{Binding UserEntry}" Placeholder="Pesquisar..." BackgroundColor="#AE92BD" PlaceholderColor="{Binding PlaceholderColor}" WidthRequest="250" Margin="0,0,25,0" HorizontalOptions="Center" TextColor="{Binding TextColor}" Focused="searchBar_Focused" Unfocused="searchBar_Unfocused" />
                                 <ImageButton Grid.Row="0" Source="{Binding Lupa}" HorizontalOptions="End" Margin="0,-35,-20,0" HeightRequest="23" Command="{Binding SearchCommand}" />
@@ -47,6 +47,9 @@
             </Grid>
         </Grid>
 
+        
+        
+        
 
         <!-- Conteúdo principal -->
         <ScrollView Grid.Row="1">
