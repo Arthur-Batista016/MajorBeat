@@ -5,8 +5,8 @@
              xmlns:vm="clr-namespace:MajorBeat.ViewModels.Hirer"
               x:Class="MajorBeat.Views.Hirers.MusicianDetails"
               Shell.NavBarIsVisible="False"
-              NavigationPage.HasNavigationBar="False">
-             <!-- xmlns:calendar="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar"-->
+              NavigationPage.HasNavigationBar="False"
+             xmlns:calendar="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar">
             
 
     <Grid Margin="0,30,0,0">
@@ -15,19 +15,21 @@
                 <StackLayout Orientation="Horizontal">
                     <Image Source="profilepicture.png" HeightRequest="120" HorizontalOptions="Start" Margin="20,0,0,0" />
                     <StackLayout Orientation="Vertical">
-                        <Label Text="{Binding apelido}" FontSize="25" TextColor="#4F1271" FontAttributes="Bold" Margin="10,35,0,0" />
-                        <Label Text="{Binding nome}" FontSize="15" TextColor="#783F8E" Margin="10,0,0,0" />
+                        <Label Text="{Binding Musico.apelido}" FontSize="25" TextColor="#4F1271" FontAttributes="Bold" Margin="10,35,0,0" />
+                        <Label Text="{Binding Musico.nome}" FontSize="15" TextColor="#783F8E" Margin="10,0,0,0" />
                     </StackLayout>
                 </StackLayout>
 
                 <Grid>
-                    <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding mediaUrl[0]}" Position="{Binding CurrentIndex, Mode=TwoWay}"  Margin="0,20,0,20" >
+                    <!--<CarouselView x:Name="ImageCarousel" ItemsSource="{Binding musico.mediaUrl[0]}" Position="{Binding CurrentIndex, Mode=TwoWay}"  Margin="0,20,0,20" >
                         <CarouselView.ItemTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding}" Aspect="AspectFill" HeightRequest="300"/>
                             </DataTemplate>
                         </CarouselView.ItemTemplate>
-                    </CarouselView>
+                    </CarouselView>-->
+
+                    <Image Source="{Binding Musico.mediaUrl[0]}" Aspect="AspectFill" HeightRequest="300" Margin="0,0,0,0"/>
                     <Frame HorizontalOptions="End"  VerticalOptions="Start" Margin="0,35,20,0" BackgroundColor="#4F1271" HeightRequest="40" WidthRequest="45" CornerRadius="12" Padding="8">
                         <Label Text="{Binding ImageCounter}" FontSize="16" TextColor="White" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" />
 
@@ -104,7 +106,7 @@
 
                     <!-- Sobre -->
                     <StackLayout x:Name="sobreStack" Orientation="Vertical" IsVisible="{Binding IsSobreVisible}" Margin="25,0,25,90">
-                        <Label Text="{Binding biografia}" 
+                        <Label Text="{Binding Musico.biografia}" 
                        TextColor="#4F1271"
                        FontAttributes="Bold"
                        />
@@ -118,7 +120,7 @@
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,0,0,10" Spacing="70">
                                 <Border BackgroundColor="#E7E7E7" StrokeShape="RoundRectangle 5" WidthRequest="100" HeightRequest="55" Margin="0,0,10,0">
                                     <VerticalStackLayout>
-                                        <CollectionView ItemsSource="{Binding nomeGeneros}" HeightRequest="90">
+                                        <CollectionView ItemsSource="{Binding Musico.nomeGeneros}" HeightRequest="90">
                                             <CollectionView.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackLayout>
@@ -133,7 +135,7 @@
 
                                 <Border BackgroundColor="#E7E7E7" StrokeShape="RoundRectangle 5" WidthRequest="100" HeightRequest="55">
                                     <VerticalStackLayout>
-                                        <CollectionView ItemsSource="{Binding nomeInstrumento}" HeightRequest="80">
+                                        <CollectionView ItemsSource="{Binding Musico.nomeInstrumentos}" HeightRequest="80">
                                             <CollectionView.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackLayout>
@@ -152,7 +154,7 @@
                             <Label Text="Disponibilidade" FontSize="22" TextColor="#4F1271" FontAttributes="Bold" Margin="0,0,0,10" HorizontalOptions="Center"/>
                             <VerticalStackLayout Padding="20,10" Spacing="10">
 
-                            <!--
+                            
                                 <Grid>
                                     <calendar:SfCalendar
                                     x:Name="MusicianCalendar"
@@ -181,7 +183,7 @@
 
                                     <Line HorizontalOptions="Start" X1="0" Y1="20" X2="320" Y2="20" Stroke="#4F1271" StrokeThickness="3" Margin="0,46,0,0" />
                                 </Grid>
-                                -->
+                                
                                 <!-- Legenda -->
                                 <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Margin="0,10,0,0">
                                     <BoxView WidthRequest="20" HeightRequest="20" Color="#4f1271"/>
@@ -194,28 +196,28 @@
                         <Line HorizontalOptions="Start" X1="0" Y1="20" X2="410" Y2="20" Stroke="#4F1271" StrokeThickness="3" Margin="-30,0,0,0" />
                         <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
                             <Image Source="emailicon.png" WidthRequest="40" />
-                            <Label Text="{Binding email}" VerticalOptions="Center" TextColor="#4F1271" Margin="15,0,0,0"/>
+                            <Label Text="{Binding Musico.email}" VerticalOptions="Center" TextColor="#4F1271" Margin="15,0,0,0"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
                             <Image Source="pinicon.png" WidthRequest="30" />
-                            <Label Text="{Binding Logradouro}" VerticalOptions="Center" TextColor="#4F1271" Margin="24,0,0,0"/>
+                            <Label Text="{Binding Musico.endereco}" VerticalOptions="Center" TextColor="#4F1271" Margin="24,0,0,0"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
                             <Image Source="phoneicon.png" WidthRequest="35" />
-                            <Label Text="{Binding telefone}" VerticalOptions="Center" TextColor="#4F1271" Margin="19,0,0,0"/>
+                            <Label Text="{Binding Musico.telefone}" VerticalOptions="Center" TextColor="#4F1271" Margin="19,0,0,0"/>
                         </StackLayout>
                         <Line HorizontalOptions="Start" X1="0" Y1="20" X2="410" Y2="20" Stroke="#4F1271" StrokeThickness="3" Margin="-30,0,0,0" />
                         <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
                             <Image Source="facebook.png" WidthRequest="45" Margin="0,0,10,0"/>
-                            <Label Text="{Binding LinkFacebook}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center" Margin="0,0,40,0"/>
+                            <Label Text="{Binding Musico.links[0]}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center" Margin="0,0,40,0"/>
                             <Image Source="linkedin.png" WidthRequest="45" Margin="0,0,10,0"/>
-                            <Label Text="{Binding LinkLinkdin}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <Label Text="{Binding Musico.links[1]}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
                             <Image Source="instagram.png" WidthRequest="45" Margin="0,0,10,0"/>
-                            <Label Text="{Binding LinkInsta}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center" Margin="0,0,40,0"/>
+                            <Label Text="{Binding Musico.links[2]}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center" Margin="0,0,40,0"/>
                             <Image Source="twitter.png" WidthRequest="45" Margin="0,0,10,0"/>
-                            <Label Text="{Binding LinkTwitter}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <Label Text="{Binding Musico.links[3]}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center"/>
                         </StackLayout>
                     </StackLayout>
 

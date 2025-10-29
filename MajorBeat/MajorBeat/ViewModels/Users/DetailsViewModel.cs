@@ -18,6 +18,9 @@ namespace MajorBeat.ViewModels.Users
         [ObservableProperty]
         private long idMusico;
 
+        [ObservableProperty]
+        private Musico musico;
+
 
         public DetailsViewModel(long id)
         {
@@ -27,19 +30,24 @@ namespace MajorBeat.ViewModels.Users
 
 
 
-        public async Task<Musico> CarregarMusico()
+        public async Task CarregarMusico()
         {
             try
             {
-                Musico musico = await _mService.GetMusicianById(IdMusico);
-                return musico;
-            }
-            catch (Exception ex) {
+                var musicoResultado = await _mService.GetMusicianById(IdMusico);
 
+                // 2. FORCE a atualização a acontecer na Thread Principal
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    Musico = musicoResultado;
+                });
+            }
+            catch (Exception ex)
+            {
                 System.Diagnostics.Debug.WriteLine($"Erro ao carregar músico: {ex.Message}");
-                return null;
+                // Você pode querer setar como nulo em caso de erro
+                musico = null;
             }
-
         }
 
 

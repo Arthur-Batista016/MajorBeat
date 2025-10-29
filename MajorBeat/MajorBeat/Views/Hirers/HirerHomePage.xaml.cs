@@ -8,14 +8,25 @@ namespace MajorBeat.Views.Hirers;
 public partial class HirerHomePage : ContentPage
 {
 
-    private readonly HirerHomePageViewModel _viewModel;
-
+    
+private readonly HirerHomePageViewModel _viewModel;
     public HirerHomePage()
     {
         InitializeComponent();
-        BindingContext = new HirerHomePageViewModel();
 
-      
+        BindingContext = new HirerHomePageViewModel();
+        if (this.BindingContext is HirerHomePageViewModel vm)
+        {
+            _viewModel = vm; // 2. INICIALIZE A VARIÁVEL AQUI
+        }
+        else
+        {
+            // Se o BindingContext não estiver definido, crie um novo
+            // (Isso depende de como seu app está estruturado)
+            _viewModel = new HirerHomePageViewModel();
+            this.BindingContext = _viewModel;
+        }
+
     }
 
     private async void searchBar_Focused(object sender, FocusEventArgs e)

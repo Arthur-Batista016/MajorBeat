@@ -25,7 +25,7 @@ namespace MajorBeat.Models
 
         public ObservableCollection<string> links { get; set; } = new();
         public TipoMusico? tipoMusico { get; set; }
-        public ObservableCollection<NomeInstrumento> nomeInstrumento { get; set; } = new();
+        public ObservableCollection<NomeInstrumento> nomeInstrumentos { get; set; } = new();
         public ObservableCollection<NomeGenero> nomeGeneros { get; set; } = new();
         public Role? role { get; set; }
         public ObservableCollection<string>? mediaUrl { get; set; } = new();
