@@ -94,7 +94,7 @@
                                 -->
 
 
-                                <Image Source="{Binding mediaUrl[0]}"  HeightRequest="600" Margin="0,-70,0,0" HorizontalOptions="Fill"/>
+                                <Image Source="{Binding mediaUrl[0]}"  HeightRequest="600" Margin="0,0,0,0" HorizontalOptions="Fill"/>
 
 
 
@@ -159,11 +159,11 @@
                 </Frame>
                 
                 <Frame Grid.Column="2" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
-                    <Image Source="chathome.png" WidthRequest="24" HeightRequest="24"/>
+                    <ImageButton Source="chathome.png" WidthRequest="24" HeightRequest="24" Clicked="chat_Clicked"/>
                 </Frame>
 
                 <Frame Grid.Column="3" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
-                    <Image Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
+                    <Image Source="calendar.png" WidthRequest="24" HeightRequest="24" />
                 </Frame>
 
                 <Frame Grid.Column="4" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">

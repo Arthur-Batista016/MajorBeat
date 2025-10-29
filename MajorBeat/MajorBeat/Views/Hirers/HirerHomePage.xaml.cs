@@ -1,6 +1,7 @@
 using MajorBeat.Models;
 using MajorBeat.ViewModels.Hirers;
 using MajorBeat.ViewModels.Users;
+using MajorBeat.Views.Users;
 using System.Threading.Tasks;
 
 namespace MajorBeat.Views.Hirers;
@@ -52,8 +53,12 @@ private readonly HirerHomePageViewModel _viewModel;
 
     private async void profile_btn_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new HirerProfilePage());
+       // await Navigation.PushAsync(new HirerProfilePage());
 
+    }
+    private async void chat_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ChatPage());
     }
 
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)

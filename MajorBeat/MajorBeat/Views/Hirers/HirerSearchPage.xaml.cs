@@ -52,7 +52,7 @@ public partial class HirerSearchPage : ContentPage
 
     private async void profile_btn_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new HirerProfilePage());
+        //await Navigation.PushAsync(new HirerProfilePage());
 
     }
 

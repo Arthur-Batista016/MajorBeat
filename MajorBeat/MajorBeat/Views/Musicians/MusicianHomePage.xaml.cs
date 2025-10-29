@@ -17,7 +17,7 @@ public partial class MusicianHomePage : ContentPage
 
     private void home_page_btn_Clicked(object sender, EventArgs e)
     {
-
+        
     }
 
     private void searchBar_Completed(object sender, EventArgs e)
