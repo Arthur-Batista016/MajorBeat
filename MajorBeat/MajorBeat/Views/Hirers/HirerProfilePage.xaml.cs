@@ -1,5 +1,6 @@
 using MajorBeat.ViewModels.Hirers;
 using MajorBeat.Views.Musicians;
+using MajorBeat.Views.Users;
 
 namespace MajorBeat.Views.Hirers;
 
@@ -19,4 +20,9 @@ public partial class HirerProfilePage : ContentPage
 
     private async void profile_page_btn_Clicked(object sender, EventArgs e)
         => await Navigation.PushAsync(new HirerProfilePage());
+
+    private async void chat_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ChatPage());
+    }
 }

@@ -1,5 +1,7 @@
 
 
+using MajorBeat.Views.Users;
+
 namespace MajorBeat.Views.Musicians;
 
 public partial class MusicianHomePage : ContentPage
@@ -18,6 +20,10 @@ public partial class MusicianHomePage : ContentPage
     private void home_page_btn_Clicked(object sender, EventArgs e)
     {
         
+    }
+    private async void chat_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ChatPage());
     }
 
     private void searchBar_Completed(object sender, EventArgs e)

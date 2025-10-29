@@ -53,7 +53,7 @@ private readonly HirerHomePageViewModel _viewModel;
 
     private async void profile_btn_Clicked(object sender, EventArgs e)
     {
-       // await Navigation.PushAsync(new HirerProfilePage());
+       await Navigation.PushAsync(new HirerProfilePage());
 
     }
     private async void chat_Clicked(object sender, EventArgs e)
