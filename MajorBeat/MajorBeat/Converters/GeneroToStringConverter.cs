@@ -7,6 +7,7 @@ namespace MajorBeat.Converters
 {
     public class GeneroToStringConverter : IValueConverter
     {
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is NomeGenero genero)

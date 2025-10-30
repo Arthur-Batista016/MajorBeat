@@ -11,6 +11,7 @@
         <ResourceDictionary>
             <local:GeneroWidthConverter x:Key="GeneroWidthConverter" />
             <local:SafeImageConverter x:Key="SafeImageConverter" />
+            <local:GeneroToStringConverter x:Key="GeneroToStringConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -47,36 +48,7 @@
             </Grid>
         </Grid>
 
-        
-        
-        
-
-        <!-- Conteúdo principal -->
-        <ScrollView Grid.Row="1">
-            <VerticalStackLayout>
-                <Border StrokeShape="RoundRectangle 10" BackgroundColor="#4F1271" WidthRequest="60" HorizontalOptions="End" HeightRequest="40" Margin="0,40,30,0">
-                    <ImageButton Source="filter" HorizontalOptions="Center" HeightRequest="20" BackgroundColor="Transparent"/>
-                </Border>
-
-                <Label Text="Musicos na sua região:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,0,0,100"/>
-
-
-
-                <!-- Eventos -->
-
-                <CollectionView ItemsSource="{Binding Musicos}"  Margin="0,-200,0,40" IsVisible="{Binding FindResults}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="0,0,0,0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-
-
-                                <!-- Carousel de imagens 
+        <!-- Carousel de imagens 
                                 <CarouselView ItemsSource="{Binding BindingContext.EventPhoto, Source={x:Reference SearchPage}}">
                                     <CarouselView.ItemTemplate>
                                         <DataTemplate>
@@ -93,50 +65,72 @@
                                 </Border>
                                 -->
 
+        
+        
 
-                                <Image Source="{Binding mediaUrl[0]}"  HeightRequest="600" Margin="0,0,0,0" HorizontalOptions="Fill"/>
+        <!-- Conteúdo principal -->
+        <CollectionView Grid.Row="1"  
+                ItemsSource="{Binding Musicos}" 
+                IsVisible="{Binding FindResults}">
+
+            <CollectionView.Header>
+                <VerticalStackLayout  Margin="0,0,0,0">
+
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#4F1271" WidthRequest="60" HorizontalOptions="End" HeightRequest="40" Margin="0,40,30,0">
+                        <ImageButton Source="filter" HorizontalOptions="Center" HeightRequest="20" BackgroundColor="Transparent"/>
+                    </Border>
+
+                    <Label Text="Musicos na sua região:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,0,0,0"/>
+
+                </VerticalStackLayout>
+            </CollectionView.Header>
 
 
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,-150,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                                <!-- Informações do evento -->
-                                <Border x:Name="evento" StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" HorizontalOptions="Fill" VerticalOptions="End" HeightRequest="180" Margin="0,430,0,50">
-                                    <Border.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                                    </Border.GestureRecognizers>
+                        <Image Source="{Binding mediaUrl[0]}"  HeightRequest="600" Margin="0,0,0,0" HorizontalOptions="Fill"/>
 
-                                    <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,0,0,0">
+                        <Border x:Name="evento" StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" HorizontalOptions="Fill" VerticalOptions="End" HeightRequest="180" Margin="0,430,0,50">
+                            <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Border.GestureRecognizers>
+                            <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,0,0,0">
+                                <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="30" HorizontalOptions="Start" TextColor="#ffffff" Margin="20,30,0,20"/>
 
-                                        <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="30" HorizontalOptions="Start" TextColor="#ffffff" Margin="20,30,0,20"/>
 
+                                <Grid>
+                                    <CollectionView ItemsSource="{Binding nomeGeneros}" ItemsLayout="HorizontalList" Margin="0,-5,0,0" HeightRequest="150">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#FFFFFF" Margin="20,-80,0,0" WidthRequest="{Binding ., Converter={StaticResource GeneroWidthConverter}}" HorizontalOptions="Start" HeightRequest="35">
+                                                    <Label Text="{Binding ., Converter={StaticResource GeneroToStringConverter}}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" Margin="0,3,0,0" />
+                                                </Border>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </Grid>
 
-                                        <!--Generos Musicais-->
-                                        <Grid>
-                                            <CollectionView ItemsSource="{Binding nomeGeneros}" ItemsLayout="HorizontalList" Margin="0,-5,0,0" HeightRequest="150">
-                                                <CollectionView.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#FFFFFF" Margin="20,-80,0,0" WidthRequest="{Binding ., Converter={StaticResource GeneroWidthConverter}}" HorizontalOptions="Start" HeightRequest="35">
-                                                            <Label Text="{Binding ., Converter={StaticResource GeneroConverter}}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" Margin="0,3,0,0" />
-                                                        </Border>
-                                                    </DataTemplate>
-                                                </CollectionView.ItemTemplate>
-                                            </CollectionView>
-                                        </Grid>
+                                <Grid>
+                                    <Label Text="{Binding NotaFormatada}" TextColor="#ffffff" FontSize="27" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-207,50,0"/>
+                                    <Image Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-205,10,0"/>
+                                </Grid>
 
-                                        <Grid>
-                                            <Label Text="{Binding NotaFormatada}" TextColor="#ffffff" FontSize="27" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-207,50,0"/>
-                                            <Image Source="eventstar.png" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" Margin="0,-205,10,0"/>
-                                        </Grid>
+                            </VerticalStackLayout>
+                        </Border>
 
-                                    </VerticalStackLayout>
-                                </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-
-            </VerticalStackLayout>
-        </ScrollView>
+        </CollectionView>
 
         <!-- Barra inferior -->
         <VerticalStackLayout Grid.Row="2">
