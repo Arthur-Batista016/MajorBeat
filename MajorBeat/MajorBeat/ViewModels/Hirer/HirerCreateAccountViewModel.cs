@@ -1,4 +1,5 @@
 using MajorBeat.ModelsJeff;
+using MajorBeat.Services.Users;
 using MajorBeat.Services.Usuarios;
 using MajorBeat.ViewModels.Hirers;
 using MajorBeat.Views.Hirers;
@@ -14,7 +15,9 @@ namespace MajorBeat.ViewModels
     public class HirerCreateAccountViewModel : BaseViewModel
     {
 
-
+        private string _enderecoFormatadoValidado;
+        private readonly CepService _cepService;
+        
         public ICommand ProximoCommand { get; set; }
         public ICommand RegistrarCommand { get; set; }
         private readonly INavigation _navigation;
@@ -25,6 +28,7 @@ namespace MajorBeat.ViewModels
         {
             _navigation = navigation;
             InicializarCommands();
+            _cepService = new CepService();
         }
         public void InicializarCommands()
         {
@@ -33,18 +37,27 @@ namespace MajorBeat.ViewModels
         }
         public async Task UserSave()
         {
+
+
+
+
+            if (await ValidarCampos())
+            {
             Contratante u = new Contratante();
             u.nome = Nome;
             u.email = Email;
             u.telefone = Telefone;
-            u.endereco = $"{Cep}, {Numero}, {Complemento}";
-            u.senha = Senha;
+                if (string.IsNullOrWhiteSpace(Complemento))
+                {
+
+                    u.endereco = $"{_enderecoFormatadoValidado}, {Numero}";
+                }
+                else
+                {
+                    u.endereco = $"{_enderecoFormatadoValidado}, {Numero}, {Complemento}";
+                }
+                u.senha = Senha;
             u.empresa = Empresa;
-
-
-
-            if (ValidarCampos())
-            {
                 var viewmodel = new HirerCreateProfileViewModel(u);
                 await _navigation.PushAsync(new HirerCreateProfileView(viewmodel));
             }
@@ -56,7 +69,7 @@ namespace MajorBeat.ViewModels
         }
 
 
-        private bool ValidarCampos()
+        private async Task<bool> ValidarCampos()
         {
             bool valido = true;
 
@@ -96,16 +109,6 @@ namespace MajorBeat.ViewModels
             {
                 ErroNumeroVisible = false;
             }
-           
-            if (string.IsNullOrWhiteSpace(Cep) || Cep.Length != 8 || !Cep.All(char.IsDigit))
-            {
-                ErroCepVisible = true;
-                valido = false;
-            }
-            else
-            {
-                ErroCepVisible = false;
-            }
             if (string.IsNullOrWhiteSpace(Senha) || Senha.Length < 8)
             {
                 ErroSenhaVisible = true;
@@ -114,6 +117,43 @@ namespace MajorBeat.ViewModels
             else
             {
                 ErroSenhaVisible = false;
+            }
+
+            if (valido)
+            {
+                // Agora sim, fazemos a chamada à API
+                string enderecoFormatado = await _cepService.BuscarEnderecoFormatadoAsync(Cep);
+
+
+                // A VALIDAÇÃO CORRETA É ESTA:
+                // Se o serviço retornou null, o CEP é inválido (não encontrado ou formato ruim).
+                if (enderecoFormatado == null)
+                {
+                    ErroCepVisible = true;
+                    valido = false; // Define a validação geral como falsa
+                }
+                else
+                {
+
+                    _enderecoFormatadoValidado = enderecoFormatado;
+
+                    // Opcional: Se você quiser usar o endereço, ele está aqui.
+                    // Ex: this.EnderecoCompleto = enderecoFormatado;
+                    ErroCepVisible = false;
+                }
+            }
+            else
+            {
+                // Se 'valido' já for falso (ex: Nome em branco), nem tentamos
+                // checar o CEP, mas precisamos garantir que a msg de erro do CEP
+                // não esteja aparecendo por engano de uma validação anterior.
+
+                // Se o campo CEP estiver em branco, mostre o erro dele também.
+                if (string.IsNullOrWhiteSpace(Cep))
+                {
+                    ErroCepVisible = true;
+                    // 'valido' já é 'false', então não precisamos redefini-lo.
+                }
             }
 
 

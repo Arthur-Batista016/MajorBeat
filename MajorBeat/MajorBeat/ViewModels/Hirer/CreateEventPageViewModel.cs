@@ -1,6 +1,7 @@
 using MajorBeat.Enums;
 using MajorBeat.ModelsJeff; 
 using MajorBeat.Services;
+using MajorBeat.Services.Users;
 using MajorBeat.Services.Usuarios;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Metrics;
@@ -10,6 +11,9 @@ namespace MajorBeat.ViewModels.Hirer;
 
 public class CreateEventPageViewModel : BaseViewModel
 {
+
+    private string _enderecoFormatadoValidado;
+    private readonly CepService _cepService;
     private readonly MediaService _mediaService;
     public ICommand RemoverMediaCommand { get; }
     public ICommand SelecionarMediaCommand { get; }
@@ -72,6 +76,7 @@ public class CreateEventPageViewModel : BaseViewModel
     private UsuarioService uService;
     public CreateEventPageViewModel()
     {
+        _cepService = new CepService();
         _mediaService = new MediaService();
         RemoverMediaCommand = new Command<MediaFile>(RemoverMedia);
 
@@ -326,7 +331,7 @@ public class CreateEventPageViewModel : BaseViewModel
      {
          try
          {
-             if (!ValidarCampos())
+             if (await ValidarCampos()!=true)
              {
                  await Application.Current.MainPage.DisplayAlert("Erro", "Por favor, corrija os erros nos campos destacados.", "OK");
                  return;
@@ -354,9 +359,17 @@ public class CreateEventPageViewModel : BaseViewModel
              Evento e = new Evento();
 
 
-                 e.nome = Nome;
-                 e.endereco = $"{Cep}, {Numero}, {Complemento}";
-                 e.descricao = Descricao;
+            e.nome = Nome;
+            if (string.IsNullOrWhiteSpace(Complemento))
+            {
+
+                e.endereco = $"{_enderecoFormatadoValidado}, {Numero}";
+            }
+            else
+            {
+                e.endereco = $"{_enderecoFormatadoValidado}, {Numero}, {Complemento}";
+            }
+            e.descricao = Descricao;
                  e.data = DataDoEvento;
                  e.instrumentos = InstrumentosSelecionados.ToList();
                  e.generos = GenerosSelecionados.ToList();
@@ -508,7 +521,7 @@ public class CreateEventPageViewModel : BaseViewModel
         get => erroCepVisible;
         set { erroCepVisible = value; onPropertyChanged(); }
     }
-    public bool ValidarCampos()
+    public async Task<bool> ValidarCampos()
     {
         bool isValid = true;
 
@@ -540,16 +553,7 @@ public class CreateEventPageViewModel : BaseViewModel
             isValid = false;
         }
 
-        // --- VALIDAÇÃO DE CEP/ENDEREÇO ---
-        // Checa se o endereço (ou CEP, dependendo da sua propriedade) está vazio.
-        // Assumindo que Endereco é onde o CEP/Endereço está armazenado.
-        if (string.IsNullOrWhiteSpace(Cep) || Cep.Length < 8) // Exemplo: CEP deve ter no mínimo 8 dígitos
-        {
-            ErroCepVisible = true;
-            isValid = false;
-        }
-
-        // --- VALIDAÇÃO DE HORÁRIO ---
+      // --- VALIDAÇÃO DE HORÁRIO ---
         // Checa a validade da relação entre os horários (Hora Fim > Hora Início)
         if (HoraFim <= HoraInicio)
         {
@@ -569,6 +573,44 @@ public class CreateEventPageViewModel : BaseViewModel
         {
             ErroGeneroVisible = true;
             isValid = false;
+        }
+
+
+        if (isValid)
+        {
+            // Agora sim, fazemos a chamada à API
+            string enderecoFormatado = await _cepService.BuscarEnderecoFormatadoAsync(Cep);
+
+
+            // A VALIDAÇÃO CORRETA É ESTA:
+            // Se o serviço retornou null, o CEP é inválido (não encontrado ou formato ruim).
+            if (enderecoFormatado == null)
+            {
+                ErroCepVisible = true;
+                isValid = false; // Define a validação geral como falsa
+            }
+            else
+            {
+
+                _enderecoFormatadoValidado = enderecoFormatado;
+
+                // Opcional: Se você quiser usar o endereço, ele está aqui.
+                // Ex: this.EnderecoCompleto = enderecoFormatado;
+                ErroCepVisible = false;
+            }
+        }
+        else
+        {
+            // Se 'valido' já for falso (ex: Nome em branco), nem tentamos
+            // checar o CEP, mas precisamos garantir que a msg de erro do CEP
+            // não esteja aparecendo por engano de uma validação anterior.
+
+            // Se o campo CEP estiver em branco, mostre o erro dele também.
+            if (string.IsNullOrWhiteSpace(Cep))
+            {
+                ErroCepVisible = true;
+                // 'valido' já é 'false', então não precisamos redefini-lo.
+            }
         }
 
         // ... Adicione aqui a lógica de validação para os campos que ativam ErroTipoEventoVisible e ErroNumeroVisible ...
