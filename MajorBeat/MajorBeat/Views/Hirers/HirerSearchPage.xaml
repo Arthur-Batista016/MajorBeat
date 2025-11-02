@@ -13,6 +13,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:GeneroWidthConverter x:Key="GeneroWidthConverter" />
+            <local:GeneroToStringConverter x:Key="GeneroToStringConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -314,7 +315,7 @@
                                                 <CollectionView.ItemTemplate>
                                                     <DataTemplate>
                                                         <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#FFFFFF" Margin="20,-80,0,0" WidthRequest="{Binding ., Converter={StaticResource GeneroWidthConverter}}" HorizontalOptions="Start" HeightRequest="35">
-                                                            <Label Text="{Binding ., Converter={StaticResource GeneroConverter}}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" Margin="0,3,0,0" />
+                                                            <Label Text="{Binding ., Converter={StaticResource GeneroToStringConverter}}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" Margin="0,3,0,0" />
                                                         </Border>
                                                     </DataTemplate>
                                                 </CollectionView.ItemTemplate>
@@ -405,7 +406,7 @@
                                                 <CollectionView.ItemTemplate>
                                                     <DataTemplate>
                                                         <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#FFFFFF" Margin="20,-80,0,0" WidthRequest="{Binding ., Converter={StaticResource GeneroWidthConverter}}" HorizontalOptions="Start" HeightRequest="35">
-                                                            <Label Text="{Binding ., Converter={StaticResource GeneroConverter}}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" Margin="0,3,0,0" />
+                                                            <Label Text="{Binding ., Converter={StaticResource GeneroToStringConverter}}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" Margin="0,3,0,0" />
                                                         </Border>
                                                     </DataTemplate>
                                                 </CollectionView.ItemTemplate>

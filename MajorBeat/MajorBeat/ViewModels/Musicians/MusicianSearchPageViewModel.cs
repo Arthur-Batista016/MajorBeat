@@ -282,6 +282,14 @@ namespace MajorBeat.ViewModels.Musicians
 
 
                 }
+                else
+                {
+                    MusicianNoSelect = false;
+                    NoEvents = true;
+                    IsSearchEvent = false;
+                    FindEvents = false;
+                    return Eventos = new ObservableCollection<Evento>();
+                }
 
                 return Eventos;
             }

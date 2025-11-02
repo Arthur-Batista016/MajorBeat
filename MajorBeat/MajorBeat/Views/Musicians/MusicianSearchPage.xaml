@@ -64,7 +64,7 @@
 
         <Grid Grid.Row="1" IsVisible="{Binding NoEvents}">
             <Grid>
-                <Button   HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start"  VerticalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7" Command="{Binding BackGenreCommand}"></Button>
+                <Button   HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start"  VerticalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7" Command="{Binding BackEventCommand}"></Button>
                 <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,47,250,0" HorizontalOptions="Center"></Label>
                 <Image Source="back.png" HeightRequest="20" Margin="-330,50,0,0" VerticalOptions="Start"   ZIndex="1"/>
             </Grid>
