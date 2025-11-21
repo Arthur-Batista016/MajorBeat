@@ -3,6 +3,7 @@ using MajorBeat.Models;
 using MajorBeat.Services.Musicians;
 using MajorBeat.Services.Users;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 public partial class HomePageViewModel : ObservableObject
 {
@@ -10,7 +11,7 @@ public partial class HomePageViewModel : ObservableObject
     private ObservableCollection<Evento> eventos;
     [ObservableProperty]
     private string currentToken;
-
+    public ICommand ClickEventCommand { get; set; }
     public HomePageViewModel()
     {
       
@@ -20,6 +21,7 @@ public partial class HomePageViewModel : ObservableObject
         ActualPosition = 0;
         EventPhoto = new ObservableCollection<string>();
         Eventos = new ObservableCollection<Evento>();
+        ClickEventCommand = new Command<Evento>(async (evento) => await EventTapped(evento));
 
         // Chama o carregamento de eventos de forma assíncrona
         ExibirTodosEventos();
@@ -115,5 +117,18 @@ public partial class HomePageViewModel : ObservableObject
             "birthday.png",
             "bar.png"
         };
+    }
+
+    private async Task EventTapped(Evento evento)
+    {
+
+        if (evento == null)
+            return;
+
+        long id = evento.idEvento;
+
+
+
+
     }
 }

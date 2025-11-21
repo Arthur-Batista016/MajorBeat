@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.Musicians.EventDetails"
+             Title="EventDetails"
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid RowSpacing="0" Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.Row="0" Padding="0,0,0,70">
+            <VerticalStackLayout>
+
+                <Grid Padding="0,-20,0,-28">
+                    <Button  x:Name="voltar" HeightRequest="38" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7" Clicked="voltar_Clicked"></Button>
+                    <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,47,250,0" HorizontalOptions="Center"></Label>
+                    <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
+                </Grid>
+
+                <Image Source="panelao.png" Aspect="AspectFill" HeightRequest="220"/>
+
+                <Label Text="{Binding Evento.titulo}" FontSize="28" TextColor="#4F1271" FontAttributes="Bold" Margin="20,15,20,0" HorizontalOptions="Center"/>
+
+                <!--<Label Text="{Binding Contratante.Nome}" FontSize="18" TextColor="#783F8E" Margin="20,30,40,0"/>-->
+
+
+                <!-- Avaliação e chat icon-->
+                <VerticalStackLayout Margin="0,30,0,15" HorizontalOptions="Center" VerticalOptions="Center">
+                    <HorizontalStackLayout Spacing="60" HorizontalOptions="Center" VerticalOptions="Center">
+                        <VerticalStackLayout Spacing="8" HorizontalOptions="Center" VerticalOptions="Center">
+                            <ImageButton Source="addcontact.png"  HeightRequest="70" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,-10"/>
+                            <Label Text="Adicionar contato" FontSize="16" TextColor="#4F1271" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+
+                    <!-- Descrição -->
+                    <Label Text="{Binding Evento.descricao}" FontSize="17" TextColor="#4F1271" Margin="25,20,20,10" VerticalOptions="Start"/>
+                </VerticalStackLayout>
+
+
+                <!-- Gêneros e Instrumentos -->
+                <VerticalStackLayout HorizontalOptions="Center" Margin="0,10,0,0" Spacing="5">
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="120">
+                        <Label Text="Gêneros: " FontAttributes="Bold" TextColor="#4F1271" HorizontalOptions="Center" Margin="20,0,0,10" />
+                        <Label Text="Instrumentos :" FontAttributes="Bold" TextColor="#4F1271" HorizontalOptions="Center" Margin="-15,0,0,10" />
+                    </HorizontalStackLayout>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,0,0,10" Spacing="70">
+                        <Border BackgroundColor="#E7E7E7" StrokeShape="RoundRectangle 5" WidthRequest="100" HeightRequest="55" Margin="0,0,10,0">
+                            <VerticalStackLayout>
+                                <CollectionView ItemsSource="{Binding Evento.generos}" HeightRequest="90">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout>
+                                                <Label Text="{Binding .}" HorizontalOptions="Center" TextColor="#783F8E"/>
+                                                <BoxView HeightRequest="1" Color="#4F1271" HorizontalOptions="FillAndExpand" Margin="5,5,5,5"/>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border BackgroundColor="#E7E7E7" StrokeShape="RoundRectangle 5" WidthRequest="100" HeightRequest="55">
+                            <VerticalStackLayout>
+                                <CollectionView ItemsSource="{Binding Evento.nomeInstrumento}" HeightRequest="80">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout>
+                                                <Label Text="{Binding .}" HorizontalOptions="Center" TextColor="#783F8E"/>
+                                                <BoxView HeightRequest="1" Color="#4F1271" HorizontalOptions="FillAndExpand" Margin="5,5,5,5"/>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </VerticalStackLayout>
+                        </Border>
+                    </StackLayout>
+                </VerticalStackLayout>
+
+                <BoxView HeightRequest="2" Color="#4F1271" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
+
+                <!-- Informações do Evento -->
+                <StackLayout Margin="20,20,20,20">
+                    <Label Text="Informações do Evento" FontSize="20" TextColor="#4F1271" FontAttributes="Bold"/>
+                    <Label Text="Local: " FontSize="16" FontAttributes="Bold" TextColor="#783F8E" Margin="0,9,5,2"/>
+                    <Label Text="{Binding Evento.endereco}" TextColor="#783F8E" Margin="0,0,5,15"/>
+                    <Label Text="Data e Hora: " FontSize="16" FontAttributes="Bold" TextColor="#783F8E"/>
+                    <Label Text="{Binding Evento.data, StringFormat='Data: {0:dd/MM/yyyy}'}" TextColor="#783F8E" Margin="0,5,5,10"/>
+
+                    <!-- Horário separado em 3 labels para evitar StringFormat -->
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Horário: " TextColor="#783F8E"/>
+                        <Label Text="{Binding Evento.horaInicio, StringFormat='{0:hh\\:mm}'}" TextColor="#783F8E"/>
+                        <Label Text=" - " TextColor="#783F8E"/>
+                        <Label Text="{Binding Evento.horaFim, StringFormat='{0:hh\\:mm}'}" TextColor="#783F8E"/>
+                    </StackLayout>
+                </StackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+
+        <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,0,0,0" HeightRequest="70" VerticalOptions="End">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Botões footer -->
+            <Frame Grid.Column="0" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" Clicked="home_page_btn_Clicked"/>
+            </Frame>
+
+            <Frame Grid.Column="1" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" Clicked="search_page_btn_Clicked"/>
+            </Frame>
+
+            <Frame Grid.Column="2" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <Image Source="chathome.png" WidthRequest="24" HeightRequest="24"/>
+            </Frame>
+
+            <Frame Grid.Column="3" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <Image Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
+            </Frame>
+
+            <Frame Grid.Column="4" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#783F8E" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton x:Name="profile_page_btn" Source="profilehome.png" WidthRequest="24" HeightRequest="24" Clicked="profile_page_btn_Clicked"/>
+            </Frame>
+        </Grid>
+    </Grid>
+</ContentPage>

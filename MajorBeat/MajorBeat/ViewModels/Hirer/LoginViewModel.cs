@@ -7,6 +7,7 @@ namespace MajorBeat.ViewModels.Hirer;
 
 public class LoginViewModel : BaseViewModel
 {
+    private bool IsLoading = false;
     public ICommand AutenticarCommand { get; set; }
     private UsuarioService _uService;
     public LoginViewModel()
@@ -16,6 +17,11 @@ public class LoginViewModel : BaseViewModel
     }
     public async Task AutenticarUsuario()
     {
+        if (IsLoading)
+        { return;
+        }
+        IsLoading = true;
+
         try
         {
             try
@@ -67,6 +73,10 @@ public class LoginViewModel : BaseViewModel
                 );
 
 
+        }
+        finally
+        {
+            IsLoading = false;
         }
 
     }

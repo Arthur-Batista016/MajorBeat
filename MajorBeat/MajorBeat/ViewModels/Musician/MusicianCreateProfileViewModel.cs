@@ -14,7 +14,9 @@ using System.Windows.Input;
 namespace MajorBeat.ViewModels.Musician
 {
     public class MusicianCreateProfileViewModel : BaseViewModel
+        
     {
+        private bool IsLoading = false;
         private readonly MediaService _mediaService;
         public ICommand RemoverMediaCommand { get; }
         public ICommand SelecionarMediaCommand { get; }
@@ -419,6 +421,11 @@ namespace MajorBeat.ViewModels.Musician
 
         private async Task ExibirResumoCadastro()
         {
+            if (IsLoading)
+            {
+                return;
+            }
+            IsLoading = true;
 
             if (!ValidarCampos())
             {
@@ -486,6 +493,10 @@ namespace MajorBeat.ViewModels.Musician
                     $"Não foi possível concluir o cadastro.\nDetalhes: {ex.Message}",
                     "OK"
                 );
+            }
+            finally
+            {
+                IsLoading = false;
             }
         }
     }

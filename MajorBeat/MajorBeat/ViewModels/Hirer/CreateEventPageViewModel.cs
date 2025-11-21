@@ -11,7 +11,7 @@ namespace MajorBeat.ViewModels.Hirer;
 
 public class CreateEventPageViewModel : BaseViewModel
 {
-
+    private bool IsLoading = false;
     private string _enderecoFormatadoValidado;
     private readonly CepService _cepService;
     private readonly MediaService _mediaService;
@@ -331,7 +331,12 @@ public class CreateEventPageViewModel : BaseViewModel
      {
          try
          {
-             if (await ValidarCampos()!=true)
+            if (IsLoading)
+            {
+                return;
+            }
+            IsLoading = true;
+            if (await ValidarCampos()!=true)
              {
                  await Application.Current.MainPage.DisplayAlert("Erro", "Por favor, corrija os erros nos campos destacados.", "OK");
                  return;
@@ -393,7 +398,11 @@ public class CreateEventPageViewModel : BaseViewModel
          {
              await Application.Current.MainPage.DisplayAlert("Erro", $"Não foi possível salvar o evento: {ex.Message}", "OK");
          }
-     }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
     private async Task OnAddPhotoClicked()
     {
         await Task.Yield(); // Libera o UI thread

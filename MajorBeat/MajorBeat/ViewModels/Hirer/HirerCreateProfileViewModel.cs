@@ -15,6 +15,7 @@ namespace MajorBeat.ViewModels.Hirers
 {
     public class HirerCreateProfileViewModel : BaseViewModel
     {
+        private bool IsLoading = false;
         private readonly MediaService _mediaService;
         public ObservableCollection<FileResult> ArquivosDeMediaSelecionados { get; set; }
         public ICommand SelecionarMediaCommand { get; }
@@ -228,7 +229,11 @@ namespace MajorBeat.ViewModels.Hirers
         }
         private async Task ExibirResumoCadastro()
         {
-            
+            if (IsLoading)
+            {
+                return;
+            }
+            IsLoading = true;
             if (!ValidarCampos())
             {
                 await Application.Current.MainPage.DisplayAlert("Erro", "Por favor, corrija os erros nos campos destacados.", "OK");
@@ -277,7 +282,11 @@ namespace MajorBeat.ViewModels.Hirers
                     $"Não foi possível concluir o cadastro.\nDetalhes: {ex.Message}",
                     "OK"
                 );
-    }
-}
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
     }
 }

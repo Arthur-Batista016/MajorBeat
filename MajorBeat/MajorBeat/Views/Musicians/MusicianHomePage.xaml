@@ -89,6 +89,9 @@
                         <Image Source="{Binding mediaUrl[0]}" HeightRequest="600" Margin="0,0,0,0"/>
 
                         <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" HorizontalOptions="Fill" VerticalOptions="End" HeightRequest="200">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            </Border.GestureRecognizers>
                             <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,-30,0,0">
                                 <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
                                 <Label Text="{Binding tipoEvento}" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0"/>
