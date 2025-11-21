@@ -42,9 +42,11 @@
                     <Image Source="password_icon" HorizontalOptions="Center" HeightRequest="45" />
                 </Border>
                 <Border StrokeShape="RoundRectangle 0 10 0 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="300" HorizontalOptions="End" HeightRequest="70">
-                    <Entry Grid.Row="1" TextColor="#4F1271" Placeholder="Senha" PlaceholderColor="#854F1271" Margin="10,0,0,0" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Senha}"></Entry>
+                    <Entry IsPassword="{Binding IsPassword}" Grid.Row="1" TextColor="#4F1271" Placeholder="Senha" PlaceholderColor="#854F1271" Margin="10,0,0,0" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Senha}"></Entry>
                 </Border>
+                 <ImageButton Source="{Binding HidePasswordImage}" HeightRequest="25" HorizontalOptions="End" Margin="0,25,10,0" Command="{Binding HidePasswordCommand}"/>
             </Grid>
+           
 
             <Button Grid.Row="3" Text="Esqueceu sua senha?" BackgroundColor="Transparent" HorizontalOptions="End"/>
         </Grid>

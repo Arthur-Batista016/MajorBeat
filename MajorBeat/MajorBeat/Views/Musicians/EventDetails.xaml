@@ -21,7 +21,7 @@
                     <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
                 </Grid>
 
-                <Image Source="panelao.png" Aspect="AspectFill" HeightRequest="220"/>
+                <Image Source="{Binding Evento.mediaUrl[0]}" Aspect="AspectFill" HeightRequest="300" Margin="0,50,0,0"/>
 
                 <Label Text="{Binding Evento.titulo}" FontSize="28" TextColor="#4F1271" FontAttributes="Bold" Margin="20,15,20,0" HorizontalOptions="Center"/>
 
@@ -67,7 +67,7 @@
 
                         <Border BackgroundColor="#E7E7E7" StrokeShape="RoundRectangle 5" WidthRequest="100" HeightRequest="55">
                             <VerticalStackLayout>
-                                <CollectionView ItemsSource="{Binding Evento.nomeInstrumento}" HeightRequest="80">
+                                <CollectionView ItemsSource="{Binding Evento.instrumentos}" HeightRequest="80">
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>
                                             <StackLayout>

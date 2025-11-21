@@ -7,11 +7,37 @@ namespace MajorBeat.ViewModels.Hirer;
 
 public class LoginViewModel : BaseViewModel
 {
-    private bool IsLoading = false;
+
+
+    private string hidePasswordImage = "openeye.png";
+    public string HidePasswordImage
+    {
+        get { return hidePasswordImage; }
+        set
+        {
+            hidePasswordImage = value;
+            onPropertyChanged();
+        }
+    }
+
+    private bool isPassword = false;
+    public bool IsPassword
+    {
+        get { return isPassword; }
+        set
+        {
+            isPassword = value;
+            onPropertyChanged();
+        }
+
+    }
     public ICommand AutenticarCommand { get; set; }
+    public ICommand HidePasswordCommand { get; set; }
     private UsuarioService _uService;
+    private bool IsLoading = false;
     public LoginViewModel()
     {
+        HidePasswordCommand = new Command(async () => await hidePassword());
         _uService = new UsuarioService();
         AutenticarCommand = new Command(async () => await AutenticarUsuario());
     }
@@ -78,6 +104,19 @@ public class LoginViewModel : BaseViewModel
         {
             IsLoading = false;
         }
+
+    }
+
+
+    public async Task hidePassword()
+    {
+
+        IsPassword = !IsPassword;
+
+        if (isPassword)
+            HidePasswordImage = "Openeye.png";
+        else
+            HidePasswordImage = "closedeye.png";
 
     }
     private string nome = string.Empty;
