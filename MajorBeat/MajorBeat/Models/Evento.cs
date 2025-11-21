@@ -29,7 +29,7 @@ namespace MajorBeat.Models
 
         public string? descricao { get; set; }
         public string titulo { get; set; }
-        public ObservableCollection<NomeInstrumento> nomeInstrumento { get; set; } = new();
+        public ObservableCollection<NomeInstrumento> instrumentos { get; set; } = new();
 
         public ObservableCollection<NomeGenero> generos { get; set; } = new();
 
