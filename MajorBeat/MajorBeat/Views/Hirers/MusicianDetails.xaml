@@ -49,13 +49,13 @@
                     </HorizontalStackLayout>
 
                     <!--Tabs-->
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="20,0,0,0">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="20,0,0,0">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="2"/>
                             </Grid.RowDefinitions>
-                            <Label x:Name="TabGaleria" Text="Galeria" FontSize="25" TextColor="{Binding TabGaleriaTextColor}" FontAttributes="{Binding TabGaleriaFontAttributes}">
+                            <Label x:Name="TabGaleria" Text="Galeria" FontSize="20" TextColor="{Binding TabGaleriaTextColor}" FontAttributes="{Binding TabGaleriaFontAttributes}">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Galeria"/>
                                 </Label.GestureRecognizers>
@@ -67,7 +67,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="2"/>
                             </Grid.RowDefinitions>
-                            <Label x:Name="TabSobre" Text="Sobre" FontSize="25" TextColor="{Binding TabSobreTextColor}" Padding="50,0,50,0" FontAttributes="{Binding TabSobreFontAttributes}" HorizontalOptions="Center">
+                            <Label x:Name="TabSobre" Text="Sobre" FontSize="20" TextColor="{Binding TabSobreTextColor}" Padding="50,0,50,0" FontAttributes="{Binding TabSobreFontAttributes}" HorizontalOptions="Center">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Sobre"/>
                                 </Label.GestureRecognizers>
@@ -79,7 +79,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="2"/>
                             </Grid.RowDefinitions>
-                            <Label x:Name="TabAvaliacoes" Text="Avaliações" FontSize="25" TextColor="{Binding TabAvaliacoesTextColor}" Padding="20,0,20,0" FontAttributes="{Binding TabAvaliacoesFontAttributes}" HorizontalOptions="End">
+                            <Label x:Name="TabAvaliacoes" Text="Avaliações" FontSize="20" TextColor="{Binding TabAvaliacoesTextColor}" Padding="20,0,20,0" FontAttributes="{Binding TabAvaliacoesFontAttributes}" HorizontalOptions="End">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Avaliacoes"/>
                                 </Label.GestureRecognizers>

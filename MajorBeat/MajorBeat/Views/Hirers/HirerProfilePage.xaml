@@ -57,7 +57,7 @@
                 </Grid>
 
                 <!-- Tabs -->
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="20,0,0,0">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="0,0,0,0">
 
                     <!-- Historico -->
                     <Grid>
@@ -67,6 +67,7 @@
                         </Grid.RowDefinitions>
                         <Label Text="Histórico"
                                FontSize="25"
+                               Margin="20,0,0,0"
                                TextColor="#783F8E"
                                FontAttributes="None">
                             <Label.GestureRecognizers>
@@ -79,7 +80,7 @@
                                 </DataTrigger>
                             </Label.Triggers>
                         </Label>
-                        <BoxView Grid.Row="1" HeightRequest="3" BackgroundColor="#783F8E" WidthRequest="90">
+                        <BoxView Grid.Row="1" Margin="20,0,0,0" HeightRequest="3" BackgroundColor="#783F8E" WidthRequest="90">
                             <BoxView.Triggers>
                                 <DataTrigger TargetType="BoxView" Binding="{Binding SelectedTab}" Value="Historico">
                                     <Setter Property="HeightRequest" Value="4" />
@@ -98,7 +99,7 @@
                         <Label Text="Sobre"
                                FontSize="25"
                                TextColor="#783F8E"                               
-                               Padding="40,0,45,0"                               
+                               Padding="30,0,30,0"                               
                                FontAttributes="None"
                                HorizontalOptions="Center">
                             <Label.GestureRecognizers>
@@ -122,7 +123,7 @@
                     </Grid>
 
                     <!-- Avaliações -->
-                    <Grid Margin="-25,0,0,0">
+                    <Grid Margin="0,0,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="2"/>
@@ -130,7 +131,7 @@
                         <Label Text="Avaliações"
                                FontSize="25"
                                TextColor="#783F8E"
-                               Padding="20,0,20,0"
+                               
                                FontAttributes="None"
                                HorizontalOptions="End">
                             <Label.GestureRecognizers>
@@ -154,8 +155,8 @@
                     </Grid>
                 </StackLayout>
                 <!-- Conteúdo das abas -->
-                <StackLayout IsVisible="{Binding IsHistoricoVisible}" Margin="3,20,0,90">
-                    <Border BackgroundColor="#783F8E" HorizontalOptions="Start" Margin="10,10,0,0" WidthRequest="380" HeightRequest="125" StrokeShape="RoundRectangle 30 30 30 30" >
+                <StackLayout IsVisible="{Binding IsHistoricoVisible}" Margin="0,20,0,90" WidthRequest="370">
+                    <Border BackgroundColor="#783F8E" HorizontalOptions="Start" Margin="0,10,0,0" WidthRequest="370" HeightRequest="125" StrokeShape="RoundRectangle 30 30 30 30" >
                         <StackLayout Orientation="Vertical">
                             <Label Text="abril de 2024" TextColor="#FFFFFF" FontAttributes="Bold" FontSize="20" Margin="20,15,0,0" />
                             <StackLayout Orientation="Horizontal">
@@ -168,7 +169,7 @@
                             </StackLayout>
                         </StackLayout>
                     </Border>
-                    <Border BackgroundColor="#783F8E" HorizontalOptions="Start" Margin="10,10,0,0" WidthRequest="380" HeightRequest="125" StrokeShape="RoundRectangle 30 30 30 30" >
+                    <Border BackgroundColor="#783F8E" HorizontalOptions="Start" Margin="0,10,0,0" WidthRequest="370" HeightRequest="125" StrokeShape="RoundRectangle 30 30 30 30" >
                         <StackLayout Orientation="Vertical">
                             <Label Text="abril de 2024" TextColor="#FFFFFF" FontAttributes="Bold" FontSize="20" Margin="20,15,0,0" />
                             <StackLayout Orientation="Horizontal">
@@ -181,7 +182,7 @@
                             </StackLayout>
                         </StackLayout>
                     </Border>
-                    <Border BackgroundColor="#783F8E" HorizontalOptions="Start" Margin="10,10,0,0" WidthRequest="380" HeightRequest="125" StrokeShape="RoundRectangle 30 30 30 30" >
+                    <Border BackgroundColor="#783F8E" HorizontalOptions="Start" Margin="0,10,0,0" WidthRequest="370" HeightRequest="125" StrokeShape="RoundRectangle 30 30 30 30" >
                         <StackLayout Orientation="Vertical">
                             <Label Text="abril de 2024" TextColor="#FFFFFF" FontAttributes="Bold" FontSize="20" Margin="20,15,0,0" />
                             <StackLayout Orientation="Horizontal">
