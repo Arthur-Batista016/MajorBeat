@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.Hirers.NotificationPage"
+              BackgroundColor="#4F1271"
+              Shell.NavBarIsVisible="False"
+              NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid>
+                <Button  x:Name="voltar" HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7" Clicked="voltar_Clicked_1"/>
+                <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,46,250,0" HorizontalOptions="Center"/>
+                <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
+            </Grid>
+
+            <Label  Text="Notificações" TextColor="White" FontSize="25" VerticalOptions="Center"  HorizontalOptions="Center" FontAttributes="Bold"  FontFamily="InterBold" Margin="30,-10,15,10"/>
+
+            <Frame BackgroundColor="White"
+                   CornerRadius="15"
+                   Padding="15"
+                   HasShadow="False"
+                   BorderColor="Transparent"
+                   Margin="10,30,10,0">
+
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnNotifyTapped"/>
+                </Frame.GestureRecognizers>
+
+                <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                    <Label Text="Marquinhos enviou uma proposta!" FontAttributes="Bold" FontSize="18" TextColor="#4F1271"/>
+                    <Border WidthRequest="13" HeightRequest="13" StrokeThickness="0" Background="#4A0E78" StrokeShape="RoundRectangle 999" Grid.Column="1" Margin="0,20,10,0"/>
+                    <Label Grid.Row="1" Text="R$300,00" TextColor="#783F8E"/>
+                </Grid>
+            </Frame>
+
+            <Frame BackgroundColor="White"
+                CornerRadius="15"
+                Padding="15"
+                HasShadow="False"
+                BorderColor="Transparent"
+                Margin="10,15,10,0">
+
+                <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                    <Label Text="Proposta aceita!" FontAttributes="Bold" FontSize="18" TextColor="#4F1271"/>
+                    <Border WidthRequest="13" HeightRequest="13" StrokeThickness="0" Background="#4A0E78" StrokeShape="RoundRectangle 999" Grid.Column="1" Margin="0,20,10,0"/>
+                    <Label Grid.Row="1" Text="Prepare-se para o show!" FontSize="14" TextColor="#783F8E"/>
+                </Grid>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

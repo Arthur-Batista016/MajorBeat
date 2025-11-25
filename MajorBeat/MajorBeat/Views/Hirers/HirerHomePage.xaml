@@ -42,7 +42,7 @@
                                 <ImageButton Grid.Row="0" Source="{Binding Lupa}" HorizontalOptions="End" Margin="0,-35,-20,0" HeightRequest="23" Command="{Binding SearchCommand}" />
                             </VerticalStackLayout>
                         </Border>
-                        <ImageButton Grid.Row="0" Source="logoicone" HeightRequest="70" HorizontalOptions="End" VerticalOptions="Start" Margin="320,-55,0,0"/>
+                        <ImageButton Grid.Row="0" Source="logoicone" HeightRequest="70" HorizontalOptions="End" VerticalOptions="Start" Margin="320,-55,0,0" Clicked="logo_icon_Clicked"/>
                     </VerticalStackLayout>
                 </Border>
             </Grid>

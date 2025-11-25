@@ -39,6 +39,10 @@ private readonly HirerHomePageViewModel _viewModel;
     {
    
     }
+    private async void logo_icon_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new NotificationPage());
+    }
 
     private async void home_page_btn_Clicked(object sender, EventArgs e)
     {
