@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.Users.ProposalPageView"
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#F5F5F3"
+             >
+    <ScrollView>
+        <VerticalStackLayout Margin="0,40,0,0">
+
+            <Label Text="OFERTA DE CONTRATO" TextColor="#4F1271" FontAttributes="Bold" HorizontalOptions="Center" FontSize="25"/>
+
+            <Label Margin="20,60,0,0" Text="Nome do Evento" FontAttributes="Bold" TextColor="#4F1271" FontSize="22"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+
+                <Label Grid.Row="0" Text="De:" FontSize="17"  Margin="20,0,0,0" TextColor="#4F1271"/>
+                <Label Grid.Row="1" Text="Nome do Contratante"  FontSize="17" FontAttributes="Bold"  Margin="50,0,0,0" TextColor="#4F1271"/>
+                <Label Grid.Row="2"  Text="Para:" Margin="20,0,0,0"  FontSize="17" TextColor="#4F1271"/>
+                <Label Grid.Row="3" Text="Nome do Musico" FontAttributes="Bold"  FontSize="17" Margin="50,0,0,0" TextColor="#4F1271"/>
+                <Label Grid.Row="4" Text="20 de Agosto, 2025 - 16h às 20:30"  FontSize="15" Margin="25,20,0,0" TextColor="#4F1271"/>
+                
+            </Grid>
+
+
+            <Grid Margin="0,40,0,0" HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Text="4.2"  FontSize="30" TextColor="#4F1271" FontAttributes="Bold"/>
+                <Image Grid.Row="0" Source="starrounded.png" HeightRequest="40" Margin="50,0,0,0"/>
+                <Label Grid.Row="1" Text="Avaliação"  FontSize="17" Margin="0,5,0,0" FontAttributes="Bold" TextColor="#4F1271"/>
+            </Grid>
+
+            <Grid Margin="0,30,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Text="Local:" Margin="30,0,0,0" FontSize="17" FontAttributes="Bold" TextColor="#4F1271"/>
+                <Label Grid.Row="1" Margin="30,0,0,0" Text="Rua Alcantara, 31, Vila Guilherme" FontSize="17" TextColor="#4F1271"/>
+                <Label Grid.Row="2" Margin="30,0,0,0" Text="São Paulo" TextColor="#4F1271" FontSize="17"/>
+            </Grid>
+
+
+            <Grid Margin="0,30,0,0">
+                <Label Text="Estilos Solicitados: " Margin="30,0,0,0" FontSize="17" FontAttributes="Bold" TextColor="#4F1271"/>
+                <Grid>
+                    <CollectionView  ItemsLayout="HorizontalList" Margin="0,-5,0,0" HeightRequest="150">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#FFFFFF" Margin="20,-80,0,0" WidthRequest="{Binding ., Converter={StaticResource GeneroWidthConverter}}" HorizontalOptions="Start" HeightRequest="35">
+                                    <Label Text="KKK" TextColor="#4F1271" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" Margin="0,3,0,0" />
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+
+            </Grid>
+
+            <Grid Margin="0,30,0,0">
+                <Label Text="Instrumentos Solicitados: " Margin="30,0,0,0" FontSize="17" FontAttributes="Bold" TextColor="#4F1271"/>
+
+            </Grid>
+
+           
+
+          
+
+            <Grid Margin="0,30,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Text="Proposta de Preço:" Margin="30,0,0,0" FontAttributes="Bold" FontSize="20" TextColor="#4F1271"/>
+                <Border Grid.Row="1" StrokeShape="RoundRectangle 5" HeightRequest="70" BackgroundColor="#4F1271" Margin="30,0,0,0" WidthRequest="150" HorizontalOptions="Start">
+                        <Label Text="R$ 300,00" TextColor="White" HorizontalOptions="Center" FontSize="22" Margin="0,15,0,0"/>
+                    </Border>
+            </Grid>
+
+
+            <Grid Margin="0,70,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="0" Text="Cancelar" BorderColor="#4F1271" FontAttributes="Bold" CornerRadius="100" TextColor="#4F1271" BackgroundColor="#FFFFFF" WidthRequest="130" Margin="0,0,200,0"/>
+                <Button Grid.Row="0" Text="Confirmar" BackgroundColor="#4F1271" FontAttributes="Bold" CornerRadius="100" WidthRequest="130" Margin="150,0,0,0"/>
+            </Grid>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
