@@ -15,14 +15,14 @@ using System.Windows.Input;
 
 namespace MajorBeat.ViewModels.Musicians
 {
-    public partial class MusicianSearchPageViewModel:ObservableObject
+    public partial class MusicianSearchPageViewModel : ObservableObject
     {
 
 
 
 
         EventService _eService;
-     
+
 
 
         [ObservableProperty]
@@ -117,16 +117,27 @@ namespace MajorBeat.ViewModels.Musicians
 
 
         public ICommand SearchCommand { get; set; }
-
+        public ICommand ClickEventCommand { get; set; }
 
         public void InicializarCommands()
         {
             Searchs = new ObservableCollection<string>();
             SearchCommand = new Command(async () => await search());
+            ClickEventCommand = new Command<Evento>(async (evento) => await EventTapped(evento));
+
+        }
+        private async Task EventTapped(Evento evento)
+        {
+
+            if (evento == null)
+                return;
+
+            long id = evento.idEvento;
+
+
 
 
         }
-
 
         public async Task onFocus()
         {
@@ -220,11 +231,11 @@ namespace MajorBeat.ViewModels.Musicians
         ///MUSICIAN SEARCH PAGE 
 
 
-      
+
 
         public MusicianSearchPageViewModel()
         {
-          
+
             InicializarCommands();
             onUnfocus();
             _eService = new EventService();

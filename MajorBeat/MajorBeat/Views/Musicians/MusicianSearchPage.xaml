@@ -19,10 +19,10 @@
 
         <VerticalStackLayout Grid.Row="0">
             <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
                 <Border StrokeShape="RoundRectangle 0 0 0 0" BackgroundColor="#4F1271"  Margin="0,0,0,0" HorizontalOptions="Fill" HeightRequest="90">
                     <VerticalStackLayout Margin="0,0,0,0">
                         <Border StrokeShape="{Binding BarFormat}" BackgroundColor="{Binding BarBackground}" VerticalOptions="End" Margin="20,20,0,0" WidthRequest="300" HorizontalOptions="Start" HeightRequest="45">
@@ -53,9 +53,9 @@
                         </CollectionView>
                     </VerticalStackLayout>
                 </Border>
-                
+
             </Grid>
-           
+
 
 
         </VerticalStackLayout>
@@ -85,7 +85,7 @@
                 </Grid>
 
                 <Label Text="RESULTADOS ENCONTRADOS:" TextColor="#4F1271" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Start" Margin="20,50,0,0"/>
-              
+
 
                 <!-- Eventos -->
                 <!-- Eventos -->
@@ -108,6 +108,9 @@
 
                                 <!-- Informações do evento -->
                                 <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" HorizontalOptions="Fill" VerticalOptions="End" HeightRequest="200">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    </Border.GestureRecognizers>
                                     <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,-30,0,0">
                                         <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="25" HorizontalOptions="Start" TextColor="#ffffff" Margin="18,40,0,0"/>
                                         <Label Text="{Binding tipoEvento}" TextColor="#ffffff" FontAttributes="Bold" FontSize="15" Margin="20,0,0,0"/>
@@ -324,7 +327,7 @@
                  HorizontalOptions="Center"
                  VerticalOptions="Center"
                  HasShadow="True">
-                            <Image Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
+                    <Image Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
                 </Frame>
 
                 <Frame Grid.Column="4"

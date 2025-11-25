@@ -7,10 +7,14 @@ namespace MajorBeat.Views.Hirers;
 
 public partial class HirerProfilePage : ContentPage
 {
-	public HirerProfilePage()
-	{
-		InitializeComponent();
-        BindingContext = new ProfileHirerViewModel();
+    public HirerProfilePage()
+    {
+        InitializeComponent();
+        var viewModel = new ProfileHirerViewModel();
+        BindingContext = viewModel;
+
+        // Dispara a chamada assíncrona, não a bloqueia.
+        _ = viewModel.LoadHirerDataAsync();
     }
 
     private async void home_page_btn_Clicked(object sender, EventArgs e)

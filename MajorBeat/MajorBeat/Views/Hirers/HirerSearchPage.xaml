@@ -237,7 +237,7 @@
 
 
 
-      
+
 
 
         <!-- Conteúdo principal Do EVENTO-->
@@ -250,8 +250,8 @@
             </Grid>
             <Label Text="Sem Musicos Disponiveis no Momento para este Gênero!" HorizontalOptions="Center" VerticalOptions="Center" FontSize="26" WidthRequest="420" Margin="70,-40,0,0" TextColor="#4F1271"/>
         </Grid>
-        
-        
+
+
         <ScrollView Grid.Row="1" IsVisible="{Binding IsSearch}">
             <VerticalStackLayout>
 
@@ -262,7 +262,7 @@
                 </Grid>
 
 
-                <Label Text="RESULTADOS ENCCONTRADOS:" TextColor="#4F1271" FontAttributes="Bold" FontSize="20" HorizontalOptions="Start" Margin="20,0,0,0"/>
+                <Label Text="RESULTADOS ENCONTRADOS:" TextColor="#4F1271" FontAttributes="Bold" FontSize="20" HorizontalOptions="Start" Margin="20,0,0,0"/>
 
 
                 <!-- Eventos -->
@@ -304,6 +304,9 @@
 
                                 <!-- Informações do evento -->
                                 <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" HorizontalOptions="Fill" VerticalOptions="End" HeightRequest="180" Margin="0,430,0,50">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    </Border.GestureRecognizers>
                                     <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,0,0,0">
 
                                         <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="30" HorizontalOptions="Start" TextColor="#ffffff" Margin="20,30,0,20"/>
@@ -340,8 +343,8 @@
         </ScrollView>
 
 
-        
-        
+
+
         <!---PESQUISANDO PELA SEARCH BAR-->
         <ScrollView Grid.Row="1" IsVisible="{Binding BarSearch}">
             <VerticalStackLayout>

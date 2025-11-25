@@ -1,6 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MajorBeat.Enums;
+using MajorBeat.Models;
+using MajorBeat.Services.Hirers;
+using MajorBeat.Services.Usuarios;
 using System.Collections.ObjectModel;
 
 namespace MajorBeat.ViewModels.Hirers
@@ -8,7 +11,7 @@ namespace MajorBeat.ViewModels.Hirers
     public partial class ProfileHirerViewModel : ObservableObject
     {
         [ObservableProperty]
-        public int id;
+        public long id;
 
         [ObservableProperty]
         public string nome;
@@ -122,20 +125,48 @@ namespace MajorBeat.ViewModels.Hirers
         }
 
         // === Construtor ===
+        private HirerService uService;
+        public async Task LoadHirerDataAsync()
+        {
+            try
+            {
+                Contratante contratante = await uService.GetHirerById(usuarioId);
+
+                // **ATRIBUIÇÃO DOS DADOS AQUI APÓS A ESPERA (AWAIT)**
+                if (contratante != null)
+                {
+                    this.contratante = contratante;
+
+                    Username = contratante.nomePerfil;
+                    Nome = contratante.nome;
+                    Empresanome = contratante.empresa;
+                    Biografia = contratante.biografia;
+                    // ... atribua todas as outras propriedades ...
+
+                    // Exemplo de dados mockados que você estava usando para inicialização:
+                    TipoContratante = TipoContratante.ESTABELECIMENTO;
+                    Email = "jose.bosta@gmail.com";
+                    Logradouro = "R. Namaxi, 155 - Penha de França,\nSão Paulo - SP, 03609-020";
+                    Telefone = "(11) 2647-7805";
+                    LinkFacebook = "jose.mota";
+                    LinkLinkdin = "jose.mota";
+                    LinkInsta = "jose.mota";
+                    LinkTwitter = "jose.mota";
+                }
+            }
+            catch (Exception ex)
+            {
+                // Tratar o erro de forma apropriada, talvez exibindo um alerta.
+                Console.WriteLine($"Erro ao carregar dados do contratante: {ex.Message}");
+            }
+        }
+        public long usuarioId;
+        Contratante contratante;
         public ProfileHirerViewModel()
         {
-            Username = "Sr. Zé";
-            Nome = "José da Mota";
-            Empresanome = "Panelão do...";
-            Biografia = "O Panelão do Norte é um restaurante paulistano fundado pelo Sr. José da Mota com o objetivo de trazer a autêntica culinária nordestina para São Paulo.";
-            TipoContratante = TipoContratante.ESTABELECIMENTO;
-            Email = "jose.mota123@gmail.com";
-            Logradouro = "R. Namaxi, 155 - Penha de França,\nSão Paulo - SP, 03609-020";
-            Telefone = "(11) 2647-7805";
-            LinkFacebook = "jose.mota";
-            LinkLinkdin = "jose.mota";
-            LinkInsta = "jose.mota";
-            LinkTwitter = "jose.mota";
+            uService = new HirerService();
+            usuarioId = Preferences.Get("Usuarioid", 0L);
+
         }
     }
 }

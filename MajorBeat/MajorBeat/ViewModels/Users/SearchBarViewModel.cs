@@ -97,14 +97,29 @@ namespace MajorBeat.ViewModels.Users
             onUnfocus();
             _mService = new MusicianService();
             GeneroCommand = new AsyncRelayCommand<NomeGenero>(BuscarPorGenero);
-            BackGenreCommand = new Command(async()=> BackGenreChoosed());
+            BackGenreCommand = new Command(async () => BackGenreChoosed());
+            ClickMusicianCommand = new Command<Musico>(async (musico) => await MusicianTapped(musico));
+        }
+        public ICommand ClickMusicianCommand { get; set; }
+
+        private async Task MusicianTapped(Musico musico)
+        {
+
+            if (musico == null)
+                return;
+
+            long id = musico.idMusico;
+
+
+
+
         }
 
         public void InicializarCommands()
         {
             Searchs = new ObservableCollection<string>();
             SearchCommand = new Command(async () => await search());
-            
+
         }
 
         //METODOS DE PESQUISA
@@ -242,7 +257,7 @@ namespace MajorBeat.ViewModels.Users
         }
 
 
-        
+
 
 
         private async Task<ObservableCollection<Musico>> BuscarPorGenero(NomeGenero genero)
@@ -254,15 +269,15 @@ namespace MajorBeat.ViewModels.Users
 
                 if (Musicos?.Count > 0)
                 {
-                  
+
                     HirerNoSelect = false;
                     IsSearch = true;
                     FindResults = true;
                     NoMusics = false;
 
-                    
+
                 }
-               
+
                 return Musicos;
             }
             catch (Exception ex)
