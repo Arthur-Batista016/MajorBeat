@@ -250,7 +250,7 @@ namespace MajorBeat.ViewModels.Hirers
             usuario.linkLinkdin = LinkLinkedin;
 
 
-            usuario.RedesSociais = new List<string>
+            usuario.links = new List<string>
     {
             usuario.linkLinkdin,
             usuario.linkInsta,
@@ -268,7 +268,7 @@ namespace MajorBeat.ViewModels.Hirers
                 // Exibe mensagem de sucesso com o ID retornado
                 await Application.Current.MainPage.DisplayAlert(
                 "Sucesso",
-                $"Contratante {contratanteCadastrado.nome} cadastrado com sucesso!\nID: {contratanteCadastrado.idContratante}",
+                $"Contratante {contratanteCadastrado.nome} cadastrado com sucesso!\nID: {contratanteCadastrado.id}",
                 "OK"
             );
 

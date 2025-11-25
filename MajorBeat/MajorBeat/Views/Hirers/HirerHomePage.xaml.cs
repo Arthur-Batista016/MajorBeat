@@ -47,7 +47,7 @@ private readonly HirerHomePageViewModel _viewModel;
 
     private async void search_page_btn_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new HirerSearchPage());//
+        await Navigation.PushAsync(new HirerSearchPage());
 
     }
 

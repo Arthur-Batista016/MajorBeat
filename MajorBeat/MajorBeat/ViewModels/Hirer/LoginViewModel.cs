@@ -61,11 +61,11 @@ public class LoginViewModel : BaseViewModel
                 Contratante ca = await service.PostAutenticarUsuarioAsync(c);
 
                 Preferences.Set("UsuarioToken", ca.token);
-                Preferences.Set("Usuarioid", ca.idContratante);
+                Preferences.Set("Usuarioid", ca.id);
 
                 await Application.Current.MainPage.DisplayAlert(
                     "Sucesso",
-                    $"Contratante {c.nome} autenticado com sucesso!",
+                    $"Contratante {ca.id} autenticado com sucesso!",
                     "OK"
                 );
                 await Application.Current.MainPage.Navigation.PushAsync(new Views.Hirers.HirerHomePage());

@@ -30,7 +30,7 @@
 
                 <!-- Carrossel -->
                 <Grid>
-                    <CarouselView ItemsSource="{Binding Images}"
+                    <!--<<CarouselView ItemsSource="{Binding Images}"
                                   Position="{Binding CurrentIndex, Mode=TwoWay}"
                                   Margin="0,20,0,20">
                         <CarouselView.ItemTemplate>
@@ -38,22 +38,10 @@
                                 <Image Source="{Binding}" Aspect="AspectFill" HeightRequest="300"/>
                             </DataTemplate>
                         </CarouselView.ItemTemplate>
-                    </CarouselView>
+                    </CarouselView>-->
 
-                    <Frame HorizontalOptions="End" VerticalOptions="Start"
-                           Margin="0,35,20,0"
-                           BackgroundColor="#4F1271"
-                           HeightRequest="40"
-                           WidthRequest="45"
-                           CornerRadius="12"
-                           Padding="8">
-                        <Label Text="{Binding PositionText}"
-                               FontSize="16"
-                               TextColor="White"
-                               FontAttributes="Bold"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center" />
-                    </Frame>
+                    <Image Source="{Binding Images[0]}" Aspect="AspectFill" HeightRequest="300" Margin="0,50,0,0"/>
+
                 </Grid>
 
                 <!-- Tabs -->

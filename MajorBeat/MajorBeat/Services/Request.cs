@@ -101,9 +101,10 @@ namespace MajorBeat.Services
             httpClient.DefaultRequestHeaders.Authorization
                 = new AuthenticationHeaderValue("Bearer", token);
 
-            HttpResponseMessage response = await httpClient.GetAsync(uri);
-            string serialized = await response.Content.ReadAsStringAsync();
+            HttpResponseMessage response = await httpClient.GetAsync(uri).ConfigureAwait(false);
 
+            // CORREÇÃO 2: Adicionar ConfigureAwait(false) na leitura do conteúdo
+            string serialized = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 throw new Exception(serialized);
 

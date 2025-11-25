@@ -8,7 +8,7 @@ namespace MajorBeat.ModelsJeff
 {
     public class Contratante
     {
-        public long idContratante { get; set; }
+        public long id { get; set; }
         public string? nome { get; set; }
         public string? email { get; set; }
         public string? telefone { get; set; }
@@ -24,7 +24,7 @@ namespace MajorBeat.ModelsJeff
         public string? linkInsta { get; set; }
         public string? linkTwitter { get; set; }
         public string? linkFacebook { get; set; }
-        public List<string>? RedesSociais { get; set; }
-        public List<string>? MediaUrls { get; set; }
+        public List<string>? links { get; set; }
+        public List<string>? MediaUrl { get; set; }
     }
 }

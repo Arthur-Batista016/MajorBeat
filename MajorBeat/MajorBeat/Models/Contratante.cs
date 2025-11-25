@@ -26,6 +26,7 @@ namespace MajorBeat.Models
         public string linkInsta { get; set; }
         public string linkTwitter { get; set; }
         public string linkFacebook { get; set; }
-        public List<string> RedesSociais { get; set; }
+        public List<string>? links { get; set; }
+        public List<string>? mediaUrl { get; set; }
     }
 }

@@ -73,14 +73,17 @@ namespace MajorBeat.ViewModels.Hirers
         [ObservableProperty]
         public List<string> redesSociais;
 
-        // === Galeria ===
-        public ObservableCollection<string> Images { get; } = new()
-        {
-            "panelaodonorte1.png",
-            "panelaodonorte2.png",
-            "panelaodonorte3.png"
-        };
+        [ObservableProperty]
+        public List<string> mediaUrl;
 
+        // === Galeria ===
+         public ObservableCollection<string> Images { get; } = new()
+         {
+             "panelaodonorte1.png",
+             "panelaodonorte2.png",
+             "panelaodonorte3.png"
+         };
+        /*
         [ObservableProperty] private int currentIndex;
 
         public string PositionText => $"{CurrentIndex + 1}/{Images.Count}";
@@ -102,7 +105,7 @@ namespace MajorBeat.ViewModels.Hirers
         {
             if (CurrentIndex > 0)
                 CurrentIndex--;
-        }
+        }*/
 
         // === Tabs ===
         [ObservableProperty] private string selectedTab = "Historico";
@@ -128,30 +131,38 @@ namespace MajorBeat.ViewModels.Hirers
         private HirerService uService;
         public async Task LoadHirerDataAsync()
         {
+
             try
             {
-                Contratante contratante = await uService.GetHirerById(usuarioId);
+
+
+
+                contratante = await uService.GetHirerById(usuarioId);
 
                 // **ATRIBUIÇÃO DOS DADOS AQUI APÓS A ESPERA (AWAIT)**
+               
                 if (contratante != null)
                 {
-                    this.contratante = contratante;
 
+
+                    //MediaUrl = contratante.mediaUrl;
                     Username = contratante.nomePerfil;
                     Nome = contratante.nome;
                     Empresanome = contratante.empresa;
                     Biografia = contratante.biografia;
+                    Email = contratante.email;
+                    Logradouro = contratante.endereco;
+                    Telefone = contratante.telefone;
+                    RedesSociais = contratante.links;
+                    LinkFacebook = RedesSociais[0];
+                    LinkLinkdin = RedesSociais[1];
+                    LinkInsta = RedesSociais[2];
+                    LinkTwitter = RedesSociais[3];
                     // ... atribua todas as outras propriedades ...
 
                     // Exemplo de dados mockados que você estava usando para inicialização:
                     TipoContratante = TipoContratante.ESTABELECIMENTO;
-                    Email = "jose.bosta@gmail.com";
-                    Logradouro = "R. Namaxi, 155 - Penha de França,\nSão Paulo - SP, 03609-020";
-                    Telefone = "(11) 2647-7805";
-                    LinkFacebook = "jose.mota";
-                    LinkLinkdin = "jose.mota";
-                    LinkInsta = "jose.mota";
-                    LinkTwitter = "jose.mota";
+                    
                 }
             }
             catch (Exception ex)
@@ -161,11 +172,13 @@ namespace MajorBeat.ViewModels.Hirers
             }
         }
         public long usuarioId;
-        Contratante contratante;
+        public Contratante contratante;
         public ProfileHirerViewModel()
         {
-            uService = new HirerService();
+            string token = Preferences.Get("UsuarioToken", string.Empty);
+            uService = new HirerService(token);
             usuarioId = Preferences.Get("Usuarioid", 0L);
+            
 
         }
     }
