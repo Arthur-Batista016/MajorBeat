@@ -9,7 +9,7 @@ namespace MajorBeat.ModelsJeff
 {
     public class Musico
     {
-        public int idMusico { get; set; }
+        public long idMusico { get; set; }
         public string token { get; set; }
         public string nome { get; set; }
         public string email { get; set; }

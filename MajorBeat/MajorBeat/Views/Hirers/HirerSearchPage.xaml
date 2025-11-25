@@ -262,7 +262,7 @@
                 </Grid>
 
 
-                <Label Text="RESULTADOS ENCCONTRADOS:" TextColor="#4F1271" FontAttributes="Bold" FontSize="20" HorizontalOptions="Start" Margin="20,0,0,0"/>
+                <Label Text="RESULTADOS ENCONTRADOS:" TextColor="#4F1271" FontAttributes="Bold" FontSize="20" HorizontalOptions="Start" Margin="20,0,0,0"/>
 
 
                 <!-- Eventos -->
@@ -304,6 +304,9 @@
 
                                 <!-- Informações do evento -->
                                 <Border StrokeShape="RoundRectangle 0 0 5 5" BackgroundColor="#4F1271" HorizontalOptions="Fill" VerticalOptions="End" HeightRequest="180" Margin="0,430,0,50">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    </Border.GestureRecognizers>
                                     <VerticalStackLayout VerticalOptions="Center" HeightRequest="200" Margin="0,0,0,0">
 
                                         <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="30" HorizontalOptions="Start" TextColor="#ffffff" Margin="20,30,0,20"/>

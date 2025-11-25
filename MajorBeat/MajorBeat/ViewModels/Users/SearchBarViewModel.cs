@@ -98,6 +98,21 @@ namespace MajorBeat.ViewModels.Users
             _mService = new MusicianService();
             GeneroCommand = new AsyncRelayCommand<NomeGenero>(BuscarPorGenero);
             BackGenreCommand = new Command(async()=> BackGenreChoosed());
+            ClickMusicianCommand = new Command<Musico>(async (musico) => await MusicianTapped(musico));
+        }
+        public ICommand ClickMusicianCommand { get; set; }
+
+        private async Task MusicianTapped(Musico musico)
+        {
+
+            if (musico == null)
+                return;
+
+            long id = musico.idMusico;
+
+
+
+
         }
 
         public void InicializarCommands()

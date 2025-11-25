@@ -1,18 +1,44 @@
 namespace MajorBeat.Views.Musicians;
 
 using System.Threading.Tasks;
+using MajorBeat.Models;
 using MajorBeat.ViewModels.Musicians;
 using MajorBeat.ViewModels.Users;
 using MajorBeat.Views.Users;
+using Syncfusion.Maui.Core.Carousel;
 
 public partial class MusicianSearchPage : ContentPage
 {
-    private MusicianSearchPageViewModel Vm => BindingContext as MusicianSearchPageViewModel;
+    private readonly MusicianSearchPageViewModel Vm;
     public MusicianSearchPage()
 	{
 		InitializeComponent();
         BindingContext = new MusicianSearchPageViewModel();
-	}
+        if (this.BindingContext is MusicianSearchPageViewModel vm)
+        {
+            Vm = vm; // 2. INICIALIZE A VARIÁVEL AQUI
+        }
+        else
+        {
+            // Se o BindingContext não estiver definido, crie um novo
+            // (Isso depende de como seu app está estruturado)
+            Vm = new MusicianSearchPageViewModel();
+            this.BindingContext = Vm;
+        }
+    }
+
+    private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    {
+        if (sender is VisualElement element && element.BindingContext is Evento evento)
+        {
+            // Executa o comando (se quiser manter a lógica dentro da ViewModel)
+            Vm.ClickEventCommand.Execute(evento);
+
+            // Navegação async passando o ID
+            await Navigation.PushAsync(new EventDetails(evento.idEvento));
+        }
+
+    }
 
     private void searchBar_Focused(object sender, FocusEventArgs e)
     {

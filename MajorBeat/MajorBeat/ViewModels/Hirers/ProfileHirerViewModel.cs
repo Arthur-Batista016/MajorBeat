@@ -1,6 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MajorBeat.Enums;
+using MajorBeat.Models;
+using MajorBeat.Services.Hirers;
+using MajorBeat.Services.Usuarios;
 using System.Collections.ObjectModel;
 
 namespace MajorBeat.ViewModels.Hirers
@@ -8,7 +11,7 @@ namespace MajorBeat.ViewModels.Hirers
     public partial class ProfileHirerViewModel : ObservableObject
     {
         [ObservableProperty]
-        public int id;
+        public long id;
 
         [ObservableProperty]
         public string nome;
@@ -122,12 +125,33 @@ namespace MajorBeat.ViewModels.Hirers
         }
 
         // === Construtor ===
+        private HirerService uService;
+        [RelayCommand]
+        public async Task<Contratante> getporra()
+        {
+            try
+            {
+                contratante = await uService.GetHirerById(usuarioId);
+                return contratante;
+
+            }
+            catch (Exception ex)
+            {
+                return new Contratante();
+            }
+        }
+        public long usuarioId;
+        Contratante contratante;
         public ProfileHirerViewModel()
         {
-            Username = "Sr. Zé";
-            Nome = "José da Mota";
-            Empresanome = "Panelão do...";
-            Biografia = "O Panelão do Norte é um restaurante paulistano fundado pelo Sr. José da Mota com o objetivo de trazer a autêntica culinária nordestina para São Paulo.";
+            uService=new HirerService();
+            usuarioId = Preferences.Get("Usuarioid",0L);
+            _ = getporra();
+
+            Username = contratante.nomePerfil;
+            Nome = contratante.nome;
+            Empresanome = contratante.empresa;
+            Biografia = contratante.biografia;
             TipoContratante = TipoContratante.ESTABELECIMENTO;
             Email = "jose.mota123@gmail.com";
             Logradouro = "R. Namaxi, 155 - Penha de França,\nSão Paulo - SP, 03609-020";

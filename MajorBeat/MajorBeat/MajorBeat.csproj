@@ -135,7 +135,6 @@
 	<ItemGroup>
 	  <Folder Include="ModelsJeff\EnumsJeff\" />
 	  <Folder Include="Platforms\Android\Resources\" />
-	  <Folder Include="Services\Hirers\" />
 	</ItemGroup>
 
 </Project>
