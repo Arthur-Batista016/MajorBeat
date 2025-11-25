@@ -44,9 +44,28 @@
                         </VerticalStackLayout>
                         <VerticalStackLayout Spacing="8" HorizontalOptions="Center" VerticalOptions="Center">
                             <ImageButton Source="addcontact.png"  HeightRequest="70" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,-10"/>
-                            <Label Text="Adicionar contato" FontSize="16" TextColor="#4F1271" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                            <Label Text="Enviar Proposta" FontSize="16" TextColor="#4F1271" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                         </VerticalStackLayout>
                     </HorizontalStackLayout>
+                    
+                    
+                    <!--Envio de Proposta-->
+                    <Grid IsVisible="True">
+                        <Border BackgroundColor="#E7E7E7"  HeightRequest="500" WidthRequest="350" StrokeShape="RoundRectangle 10">
+                            <VerticalStackLayout>
+                                <Label Text="ENVIAR PROPOSTA?" TextColor="#4F1271" FontSize="22" HorizontalOptions="Center"/>
+                                <Image Source="sendproposalline.png" Margin="0,20,0,0"/>
+                                <Label Text="Se ambos aceitarem, este evento será adicionado à sua agenda." TextColor="#4F1271"  HorizontalTextAlignment="Center" WidthRequest="250" HorizontalOptions="Center" Margin="0,30,0,0"/>
+                                <Label Text="Ao clicar em ACEITAR, seu sócio terá 48 horas para confirmar. Por isso, converse bem antes de firmar a parceria." TextColor="#4F1271"  WidthRequest="280" HorizontalOptions="Center" Margin="0,30,0,0"/>
+                                <Label Text="Proposta de Preço" HorizontalOptions="Center" Margin="0,30,0,0" TextColor="#4F1271" />
+                                <Entry Placeholder="R$0,00" HorizontalOptions="Center" PlaceholderColor="#4F1271" TextColor="#4F1271" Opacity="20" Margin="0,50,0,-100" FontSize="40"/>
+                                <Grid Margin="20,120,0,0">
+                                    <Button Grid.Row="0" Text="Continuar" BackgroundColor="#4F1271" FontAttributes="Bold" FontSize="17" HorizontalOptions="Center" CornerRadius="100" WidthRequest="140" Margin="150,0,0,0"/>
+                                    <Button Grid.Row="0" Text="Cancelar" BorderColor="#4F1271" BorderWidth="2" HorizontalOptions="Center" FontSize="17" FontAttributes="Bold" CornerRadius="100" TextColor="#4F1271" BackgroundColor="#FFFFFF" WidthRequest="140" Margin="0,0,200,0"/>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
 
                     <!--Tabs-->
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="20,0,0,0">

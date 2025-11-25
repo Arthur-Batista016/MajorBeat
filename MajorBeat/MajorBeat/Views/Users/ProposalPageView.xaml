@@ -40,7 +40,7 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Text="4.2"  FontSize="30" TextColor="#4F1271" FontAttributes="Bold"/>
-                <Image Grid.Row="0" Source="starrounded.png" HeightRequest="40" Margin="50,0,0,0"/>
+                <Image Grid.Row="0" Source="starproposal.png" HeightRequest="40" Margin="50,0,0,0"/>
                 <Label Grid.Row="1" Text="Avaliação"  FontSize="17" Margin="0,5,0,0" FontAttributes="Bold" TextColor="#4F1271"/>
             </Grid>
 
@@ -58,24 +58,40 @@
 
 
             <Grid Margin="0,30,0,0">
-                <Label Text="Estilos Solicitados: " Margin="30,0,0,0" FontSize="17" FontAttributes="Bold" TextColor="#4F1271"/>
-                <Grid>
-                    <CollectionView  ItemsLayout="HorizontalList" Margin="0,-5,0,0" HeightRequest="150">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#FFFFFF" Margin="20,-80,0,0" WidthRequest="{Binding ., Converter={StaticResource GeneroWidthConverter}}" HorizontalOptions="Start" HeightRequest="35">
-                                    <Label Text="KKK" TextColor="#4F1271" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" Margin="0,3,0,0" />
-                                </Border>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Text="Estilos Solicitados: " Margin="30,0,0,0" FontSize="17" FontAttributes="Bold" TextColor="#4F1271"/>
+               
+                    <Border   Grid.Row="1" StrokeShape="RoundRectangle 8,8,8,8" BackgroundColor="#4F1271" Margin="30,10,0,0" WidthRequest="140" HorizontalOptions="Start" HeightRequest="40">
+                        <Label  Grid.Row="2" Text="BOSSA_NOVA" TextColor="#FFFFFF" HorizontalOptions="Center"  FontSize="17" FontAttributes="Bold" Margin="0,5,0,0" />
+                    </Border>
+                <Border   Grid.Row="1" StrokeShape="RoundRectangle 8,8,8,8" BackgroundColor="#4F1271" Margin="180,10,0,0" WidthRequest="140" HorizontalOptions="Start" HeightRequest="40">
+                    <Label  Grid.Row="2" Text="BOSSA_NOVA" TextColor="#FFFFFF" HorizontalOptions="Center"  FontSize="17" FontAttributes="Bold" Margin="0,5,0,0" />
+                </Border>
+
 
             </Grid>
 
             <Grid Margin="0,30,0,0">
-                <Label Text="Instrumentos Solicitados: " Margin="30,0,0,0" FontSize="17" FontAttributes="Bold" TextColor="#4F1271"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
+                <Label Grid.Row="0" Text="Instrumentos Solicitados: " Margin="30,0,0,0" FontSize="17" FontAttributes="Bold" TextColor="#4F1271"/>
+
+                <Border   Grid.Row="1" StrokeShape="RoundRectangle 8,8,8,8" BackgroundColor="#4F1271" Margin="30,10,0,0" WidthRequest="140" HorizontalOptions="Start" HeightRequest="40">
+                    <Label  Grid.Row="2" Text="BOSSA_NOVA" TextColor="#FFFFFF" HorizontalOptions="Center"  FontSize="17" FontAttributes="Bold" Margin="0,5,0,0" />
+                </Border>
+                <Border   Grid.Row="1" StrokeShape="RoundRectangle 8,8,8,8" BackgroundColor="#4F1271" Margin="180,10,0,0" WidthRequest="140" HorizontalOptions="Start" HeightRequest="40">
+                    <Label  Grid.Row="2" Text="BOSSA_NOVA" TextColor="#FFFFFF" HorizontalOptions="Center"  FontSize="17" FontAttributes="Bold" Margin="0,5,0,0" />
+                </Border>
             </Grid>
 
            
@@ -89,19 +105,19 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Text="Proposta de Preço:" Margin="30,0,0,0" FontAttributes="Bold" FontSize="20" TextColor="#4F1271"/>
-                <Border Grid.Row="1" StrokeShape="RoundRectangle 5" HeightRequest="70" BackgroundColor="#4F1271" Margin="30,0,0,0" WidthRequest="150" HorizontalOptions="Start">
-                        <Label Text="R$ 300,00" TextColor="White" HorizontalOptions="Center" FontSize="22" Margin="0,15,0,0"/>
-                    </Border>
+               
+                    <Label Text="R$ 300,00" TextColor="#4F1271" HorizontalOptions="Start" TextDecorations="Underline" FontAttributes="Bold" FontSize="28"  Margin="30,30,0,0"/>
+                
             </Grid>
 
 
-            <Grid Margin="0,70,0,0">
+            <Grid Margin="0,70,0,100" HorizontalOptions="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Button Grid.Row="0" Text="Cancelar" BorderColor="#4F1271" FontAttributes="Bold" CornerRadius="100" TextColor="#4F1271" BackgroundColor="#FFFFFF" WidthRequest="130" Margin="0,0,200,0"/>
-                <Button Grid.Row="0" Text="Confirmar" BackgroundColor="#4F1271" FontAttributes="Bold" CornerRadius="100" WidthRequest="130" Margin="150,0,0,0"/>
+                <Button Grid.Row="0" Text="Cancelar" BorderColor="#4F1271" BorderWidth="2" HorizontalOptions="Center" FontSize="17" FontAttributes="Bold" CornerRadius="100" TextColor="#4F1271" BackgroundColor="#FFFFFF" WidthRequest="130" Margin="0,0,200,0"/>
+                <Button Grid.Row="0" Text="Confirmar" BackgroundColor="#4F1271" FontAttributes="Bold" FontSize="17" HorizontalOptions="Center" CornerRadius="100" WidthRequest="130" Margin="150,0,0,0"/>
             </Grid>
 
 
