@@ -12,21 +12,72 @@
         <ScrollView Grid.Row="0">
             <VerticalStackLayout Margin="0,30,0,0">
                 <VerticalStackLayout Padding="20,10" Spacing="10">
-                    <!-- Calendário 
-                    <Grid>  xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar"
-                        <syncfusion:SfCalendar x:Name="MusicianCalendar" View="Month" SelectionMode="Multiple" DisplayDate="{Binding CurrentMonth}" SelectedDates="{Binding UnavailableDates}" Background="Transparent" 
-                        ShowTrailingAndLeadingDates="False" HeightRequest="350" SelectionBackground="#4f1271" TodayHighlightBrush="#4f1271" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
-                        EnablePastDates="False">
-                            <syncfusion:SfCalendar.MonthView>
-                                <syncfusion:CalendarMonthView>
-                                    <syncfusion:CalendarMonthView.HeaderView>
-                                        <syncfusion:CalendarMonthHeaderView TextFormat="ddd" Height="40" />
-                                    </syncfusion:CalendarMonthView.HeaderView>
-                                </syncfusion:CalendarMonthView>
-                            </syncfusion:SfCalendar.MonthView>
-                        </syncfusion:SfCalendar>
-                        <Line HorizontalOptions="Start" X1="0" Y1="20" X2="365" Y2="20"  Stroke="#4F1271" StrokeThickness="3"  Margin="0,46,0,0" />
-                    </Grid>-->
+                    <!-- Calendário -->
+                    <VerticalStackLayout Spacing="10" Padding="0,10">
+
+                        <!-- Navegação de Mês -->
+                        <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Start" Padding="0,0,0,10">
+                            <ImageButton 
+                                Grid.Column="0" 
+                                Source="back.png" 
+                                WidthRequest="20" HeightRequest="20" 
+                                BackgroundColor="Transparent" 
+                                Command="{Binding PreviousMonthCommand}" />
+
+                            <Label 
+                                Grid.Column="1" 
+                                Text="{Binding CurrentMonthTitle}" 
+                                FontSize="20" FontAttributes="Bold" 
+                                HorizontalOptions="Center" VerticalOptions="Center" 
+                                TextColor="#4F1271"/>
+
+                            <ImageButton 
+                                Grid.Column="2" 
+                                Source="goo.png" 
+                                WidthRequest="40" HeightRequest="40" 
+                                BackgroundColor="Transparent" 
+                                Command="{Binding NextMonthCommand}" />
+                        </Grid>
+
+                        <!-- Cabeçalho dos Dias da Semana -->
+                        <Grid ColumnDefinitions="*,*,*,*,*,*,*" Padding="0,5">
+                            <Label Text="SEG" Grid.Column="0" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#4F1271"/>
+                            <Label Text="TER" Grid.Column="1" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#4F1271"/>
+                            <Label Text="QUA" Grid.Column="2" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#4F1271"/>
+                            <Label Text="QUI" Grid.Column="3" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#4F1271"/>
+                            <Label Text="SEX" Grid.Column="4" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#4F1271"/>
+                            <Label Text="SÁB" Grid.Column="5" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#4F1271"/>
+                            <Label Text="DOM" Grid.Column="6" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#4F1271"/>
+                        </Grid>
+
+                        <!-- Visualização dos Dias do Mês -->
+                        <CollectionView ItemsSource="{Binding CalendarDays}" HeightRequest="350">
+                            <CollectionView.ItemsLayout>
+                                <!-- 7 colunas (dias da semana) por linha -->
+                                <GridItemsLayout Orientation="Vertical" Span="7" HorizontalItemSpacing="2" VerticalItemSpacing="2"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="viewmodel:CalendarDay">
+                                    <Frame 
+                                        CornerRadius="5" Padding="0" Margin="0" 
+                                        HeightRequest="45" WidthRequest="45"
+                                        HasShadow="False"
+                                        BackgroundColor="{Binding BackgroundColor}">
+
+                                        <!-- Usamos DayOfMonth que retorna "" (string vazia) para dias vazios. 
+                                             Isso resolve o problema do "1" e a necessidade do conversor. -->
+                                        <Label 
+                                            Text="{Binding DayOfMonth}" 
+                                            HorizontalOptions="Center" 
+                                            VerticalOptions="Center"
+                                            
+                                            />
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                    </VerticalStackLayout>
                     <!-- Filtro-->
                     <Grid RowDefinitions="Auto,Auto,*">
                         <Picker  Grid.Row="1" Margin="0,-25,0,10" ItemsSource="{Binding Filtros}" SelectedItem="{Binding FiltroSelecionado}" HorizontalOptions="End" WidthRequest="130"/>

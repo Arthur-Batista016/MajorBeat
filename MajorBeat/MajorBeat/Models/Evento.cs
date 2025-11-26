@@ -42,5 +42,6 @@ namespace MajorBeat.Models
         public List<string> mediaUrl { get; set; }
         public string DataFormatada => data.ToString("dd/MM/yyyy");
         public string HorarioFormatado => $"{horaInicio:hh\\:mm} - {horaFim:hh\\:mm}";
+        public string Nome => nome;
     }
 }
