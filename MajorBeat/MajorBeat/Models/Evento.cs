@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MajorBeat.Enums;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MajorBeat.Models
 {
@@ -39,5 +40,7 @@ namespace MajorBeat.Models
 
         public ObservableCollection<Avaliacao> avaliacoes { get; set; } = new();
         public List<string> mediaUrl { get; set; }
+        public string DataFormatada => data.ToString("dd/MM/yyyy");
+        public string HorarioFormatado => $"{horaInicio:hh\\:mm} - {horaFim:hh\\:mm}";
     }
 }

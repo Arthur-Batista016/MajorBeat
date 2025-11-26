@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MajorBeat.ViewModels.Hirer"
+             x:Class="MajorBeat.Views.Hirers.HirerCalendarPage"
+             Title="HirerCalendarPage"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False"
+             >
+
+    <Grid RowDefinitions="*,Auto" >
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Margin="0,30,0,0">
+                <VerticalStackLayout Padding="20,10" Spacing="10">
+                    <!-- Calendário 
+                    <Grid>  xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar"
+                        <syncfusion:SfCalendar x:Name="MusicianCalendar" View="Month" SelectionMode="Multiple" DisplayDate="{Binding CurrentMonth}" SelectedDates="{Binding UnavailableDates}" Background="Transparent" 
+                        ShowTrailingAndLeadingDates="False" HeightRequest="350" SelectionBackground="#4f1271" TodayHighlightBrush="#4f1271" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                        EnablePastDates="False">
+                            <syncfusion:SfCalendar.MonthView>
+                                <syncfusion:CalendarMonthView>
+                                    <syncfusion:CalendarMonthView.HeaderView>
+                                        <syncfusion:CalendarMonthHeaderView TextFormat="ddd" Height="40" />
+                                    </syncfusion:CalendarMonthView.HeaderView>
+                                </syncfusion:CalendarMonthView>
+                            </syncfusion:SfCalendar.MonthView>
+                        </syncfusion:SfCalendar>
+                        <Line HorizontalOptions="Start" X1="0" Y1="20" X2="365" Y2="20"  Stroke="#4F1271" StrokeThickness="3"  Margin="0,46,0,0" />
+                    </Grid>-->
+                    <!-- Filtro-->
+                    <Grid RowDefinitions="Auto,Auto,*">
+                        <Picker  Grid.Row="1" Margin="0,-25,0,10" ItemsSource="{Binding Filtros}" SelectedItem="{Binding FiltroSelecionado}" HorizontalOptions="End" WidthRequest="130"/>
+
+                        <!-- Lista de Eventos -->
+                        <CollectionView  Grid.Row="2" ItemsSource="{Binding EventosFiltrados}" SelectionMode="Single">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame  Margin="0,10" Padding="15" BackgroundColor="#4F1271" BorderColor="#B19CD9" CornerRadius="18" HasShadow="False">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer 
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AbrirDetalhesEventoCommand}"
+                                                    CommandParameter="{Binding .}" />
+                                        </Frame.GestureRecognizers>
+                                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                                            <StackLayout Grid.Column="0">
+                                                <Label Text="{Binding Nome}"  FontAttributes="Bold" FontSize="18"  TextColor="white"/>
+                                                <Label Text="{Binding DataFormatada}" FontSize="14" TextColor="White"/>
+                                                <Label Text="{Binding HorarioFormatado}" FontSize="14" TextColor="White"/>
+                                            </StackLayout>
+                                            <ImageButton 
+                                                Grid.Column="1" Source="png.png" BackgroundColor="Transparent" HeightRequest="15" WidthRequest="15" HorizontalOptions="Start" Margin="30,0,0,40" 
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AbrirOpcoesCommand}" CommandParameter="{Binding .}"/>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!--Botão add evento-->
+        <ImageButton Grid.Row="0" Source="eventadd_button.png" WidthRequest="60" HeightRequest="60"  BackgroundColor="#6A1B9A" CornerRadius="30"
+             HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,10" ZIndex="100" Clicked="create_event_btn_Clicked"/>
+
+
+        <!-- Rodapé -->
+        <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,0,0,0" HeightRequest="70" VerticalOptions="End">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Frame Grid.Column="0" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" Clicked="home_page_btn_Clicked"/>
+            </Frame>
+
+            <Frame Grid.Column="1" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" Clicked="search_page_btn_Clicked"/>
+            </Frame>
+
+            <Frame Grid.Column="2" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton Source="chathome.png" WidthRequest="24" HeightRequest="24"/>
+            </Frame>
+
+            <Frame Grid.Column="3" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
+            </Frame>
+
+            <Frame Grid.Column="4" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#783F8E" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton x:Name="profile_page_btn" Source="profilehome.png" WidthRequest="24" HeightRequest="24" Clicked="profile_page_btn_Clicked"/>
+            </Frame>
+        </Grid>
+
+    </Grid>
+</ContentPage>
