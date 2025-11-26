@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MajorBeat.Models;
 using MajorBeat.Services.Musicians;
 using MajorBeat.Services.Users;
@@ -29,7 +30,24 @@ namespace MajorBeat.ViewModels.Users
         }
 
 
+        [ObservableProperty] private string selectedTab = "Historico";
 
+        public bool IsHistoricoVisible => SelectedTab == "Historico";
+        public bool IsSobreVisible => SelectedTab == "Sobre";
+        public bool IsAvaliacoesVisible => SelectedTab == "Avaliacoes";
+
+        partial void OnSelectedTabChanged(string value)
+        {
+            OnPropertyChanged(nameof(IsHistoricoVisible));
+            OnPropertyChanged(nameof(IsSobreVisible));
+            OnPropertyChanged(nameof(IsAvaliacoesVisible));
+        }
+
+        [RelayCommand]
+        public void SelectTab(string tabName)
+        {
+            SelectedTab = tabName;
+        }
         public async Task CarregarMusico()
         {
             try

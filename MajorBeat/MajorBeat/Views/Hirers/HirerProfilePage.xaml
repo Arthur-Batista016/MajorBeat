@@ -19,11 +19,11 @@
                 <StackLayout Orientation="Horizontal">
                     <Image Source="profilepicture.png" HeightRequest="120" HorizontalOptions="Start" Margin="20,0,0,0" />
                     <StackLayout Orientation="Vertical">
-                        <Label Text="{Binding Empresanome}" FontSize="25" TextColor="#4F1271" FontAttributes="Bold" Margin="10,35,0,0" />
-                        <Label Text="{Binding Nome}" FontSize="15" TextColor="#783F8E" Margin="10,0,0,0" />
+                        <Label Text="{Binding Nome}" FontSize="25" TextColor="#4F1271" FontAttributes="Bold" Margin="10,35,0,0" />
+                        <Label Text="{Binding Empresanome}" FontSize="15" TextColor="#783F8E" Margin="10,0,0,0" />
                     </StackLayout>
                     <StackLayout Orientation="Vertical">
-                        <Image Source="starrounded.png" HeightRequest="35" Margin="30,35,0,0" />
+                        <Image Source="starrounded.png" HeightRequest="35" Margin="30,35,0,0" HorizontalOptions="End" />
                         <Label Text="4.2" TextColor="#4F1271" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" Margin="30,0,0,0"/>
                     </StackLayout>
                 </StackLayout>

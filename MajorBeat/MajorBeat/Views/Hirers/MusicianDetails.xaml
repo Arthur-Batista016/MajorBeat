@@ -74,12 +74,29 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="2"/>
                             </Grid.RowDefinitions>
-                            <Label x:Name="TabGaleria" Text="Galeria" FontSize="20" TextColor="{Binding TabGaleriaTextColor}" FontAttributes="{Binding TabGaleriaFontAttributes}">
+                            <Label Text="Galeria"
+       FontSize="20"
+       Margin="20,0,0,0"
+       TextColor="#783F8E"
+       FontAttributes="None">
                                 <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Galeria"/>
+                                    <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Historico" />
                                 </Label.GestureRecognizers>
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding SelectedTab}" Value="Historico">
+                                        <Setter Property="TextColor" Value="#4F1271" />
+                                        <Setter Property="FontAttributes" Value="Bold" />
+                                    </DataTrigger>
+                                </Label.Triggers>
                             </Label>
-                            <BoxView x:Name="BoxViewGaleria" Grid.Row="1" HeightRequest="{Binding BoxViewGaleriaHeightRequest}"  BackgroundColor="{Binding BoxViewGaleriaBackgroundColor}" HorizontalOptions="Start" WidthRequest="90" />
+                            <BoxView Grid.Row="1" Margin="5,0,0,0" HeightRequest="3" BackgroundColor="#783F8E" WidthRequest="90">
+                                <BoxView.Triggers>
+                                    <DataTrigger TargetType="BoxView" Binding="{Binding SelectedTab}" Value="Historico">
+                                        <Setter Property="HeightRequest" Value="4" />
+                                        <Setter Property="BackgroundColor" Value="#4F1271" />
+                                    </DataTrigger>
+                                </BoxView.Triggers>
+                            </BoxView>
                         </Grid>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -88,10 +105,23 @@
                             </Grid.RowDefinitions>
                             <Label x:Name="TabSobre" Text="Sobre" FontSize="20" TextColor="{Binding TabSobreTextColor}" Padding="50,0,50,0" FontAttributes="{Binding TabSobreFontAttributes}" HorizontalOptions="Center">
                                 <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Sobre"/>
+                                    <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Sobre" />
                                 </Label.GestureRecognizers>
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding SelectedTab}" Value="Sobre">
+                                        <Setter Property="TextColor" Value="#4F1271" />
+                                        <Setter Property="FontAttributes" Value="Bold" />
+                                    </DataTrigger>
+                                </Label.Triggers>
                             </Label>
-                            <BoxView x:Name="BoxViewSobre" Grid.Row="1" HeightRequest="{Binding BoxViewSobreHeightRequest}" BackgroundColor="{Binding BoxViewSobreBackgroundColor}" WidthRequest="90"/>
+                            <BoxView Grid.Row="1" HeightRequest="3" BackgroundColor="#783F8E" WidthRequest="90" Margin="0,0,0,0">
+                                <BoxView.Triggers>
+                                    <DataTrigger TargetType="BoxView" Binding="{Binding SelectedTab}" Value="Sobre">
+                                        <Setter Property="HeightRequest" Value="4" />
+                                        <Setter Property="BackgroundColor" Value="#4F1271" />
+                                    </DataTrigger>
+                                </BoxView.Triggers>
+                            </BoxView>
                         </Grid>
                         <Grid Margin="-25,0,0,0">
                             <Grid.RowDefinitions>
@@ -100,10 +130,23 @@
                             </Grid.RowDefinitions>
                             <Label x:Name="TabAvaliacoes" Text="Avaliações" FontSize="20" TextColor="{Binding TabAvaliacoesTextColor}" Padding="20,0,20,0" FontAttributes="{Binding TabAvaliacoesFontAttributes}" HorizontalOptions="End">
                                 <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Avaliacoes"/>
+                                    <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Avaliacoes" />
                                 </Label.GestureRecognizers>
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding SelectedTab}" Value="Avaliacoes">
+                                        <Setter Property="TextColor" Value="#4F1271" />
+                                        <Setter Property="FontAttributes" Value="Bold" />
+                                    </DataTrigger>
+                                </Label.Triggers>
                             </Label>
-                            <BoxView x:Name="BoxViewAvaliacoes" Grid.Row="1" HeightRequest="{Binding BoxViewAvaliacoesHeightRequest}" BackgroundColor="{Binding BoxViewAvaliacoesBackgroundColor}" WidthRequest="120" />
+                            <BoxView Grid.Row="1" HeightRequest="3" BackgroundColor="#783F8E" WidthRequest="120">
+                                <BoxView.Triggers>
+                                    <DataTrigger TargetType="BoxView" Binding="{Binding SelectedTab}" Value="Avaliacoes">
+                                        <Setter Property="HeightRequest" Value="4" />
+                                        <Setter Property="BackgroundColor" Value="#4F1271" />
+                                    </DataTrigger>
+                                </BoxView.Triggers>
+                            </BoxView>
                         </Grid>
                     </StackLayout>
 
@@ -124,8 +167,10 @@
                     <StackLayout x:Name="sobreStack" Orientation="Vertical" IsVisible="{Binding IsSobreVisible}" Margin="25,0,25,90">
                         <Label Text="{Binding Musico.biografia}" 
                        TextColor="#4F1271"
-                       FontAttributes="Bold"
-                       />
+                       FontAttributes="Bold"/>
+
+
+
                         <HorizontalStackLayout HorizontalOptions="Center" Spacing="120" Margin="0,20,0,0">
                             <Label Text="Gêneros: " FontAttributes="Bold" TextColor="#4F1271" HorizontalOptions="Center" Margin="20,0,0,10" FontSize="16"/>
                             <Label Text="Instrumentos :" FontAttributes="Bold" TextColor="#4F1271" HorizontalOptions="Center" Margin="-20,0,0,10"  FontSize="16"/>
