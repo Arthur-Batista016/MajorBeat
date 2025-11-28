@@ -21,12 +21,12 @@ public partial class HirerCalendarPage : ContentPage
         await Navigation.PushAsync(new CreateEventPageView());//CreateEventPageView()
     }
     private async void search_page_btn_Clicked(object sender, EventArgs e) =>
-        await Navigation.PushAsync(new MusicianSearchPage());
+        await Navigation.PushAsync(new HirerSearchPage());
 
     private async void home_page_btn_Clicked(object sender, EventArgs e) =>
-        await Navigation.PushAsync(new MusicianHomePage());
+        await Navigation.PushAsync(new HirerHomePage());
 
     private async void profile_page_btn_Clicked(object sender, EventArgs e) =>
-        await Navigation.PushAsync(new MusicianHomePage());
+        await Navigation.PushAsync(new HirerProfilePage());
 
 }
