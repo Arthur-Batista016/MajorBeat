@@ -34,7 +34,7 @@
                             <ImageButton 
                                 Grid.Column="2" 
                                 Source="goo.png" 
-                                WidthRequest="40" HeightRequest="40" 
+                                WidthRequest="20" HeightRequest="20" 
                                 BackgroundColor="Transparent" 
                                 Command="{Binding NextMonthCommand}" />
                         </Grid>

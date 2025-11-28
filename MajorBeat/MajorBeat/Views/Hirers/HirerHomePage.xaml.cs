@@ -80,4 +80,9 @@ private readonly HirerHomePageViewModel _viewModel;
     {
         await Navigation.PushAsync(new HirerCalendarPage());//CreateEventPageView()
     }
+
+    private async void notification_page(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new NotificationPage());//CreateEventPageView()
+    }
 }
