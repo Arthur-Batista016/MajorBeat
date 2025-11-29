@@ -9,18 +9,28 @@
              >
             <!--:calendar="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar"-->
 
-    <Grid Margin="0,50,0,0">
+    <Grid Margin="0,0,0,0">
         <ScrollView Grid.Row="0">
+
+
             <VerticalStackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Image Source="profilepicture.png" HeightRequest="120" HorizontalOptions="Start" Margin="20,0,0,0" />
-                    <StackLayout Orientation="Vertical">
+
+
+
+
+
+
+
+
+                    <Image Source="profilepicture.png" HeightRequest="120" HorizontalOptions="Start" Margin="20,0,0,0" IsVisible="False" />
+                    <StackLayout Orientation="Vertical" IsVisible="False">
                         <Label Text="{Binding Musico.apelido}" FontSize="25" TextColor="#4F1271" FontAttributes="Bold" Margin="10,35,0,0" />
                         <Label Text="{Binding Musico.nome}" FontSize="15" TextColor="#783F8E" Margin="10,0,0,0" />
                     </StackLayout>
                 </StackLayout>
 
-                <Grid>
+                <Grid  IsVisible="False">
                     <!--<CarouselView x:Name="ImageCarousel" ItemsSource="{Binding musico.mediaUrl[0]}" Position="{Binding CurrentIndex, Mode=TwoWay}"  Margin="0,20,0,20" >
                         <CarouselView.ItemTemplate>
                             <DataTemplate>
@@ -33,16 +43,16 @@
                    
                 </Grid>
 
-                <VerticalStackLayout Spacing="35" Margin="0,30,0,0" HorizontalOptions="Center" VerticalOptions="Center">
+                <VerticalStackLayout Spacing="35" Margin="0,30,0,0" HorizontalOptions="Center" VerticalOptions="Center" >
                     <HorizontalStackLayout Spacing="60" HorizontalOptions="Center" VerticalOptions="Center">
                         <VerticalStackLayout Spacing="5" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,10,0,0">
-                            <HorizontalStackLayout Spacing="10" VerticalOptions="Center" >
+                            <HorizontalStackLayout Spacing="10" VerticalOptions="Center" IsVisible="False" >
                                 <Label Text="4.2" TextColor="#4F1271"  FontSize="28" FontAttributes="Bold" VerticalOptions="Center" />
                                 <Image Source="starrounded.png" HeightRequest="35" VerticalOptions="Center"/>
                             </HorizontalStackLayout>
-                            <Label Text="Avaliação" FontSize="17" TextColor="#4F1271" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="0,10,0,0"/>
+                            <Label Text="Avaliação" FontSize="17" TextColor="#4F1271" FontAttributes="Bold" IsVisible="False" HorizontalTextAlignment="Center" Margin="0,10,0,0"/>
                         </VerticalStackLayout>
-                        <VerticalStackLayout Spacing="8" HorizontalOptions="Center" VerticalOptions="Center">
+                        <VerticalStackLayout Spacing="8" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="False">
                             <ImageButton Source="addcontact.png"  HeightRequest="70" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,-10"/>
                             <Label Text="Enviar Proposta" FontSize="16" TextColor="#4F1271" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                         </VerticalStackLayout>
@@ -50,15 +60,15 @@
                     
                     
                     <!--Envio de Proposta-->
-                    <Grid IsVisible="True">
+                    <Grid IsVisible="True" VerticalOptions="Center" Margin="0,-900,0,0">
                         <Border BackgroundColor="#E7E7E7"  HeightRequest="500" WidthRequest="350" StrokeShape="RoundRectangle 10">
                             <VerticalStackLayout>
-                                <Label Text="ENVIAR PROPOSTA?" TextColor="#4F1271" FontSize="22" HorizontalOptions="Center"/>
+                                <Label Text="ENVIAR PROPOSTA?" TextColor="#4F1271" FontSize="22" HorizontalOptions="Center" Margin="0,20,0,0"/>
                                 <Image Source="sendproposalline.png" Margin="0,20,0,0"/>
                                 <Label Text="Se ambos aceitarem, este evento será adicionado à sua agenda." TextColor="#4F1271"  HorizontalTextAlignment="Center" WidthRequest="250" HorizontalOptions="Center" Margin="0,30,0,0"/>
                                 <Label Text="Ao clicar em ACEITAR, seu sócio terá 48 horas para confirmar. Por isso, converse bem antes de firmar a parceria." TextColor="#4F1271"  WidthRequest="280" HorizontalOptions="Center" Margin="0,30,0,0"/>
                                 <Label Text="Proposta de Preço" HorizontalOptions="Center" Margin="0,30,0,0" TextColor="#4F1271" />
-                                <Entry Placeholder="R$0,00" HorizontalOptions="Center" PlaceholderColor="#4F1271" TextColor="#4F1271" Opacity="20" Margin="0,50,0,-100" FontSize="40"/>
+                                <Entry Placeholder="R$0,00" HorizontalOptions="Center" PlaceholderColor="#604F1271" TextColor="#4F1271" Opacity="20" Margin="0,10,0,-100" FontSize="40" HeightRequest="70"/>
                                 <Grid Margin="20,120,0,0">
                                     <Button Grid.Row="0" Text="Continuar" BackgroundColor="#4F1271" FontAttributes="Bold" FontSize="17" HorizontalOptions="Center" CornerRadius="100" WidthRequest="140" Margin="150,0,0,0"/>
                                     <Button Grid.Row="0" Text="Cancelar" BorderColor="#4F1271" BorderWidth="2" HorizontalOptions="Center" FontSize="17" FontAttributes="Bold" CornerRadius="100" TextColor="#4F1271" BackgroundColor="#FFFFFF" WidthRequest="140" Margin="0,0,200,0"/>
@@ -68,7 +78,7 @@
                     </Grid>
 
                     <!--Tabs-->
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="20,0,0,0">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="20,0,0,0"    IsVisible="False">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -80,7 +90,7 @@
        TextColor="#783F8E"
        FontAttributes="None">
                                 <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Historico" />
+                                    <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Historico"  />
                                 </Label.GestureRecognizers>
                                 <Label.Triggers>
                                     <DataTrigger TargetType="Label" Binding="{Binding SelectedTab}" Value="Historico">
@@ -283,7 +293,7 @@
                     </StackLayout>
 
                     <!-- Avaliações -->
-                    <StackLayout x:Name="avaliacoesStack" IsVisible="{Binding IsAvaliacoesVisible}" Margin="0,0,0,110">
+                    <StackLayout x:Name="avaliacoesStack" IsVisible="False"  Margin="0,0,0,110"> <!--IsVisible="{Binding IsAvaliacoesVisible}"!-->
                         <StackLayout Orientation="Horizontal">
                             <Grid Margin="30,0,0,0">
                                 <Grid.RowDefinitions>
@@ -382,6 +392,46 @@
                 <ImageButton x:Name="profile_page_btn" Source="profilehome.png" WidthRequest="24" HeightRequest="24" />
             </Frame>
         </Grid>
+
+
+
+
+
+
+
+
+
+        <BoxView
+ IsVisible="{Binding MessageVisibility}"
+ BackgroundColor="Black"
+ Opacity="0.6"
+ InputTransparent="True"
+ Grid.RowSpan="10"
+ Grid.ColumnSpan="10"
+ HorizontalOptions="FillAndExpand"
+ VerticalOptions="FillAndExpand"
+ HeightRequest="1000"
+ />
+
+        <!--Envio de Proposta-->
+        <Grid IsVisible="True" VerticalOptions="Center" Margin="0,-100,0,0">
+            <Border BackgroundColor="#E7E7E7"  HeightRequest="500" WidthRequest="350" StrokeShape="RoundRectangle 10">
+                <VerticalStackLayout>
+                    <Label Text="ENVIAR PROPOSTA?" TextColor="#4F1271" FontSize="22" HorizontalOptions="Center" Margin="0,20,0,0"/>
+                    <Image Source="sendproposalline.png" Margin="0,20,0,0"/>
+                    <Label Text="Se ambos aceitarem, este evento será adicionado à sua agenda." TextColor="#4F1271"  HorizontalTextAlignment="Center" WidthRequest="250" HorizontalOptions="Center" Margin="0,30,0,0"/>
+                    <Label Text="Ao clicar em ACEITAR, seu sócio terá 48 horas para confirmar. Por isso, converse bem antes de firmar a parceria." TextColor="#4F1271"  WidthRequest="280" HorizontalOptions="Center" Margin="0,30,0,0"/>
+                    <Label Text="Proposta de Preço" HorizontalOptions="Center" Margin="0,30,5,0" TextColor="#4F1271" FontSize="17" />
+                    <Entry Placeholder="R$0,00" HorizontalOptions="Center" PlaceholderColor="#604F1271" TextColor="#4F1271" Opacity="20" Margin="0,20,20,-80" FontSize="40" HeightRequest="70"/>
+                    <Grid Margin="20,120,0,0">
+                        <Button Grid.Row="0" Text="Continuar" BackgroundColor="#4F1271" FontAttributes="Bold" FontSize="17" HorizontalOptions="Center" CornerRadius="100" WidthRequest="140" Margin="150,0,0,0"/>
+                        <Button Grid.Row="0" Text="Cancelar" BorderColor="#4F1271" BorderWidth="2" HorizontalOptions="Center" FontSize="17" FontAttributes="Bold" CornerRadius="100" TextColor="#4F1271" BackgroundColor="#FFFFFF" WidthRequest="140" Margin="0,0,200,0"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+
     </Grid>
 
 </ContentPage>

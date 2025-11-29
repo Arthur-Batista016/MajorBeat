@@ -138,11 +138,11 @@
                 <ImageButton Source="chathome.png" WidthRequest="24" HeightRequest="24"/>
             </Frame>
 
-            <Frame Grid.Column="3" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+            <Frame Grid.Column="3" WidthRequest="60" HeightRequest="60" CornerRadius="28" BackgroundColor="#783F8E" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
                 <ImageButton Source="calendar.png" WidthRequest="24" HeightRequest="24"/>
             </Frame>
 
-            <Frame Grid.Column="4" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#783F8E" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+            <Frame Grid.Column="4" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
                 <ImageButton x:Name="profile_page_btn" Source="profilehome.png" WidthRequest="24" HeightRequest="24" Clicked="profile_page_btn_Clicked"/>
             </Frame>
         </Grid>
