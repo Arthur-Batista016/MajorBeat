@@ -22,6 +22,9 @@ namespace MajorBeat.ViewModels.Users
         [ObservableProperty]
         private Musico musico;
 
+        [ObservableProperty]
+        private bool messageVisibility =false;
+
 
         public DetailsViewModel(long id)
         {
@@ -47,6 +50,11 @@ namespace MajorBeat.ViewModels.Users
         public void SelectTab(string tabName)
         {
             SelectedTab = tabName;
+        }
+        [RelayCommand]
+        public void EnviarProposta()
+        {
+            MessageVisibility = !MessageVisibility;
         }
         public async Task CarregarMusico()
         {
