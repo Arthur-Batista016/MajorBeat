@@ -1,6 +1,7 @@
 
 
 using MajorBeat.Models;
+using MajorBeat.Views.Hirers;
 using MajorBeat.Views.Users;
 using Syncfusion.Maui.Core.Carousel;
 
@@ -68,5 +69,9 @@ public partial class MusicianHomePage : ContentPage
     private void searchBar_Unfocused(object sender, FocusEventArgs e)
     {
 
+    }
+    private async void notification_page(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new NotificationPage());
     }
 }

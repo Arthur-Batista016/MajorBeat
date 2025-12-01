@@ -13,20 +13,19 @@
         <!-- Conteúdo principal -->
         <ScrollView>
             <VerticalStackLayout>
-
-                <!-- Cabeçalho -->
-                <ImageButton Source="threepoints.png" HeightRequest="40" HorizontalOptions="End" Margin="0,0,-60,5" />
-                <StackLayout Orientation="Horizontal">
-                    <Image Source="profilepicture.png" HeightRequest="120" HorizontalOptions="Start" Margin="20,0,0,0" />
-                    <StackLayout Orientation="Vertical">
-                        <Label Text="{Binding Nome}" FontSize="25" TextColor="#4F1271" FontAttributes="Bold" Margin="10,35,0,0" />
+                <ImageButton Source="threepoints.png" HeightRequest="40" HorizontalOptions="End" Margin="0,0,10,5" />
+                <Grid ColumnDefinitions="Auto, *, Auto" Margin="20,0,20,0" VerticalOptions="Start">
+                    <Image Grid.Column="0" Source="profilepicture.png" HeightRequest="120" WidthRequest="120" VerticalOptions="Center" />
+                    <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                        <Label Text="{Binding Nome}" FontSize="25" TextColor="#4F1271" FontAttributes="Bold" Margin="10,0,0,0" HorizontalOptions="FillAndExpand" LineBreakMode="WordWrap" />
                         <Label Text="{Binding Empresanome}" FontSize="15" TextColor="#783F8E" Margin="10,0,0,0" />
                     </StackLayout>
-                    <StackLayout Orientation="Vertical">
-                        <Image Source="starrounded.png" HeightRequest="35" Margin="30,35,0,0" HorizontalOptions="End" />
-                        <Label Text="4.2" TextColor="#4F1271" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" Margin="30,0,0,0"/>
+
+                    <StackLayout Grid.Column="2" Orientation="Vertical" HorizontalOptions="End" VerticalOptions="Center" Margin="10,0,0,0">
+                        <Image Source="starrounded.png" HeightRequest="35" HorizontalOptions="End" />
+                        <Label Text="4.2" TextColor="#4F1271" FontSize="20" FontAttributes="Bold" HorizontalOptions="End"/>
                     </StackLayout>
-                </StackLayout>
+                </Grid>
 
                 <!-- Carrossel -->
                 <Grid>
@@ -186,35 +185,33 @@
                 </StackLayout>
 
                 <StackLayout IsVisible="{Binding IsSobreVisible}" Margin="25,20,25,90">
-                    <Label Text="{Binding Biografia}"
-                           TextColor="#4F1271"
-                           FontAttributes="Bold"
-                           Margin="0,10,0,10"/>
+                    <Label Text="{Binding Biografia}" TextColor="#4F1271" FontAttributes="Bold" Margin="0,10,0,10" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand"/>
                     <Line HorizontalOptions="Start" X1="0" Y1="20" X2="410" Y2="20" Stroke="#4F1271" StrokeThickness="3" Margin="-30,0,0,0" />
-                    <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+
+                    <StackLayout Orientation="Horizontal" Margin="0,20,0,0" HorizontalOptions="FillAndExpand">
                         <Image Source="emailicon.png" WidthRequest="40" />
-                        <Label Text="{Binding Email}" VerticalOptions="Center" TextColor="#4F1271" Margin="15,0,0,0"/>
+                        <Label Text="{Binding Email}" VerticalOptions="Center" TextColor="#4F1271" Margin="15,0,0,0" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand"/>
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                    <StackLayout Orientation="Horizontal" Margin="0,20,0,0" HorizontalOptions="FillAndExpand">
                         <Image Source="pinicon.png" WidthRequest="30" />
-                        <Label Text="{Binding Logradouro}" VerticalOptions="Center" TextColor="#4F1271" Margin="24,0,0,0"/>
+                        <Label Text="{Binding Logradouro}" VerticalOptions="Center" TextColor="#4F1271" Margin="24,0,0,0" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand"/>
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                    <StackLayout Orientation="Horizontal" Margin="0,20,0,0" HorizontalOptions="FillAndExpand">
                         <Image Source="phoneicon.png" WidthRequest="35" />
-                        <Label Text="{Binding Telefone}" VerticalOptions="Center" TextColor="#4F1271" Margin="19,0,0,0"/>
+                        <Label Text="{Binding Telefone}" VerticalOptions="Center" TextColor="#4F1271" Margin="19,0,0,0" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand"/>
                     </StackLayout>
                     <Line HorizontalOptions="Start" X1="0" Y1="20" X2="410" Y2="20" Stroke="#4F1271" StrokeThickness="3" Margin="-30,0,0,0" />
                     <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
                         <Image Source="facebook.png" WidthRequest="45" Margin="0,0,10,0"/>
-                        <Label Text="{Binding LinkFacebook}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center" Margin="0,0,40,0"/>
+                        <Label Text="{Binding LinkFacebook}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center" Margin="0,0,40,0" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand"/>
                         <Image Source="linkedin.png" WidthRequest="45" Margin="0,0,10,0"/>
-                        <Label Text="{Binding LinkLinkdin}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center"/>
+                        <Label Text="{Binding LinkLinkdin}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
                         <Image Source="instagram.png" WidthRequest="45" Margin="0,0,10,0"/>
-                        <Label Text="{Binding LinkInsta}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center" Margin="0,0,40,0"/>
+                        <Label Text="{Binding LinkInsta}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center" Margin="0,0,40,0" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand"/>
                         <Image Source="twitter.png" WidthRequest="45" Margin="0,0,10,0"/>
-                        <Label Text="{Binding LinkTwitter}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center"/>
+                        <Label Text="{Binding LinkTwitter}" TextColor="#4F1271" FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand"/>
                     </StackLayout>
                 </StackLayout>
 
