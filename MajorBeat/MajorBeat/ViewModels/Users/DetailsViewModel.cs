@@ -24,7 +24,7 @@ namespace MajorBeat.ViewModels.Users
         private Musico musico;
 
         [ObservableProperty]
-        private bool messageVisibility =false;
+        private bool messageVisibility = true;
 
 
         public DetailsViewModel(long id)
@@ -56,11 +56,7 @@ namespace MajorBeat.ViewModels.Users
         {
             SelectedTab = tabName;
         }
-        [RelayCommand]
-        public void EnviarProposta()
-        {
-            IsProposalSend = !IsProposalSend;
-        }
+      
         public async Task CarregarMusico()
         {
             try
@@ -88,8 +84,9 @@ namespace MajorBeat.ViewModels.Users
 
 
         ////  ENVIAR PROPOSTA
-
-        public bool IsProposalSend  = false;
+        ///
+        [ObservableProperty]
+        private bool isProposalSend  = false;
 
         public ICommand ProposalCommand;
         public ICommand CancelCommand;
@@ -97,7 +94,10 @@ namespace MajorBeat.ViewModels.Users
 
         public async Task StartProposal()
         {
+
             IsProposalSend = true;
+            MessageVisibility = false;
+           
         }
 
         public async Task SendProposal()
@@ -106,6 +106,7 @@ namespace MajorBeat.ViewModels.Users
             {
                 IsProposalSend = false;
                 await Application.Current.MainPage.DisplayAlert("Sucesso!", "Proposta Enviada Com Sucesso para o Músico!", "OK");
+                MessageVisibility = true;
             }
             catch (Exception ex)
             {
@@ -116,7 +117,9 @@ namespace MajorBeat.ViewModels.Users
 
         public async Task CancelProposalSend()
         {
+            MessageVisibility = true;
             IsProposalSend = false;
+           
 
         }
 

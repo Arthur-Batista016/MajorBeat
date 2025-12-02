@@ -14,7 +14,13 @@
         <converters:InvertedBoolConverter x:Key="InvertedBool" />
     </ContentPage.Resources>
     <Grid Margin="0,0,0,0">
-        <ScrollView Grid.Row="0" IsVisible="{Binding MessageVisibility, Converter={StaticResource InvertedBool}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+
+
+        <ScrollView Grid.Row="0" IsVisible="{Binding MessageVisibility}">
 
 
             <VerticalStackLayout>
@@ -404,21 +410,19 @@
 
 
 
-        <Grid IsVisible="{Binding MessageVisibility}">
-        <BoxView
- 
- BackgroundColor="Black"
- Opacity="0.6"
- InputTransparent="True"
- Grid.RowSpan="10"
- Grid.ColumnSpan="10"
- HorizontalOptions="FillAndExpand"
- VerticalOptions="FillAndExpand"
- HeightRequest="1000"
- />
+        <Grid IsVisible="{Binding IsProposalSend}" Grid.RowSpan="2" InputTransparent="{Binding IsProposalSend, Converter={StaticResource InvertedBoolConverter}}">
+            <BoxView
+             BackgroundColor="Black"
+             Opacity="0.6"
+             Grid.RowSpan="10"
+             Grid.ColumnSpan="10"
+             HorizontalOptions="FillAndExpand"
+             VerticalOptions="FillAndExpand"
+             HeightRequest="1000"
+             />
 
-        <!--Envio de Proposta-->
-        <Grid IsVisible="{Binding IsProposalSend}" VerticalOptions="Center" Margin="0,-100,0,0" >
+            <!--Envio de Proposta-->
+        <Grid VerticalOptions="Center" Margin="0,-100,0,0" >
             <Border BackgroundColor="#E7E7E7"  HeightRequest="600" WidthRequest="350" StrokeShape="RoundRectangle 10">
                 <VerticalStackLayout>
                     <Label Text="ENVIAR PROPOSTA?" TextColor="#4F1271" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,0"/>
