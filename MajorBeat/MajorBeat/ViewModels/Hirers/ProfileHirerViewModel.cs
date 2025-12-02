@@ -180,6 +180,6 @@ namespace MajorBeat.ViewModels.Hirers
             usuarioId = Preferences.Get("Usuarioid", 0L);
             
 
-        }
+    }
     }
 }

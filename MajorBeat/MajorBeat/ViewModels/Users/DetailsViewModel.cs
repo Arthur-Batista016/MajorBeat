@@ -1,9 +1,11 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MajorBeat.Models;
 using MajorBeat.Services.Musicians;
 using MajorBeat.Services.Users;
 using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -28,6 +30,8 @@ namespace MajorBeat.ViewModels.Users
         [ObservableProperty]
         private bool messageVisibility = true;
 
+        private long usuarioId;
+        private string token;
 
         // ---------------------------------------------------------
         // CONSTRUTOR
@@ -36,6 +40,12 @@ namespace MajorBeat.ViewModels.Users
         {
             IdMusico = id;
             _ = CarregarMusico();
+            usuarioId = Preferences.Get("Usuarioid", 0L);
+            token = Preferences.Get("UsuarioToken", string.Empty);
+            _eService = new EventService(token);
+            //EventosDisponiveis = new ObservableCollection<Evento>();
+            //_ = CarregarEventosContratante(contratanteId);
+
 
             // Inicialização dos comandos
             ProposalCommand = new Command(async () => await StartProposal());
@@ -99,6 +109,8 @@ namespace MajorBeat.ViewModels.Users
         [ObservableProperty]
         private bool isProposalSend = false;
 
+        [ObservableProperty]
+        private string valorProposta;
         public ICommand ProposalCommand { get; }
         public ICommand CancelCommand { get; }
         public ICommand SendCommand { get; }
@@ -119,8 +131,34 @@ namespace MajorBeat.ViewModels.Users
         {
             try
             {
+                if (EventoSelecionado == null)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Atenção", "Por favor, selecione um Evento para enviar a proposta.", "OK");
+                    return; // Interrompe o envio
+                }
                 IsProposalSend = false;
                 MessageVisibility = true;
+                string valorFormatado = ValorProposta; 
+
+                // Se precisar do valor numérico (double), você precisará limpar a string:
+
+                // 1. Remove R$, pontos, e substitui vírgula por ponto (para padrão cultural EN)
+                string valorLimpo = valorFormatado
+                    .Replace("R$", "")
+                    .Replace(".", "") // Remove separadores de milhar (pontos)
+                    .Replace(",", "."); // Troca vírgula por ponto (separador decimal)
+
+                /*if (double.TryParse(valorLimpo, System.Globalization.NumberStyles.Currency,
+                                    System.Globalization.CultureInfo.InvariantCulture, out double valorNumerico))
+                {
+                    Proposta p = new Proposta();
+                    p.MusicoId = IdMusico;
+                    p.ContratanteId = usuarioId;
+                    p.Valor = valorLimpo;
+                    p.EventoId = EventoSelecionado.Id;
+                    // Agora você tem o valor como número:
+                    // Ex: valorNumerico = 10.50
+                }*/
 
                 await Application.Current.MainPage.DisplayAlert(
                     "Sucesso!",
@@ -134,5 +172,30 @@ namespace MajorBeat.ViewModels.Users
                     .DisplayAlert("Ops", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
             }
         }
+
+
+        [ObservableProperty]
+        private Evento eventoSelecionado;
+        /*public async Task CarregarEventosContratante(long contratanteId)
+        {
+            try
+            {
+                // Substitua esta linha pelo seu método de serviço real
+                ObservableCollection<Evento> lista = await _eventoService.GetEventosByContratanteIdAsync(contratanteId);
+
+                EventosDisponiveis.Clear();
+                foreach (var evento in lista)
+                {
+                    EventosDisponiveis.Add(evento);
+                }
+
+                // Opcional: Pré-selecionar o primeiro evento
+                EventoSelecionado = EventosDisponiveis.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Erro", "Falha ao carregar eventos: " + ex.Message, "OK");
+            }
+        }*/
     }
 }
