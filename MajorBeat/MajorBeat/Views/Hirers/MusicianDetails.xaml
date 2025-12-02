@@ -517,7 +517,7 @@
                                     HorizontalOptions="Center"
                                     CornerRadius="100"
                                     WidthRequest="140"
-                                    Margin="150,0,0,0"/>
+                                    Margin="0,0,0,0"/>
                         </HorizontalStackLayout>
 
                     </VerticalStackLayout>
