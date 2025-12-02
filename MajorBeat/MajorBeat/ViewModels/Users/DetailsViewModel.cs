@@ -4,18 +4,19 @@ using MajorBeat.Models;
 using MajorBeat.Services.Musicians;
 using MajorBeat.Services.Users;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MajorBeat.ViewModels.Users
 {
-    public partial class DetailsViewModel:ObservableObject
+    public partial class DetailsViewModel : ObservableObject
     {
-        MusicianService _mService = new MusicianService();
-        EventService _eService = new EventService();
+        private readonly MusicianService _mService = new MusicianService();
+        private readonly EventService _eService = new EventService();
+
+        // ---------------------------------------------------------
+        // PROPRIEDADES DO MÚSICO
+        // ---------------------------------------------------------
 
         [ObservableProperty]
         private long idMusico;
@@ -23,22 +24,32 @@ namespace MajorBeat.ViewModels.Users
         [ObservableProperty]
         private Musico musico;
 
+        // Controle de visibilidade da tela principal
         [ObservableProperty]
         private bool messageVisibility = true;
 
 
+        // ---------------------------------------------------------
+        // CONSTRUTOR
+        // ---------------------------------------------------------
         public DetailsViewModel(long id)
         {
             IdMusico = id;
             _ = CarregarMusico();
 
-            ProposalCommand = new Command (async () => StartProposal());
-            CancelCommand = new Command(async () => CancelProposalSend());
-            SendCommand = new Command(async () => SendProposal());
+            // Inicialização dos comandos
+            ProposalCommand = new Command(async () => await StartProposal());
+            CancelCommand = new Command(async () => await CancelProposalSend());
+            SendCommand = new Command(async () => await SendProposal());
         }
 
 
-        [ObservableProperty] private string selectedTab = "Historico";
+        // ---------------------------------------------------------
+        // SESSÃO DE ABA SELECIONADA
+        // ---------------------------------------------------------
+
+        [ObservableProperty]
+        private string selectedTab = "Historico";
 
         public bool IsHistoricoVisible => SelectedTab == "Historico";
         public bool IsSobreVisible => SelectedTab == "Sobre";
@@ -56,14 +67,18 @@ namespace MajorBeat.ViewModels.Users
         {
             SelectedTab = tabName;
         }
-      
+
+
+        // ---------------------------------------------------------
+        // CARREGAR MÚSICO
+        // ---------------------------------------------------------
+
         public async Task CarregarMusico()
         {
             try
             {
                 var musicoResultado = await _mService.GetMusicianById(IdMusico);
 
-                // 2. FORCE a atualização a acontecer na Thread Principal
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
                     Musico = musicoResultado;
@@ -72,32 +87,32 @@ namespace MajorBeat.ViewModels.Users
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Erro ao carregar músico: {ex.Message}");
-                // Você pode querer setar como nulo em caso de erro
-                musico = null;
+                Musico = null;
             }
         }
 
 
+        // ---------------------------------------------------------
+        // POPUP DE PROPOSTA
+        // ---------------------------------------------------------
 
-
-
-
-
-        ////  ENVIAR PROPOSTA
-        ///
         [ObservableProperty]
-        private bool isProposalSend  = false;
+        private bool isProposalSend = false;
 
-        public ICommand ProposalCommand;
-        public ICommand CancelCommand;
-        public ICommand SendCommand;
+        public ICommand ProposalCommand { get; }
+        public ICommand CancelCommand { get; }
+        public ICommand SendCommand { get; }
 
         public async Task StartProposal()
         {
-
             IsProposalSend = true;
             MessageVisibility = false;
-           
+        }
+
+        public async Task CancelProposalSend()
+        {
+            IsProposalSend = false;
+            MessageVisibility = true;
         }
 
         public async Task SendProposal()
@@ -105,23 +120,19 @@ namespace MajorBeat.ViewModels.Users
             try
             {
                 IsProposalSend = false;
-                await Application.Current.MainPage.DisplayAlert("Sucesso!", "Proposta Enviada Com Sucesso para o Músico!", "OK");
                 MessageVisibility = true;
+
+                await Application.Current.MainPage.DisplayAlert(
+                    "Sucesso!",
+                    "Proposta Enviada Com Sucesso para o Músico!",
+                    "OK"
+                );
             }
             catch (Exception ex)
             {
                 await Application.Current.MainPage
-                       .DisplayAlert("Ops", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
+                    .DisplayAlert("Ops", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
             }
         }
-
-        public async Task CancelProposalSend()
-        {
-            MessageVisibility = true;
-            IsProposalSend = false;
-           
-
-        }
-
     }
 }
