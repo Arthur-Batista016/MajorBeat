@@ -21,6 +21,17 @@ namespace MajorBeat
         {
             var builder = MauiApp.CreateBuilder();
 
+            // Remover linha do Picker
+            Microsoft.Maui.Handlers.PickerHandler.Mapper.AppendToMapping("NoUnderline", (handler, view) =>
+            {
+#if ANDROID
+        handler.PlatformView.Background = null;
+#elif IOS
+        handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
+#endif
+            });
+
+
 #if ANDROID
         EntryHandler.Mapper.AppendToMapping("NoBorder", (handler, view) =>
         {

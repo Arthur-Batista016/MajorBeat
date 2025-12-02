@@ -419,14 +419,43 @@
 
         <!--Envio de Proposta-->
         <Grid IsVisible="True" VerticalOptions="Center" Margin="0,-100,0,0">
-            <Border BackgroundColor="#E7E7E7"  HeightRequest="500" WidthRequest="350" StrokeShape="RoundRectangle 10">
+            <Border BackgroundColor="#E7E7E7"  HeightRequest="600" WidthRequest="350" StrokeShape="RoundRectangle 10">
                 <VerticalStackLayout>
-                    <Label Text="ENVIAR PROPOSTA?" TextColor="#4F1271" FontSize="22" HorizontalOptions="Center" Margin="0,20,0,0"/>
-                    <Image Source="sendproposalline.png" Margin="0,20,0,0"/>
+                    <Label Text="ENVIAR PROPOSTA?" TextColor="#4F1271" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,0"/>
+                    <Image Source="sendproposalline.png" Margin="0,10,0,0"/>
                     <Label Text="Se ambos aceitarem, este evento será adicionado à sua agenda." TextColor="#4F1271"  HorizontalTextAlignment="Center" WidthRequest="250" HorizontalOptions="Center" Margin="0,30,0,0"/>
                     <Label Text="Ao clicar em ACEITAR, seu sócio terá 48 horas para confirmar. Por isso, converse bem antes de firmar a parceria." TextColor="#4F1271"  WidthRequest="280" HorizontalOptions="Center" Margin="0,30,0,0"/>
-                    <Label Text="Proposta de Preço" HorizontalOptions="Center" Margin="0,30,5,0" TextColor="#4F1271" FontSize="17" />
-                        <Entry Placeholder="R$0,00" Keyboard="Numeric" HorizontalOptions="Center" PlaceholderColor="#604F1271" TextColor="#4F1271" Opacity="20" Margin="0,20,20,-80" FontSize="40" HeightRequest="70">
+
+                        <Label Text="Evento:" TextColor="#4F1271" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,30,0,0" FontSize="16"/>
+                        <Border StrokeShape="RoundRectangle 10" BackgroundColor="#F7f7F7" Stroke="#604F1271" Margin="0,20,0,0" WidthRequest="240" HorizontalOptions="Center">
+                            <Picker
+                             Title="Escolha o Evento"
+                             x:Name="Choice"
+                             Grid.Row="0"
+                             HorizontalTextAlignment="Center"
+                            FontAttributes="Bold"
+                            TitleColor="#604F1271"
+                             WidthRequest="300"
+                             HorizontalOptions="Center"
+                             Margin="0,5,0,0"
+                             ZIndex="1"
+                             TextColor="#4f1271"
+                             SelectedItem="{Binding MusicoVM.Tipo, Mode=TwoWay}">
+
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Panelão do Norte</x:String>
+                                        <x:String>Charada Burguer</x:String>
+                                        <x:String>Covil</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+
+                            </Picker>
+                        </Border>
+
+
+                        <Label Text="Proposta de Preço" HorizontalOptions="Center" Margin="0,30,5,0" TextColor="#4F1271" FontSize="17" FontAttributes="Bold" />
+                        <Entry Placeholder="R$0,00" Keyboard="Numeric" HorizontalOptions="Center" PlaceholderColor="#604F1271" TextColor="#4F1271" Opacity="20" Margin="0,5,0,-80" FontSize="40" HeightRequest="70">
                             <Entry.Behaviors>
                                 <behaviors:CurrencyBehavior />
                             </Entry.Behaviors>
