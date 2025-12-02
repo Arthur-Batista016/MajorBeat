@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MajorBeat.ViewModels.Users
 {
@@ -30,6 +31,10 @@ namespace MajorBeat.ViewModels.Users
         {
             IdMusico = id;
             _ = CarregarMusico();
+
+            ProposalCommand = new Command (async () => StartProposal());
+            CancelCommand = new Command(async () => CancelProposalSend());
+            SendCommand = new Command(async () => SendProposal());
         }
 
 
@@ -54,7 +59,7 @@ namespace MajorBeat.ViewModels.Users
         [RelayCommand]
         public void EnviarProposta()
         {
-            MessageVisibility = !MessageVisibility;
+            IsProposalSend = !IsProposalSend;
         }
         public async Task CarregarMusico()
         {
@@ -79,6 +84,41 @@ namespace MajorBeat.ViewModels.Users
 
 
 
+
+
+
+        ////  ENVIAR PROPOSTA
+
+        public bool IsProposalSend  = false;
+
+        public ICommand ProposalCommand;
+        public ICommand CancelCommand;
+        public ICommand SendCommand;
+
+        public async Task StartProposal()
+        {
+            IsProposalSend = true;
+        }
+
+        public async Task SendProposal()
+        {
+            try
+            {
+                IsProposalSend = false;
+                await Application.Current.MainPage.DisplayAlert("Sucesso!", "Proposta Enviada Com Sucesso para o Músico!", "OK");
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage
+                       .DisplayAlert("Ops", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
+            }
+        }
+
+        public async Task CancelProposalSend()
+        {
+            IsProposalSend = false;
+
+        }
 
     }
 }

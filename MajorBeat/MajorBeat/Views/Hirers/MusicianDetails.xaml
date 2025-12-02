@@ -57,7 +57,7 @@
                             <Label Text="Avaliação" FontSize="17" TextColor="#4F1271" FontAttributes="Bold"  HorizontalTextAlignment="Center" Margin="0,10,0,0"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Spacing="8" HorizontalOptions="Center" VerticalOptions="Center" >
-                            <ImageButton Source="addcontact.png"  HeightRequest="70" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,-10" Command="{Binding EnviarPropostaCommand}"/>
+                            <ImageButton  Source="addcontact.png"  HeightRequest="70" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,-10" Command="{Binding ProposalCommand}"/>
                             <Label Text="Enviar Proposta" FontSize="16" TextColor="#4F1271" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                         </VerticalStackLayout>
                     </HorizontalStackLayout>
@@ -418,7 +418,7 @@
  />
 
         <!--Envio de Proposta-->
-        <Grid IsVisible="True" VerticalOptions="Center" Margin="0,-100,0,0">
+        <Grid IsVisible="{Binding IsProposalSend}" VerticalOptions="Center" Margin="0,-100,0,0" >
             <Border BackgroundColor="#E7E7E7"  HeightRequest="600" WidthRequest="350" StrokeShape="RoundRectangle 10">
                 <VerticalStackLayout>
                     <Label Text="ENVIAR PROPOSTA?" TextColor="#4F1271" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,0"/>
@@ -461,8 +461,8 @@
                             </Entry.Behaviors>
                         </Entry>
                         <Grid Margin="20,120,0,0">
-                        <Button Grid.Row="0" Text="Continuar" BackgroundColor="#4F1271" FontAttributes="Bold" FontSize="17" HorizontalOptions="Center" CornerRadius="100" WidthRequest="140" Margin="150,0,0,0"/>
-                        <Button Grid.Row="0" Text="Cancelar" BorderColor="#4F1271" BorderWidth="2" HorizontalOptions="Center" FontSize="17" FontAttributes="Bold" CornerRadius="100" TextColor="#4F1271" BackgroundColor="#FFFFFF" WidthRequest="140" Margin="0,0,200,0"/>
+                        <Button Command="{Binding SendCommand}" Grid.Row="0" Text="Continuar" BackgroundColor="#4F1271" FontAttributes="Bold" FontSize="17" HorizontalOptions="Center" CornerRadius="100" WidthRequest="140" Margin="150,0,0,0"/>
+                        <Button Command="{Binding CancelCommand}" Grid.Row="0" Text="Cancelar" BorderColor="#4F1271" BorderWidth="2" HorizontalOptions="Center" FontSize="17" FontAttributes="Bold" CornerRadius="100" TextColor="#4F1271" BackgroundColor="#FFFFFF" WidthRequest="140" Margin="0,0,200,0"/>
                     </Grid>
                 </VerticalStackLayout>
             </Border>
