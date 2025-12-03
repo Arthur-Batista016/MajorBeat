@@ -12,7 +12,16 @@ namespace MajorBeat.ViewModels.Users
        
         public ProposalViewModel()
         {
-            
+           
+
+        }
+
+        public async Task GetAllNotifications()
+        {
+            try
+            {
+
+            }
         }
 
 

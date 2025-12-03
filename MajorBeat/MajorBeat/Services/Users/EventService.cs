@@ -62,6 +62,13 @@ namespace MajorBeat.Services.Users
             return evento;
         }
 
+        public async Task<ObservableCollection<Evento>> GetEventsByHirerId(long hirer_id)
+        {
+            string urlComplementar = $"/getByIdContratante/{hirer_id}";
+            ObservableCollection<Evento> evento = await _request.GetAsync<ObservableCollection<Evento>>(_baseUrl + urlComplementar, _token);
+            return evento;
+        }
+
 
         public async Task<ObservableCollection<Evento>> GetEventByTipoEvento(TipoEvento tipoEvento)
         {
