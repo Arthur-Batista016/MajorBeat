@@ -69,6 +69,8 @@ namespace MajorBeat.Services.Users
             return evento;
         }
 
+      
+
 
         public async Task<ObservableCollection<Evento>> GetEventByTipoEvento(TipoEvento tipoEvento)
         {
