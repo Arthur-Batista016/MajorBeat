@@ -151,7 +151,7 @@ namespace MajorBeat.ViewModels.Users
                     .Replace(".", "") // Remove separadores de milhar (pontos)
                     .Replace(",", "."); // Troca vírgula por ponto (separador decimal)
 
-                /*if (double.TryParse(valorLimpo, System.Globalization.NumberStyles.Currency,
+                if (double.TryParse(valorLimpo, System.Globalization.NumberStyles.Currency,
                                     System.Globalization.CultureInfo.InvariantCulture, out double valorNumerico))
                 {
                     Proposta p = new Proposta();
