@@ -15,24 +15,24 @@ namespace MajorBeat.Models
 
         public string nome{ get; set; }
 
-        public TipoMusico tipoMusico { get; set; }
-        public StatusEvento status { get; set; }
+        public TipoMusico? tipoMusico { get; set; }
+        public StatusEvento? status { get; set; }
         public TipoEvento? tipoEvento { get; set; }
 
-        public DateTime data { get; set; }
+        public DateTime? data { get; set; }
 
-        public string endereco { get; set; }
+        public string? endereco { get; set; }
 
         public ObservableCollection<string> imagemLocalEvento { get; set; } = new();
 
-        public TimeSpan horaInicio { get; set; }
-        public TimeSpan horaFim { get; set; }
+        public TimeSpan? horaInicio { get; set; }
+        public TimeSpan? horaFim { get; set; }
 
         public string? descricao { get; set; }
-        public string titulo { get; set; }
-        public ObservableCollection<NomeInstrumento> instrumentos { get; set; } = new();
+        public string? titulo { get; set; }
+        public ObservableCollection<NomeInstrumento>? instrumentos { get; set; } = new();
 
-        public ObservableCollection<NomeGenero> generos { get; set; } = new();
+        public ObservableCollection<NomeGenero>? generos { get; set; } = new();
 
         public Musico musico { get; set; }
 
@@ -40,7 +40,7 @@ namespace MajorBeat.Models
 
         public ObservableCollection<Avaliacao> avaliacoes { get; set; } = new();
         public List<string> mediaUrl { get; set; }
-        public string DataFormatada => data.ToString("dd/MM/yyyy");
+        public string DataFormatada => data?.ToString("dd/MM/yyyy");
         public string HorarioFormatado => $"{horaInicio:hh\\:mm} - {horaFim:hh\\:mm}";
         public string Nome => nome;
     }

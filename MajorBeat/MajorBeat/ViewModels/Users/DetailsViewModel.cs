@@ -33,6 +33,9 @@ namespace MajorBeat.ViewModels.Users
         private long usuarioId;
         private string token;
 
+        [ObservableProperty]
+        private ObservableCollection<Evento> eventosDisponiveis;
+
         // ---------------------------------------------------------
         // CONSTRUTOR
         // ---------------------------------------------------------
@@ -43,8 +46,8 @@ namespace MajorBeat.ViewModels.Users
             usuarioId = Preferences.Get("Usuarioid", 0L);
             token = Preferences.Get("UsuarioToken", string.Empty);
             _eService = new EventService(token);
-            //EventosDisponiveis = new ObservableCollection<Evento>();
-            //_ = CarregarEventosContratante(contratanteId);
+            EventosDisponiveis = new ObservableCollection<Evento>();
+            _ = CarregarEventosContratante(usuarioId);
 
 
             // Inicialização dos comandos
@@ -176,12 +179,12 @@ namespace MajorBeat.ViewModels.Users
 
         [ObservableProperty]
         private Evento eventoSelecionado;
-        /*public async Task CarregarEventosContratante(long contratanteId)
+        public async Task CarregarEventosContratante(long contratanteId)
         {
             try
             {
                 // Substitua esta linha pelo seu método de serviço real
-                ObservableCollection<Evento> lista = await _eventoService.GetEventosByContratanteIdAsync(contratanteId);
+                ObservableCollection<Evento> lista = await _eService.GetEventsByHirerId(contratanteId);
 
                 EventosDisponiveis.Clear();
                 foreach (var evento in lista)
@@ -196,6 +199,6 @@ namespace MajorBeat.ViewModels.Users
             {
                 await Application.Current.MainPage.DisplayAlert("Erro", "Falha ao carregar eventos: " + ex.Message, "OK");
             }
-        }*/
+        }
     }
 }

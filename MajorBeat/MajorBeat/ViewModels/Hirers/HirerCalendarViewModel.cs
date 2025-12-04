@@ -93,7 +93,11 @@ public partial class HirerCalendarViewModel : ObservableObject
         };
 
         foreach (var evento in Eventos)
-            UnavailableDates.Add(evento.data.Date); // Armazenar apenas a data, sem hora
+        {
+            if (evento.data.HasValue)
+                UnavailableDates.Add(evento.data.Value.Date);
+        }
+        // Armazenar apenas a data, sem hora
 
         EventosFiltrados = new ObservableCollection<Evento>();
         CalendarDays = new ObservableCollection<CalendarDay>();
@@ -118,9 +122,11 @@ public partial class HirerCalendarViewModel : ObservableObject
         if (Eventos == null || EventosFiltrados == null)
             return;
 
-        var eventosParaExibir = FiltroSelecionado == "Concluídos"
-            ? Eventos.Where(e => e.data.Date < DateTime.Today.Date)
-            : Eventos.Where(e => e.data.Date >= DateTime.Today.Date);
+        var eventosParaExibir =
+    FiltroSelecionado == "Concluídos"
+    ? Eventos.Where(e => e.data.HasValue && e.data.Value.Date < DateTime.Today)
+    : Eventos.Where(e => e.data.HasValue && e.data.Value.Date >= DateTime.Today);
+
 
         EventosFiltrados.Clear();
         foreach (var evento in eventosParaExibir.OrderBy(e => e.data))

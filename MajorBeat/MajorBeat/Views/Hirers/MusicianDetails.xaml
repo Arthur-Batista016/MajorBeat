@@ -459,20 +459,13 @@
                         WidthRequest="240"
                         HorizontalOptions="Center">
                             <Picker Title="Escolha o Evento"
-                            TitleColor="#604F1271"
-                            TextColor="#4F1271"
-                            HorizontalTextAlignment="Center"
-                            FontAttributes="Bold">
-                                <!--ItemsSource="{Binding EventosDisponiveis}" 
-            SelectedItem="{Binding EventoSelecionado}"-->
-                                <Picker.ItemsSource>
-                                    <x:Array Type="{x:Type x:String}">
-                                        <x:String>Panelão do Norte</x:String>
-                                        <x:String>Charada Burguer</x:String>
-                                        <x:String>Covil</x:String>
-                                    </x:Array>
-                                </Picker.ItemsSource>
-                            </Picker>
+        TitleColor="#604F1271"
+        TextColor="#4F1271"
+        HorizontalTextAlignment="Center"
+        FontAttributes="Bold"
+        ItemsSource="{Binding EventosDisponiveis}"
+    SelectedItem="{Binding EventoSelecionado}"
+    ItemDisplayBinding="{Binding Nome}"/>
                         </Border>
 
                         <!-- PREÇO -->
