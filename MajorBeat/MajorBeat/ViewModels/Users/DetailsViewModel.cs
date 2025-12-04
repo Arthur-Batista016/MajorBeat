@@ -34,6 +34,9 @@ namespace MajorBeat.ViewModels.Users
         private string token;
 
         [ObservableProperty]
+        private Proposta Proposta;
+
+        [ObservableProperty]
         private ObservableCollection<Evento> eventosDisponiveis;
 
         // ---------------------------------------------------------
@@ -130,14 +133,14 @@ namespace MajorBeat.ViewModels.Users
             MessageVisibility = true;
         }
 
-        public async Task SendProposal()
+        public async Task<Proposta> SendProposal()
         {
             try
             {
                 if (EventoSelecionado == null)
                 {
                     await Application.Current.MainPage.DisplayAlert("Atenção", "Por favor, selecione um Evento para enviar a proposta.", "OK");
-                    return; // Interrompe o envio
+                    return null; // Interrompe o envio
                 }
                 IsProposalSend = false;
                 MessageVisibility = true;
@@ -155,14 +158,19 @@ namespace MajorBeat.ViewModels.Users
                                     System.Globalization.CultureInfo.InvariantCulture, out double valorNumerico))
                 {
                     Proposta p = new Proposta();
+                    p.statusProposta = Enums.StatusProposta.ABERTO;
                     p.musicoId = IdMusico;
                     p.contratanteId = usuarioId;
                     p.valor = valorLimpo;
                     p.eventoId = EventoSelecionado.idEvento;
                     // Agora você tem o valor como número:
                     // Ex: valorNumerico = 10.50
+
+                    Proposta =  p;
                 }
 
+                return Proposta;
+                          
                 await Application.Current.MainPage.DisplayAlert(
                     "Sucesso!",
                     "Proposta Enviada Com Sucesso para o Músico!",
@@ -173,6 +181,9 @@ namespace MajorBeat.ViewModels.Users
             {
                 await Application.Current.MainPage
                     .DisplayAlert("Ops", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
+
+
+                return null;
             }
         }
 

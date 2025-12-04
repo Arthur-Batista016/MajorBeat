@@ -9,7 +9,7 @@ namespace MajorBeat.Enums
     public enum StatusProposta
     {
         ACEITO,
-        EM_ESPERA,
+        ABERTO,
         RECUSADO
 
     }
