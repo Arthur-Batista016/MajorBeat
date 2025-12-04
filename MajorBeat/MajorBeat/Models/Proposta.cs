@@ -16,6 +16,8 @@ namespace MajorBeat.Models
         public long eventoId { get; set; }
 
         public StatusProposta statusProposta;
+
+        public string valor {  get; set; }
     
     }
 }

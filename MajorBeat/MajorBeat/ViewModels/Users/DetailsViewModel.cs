@@ -155,13 +155,13 @@ namespace MajorBeat.ViewModels.Users
                                     System.Globalization.CultureInfo.InvariantCulture, out double valorNumerico))
                 {
                     Proposta p = new Proposta();
-                    p.MusicoId = IdMusico;
-                    p.ContratanteId = usuarioId;
-                    p.Valor = valorLimpo;
-                    p.EventoId = EventoSelecionado.Id;
+                    p.musicoId = IdMusico;
+                    p.contratanteId = usuarioId;
+                    p.valor = valorLimpo;
+                    p.eventoId = EventoSelecionado.idEvento;
                     // Agora você tem o valor como número:
                     // Ex: valorNumerico = 10.50
-                }*/
+                }
 
                 await Application.Current.MainPage.DisplayAlert(
                     "Sucesso!",
