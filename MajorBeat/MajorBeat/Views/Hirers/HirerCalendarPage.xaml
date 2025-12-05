@@ -94,7 +94,7 @@
                                         </Frame.GestureRecognizers>
                                         <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
                                             <StackLayout Grid.Column="0">
-                                                <Label Text="{Binding Nome}"  FontAttributes="Bold" FontSize="18"  TextColor="white"/>
+                                                <Label Text="{Binding nome}"  FontAttributes="Bold" FontSize="18"  TextColor="white"/>
                                                 <Label Text="{Binding DataFormatada}" FontSize="14" TextColor="White"/>
                                                 <Label Text="{Binding HorarioFormatado}" FontSize="14" TextColor="White"/>
                                             </StackLayout>

@@ -465,7 +465,7 @@
         FontAttributes="Bold"
         ItemsSource="{Binding EventosDisponiveis}"
     SelectedItem="{Binding EventoSelecionado}"
-    ItemDisplayBinding="{Binding Nome}"/>
+    ItemDisplayBinding="{Binding nome}"/>
                         </Border>
 
                         <!-- PREÇO -->

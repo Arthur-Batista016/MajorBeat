@@ -1,4 +1,5 @@
 ﻿using MajorBeat.Enums;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace MajorBeat.ModelsJeff
 {
     public class Musico
     {
-        public int idMusico { get; set; }
+        [JsonProperty("id")]
+        public long idMusico { get; set; }
         public string token { get; set; }
         public string nome { get; set; }
         public string email { get; set; }

@@ -11,7 +11,7 @@ namespace MajorBeat.Services.Users
     public class PropostaService
     {
         private readonly Request _request;
-        private const string _baseUrl = "https://majorbeat-fzedc4ekbuaufncw.brazilsouth-01.azurewebsites.net/Propostas";
+        private const string _baseUrl = "https://majorbeat-fzedc4ekbuaufncw.brazilsouth-01.azurewebsites.net/Proposta";
         private string _token;
         public PropostaService()
         {
@@ -37,7 +37,7 @@ namespace MajorBeat.Services.Users
         public string Token => _token;
         public async Task<ObservableCollection<Proposta>> GetProposalByIdContratante(long id)
         {
-            string urlComplementar = "/GetProposalByIdContratante";
+            string urlComplementar = $"/getByContratanteId/{id}";
             ObservableCollection<Proposta> propostas = await
             _request.GetAsync<ObservableCollection<Proposta>>(_baseUrl + urlComplementar, _token);
             return propostas;
@@ -45,7 +45,7 @@ namespace MajorBeat.Services.Users
 
         public async Task<ObservableCollection<Proposta>> GetProposalByMusico(long id)
         {
-            string urlComplementar = "/GetProposalByMusico";
+            string urlComplementar = $"/getByMusicoId/{id}";
             ObservableCollection<Proposta> propostas = await
             _request.GetAsync<ObservableCollection<Proposta>>(_baseUrl + urlComplementar, _token);
             return propostas;
@@ -53,10 +53,18 @@ namespace MajorBeat.Services.Users
 
         public async Task<Proposta> GetProposalById(long id)
         {
-            string urlComplementar = $"/GetById/{id}";
+            string urlComplementar = $"/getById/{id}";
             Proposta proposta = await
             _request.GetAsync<Proposta>(_baseUrl + urlComplementar, _token);
             return proposta;
+        }
+
+        public async Task<Proposta> PostPropostaAsync(Proposta p)
+        {
+            string urlComplementar = "/post";
+            p = await _request.PostAsync(_baseUrl + urlComplementar, p, _token);
+
+            return p;
         }
 
     }

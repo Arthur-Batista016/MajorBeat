@@ -13,6 +13,7 @@ namespace MajorBeat.ViewModels.Users
 {
     public partial class DetailsViewModel : ObservableObject
     {
+        private readonly PropostaService _pService = new PropostaService();
         private readonly MusicianService _mService = new MusicianService();
         private readonly EventService _eService = new EventService();
 
@@ -38,16 +39,19 @@ namespace MajorBeat.ViewModels.Users
 
         [ObservableProperty]
         private ObservableCollection<Evento> eventosDisponiveis;
+        private string role;
 
         // ---------------------------------------------------------
         // CONSTRUTOR
         // ---------------------------------------------------------
         public DetailsViewModel(long id)
         {
+            role = Preferences.Get("role", string.Empty);
             IdMusico = id;
             _ = CarregarMusico();
             usuarioId = Preferences.Get("Usuarioid", 0L);
             token = Preferences.Get("UsuarioToken", string.Empty);
+            _pService = new PropostaService(token);
             _eService = new EventService(token);
             EventosDisponiveis = new ObservableCollection<Evento>();
             _ = CarregarEventosContratante(usuarioId);
@@ -140,15 +144,13 @@ namespace MajorBeat.ViewModels.Users
                 if (EventoSelecionado == null)
                 {
                     await Application.Current.MainPage.DisplayAlert("Atenção", "Por favor, selecione um Evento para enviar a proposta.", "OK");
-                    return null; // Interrompe o envio
+                    return null;
                 }
                 IsProposalSend = false;
                 MessageVisibility = true;
-                string valorFormatado = ValorProposta; 
+                string valorFormatado = ValorProposta;
 
-                // Se precisar do valor numérico (double), você precisará limpar a string:
-
-                // 1. Remove R$, pontos, e substitui vírgula por ponto (para padrão cultural EN)
+                // 1. Remove R$, pontos, e substitui vírgula por ponto (para padrão API)
                 string valorLimpo = valorFormatado
                     .Replace("R$", "")
                     .Replace(".", "") // Remove separadores de milhar (pontos)
@@ -158,31 +160,35 @@ namespace MajorBeat.ViewModels.Users
                                     System.Globalization.CultureInfo.InvariantCulture, out double valorNumerico))
                 {
                     Proposta p = new Proposta();
-                    p.statusProposta = Enums.StatusProposta.ABERTO;
-                    p.musico.idMusico = IdMusico;
-                    p.contratante.id = usuarioId;
-                    p.valor = valorLimpo;
-                    p.evento.idEvento = EventoSelecionado.idEvento;
-                    // Agora você tem o valor como número:
-                    // Ex: valorNumerico = 10.50
+                    p.evento = new Evento();
+                    p.idRecebedor = IdMusico;
 
-                    proposta =  p;
+                    // ✅ CORREÇÃO AQUI: Atribua o valor double convertido
+                    p.valor = valorNumerico;
+
+                    p.idEvento = EventoSelecionado.idEvento;
+
+                    await _pService.PostPropostaAsync(p);
+
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Sucesso!",
+                        "Proposta Enviada Com Sucesso para o Músico!",
+                        "OK"
+                    );
+                    proposta = p;
+                    return proposta; // Retorna a proposta em caso de sucesso
                 }
-
-                return proposta;
-                         await Application.Current.MainPage.DisplayAlert(
-                    "Sucesso!",
-                    "Proposta Enviada Com Sucesso para o Músico!",
-                    "OK"
-                ); 
-                
+                else
+                {
+                    // Caso o TryParse falhe (usuário digitou algo não numérico)
+                    await Application.Current.MainPage.DisplayAlert("Erro de Conversão", "O valor da proposta não é um número válido.", "OK");
+                    return null;
+                }
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage
-                    .DisplayAlert("Ops", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
-
-
+                // Trate erros de API ou rede
+                await Application.Current.MainPage.DisplayAlert("Erro ao Enviar", ex.Message, "OK");
                 return null;
             }
         }

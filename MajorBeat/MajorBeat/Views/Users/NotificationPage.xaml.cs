@@ -14,8 +14,20 @@ public partial class NotificationPage : ContentPage
     {
         InitializeComponent();
         BindingContext = new ProposalViewModel();
+        if (this.BindingContext is ProposalViewModel vm)
+        {
+            _viewModel = vm; // 2. INICIALIZE A VARIÁVEL AQUI
+        }
+        else
+        {
+            // Se o BindingContext não estiver definido, crie um novo
+            // (Isso depende de como seu app está estruturado)
+            _viewModel = new ProposalViewModel();
+            this.BindingContext = _viewModel;
+        }
+
     }
-    
+
     private async void voltar_Clicked_1(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new HirerHomePage());
@@ -34,7 +46,7 @@ public partial class NotificationPage : ContentPage
             _viewModel.ClickProposalCommand.Execute(proposta);
 
             // Navegação async passando o ID
-            await Navigation.PushAsync(new ProposalPageView(proposta.Id));
+            await Navigation.PushAsync(new ProposalPageView(proposta.idProposta));
         }
 
 

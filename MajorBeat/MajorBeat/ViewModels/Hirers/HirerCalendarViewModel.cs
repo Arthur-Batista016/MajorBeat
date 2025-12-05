@@ -197,7 +197,7 @@ public partial class HirerCalendarViewModel : ObservableObject
         if (e == null) return;
 
         App.Current.MainPage.DisplayActionSheet(
-            $"Evento: {e.Nome}",
+            $"Evento: {e.nome}",
             "Cancelar",
             null,
             "Editar Evento",

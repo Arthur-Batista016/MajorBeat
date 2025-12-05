@@ -2,16 +2,25 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MajorBeat.Views.Users.ProposalPageView"
+             xmlns:local="clr-namespace:MajorBeat.Converters"
              Shell.NavBarIsVisible="False"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#F5F5F3"
              >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:GeneroWidthConverter x:Key="GeneroWidthConverter" />
+            <local:InstrumentoToStringConverter x:Key="InstrumentoToStringConverter" />
+            <local:GeneroToStringConverter x:Key="GeneroToStringConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout Margin="0,40,0,0">
 
             <Label Text="OFERTA DE CONTRATO" TextColor="#4F1271" FontAttributes="Bold" HorizontalOptions="Center" FontSize="25"/>
 
-            <Label Margin="20,60,0,0" Text="Nome do Evento" FontAttributes="Bold" TextColor="#4F1271" FontSize="22"/>
+            <Label Margin="20,60,0,0" Text="{Binding PropostaInfos.evento.nome}" FontAttributes="Bold" TextColor="#4F1271" FontSize="22"/>
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -24,25 +33,13 @@
 
 
                 <Label Grid.Row="0" Text="De:" FontSize="17"  Margin="20,0,0,0" TextColor="#4F1271"/>
-                <Label Grid.Row="1" Text="Nome do Contratante"  FontSize="17" FontAttributes="Bold"  Margin="50,0,0,0" TextColor="#4F1271"/>
+                <Label Grid.Row="1" Text="{Binding NomeRemetente}"  FontSize="17" FontAttributes="Bold"  Margin="50,0,0,0" TextColor="#4F1271"/>
                 <Label Grid.Row="2"  Text="Para:" Margin="20,0,0,0"  FontSize="17" TextColor="#4F1271"/>
-                <Label Grid.Row="3" Text="Nome do Musico" FontAttributes="Bold"  FontSize="17" Margin="50,0,0,0" TextColor="#4F1271"/>
-                <Label Grid.Row="4" Text="20 de Agosto, 2025 - 16h às 20:30"  FontSize="15" Margin="25,20,0,0" TextColor="#4F1271"/>
+                <Label Grid.Row="3" Text="{Binding NomeRecebedor}" FontAttributes="Bold"  FontSize="17" Margin="50,0,0,0" TextColor="#4F1271"/>
+                <Label Grid.Row="4" Text="{Binding PropostaInfos.evento.DataHorarioCompleto}"  FontSize="15" Margin="25,20,0,0" TextColor="#4F1271"/>
                 
             </Grid>
 
-
-            <Grid Margin="0,40,0,0" HorizontalOptions="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <Label Grid.Row="0" Text="4.2"  FontSize="30" TextColor="#4F1271" FontAttributes="Bold"/>
-                <Image Grid.Row="0" Source="starproposal.png" HeightRequest="40" Margin="50,0,0,0"/>
-                <Label Grid.Row="1" Text="Avaliação"  FontSize="17" Margin="0,5,0,0" FontAttributes="Bold" TextColor="#4F1271"/>
-            </Grid>
 
             <Grid Margin="0,30,0,0">
                 <Grid.RowDefinitions>
@@ -52,8 +49,8 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Text="Local:" Margin="30,0,0,0" FontSize="17" FontAttributes="Bold" TextColor="#4F1271"/>
-                <Label Grid.Row="1" Margin="30,0,0,0" Text="Rua Alcantara, 31, Vila Guilherme" FontSize="17" TextColor="#4F1271"/>
-                <Label Grid.Row="2" Margin="30,0,0,0" Text="São Paulo" TextColor="#4F1271" FontSize="17"/>
+                <Label Grid.Row="1" Margin="30,0,0,0" Text="{Binding PropostaInfos.evento.endereco}" FontSize="17" TextColor="#4F1271"/>
+
             </Grid>
 
 
@@ -61,52 +58,60 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Text="Estilos Solicitados: " Margin="30,0,0,0" FontSize="17" FontAttributes="Bold" TextColor="#4F1271"/>
-               
-                    <Border   Grid.Row="1" StrokeShape="RoundRectangle 8,8,8,8" BackgroundColor="#4F1271" Margin="30,10,0,0" WidthRequest="140" HorizontalOptions="Start" HeightRequest="40">
-                        <Label  Grid.Row="2" Text="BOSSA_NOVA" TextColor="#FFFFFF" HorizontalOptions="Center"  FontSize="17" FontAttributes="Bold" Margin="0,5,0,0" />
-                    </Border>
-                <Border   Grid.Row="1" StrokeShape="RoundRectangle 8,8,8,8" BackgroundColor="#4F1271" Margin="180,10,0,0" WidthRequest="140" HorizontalOptions="Start" HeightRequest="40">
-                    <Label  Grid.Row="2" Text="BOSSA_NOVA" TextColor="#FFFFFF" HorizontalOptions="Center"  FontSize="17" FontAttributes="Bold" Margin="0,5,0,0" />
-                </Border>
+
+
+                <Grid Grid.Row="1">
+                    <CollectionView ItemsSource="{Binding PropostaInfos.evento.generos}" ItemsLayout="HorizontalList" Margin="0,-5,0,0" HeightRequest="150" HorizontalOptions="Center" >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#4F1271" Margin="10,0,0,0"  WidthRequest="{Binding ., Converter={StaticResource GeneroWidthConverter}}" HorizontalOptions="Center"  HeightRequest="35">
+                                    <Label Text="{Binding ., Converter={StaticResource GeneroToStringConverter}}" TextColor="#FFFFFF" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" Margin="0,3,0,0" />
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
 
 
             </Grid>
 
-            <Grid Margin="0,30,0,0">
+            <Grid Margin="0,10,0,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Text="Instrumentos Solicitados: " Margin="30,0,0,0" FontSize="17" FontAttributes="Bold" TextColor="#4F1271"/>
 
-                <Border   Grid.Row="1" StrokeShape="RoundRectangle 8,8,8,8" BackgroundColor="#4F1271" Margin="30,10,0,0" WidthRequest="140" HorizontalOptions="Start" HeightRequest="40">
-                    <Label  Grid.Row="2" Text="BOSSA_NOVA" TextColor="#FFFFFF" HorizontalOptions="Center"  FontSize="17" FontAttributes="Bold" Margin="0,5,0,0" />
-                </Border>
-                <Border   Grid.Row="1" StrokeShape="RoundRectangle 8,8,8,8" BackgroundColor="#4F1271" Margin="180,10,0,0" WidthRequest="140" HorizontalOptions="Start" HeightRequest="40">
-                    <Label  Grid.Row="2" Text="BOSSA_NOVA" TextColor="#FFFFFF" HorizontalOptions="Center"  FontSize="17" FontAttributes="Bold" Margin="0,5,0,0" />
-                </Border>
+                <Grid Grid.Row="1">
+                    <CollectionView ItemsSource="{Binding PropostaInfos.evento.instrumentos}" ItemsLayout="HorizontalList" Margin="0,-5,0,0" HeightRequest="150" HorizontalOptions="Center" >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border StrokeShape="RoundRectangle 8,8,0,0" BackgroundColor="#4F1271" Margin="10,0,0,0" WidthRequest="{Binding ., Converter={StaticResource GeneroWidthConverter}}" HorizontalOptions="Start" HeightRequest="35">
+                                    <Label Text="{Binding ., Converter={StaticResource InstrumentoToStringConverter}}" TextColor="#FFFFFF" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" Margin="0,3,0,0" />
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
             </Grid>
 
            
 
           
 
-            <Grid Margin="0,30,0,0">
+            <Grid Margin="0,0,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Text="Proposta de Preço:" Margin="30,0,0,0" FontAttributes="Bold" FontSize="20" TextColor="#4F1271"/>
-               
-                    <Label Text="R$ 300,00" TextColor="#4F1271" HorizontalOptions="Start" TextDecorations="Underline" FontAttributes="Bold" FontSize="28"  Margin="30,30,0,0"/>
+
+                <Label Text="{Binding PropostaInfos.ValorFormatado}" TextColor="#4F1271" HorizontalOptions="Start" TextDecorations="Underline" FontAttributes="Bold" FontSize="28"  Margin="30,30,0,0"/>
                 
             </Grid>
 
@@ -116,8 +121,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Button Grid.Row="0" Text="Cancelar" BorderColor="#4F1271" BorderWidth="2" HorizontalOptions="Center" FontSize="17" FontAttributes="Bold" CornerRadius="100" TextColor="#4F1271" BackgroundColor="#FFFFFF" WidthRequest="130" Margin="0,0,200,0"/>
-                <Button Grid.Row="0" Text="Confirmar" BackgroundColor="#4F1271" FontAttributes="Bold" FontSize="17" HorizontalOptions="Center" CornerRadius="100" WidthRequest="130" Margin="150,0,0,0"/>
+                <Button Command="{Binding recusarCommand}" Grid.Row="0" Text="Cancelar" BorderColor="#4F1271" BorderWidth="2" HorizontalOptions="Center" FontSize="17" FontAttributes="Bold" CornerRadius="100" TextColor="#4F1271" BackgroundColor="#FFFFFF" WidthRequest="130" Margin="0,0,200,0"/>
+                <Button Command="{Binding aceitarCommand}" Grid.Row="0" Text="Confirmar" BackgroundColor="#4F1271" FontAttributes="Bold" FontSize="17" HorizontalOptions="Center" CornerRadius="100" WidthRequest="130" Margin="150,0,0,0"/>
             </Grid>
 
 

@@ -14,7 +14,7 @@
                VerticalOptions="Center"  
                HorizontalOptions="Center" 
                FontAttributes="Bold"  
-               Margin="30,-10,15,10"/>
+               Margin="30,20,15,10"/>
 
             <CollectionView ItemsSource="{Binding PropostasRecebidas}"
                         SelectionMode="None"
@@ -33,7 +33,7 @@
                             </Frame.GestureRecognizers>
 
                             <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
-                                <Label Text="{Binding contratante.nome, StringFormat='{0} enviou uma proposta!'}" 
+                                <Label Text="{Binding TituloNotificacao}"
                                    FontAttributes="Bold" 
                                    FontSize="18" 
                                    TextColor="#4F1271"/>

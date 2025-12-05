@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MajorBeat.Enums;
+using Newtonsoft.Json;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MajorBeat.Models
@@ -12,8 +13,9 @@ namespace MajorBeat.Models
     public class Evento
     {
         public long idEvento { get; set; }
+        [JsonProperty("nome")]
+        public string nome { get; set; }
 
-        public string nome{ get; set; }
 
         public TipoMusico? tipoMusico { get; set; }
         public StatusEvento? status { get; set; }
@@ -41,7 +43,21 @@ namespace MajorBeat.Models
         public ObservableCollection<Avaliacao> avaliacoes { get; set; } = new();
         public List<string> mediaUrl { get; set; }
         public string DataFormatada => data?.ToString("dd/MM/yyyy");
-        public string HorarioFormatado => $"{horaInicio:hh\\:mm} - {horaFim:hh\\:mm}";
-        public string Nome => nome;
+        public string HorarioFormatado => $"Da {horaInicio:hh\\:mm} ás {horaFim:hh\\:mm}";
+        public string DataHorarioCompleto
+        {
+            get
+            {
+                // 1. Verifica se a data formatada existe (garante que 'data' não é null)
+                if (!string.IsNullOrEmpty(DataFormatada))
+                {
+                    // 2. Combina a data formatada com o horário formatado existente
+                    return $"{DataFormatada} | {HorarioFormatado}";
+                }
+
+                // 3. Retorna uma mensagem de fallback se a data estiver faltando
+                return "Data e Horário não definidos";
+            }
+        }
     }
 }

@@ -14,10 +14,28 @@ namespace MajorBeat.ViewModels.Users
     partial class ProposalViewModel:ObservableObject
     {
 
-        //private readonly ProposalService _pService = new ProposalService();
+        private readonly PropostaService _pService = new PropostaService();
         private readonly EventService _eService = new EventService();
 
+        public string TituloNotificacao
+        {
+            get
+            {
+                // Verifica se a coleção tem itens antes de tentar acessar o índice [0]
+                if (PropostasRecebidas != null && PropostasRecebidas.Count > 0)
+                {
+                    // Acessa o primeiro elemento da coleção
+                    var primeiraProposta = PropostasRecebidas.FirstOrDefault();
 
+                    if (primeiraProposta?.contratante != null && primeiraProposta.evento != null)
+                    {
+                        // Retorna a string formatada usando a primeira proposta
+                        return $"{primeiraProposta.contratante.nome} enviou uma proposta para {primeiraProposta.evento.nome}!";
+                    }
+                }
+                return "Notificação de Proposta"; // Valor de fallback
+            }
+        }
 
         private string token;
         [ObservableProperty]
@@ -27,11 +45,14 @@ namespace MajorBeat.ViewModels.Users
         public ObservableCollection<Proposta> propostasRecebidas = new ObservableCollection<Proposta>();
 
         private long usuarioId;
+
+        private string role;
         public ProposalViewModel()
         {
+            role = Preferences.Get("role", string.Empty);
             usuarioId = Preferences.Get("Usuarioid", 0L);
             _ =GetAllNotifications(usuarioId);
-            //_pService = new ProposalService(token);
+            _pService = new PropostaService(token);
             _eService = new EventService(token);
 
 
@@ -46,52 +67,37 @@ namespace MajorBeat.ViewModels.Users
         //TELA DE NOTIFICAÇÕES
 
 
-        private ObservableCollection<Proposta> GetMockedProposals()
-        {
-            // Crie e retorne a lista de teste
-            return new ObservableCollection<Proposta>
-            {
-                new Proposta
-                {
-                    Id = 1,
-                    // Garanta que o modelo Contratante está preenchido para o Binding no XAML
-                    contratante = new Contratante { nome = "Marquinhos" },
-                    valor = "300,00", // Usando string como definido no seu modelo
-                    // Adicione um campo para o tempo se ele existir no seu modelo Proposta
-                    // TempoRecebido = "3h" 
-                },
-                new Proposta
-                {
-                    Id = 2,
-                    contratante = new Contratante { nome = "Gisele Produções" },
-                    valor = "950,00",
-                    // TempoRecebido = "1d" 
-                }
-                // Adicione quantos objetos Proposta de teste você precisar
-            };
-        }
+
 
         public async Task<ObservableCollection<Proposta>> GetAllNotifications(long usuarioId)
         {
             try
             {
-                // ObservableCollection<Proposta> propostas = await _pService.GetProposalByUserId(usuarioId);
-                //propostasRecebidas = propostas;
-                //return propostasRecebidas;
+                ObservableCollection<Proposta> propostas;
+                if (role == "musico") { 
+                // 1. Obtém todas as propostas
+                 propostas = await _pService.GetProposalByMusico(usuarioId);
+                }else if(role == "contratante")
+                {
+                    propostas = await _pService.GetProposalByIdContratante(usuarioId);
+                }
+                else
+                {
+                    return new ObservableCollection<Proposta>(); 
+                }
+                if (propostas == null)
+                {
+                    return new ObservableCollection<Proposta>(); 
+                }
 
-
-
-                var mockPropostas = GetMockedProposals();
-
-                // Atribui o resultado mockado à propriedade observável
-                // Isso garante que a UI seja atualizada.
-                PropostasRecebidas = mockPropostas;
-
-                // Retorna a lista mockada
+                var propostasAbertas = propostas
+                    .Where(p => p.statusProposta == Enums.StatusProposta.ABERTO)
+                    .ToList(); 
+                ObservableCollection<Proposta> propostasFiltradas = new ObservableCollection<Proposta>(propostasAbertas);
+                PropostasRecebidas = propostasFiltradas;
                 return PropostasRecebidas;
-
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return null;
             }
@@ -103,7 +109,7 @@ namespace MajorBeat.ViewModels.Users
             if (proposta == null)
                 return;
 
-            long id = proposta.Id;
+            long id = proposta.idProposta;
 
 
 

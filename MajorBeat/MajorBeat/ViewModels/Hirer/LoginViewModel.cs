@@ -62,6 +62,7 @@ public class LoginViewModel : BaseViewModel
 
                 Preferences.Set("UsuarioToken", ca.token);
                 Preferences.Set("Usuarioid", ca.id);
+                Preferences.Set("Role", "contratante");
 
                 await Application.Current.MainPage.DisplayAlert(
                     "Sucesso",
@@ -80,9 +81,10 @@ public class LoginViewModel : BaseViewModel
                 Musico ma = await service.PostAutenticarUsuarioMAsync(m);
                 Preferences.Set("UsuarioToken", ma.token);
                 Preferences.Set("Usuarioid", ma.idMusico);
+                Preferences.Set("Role", "musico");
                 await Application.Current.MainPage.DisplayAlert(
                     "Sucesso",
-                    $"Musico {m.nome}autenticado com sucesso!",
+                    $"Musico {ma.idMusico} autenticado com sucesso!",
                     "OK"
                 );
                 await Application.Current.MainPage.Navigation.PushAsync(new Views.Musicians.MusicianHomePage());
