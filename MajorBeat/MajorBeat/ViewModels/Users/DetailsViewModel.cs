@@ -34,7 +34,7 @@ namespace MajorBeat.ViewModels.Users
         private string token;
 
         [ObservableProperty]
-        private Proposta Proposta;
+        private Proposta proposta;
 
         [ObservableProperty]
         private ObservableCollection<Evento> eventosDisponiveis;
@@ -159,23 +159,23 @@ namespace MajorBeat.ViewModels.Users
                 {
                     Proposta p = new Proposta();
                     p.statusProposta = Enums.StatusProposta.ABERTO;
-                    p.musicoId = IdMusico;
-                    p.contratanteId = usuarioId;
+                    p.musico.idMusico = IdMusico;
+                    p.contratante.id = usuarioId;
                     p.valor = valorLimpo;
-                    p.eventoId = EventoSelecionado.idEvento;
+                    p.evento.idEvento = EventoSelecionado.idEvento;
                     // Agora você tem o valor como número:
                     // Ex: valorNumerico = 10.50
 
-                    Proposta =  p;
+                    proposta =  p;
                 }
 
-                return Proposta;
-                          
-                await Application.Current.MainPage.DisplayAlert(
+                return proposta;
+                         await Application.Current.MainPage.DisplayAlert(
                     "Sucesso!",
                     "Proposta Enviada Com Sucesso para o Músico!",
                     "OK"
-                );
+                ); 
+                
             }
             catch (Exception ex)
             {

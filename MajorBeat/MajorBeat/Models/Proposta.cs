@@ -10,12 +10,12 @@ namespace MajorBeat.Models
     public class Proposta
     {
         public long Id { get; set; }
-        public long contratanteId { get; set; }
-        public long musicoId { get; set; }
+        public Contratante contratante { get; set; }
+        public Musico musico { get; set; }
 
-        public long eventoId { get; set; }
+        public Evento evento { get; set; }
 
-        public StatusProposta statusProposta;
+        public StatusProposta statusProposta { get; set; }
 
         public string valor {  get; set; }
     
