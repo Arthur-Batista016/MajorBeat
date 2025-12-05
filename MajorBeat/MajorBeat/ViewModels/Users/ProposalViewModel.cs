@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MajorBeat.ViewModels.Users
 {
@@ -15,6 +16,9 @@ namespace MajorBeat.ViewModels.Users
 
         //private readonly ProposalService _pService = new ProposalService();
         private readonly EventService _eService = new EventService();
+
+
+
         private string token;
         [ObservableProperty]
         public ObservableCollection<Evento> eventos_recebidos = new ObservableCollection<Evento>();
@@ -29,9 +33,14 @@ namespace MajorBeat.ViewModels.Users
             _ =GetAllNotifications(usuarioId);
             //_pService = new ProposalService(token);
             _eService = new EventService(token);
+
+
+
+
+            ClickProposalCommand = new Command<Proposta>(async (proposta) => await ProposalTapped(proposta));
         }
 
-
+        public ICommand ClickProposalCommand;
 
 
         //TELA DE NOTIFICAÇÕES
@@ -88,7 +97,18 @@ namespace MajorBeat.ViewModels.Users
             }
         }
 
+        private async Task ProposalTapped(Proposta proposta)
+        {
 
+            if (proposta == null)
+                return;
+
+            long id = proposta.Id;
+
+
+
+
+        }
 
 
 
@@ -98,19 +118,22 @@ namespace MajorBeat.ViewModels.Users
         //TELA DE PROPOSTA
 
 
-        public async Task<Evento> EventProposal(long id_evento)
-        {
-            try
-            {
-                Evento evento_proposta = await _eService.GetEventById(id_evento);
-                return evento_proposta;
-            }
-            catch (Exception ex) {
 
-                return null;
-            }
 
-        }
+
+        //public async Task<Evento> EventProposal(long id_proposta)
+        //{
+          //  try
+          //  {
+                //Proposta proposta = await _pService.GetProposalByIdContratante(id_proposta);
+                //return proposta;
+            //}
+            //catch (Exception ex) {
+
+              //  return null;
+            //}
+
+        //}
 
 
 
