@@ -68,8 +68,13 @@ public partial class MusicianSearchPage : ContentPage
         await Navigation.PushAsync(new ChatPage());
     }
 
-    private void chat_Clicked_1(object sender, EventArgs e)
+    private async void chat_Clicked_1(object sender, EventArgs e)
     {
+        await Navigation.PushAsync(new ChatPage());
+    }
 
+    private async void calendar_Clicked_1(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new MusicianCalendarPage());
     }
 }

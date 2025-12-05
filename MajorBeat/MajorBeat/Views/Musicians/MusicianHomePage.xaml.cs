@@ -51,10 +51,11 @@ public partial class MusicianHomePage : ContentPage
     {
         
     }
-    private async void chat_Clicked(object sender, EventArgs e)
+    private async void calendar_Clicked_1(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new ChatPage());
+        await Navigation.PushAsync(new MusicianCalendarPage());
     }
+    
 
     private void searchBar_Completed(object sender, EventArgs e)
     {

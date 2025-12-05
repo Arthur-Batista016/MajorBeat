@@ -111,7 +111,7 @@ public partial class HirerSearchPage : ContentPage
 
     private async void calendar_Clicked_1(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new CreateEventPageView());
+        await Navigation.PushAsync(new HirerCalendarPage());
     }
 
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)

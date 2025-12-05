@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.Musicians.MusicianCalendarPage"
+             xmlns:viewmodel="clr-namespace:MajorBeat.ViewModels.Musician"
+             Title="MusicianCalendarPage"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False">
+    
+    <Grid RowDefinitions="*,Auto" >
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Margin="0,30,0,0">
+                <VerticalStackLayout Padding="20,10" Spacing="10">
+                    <!-- Calendário -->
+                    <VerticalStackLayout Spacing="10" Padding="0,10">
+
+                        <!-- Navegação de Mês -->
+                        <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Start" Padding="0,0,0,10">
+                            <ImageButton 
+                            Grid.Column="0" 
+                            Source="back.png" 
+                            WidthRequest="20" HeightRequest="20" 
+                            BackgroundColor="Transparent" 
+                            Command="{Binding PreviousMonthCommand}" />
+
+                            <Label 
+                            Grid.Column="1" 
+                            Text="{Binding CurrentMonthTitle}" 
+                            FontSize="20" FontAttributes="Bold" 
+                            HorizontalOptions="Center" VerticalOptions="Center" 
+                            TextColor="#4F1271"/>
+
+                            <ImageButton 
+                            Grid.Column="2" 
+                            Source="goo.png" 
+                            WidthRequest="20" HeightRequest="20" 
+                            BackgroundColor="Transparent" 
+                            Command="{Binding NextMonthCommand}" />
+                        </Grid>
+
+                        <!-- Cabeçalho dos Dias da Semana -->
+                        <Grid ColumnDefinitions="*,*,*,*,*,*,*" Padding="0,5">
+                            <Label Text="SEG" Grid.Column="0" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#4F1271"/>
+                            <Label Text="TER" Grid.Column="1" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#4F1271"/>
+                            <Label Text="QUA" Grid.Column="2" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#4F1271"/>
+                            <Label Text="QUI" Grid.Column="3" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#4F1271"/>
+                            <Label Text="SEX" Grid.Column="4" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#4F1271"/>
+                            <Label Text="SÁB" Grid.Column="5" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#4F1271"/>
+                            <Label Text="DOM" Grid.Column="6" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#4F1271"/>
+                        </Grid>
+
+                        <!-- Visualização dos Dias do Mês -->
+                        <CollectionView ItemsSource="{Binding CalendarDays}" HeightRequest="350">
+                            <CollectionView.ItemsLayout>
+                                <!-- 7 colunas (dias da semana) por linha -->
+                                <GridItemsLayout Orientation="Vertical" Span="7" HorizontalItemSpacing="2" VerticalItemSpacing="2"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="viewmodel:CalendarDay">
+                                    <Frame 
+                                    CornerRadius="5" Padding="0" Margin="0" 
+                                    HeightRequest="45" WidthRequest="45"
+                                    HasShadow="False"
+                                    BackgroundColor="{Binding BackgroundColor}">
+
+                                        <!-- Usamos DayOfMonth que retorna "" (string vazia) para dias vazios. 
+                                         Isso resolve o problema do "1" e a necessidade do conversor. -->
+                                        <Label 
+                                        Text="{Binding DayOfMonth}" 
+                                        HorizontalOptions="Center" 
+                                        VerticalOptions="Center"
+                                        
+                                        />
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                    </VerticalStackLayout>
+                    <!-- Filtro-->
+                    <Grid RowDefinitions="Auto,Auto,*">
+                        <Picker  Grid.Row="1" Margin="0,-25,0,10" ItemsSource="{Binding Filtros}" SelectedItem="{Binding FiltroSelecionado}" HorizontalOptions="End" WidthRequest="130"/>
+
+                        <!-- Lista de Eventos -->
+                        <CollectionView  Grid.Row="2" ItemsSource="{Binding EventosFiltrados}" SelectionMode="Single">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame  Margin="0,10" Padding="15" BackgroundColor="#4F1271" BorderColor="#B19CD9" CornerRadius="18" HasShadow="False">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer 
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AbrirDetalhesEventoCommand}"
+                                                CommandParameter="{Binding .}" />
+                                        </Frame.GestureRecognizers>
+                                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                                            <StackLayout Grid.Column="0">
+                                                <Label Text="{Binding nome}"  FontAttributes="Bold" FontSize="18"  TextColor="white"/>
+                                                <Label Text="{Binding DataFormatada}" FontSize="14" TextColor="White"/>
+                                                <Label Text="{Binding HorarioFormatado}" FontSize="14" TextColor="White"/>
+                                            </StackLayout>
+                                            <ImageButton 
+                                            Grid.Column="1" Source="png.png" BackgroundColor="Transparent" HeightRequest="15" WidthRequest="15" HorizontalOptions="Start" Margin="30,0,0,40" 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AbrirOpcoesCommand}" CommandParameter="{Binding .}"/>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <!-- Rodapé -->
+        <Grid Grid.Row="1" BackgroundColor="#4F1271" Padding="10" Margin="0,0,0,0" HeightRequest="70" VerticalOptions="End">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Frame Grid.Column="0" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton x:Name="home_page_btn" Source="home.png" WidthRequest="24" HeightRequest="24" Clicked="home_page_btn_Clicked"/>
+            </Frame>
+
+            <Frame Grid.Column="1" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton x:Name="search_page_btn" Source="searchhome.png" WidthRequest="24" HeightRequest="24" Clicked="search_page_btn_Clicked"/>
+            </Frame>
+
+            <Frame Grid.Column="2" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton Source="chathome.png" WidthRequest="24" HeightRequest="24" Clicked="chat_Clicked" />
+            </Frame>
+
+            <Frame Grid.Column="3" WidthRequest="60" HeightRequest="60" CornerRadius="28" BackgroundColor="#783F8E" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton Source="calendar.png" WidthRequest="24" HeightRequest="24" Clicked="calendar_Clicked_1"/>
+            </Frame>
+
+            <Frame Grid.Column="4" WidthRequest="50" HeightRequest="50" CornerRadius="25" BackgroundColor="#AE92BD" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True">
+                <ImageButton x:Name="profile_page_btn" Source="profilehome.png" WidthRequest="24" HeightRequest="24"/>
+            </Frame>
+        </Grid>
+
+    </Grid>
+</ContentPage>
