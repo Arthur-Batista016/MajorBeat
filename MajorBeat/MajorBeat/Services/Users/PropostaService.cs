@@ -13,12 +13,13 @@ namespace MajorBeat.Services.Users
         private readonly Request _request;
         private const string _baseUrl = "https://majorbeat-fzedc4ekbuaufncw.brazilsouth-01.azurewebsites.net/Proposta";
         private string _token;
+
         public PropostaService()
         {
             _request = new Request();
             _token = Preferences.Get("UsuarioToken", string.Empty);
         }
-        public PropostaService(string token)
+        public PropostaService(string token )
         {
             _request = new Request();
             _token = token;
@@ -64,6 +65,13 @@ namespace MajorBeat.Services.Users
             string urlComplementar = "/post";
             p = await _request.PostAsync(_baseUrl + urlComplementar, p, _token);
 
+            return p;
+        }
+
+        public async Task<Proposta> PutPropostaAsync(Proposta p)
+        {
+            string urlComplementar = $"/update/{p.idProposta}";
+            p = await _request.PutAsync(_baseUrl + urlComplementar, p, _token);
             return p;
         }
 

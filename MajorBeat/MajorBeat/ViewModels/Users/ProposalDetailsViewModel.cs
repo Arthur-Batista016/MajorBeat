@@ -79,8 +79,8 @@ namespace MajorBeat.ViewModels.Users
         {
             try
             {
-                propostaInfos.statusProposta = Enums.StatusProposta.ACEITO;
-                //await _pService.UpdateProposta(propostaInfos);
+                PropostaInfos.statusProposta = Enums.StatusProposta.ACEITO;
+                await _pService.PutPropostaAsync(PropostaInfos);
                 await Application.Current.MainPage.DisplayAlert("Aviso", "Proposta aceita com sucesso!!", "ok");
 
 
@@ -99,8 +99,8 @@ namespace MajorBeat.ViewModels.Users
         {
             try
             {
-                propostaInfos.statusProposta = Enums.StatusProposta.RECUSADO;
-                //await _pService.UpdateProposta(propostaInfos);
+                PropostaInfos.statusProposta = Enums.StatusProposta.RECUSADO;
+                await _pService.PutPropostaAsync(PropostaInfos);
                 await Application.Current.MainPage.DisplayAlert("Aviso", "Proposta recusada com sucesso", "ok");
 
 

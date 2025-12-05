@@ -4,6 +4,7 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,22 +77,37 @@ namespace MajorBeat.Services
             return result;
         }
 
-        public async Task<int> PutAsync<TResult>(string uri, TResult data, string token)
+        public async Task<TResult> PutAsync<TResult>(string uri, TResult data, string token)
         {
             HttpClient httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Authorization
-                = new AuthenticationHeaderValue("Bearer", token);
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var content = new StringContent(JsonConvert.SerializeObject(data));
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            // Adiciona o cabeçalho de 'Accept'
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+
             HttpResponseMessage response = await httpClient.PutAsync(uri, content);
 
             string serialized = await response.Content.ReadAsStringAsync();
 
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                return int.Parse(serialized);
+            if (response.IsSuccessStatusCode)
+            {
+                // Se a resposta for OK (200) ou No Content (204)
+                if (response.StatusCode == HttpStatusCode.NoContent)
+                {
+                    // Se o servidor retornar 204 (No Content), retorne o objeto original (data) ou o valor padrão.
+                    return data;
+                }
+
+                // 🚨 Desserializa o JSON de volta para o tipo esperado (TResult)
+                return JsonConvert.DeserializeObject<TResult>(serialized);
+            }
             else
-                throw new Exception(serialized);
+            {
+                // Se a API retornar um erro (4xx ou 5xx), lance uma exceção detalhada
+                throw new HttpRequestException($"Erro HTTP {response.StatusCode} ao executar PUT. Detalhes da API: {serialized}");
+            }
         }
 
 
