@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace MajorBeat.ViewModels.Users
 {
-    partial class ProposalViewModel:ObservableObject
+    partial class ProposalViewModel : ObservableObject
     {
 
         private readonly PropostaService _pService = new PropostaService();
@@ -51,7 +51,7 @@ namespace MajorBeat.ViewModels.Users
         {
             role = Preferences.Get("role", string.Empty);
             usuarioId = Preferences.Get("Usuarioid", 0L);
-            _ =GetAllNotifications(usuarioId);
+            _ = GetAllNotifications(usuarioId);
             _pService = new PropostaService(token);
             _eService = new EventService(token);
 
@@ -74,25 +74,32 @@ namespace MajorBeat.ViewModels.Users
             try
             {
                 ObservableCollection<Proposta> propostas;
-                if (role == "musico") { 
-                // 1. Obtém todas as propostas
-                 propostas = await _pService.GetProposalByMusico(usuarioId);
-                }else if(role == "contratante")
+                if (role == "musico")
+                {
+                    // 1. Obtém todas as propostas
+                    propostas = await _pService.GetProposalByMusico(usuarioId);
+                }
+                else if (role == "contratante")
                 {
                     propostas = await _pService.GetProposalByIdContratante(usuarioId);
                 }
                 else
                 {
-                    return new ObservableCollection<Proposta>(); 
+                    return new ObservableCollection<Proposta>();
                 }
                 if (propostas == null)
                 {
-                    return new ObservableCollection<Proposta>(); 
+                    return new ObservableCollection<Proposta>();
                 }
 
-                var propostasAbertas = propostas
+                var propostasDoRecebedor = propostas
+            .Where(p => p.idRecebedor == usuarioId); // Filtra propostas onde o ID do recebedor é o ID do usuário logado
+
+                // FILTRO EXISTENTE: Agora aplica o filtro de status na lista já filtrada por ID
+                var propostasAbertas = propostasDoRecebedor
                     .Where(p => p.statusProposta == Enums.StatusProposta.ABERTO)
-                    .ToList(); 
+                    .ToList(); // Converte para lista
+
                 ObservableCollection<Proposta> propostasFiltradas = new ObservableCollection<Proposta>(propostasAbertas);
                 PropostasRecebidas = propostasFiltradas;
                 return PropostasRecebidas;
@@ -129,21 +136,21 @@ namespace MajorBeat.ViewModels.Users
 
         //public async Task<Evento> EventProposal(long id_proposta)
         //{
-          //  try
-          //  {
-                //Proposta proposta = await _pService.GetProposalByIdContratante(id_proposta);
-                //return proposta;
-            //}
-            //catch (Exception ex) {
+        //  try
+        //  {
+        //Proposta proposta = await _pService.GetProposalByIdContratante(id_proposta);
+        //return proposta;
+        //}
+        //catch (Exception ex) {
 
-              //  return null;
-            //}
+        //  return null;
+        //}
 
         //}
 
 
 
-       
+
 
         public async Task RefuseProposal()
         {
@@ -157,16 +164,17 @@ namespace MajorBeat.ViewModels.Users
             {
 
             }
-            catch (Exception ex) { 
-            
-                
+            catch (Exception ex)
+            {
+
+
             }
         }
 
 
 
 
-       
+
 
 
 

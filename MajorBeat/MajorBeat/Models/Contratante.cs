@@ -10,6 +10,7 @@ namespace MajorBeat.Models
 {
     public class Contratante
     {
+        public long idContratante { get; set; }
         public long id { get; set; }
         public string nome { get; set; }
         public string email { get; set; }

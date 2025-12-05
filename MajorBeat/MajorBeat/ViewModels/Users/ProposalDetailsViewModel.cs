@@ -83,8 +83,14 @@ namespace MajorBeat.ViewModels.Users
                 await _pService.PutPropostaAsync(PropostaInfos);
                 await Application.Current.MainPage.DisplayAlert("Aviso", "Proposta aceita com sucesso!!", "ok");
 
-
+                if (role == "contratante") { 
                 await Application.Current.MainPage.Navigation.PushAsync(new Views.Hirers.HirerHomePage());
+                }
+                else
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new Views.Musicians.MusicianHomePage());
+
+                }
                 return propostaInfos;
 
             }
@@ -104,7 +110,15 @@ namespace MajorBeat.ViewModels.Users
                 await Application.Current.MainPage.DisplayAlert("Aviso", "Proposta recusada com sucesso", "ok");
 
 
-                await Application.Current.MainPage.Navigation.PushAsync(new Views.Hirers.HirerHomePage());
+                if (role == "contratante")
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new Views.Hirers.HirerHomePage());
+                }
+                else
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new Views.Musicians.MusicianHomePage());
+
+                }
                 return propostaInfos;
             }
             catch (Exception ex)
