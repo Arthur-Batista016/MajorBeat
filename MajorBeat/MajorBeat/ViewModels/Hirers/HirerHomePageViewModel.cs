@@ -25,7 +25,7 @@ namespace MajorBeat.ViewModels.Hirers
             EventPhoto = new ObservableCollection<string>();
             musicos = new ObservableCollection<Musico>();
 
-            ExibirTodosMusicos();
+            ExibirTodosMusicos(16);
 
             ClickMusicianCommand = new Command<Musico>(async (musico) => await MusicianTapped(musico));
 
@@ -117,12 +117,35 @@ namespace MajorBeat.ViewModels.Hirers
             HasMusicians = Musicos != null && Musicos.Count > 0;
         }
 
-        public async Task<ObservableCollection<Musico>> ExibirTodosMusicos()
+        public async Task<ObservableCollection<Musico>> ExibirTodosMusicos(long musicoDesejadoId)
         {
             try
             {
-
+                // 1. Carrega todos os músicos da API
                 ObservableCollection<Musico> musicos = await _mService.GetAllMusicians();
+
+                // Verifica se a lista não está nula e não está vazia
+                if (musicos == null || !musicos.Any())
+                {
+                    Musicos = new ObservableCollection<Musico>();
+                    return Musicos;
+                }
+
+                // 2. Encontra o músico específico pelo ID
+                Musico musicoParaDestacar = musicos
+                    .FirstOrDefault(m => m.idMusico == musicoDesejadoId); // Assumindo que o campo ID se chama 'id'
+
+                // 3. Se o músico desejado foi encontrado
+                if (musicoParaDestacar != null)
+                {
+                    // Remove o músico da posição atual
+                    musicos.Remove(musicoParaDestacar);
+
+                    // Insere o músico na primeira posição (índice 0)
+                    musicos.Insert(0, musicoParaDestacar);
+                }
+
+                // 4. Atribui a lista modificada e retorna
                 Musicos = musicos;
                 return Musicos;
 
@@ -130,6 +153,7 @@ namespace MajorBeat.ViewModels.Hirers
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Erro ao carregar musicos: {ex.Message}");
+                // Se houver erro, retorna uma lista vazia
                 return Musicos = new ObservableCollection<Musico>();
             }
         }
