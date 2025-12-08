@@ -115,7 +115,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="2"/>
                             </Grid.RowDefinitions>
-                            <Label x:Name="TabSobre" Text="Sobre" FontSize="20" TextColor="{Binding TabSobreTextColor}" Padding="50,0,50,0" FontAttributes="{Binding TabSobreFontAttributes}" HorizontalOptions="Center">
+                            <Label x:Name="TabSobre" Text="Sobre" FontSize="20" TextColor="#4F1271" Padding="50,0,50,0" FontAttributes="{Binding TabSobreFontAttributes}" HorizontalOptions="Center">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Sobre" />
                                 </Label.GestureRecognizers>
@@ -140,7 +140,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="2"/>
                             </Grid.RowDefinitions>
-                            <Label x:Name="TabAvaliacoes" Text="Avaliações" FontSize="20" TextColor="{Binding TabAvaliacoesTextColor}" Padding="20,0,20,0" FontAttributes="{Binding TabAvaliacoesFontAttributes}" HorizontalOptions="End">
+                            <Label x:Name="TabAvaliacoes" Text="Avaliações" FontSize="20" TextColor="#4F1271" Padding="20,0,20,0" FontAttributes="{Binding TabAvaliacoesFontAttributes}" HorizontalOptions="End">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SelectTabCommand}" CommandParameter="Avaliacoes" />
                                 </Label.GestureRecognizers>

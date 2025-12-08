@@ -66,7 +66,7 @@ public class LoginViewModel : BaseViewModel
 
                 await Application.Current.MainPage.DisplayAlert(
                     "Sucesso",
-                    $"Contratante {ca.id} autenticado com sucesso!",
+                    "Contratante autenticado com sucesso!",
                     "OK"
                 );
                 await Application.Current.MainPage.Navigation.PushAsync(new Views.Hirers.HirerHomePage());
@@ -84,7 +84,7 @@ public class LoginViewModel : BaseViewModel
                 Preferences.Set("role", "musico");
                 await Application.Current.MainPage.DisplayAlert(
                     "Sucesso",
-                    $"Musico {ma.idMusico} autenticado com sucesso!",
+                    "Musico autenticado com sucesso!",
                     "OK"
                 );
                 await Application.Current.MainPage.Navigation.PushAsync(new Views.Musicians.MusicianHomePage());
